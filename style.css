@@ -1,0 +1,45 @@
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    background: #f4f4f4;
+    color: #222;
+}
+
+nav {
+    background: rgb(168, 210, 255);
+    padding: 20px;
+    display: flex;
+    gap: 20px;
+}
+
+nav a {
+    color: rgb(0, 0, 0);
+    text-decoration: none;
+    font-weight: bold;
+}
+
+header {
+    max-width: 1200px;
+    margin: auto;
+    padding: 20px;
+    background: rgb(168, 210, 255);
+    margin-top: 20px;
+    border-radius: 8px;
+}
+
+section {
+    max-width: 1200px;
+    margin: auto;
+    padding: 20px;
+    background: white;
+    margin-top: 20px;
+    border-radius: 8px;
+}
+
+.example {
+    background: #eef7ff;
+    padding: 15px;
+    border-left: 4px solid #2980b9;
+    border-radius: 5px;
+    margin-bottom: 15px;
+}

@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+    <meta charset="UTF-8">
+    <title>HM1_Folgen_und_Reihen</title>
+    <link rel="stylesheet" href="../style.css">
+
+    <!-- KaTeX für mathematische Formeln -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.0/dist/katex.min.css">
+    <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.0/dist/katex.min.js"></script>
+    <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.0/dist/contrib/auto-render.min.js"
+            onload="renderMathInElement(document.body);"></script>
+</head>
+
+<body>
+
+<nav>
+    <a href="../index.html">Startseite</a>
+    <a href="../kapitel.html">Kapitel</a>
+</nav>
+
+<section>
+    <h1>Folgen und Reihen</h1>
+    <p>Dieses Kapitel behandelt grundlegende Begriffe der Folgen- und Reihenlehre, 
+       zentrale Konvergenzbegriffe sowie wichtige Sätze wie Bolzano-Weierstrass und das Cauchy-Kriterium.</p>
+
+    <h2>1. Folgen</h2>
+    <p>Eine Folge ist eine Abbildung</p>
+    <p>$$ a : \mathbb{N} \to \mathbb{R}, \quad n \mapsto a_n. $$</p>
+
+    <p>Man nennt \( a_n \) das <b>n-te Folgenglied</b>.  
+       Beispiele für Folgen:</p>
+    <ul>
+        <li>Arithmetische Folge: \( a_n = a_1 + (n-1)d \)</li>
+        <li>Geometrische Folge: \( a_n = a_1 \cdot q^{\,n-1} \)</li>
+        <li>Harmonische Folge: \( a_n = \frac{1}{n} \)</li>
+    </ul>
+
+    <h3>Konvergenz einer Folge</h3>
+    <p>Eine Folge \( (a_n) \) heißt konvergent, falls es ein \( L \in \mathbb{R} \) gibt mit:</p>
+    <p>$$ \lim_{n\to\infty} a_n = L. $$</p>
+
+    <p>Formal:</p>
+    <p>Für alle \( \varepsilon > 0 \) existiert ein \( N \in \mathbb{N} \) sodass  
+       \( |a_n - L| < \varepsilon \) für alle \( n \ge N \).</p>
+
+
+    <h2>2. Beschränktheit und Monotonie</h2>
+
+    <h3>Beschränktheit</h3>
+    <p>Eine Folge ist</p>
+    <ul>
+        <li><b>nach oben beschränkt</b> falls \( a_n \le M \) für alle \( n \)</li>
+        <li><b>nach unten beschränkt</b> falls \( a_n \ge m \)</li>
+        <li><b>beschränkt</b> falls beide gelten</li>
+    </ul>
+
+    <h3>Monotonie</h3>
+    <ul>
+        <li><b>monoton wachsend</b>: \( a_{n+1} \ge a_n \)</li>
+        <li><b>monoton fallend</b>: \( a_{n+1} \le a_n \)</li>
+        <li><b>streng monoton</b>: strikte Ungleichungen</li>
+    </ul>
+
+    <h3>Wichtiger Satz</h3>
+    <p><b>Jede monotone und beschränkte Folge ist konvergent.</b></p>
+
+
+    <h2>3. Teilfolgen und Häufungspunkte</h2>
+
+    <h3>Teilfolge</h3>
+    <p>Eine Folge \( (a_{n_k}) \) heißt Teilfolge von \( (a_n) \), wenn  
+       \( n_1 < n_2 < n_3 < \dots \) eine streng wachsende Folge natürlicher Zahlen ist.</p>
+
+    <h3>Häufungspunkt</h3>
+    <p>Ein Wert \( L \) heißt Häufungspunkt einer Folge, falls es eine Teilfolge gibt, die gegen \( L \) konvergiert.</p>
+
+    <h3>Eigenschaft</h3>
+    <p>Eine Folge kann mehrere Häufungspunkte haben — konvergente Folgen haben genau einen.</p>
+
+
+    <h2>4. Wichtige Sätze über Konvergenz</h2>
+
+    <h3>Sandwich-Satz</h3>
+    <p>Falls \( a_n \le b_n \le c_n \) und \( a_n, c_n \to L \), dann folgt \( b_n \to L \).</p>
+
+    <h3>Rechenregeln</h3>
+    <ul>
+        <li>\( \lim(a_n + b_n) = \lim a_n + \lim b_n \)</li>
+        <li>\( \lim(a_n b_n) = (\lim a_n)(\lim b_n) \)</li>
+        <li>\( \lim\left(\frac{a_n}{b_n}\right) = \frac{\lim a_n}{\lim b_n} \), falls Nenner ≠ 0</li>
+    </ul>
+
+
+    <h2>5. Vollständigkeit und der Satz von Bolzano–Weierstrass</h2>
+
+    <h3>Vollständigkeit</h3>
+    <p>Die reellen Zahlen \( \mathbb{R} \) sind vollständig:  
+       Jede Cauchy-Folge konvergiert in \( \mathbb{R} \).</p>
+
+    <h3>Satz von Bolzano–Weierstrass</h3>
+    <p><b>Jede beschränkte Folge besitzt mindestens eine konvergente Teilfolge.</b></p>
+
+    <p>Dies garantiert die Existenz von Häufungspunkten.</p>
+
+
+    <h2>6. Konvergenzkriterium von Cauchy</h2>
+
+    <p>Eine Folge \( (a_n) \) ist genau dann konvergent, wenn sie eine Cauchy-Folge ist:</p>
+
+    <p>Für alle \( \varepsilon > 0 \) existiert ein \( N \) sodass  
+       \( |a_n - a_m| < \varepsilon \) für alle \( m,n \ge N \).</p>
+
+    <p>In \( \mathbb{R} \) sind beide Begriffe äquivalent, weil \( \mathbb{R} \) vollständig ist.</p>
+
+
+    <h2>7. Reihen</h2>
+
+    <p>Eine Reihe ist definiert durch die Partialsummenfolge:</p>
+
+    <p>$$ S_n = \sum_{k=1}^{n} a_k. $$</p>
+
+    <p>Die Reihe \( \sum a_k \) heißt <b>konvergent</b>, falls \( (S_n) \) konvergiert.</p>
+
+    <h3>Wichtige Beispiele</h3>
+    <ul>
+        <li>Geometrische Reihe:  
+            $$ \sum_{n=0}^{\infty} q^n = \frac{1}{1-q}, \quad |q| < 1 $$
+        </li>
+        <li>Harmonische Reihe divergiert:  
+            $$ \sum_{n=1}^{\infty} \frac{1}{n} = \infty $$
+        </li>
+    </ul>
+
+    <h3>Notwendige Bedingung</h3>
+    <p>Für konvergente Reihen gilt:</p>
+    <p>$$ a_n \to 0. $$</p>
+    <p>Die Umkehrung gilt nicht.</p>
+
+    <h2>PDF Übungen</h2>
+    <p>
+        <a target="_blank" href="../assets/pdf/HM1_Folgen_und_Haeufungspunkte.pdf">
+            Blatt 1
+        </a>
+    </p>
+
+</section>
+
+</body>
+</html>
