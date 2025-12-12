@@ -1,0 +1,240 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>HM1_Hessesche_Normalform</title>
+
+  <link rel="stylesheet" href="../style.css">
+  <!-- KaTeX -->
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.8/dist/katex.min.css">
+  <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.8/dist/katex.min.js"></script>
+  <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.8/dist/contrib/auto-render.min.js"
+          onload="renderMathInElement(document.body);"></script>
+
+  <style>
+    /* Kapitel-spezifisches Layout (gleich zu den anderen Kapiteln) */
+    .definition { padding: .75rem; border-left: 4px solid #2b7cff; background:#f3f8ff; border-radius:4px; margin: .75rem 0; }
+    .satz { padding: .75rem; border-left: 4px solid #2b7cff; background:#f9f9fb; border-radius:4px; margin: .75rem 0; }
+    .example { padding: .75rem; border-left: 4px solid #2e9a6a; background:#f4fffa; border-radius:4px; margin: .75rem 0; }
+    pre.math { background:#f7f7f7; padding: .5rem; border-radius:4px; overflow:auto; }
+    .small { font-size:0.95rem; color:#444; }
+  </style>
+</head>
+<body>
+
+<nav>
+  <a href="../index.html">Startseite</a>
+  <a href="../kapitel.html">Kapitel</a>
+</nav>
+
+<section>
+  <h1>Hessesche Normalform (HNF)</h1>
+  <p class="small">Definition, Konstruktionen und Standardaufgaben: HNF aus Koordinatenform, aus Punkten, aus Parameterform, Abstand Punkt–Ebene, Lage eines Punktes und Abstand paralleler Ebenen. Viele gelöste Beispiele.</p>
+
+  <h2>1. Definition</h2>
+  <div class="definition">
+    Eine Ebene \(E\subset\mathbb{R}^3\) hat eine Normalenvektor \(n\in\mathbb{R}^3\) und kann in der <strong>Hesseschen Normalform (HNF)</strong> geschrieben werden als
+    \[
+      \frac{1}{\|n\|}\,\langle n \mid x \rangle \;=\; \delta,
+    \]
+    wobei \( \langle n \mid x \rangle = n_1 x_1 + n_2 x_2 + n_3 x_3\) das Skalarprodukt ist, \(\|n\|\) die Norm von \(n\) und \(\delta\in\mathbb{R}\) die rechte Seite (Skalar).
+  </div>
+
+  <h2>2. HNF aus Koordinatenform</h2>
+  <div class="definition">
+    Gegeben eine Ebene in Koordinatenform
+    \[
+      a x_1 + b x_2 + c x_3 = e,
+    \]
+    ist ein Normalenvektor \(n = (a,b,c)^\top\). Die HNF erhält man durch Normierung:
+    \[
+      \frac{1}{\|n\|}(a x_1 + b x_2 + c x_3) = \frac{e}{\|n\|}.
+    \]
+  </div>
+
+  <div class="example">
+    <strong>Beispiel (Aufgabe 1).</strong><br>
+    Gegeben: \(E: 2x_1 - 3x_2 + 6x_3 = 14\).  
+    Normalenvektor \(n=(2,-3,6)^\top\). Norm: \(\|n\|=\sqrt{4+9+36}=\sqrt{49}=7\).  
+    HNF:
+    \[
+      \frac{1}{7}(2x_1-3x_2+6x_3)=\frac{14}{7}=2.
+    \]
+  </div>
+
+  <h2>3. HNF aus drei Punkten</h2>
+  <div class="definition">
+    Gegeben drei nicht kollineare Punkte \(P,Q,R\). Richtungsvektoren der Ebene:
+    \[
+      \overrightarrow{PQ}=Q-P,\quad \overrightarrow{PR}=R-P.
+    \]
+    Ein Normalenvektor ist das Kreuzprodukt
+    \[
+      n = \overrightarrow{PQ}\times\overrightarrow{PR}.
+    \]
+    Anschließend normieren und \( \delta = \frac{\langle n \mid P\rangle}{\|n\|} \).
+  </div>
+
+  <div class="example">
+    <strong>Beispiel (Aufgabe 2).</strong><br>
+    \(P(1,0,1),\,Q(2,1,3),\,R(0,-1,2)\).
+    \[
+      \overrightarrow{PQ}=\begin{pmatrix}1\\1\\2\end{pmatrix},\quad
+      \overrightarrow{PR}=\begin{pmatrix}-1\\-1\\1\end{pmatrix}.
+    \]
+    Kreuzprodukt:
+    \[
+      n=\overrightarrow{PQ}\times\overrightarrow{PR}=\begin{pmatrix}3\\-3\\0\end{pmatrix}
+      \sim \begin{pmatrix}1\\-1\\0\end{pmatrix}.
+    \]
+    Norm \(\|n\|=\sqrt{1^2+(-1)^2}=\sqrt{2}\). Konstante:
+    \[
+      \delta = \frac{\langle n \mid P\rangle}{\|n\|} = \frac{1\cdot1 + (-1)\cdot0 + 0\cdot1}{\sqrt{2}} = \frac{1}{\sqrt{2}}.
+    \]
+    HNF:
+    \[
+      \frac{1}{\sqrt{2}}(x_1 - x_2) = \frac{1}{\sqrt{2}}.
+    \]
+  </div>
+
+  <h2>4. HNF aus Parameterform</h2>
+  <div class="definition">
+    Gegeben die Parameterform
+    \[
+      x = p + \lambda u + \mu v, \quad \lambda,\mu\in\mathbb{R},
+    \]
+    mit Richtungsvektoren \(u,v\). Normalenvektor:
+    \[
+      n = u \times v.
+    \]
+    Dann HNF wie oben: \(\frac{1}{\|n\|}\langle n \mid x \rangle = \frac{\langle n \mid p \rangle}{\|n\|}\).
+  </div>
+
+  <div class="example">
+    <strong>Beispiel (Aufgabe 6).</strong><br>
+    Gegeben
+    \[
+      x=\begin{pmatrix}1\\0\\1\end{pmatrix} + \lambda\begin{pmatrix}2\\1\\-1\end{pmatrix} + \mu\begin{pmatrix}0\\1\\3\end{pmatrix}.
+    \]
+    Kreuzprodukt:
+    \[
+      n=\begin{pmatrix}2\\1\\-1\end{pmatrix}\times\begin{pmatrix}0\\1\\3\end{pmatrix}=\begin{pmatrix}4\\-6\\2\end{pmatrix}\sim\begin{pmatrix}2\\-3\\1\end{pmatrix}.
+    \]
+    Norm \(\|n\|=\sqrt{4+9+1}=\sqrt{14}\). Konstante \(d=\langle n \mid p\rangle = 2\cdot1 + (-3)\cdot0 + 1\cdot1 = 3\).  
+    HNF:
+    \[
+      \frac{1}{\sqrt{14}}(2x_1-3x_2+x_3) = \frac{3}{\sqrt{14}}.
+    \]
+  </div>
+
+  <h2>5. Abstand Punkt–Ebene</h2>
+  <div class="definition">
+    Für einen Punkt \(A\in\mathbb{R}^3\) und Ebene in HNF
+    \[
+      \frac{1}{\|n\|}\langle n \mid x \rangle = \delta
+    \]
+    gilt der Abstand
+    \[
+      d(A,E) = \left| \frac{1}{\|n\|}\langle n \mid A \rangle - \delta \right|
+    \]
+    (Betrag; Vorzeichen gibt Lage relativ zur Normalen an).
+  </div>
+
+  <div class="example">
+    <strong>Beispiel (Aufgabe 3).</strong><br>
+    Gegeben: \(E: \frac{1}{5}(3x_1 + 4x_3)=1\) und \(A(1,2,-1)\).
+    Einsetzen:
+    \[
+      \frac{1}{5}(3\cdot 1 + 4\cdot(-1)) - 1 = \frac{1}{5}(3-4)-1 = -\frac{1}{5} - 1 = -\frac{6}{5}.
+    \]
+    Abstand: \(d(A,E)=\left| -\frac{6}{5} \right| = \frac{6}{5}.\)
+  </div>
+
+  <h2>6. Lage eines Punktes zur Ebene</h2>
+  <div class="definition">
+    Berechne den Ausdruck \(s = \frac{1}{\|n\|}\langle n \mid A\rangle - \delta\).
+    \begin{itemize}
+      <li>\(s=0\) ⇔ \(A\) liegt auf \(E\).</li>
+      <li>\(s>0\) ⇔ \(A\) liegt auf der Seite in Richtung \(n\).</li>
+      <li>\(s<0\) ⇔ \(A\) liegt auf der entgegengesetzten Seite (Richtung \(-n\)).</li>
+    </itemize>
+  </div>
+
+  <div class="example">
+    <strong>Beispiel (Aufgabe 5).</strong><br>
+    \(E: \tfrac{1}{3}(x_1+2x_2-2x_3)=1\), \(B(2,1,3)\). Einsetzen:
+    \[
+      \tfrac{1}{3}(2 + 2\cdot1 - 2\cdot3) = \tfrac{1}{3}(-2) = -\tfrac{2}{3} < 1.
+    \]
+    Also liegt \(B\) nicht auf \(E\); da der Wert kleiner als \(\delta=1\) ist, liegt \(B\) auf der Seite, in die \(-n\) zeigt.
+  </div>
+
+  <h2>7. Schnitt Gerade–Ebene</h2>
+  <div class="definition">
+    Gegeben Gerade \(g: x = p + \lambda v\) und Ebene in HNF. Setze die Geradengleichung in die HNF ein und löse nach \(\lambda\).
+    \[
+      \frac{1}{\|n\|}\langle n \mid (p + \lambda v)\rangle = \delta.
+    \]
+    Daraus folgt
+    \[
+      \lambda = \frac{\|n\|\delta - \langle n \mid p\rangle}{\langle n \mid v\rangle},
+    \]
+    falls \(\langle n \mid v\rangle \neq 0\). (Falls \(\langle n \mid v\rangle = 0\): Gerade parallel zur Ebene; entweder keine oder unendlich viele Schnittpunkte.)
+  </div>
+
+  <div class="example">
+    <strong>Beispiel (Aufgabe 7).</strong><br>
+    \(g: x = \begin{pmatrix}1\\-1\\2\end{pmatrix} + \lambda\begin{pmatrix}3\\0\\-1\end{pmatrix}\),  
+    \(E: \frac{1}{\sqrt{6}}(2x_1 + x_2 - x_3) = 0\).
+    Einsetzen:
+    \[
+      \frac{1}{\sqrt{6}}(2(1+3\lambda) + (-1) - (2-\lambda)) = 0.
+    \]
+    Vereinfachen: \(7\lambda - 1 = 0 \Rightarrow \lambda = \tfrac{1}{7}\).  
+    Schnittpunkt:
+    \[
+      S = \begin{pmatrix}1+\tfrac{3}{7}\\ -1 \\ 2 - \tfrac{1}{7}\end{pmatrix}
+        = \begin{pmatrix}\tfrac{10}{7}\\ -1 \\ \tfrac{13}{7}\end{pmatrix}.
+    \]
+  </div>
+
+  <h2>8. Abstand paralleler Ebenen</h2>
+  <div class="definition">
+    Für zwei parallele Ebenen mit gleicher Normalenrichtung \(n\):
+    \[
+      E: \langle n \mid x \rangle = e,\quad F: \langle n \mid x \rangle = f,
+    \]
+    beträgt der Abstand
+    \[
+      d(E,F) = \frac{|e - f|}{\|n\|}.
+    \]
+    (Für HNF mit normiertem \(n/\|n\|\) ist dies \(|\delta_E - \delta_F|\).)
+  </div>
+
+  <div class="example">
+    <strong>Beispiel (Aufgabe 8).</strong><br>
+    \(E: x_1 - 2x_2 + 2x_3 = 6,\; F: x_1 - 2x_2 + 2x_3 = -4.\)  
+    Normalenvektor \(n=(1,-2,2)^\top\), \(\|n\|=\sqrt{1+4+4}=3\).  
+    Abstand:
+    \[
+      d(E,F)=\frac{|6 - (-4)|}{\|n\|} = \frac{10}{3}.
+    \]
+  </div>
+
+  <h2>9. Hinweise & typische Fehler</h2>
+  <ul>
+    <li>Vergiss nicht zu normieren: HNF verlangt den normierten Normalenvektor.</li>
+    <li>Bei Kreuzprodukten kann der resultierende Normalenvektor ein Vielfaches sein — das ist ok (normieren am Ende).</li>
+    <li>Beim Abstand immer absoluten Wert nehmen.</li>
+    <li>Bei Schnittproblemen zuerst prüfen, ob die Gerade parallel zur Ebene ist (\(\langle n \mid v\rangle = 0\)).</li>
+  </ul>
+
+  <h2>PDF-Version</h2>
+  <p><a target="_blank" href="../assets/pdf/HM1_Hesse_Normalform.pdf">Blatt 1</a></p>
+  <p><a target="_blank" href="../assets/pdf/HM1_Hesse_Normalform_2.pdf">Blatt 2</a></p>
+
+</section>
+
+</body>
+</html>
