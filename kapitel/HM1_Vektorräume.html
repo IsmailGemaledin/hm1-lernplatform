@@ -1,0 +1,161 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>HM1_Vektorraume</title>
+  <link rel="stylesheet" href="../style.css">
+  <!-- KaTeX für Formeln -->
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.8/dist/katex.min.css">
+  <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.8/dist/katex.min.js"></script>
+  <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.8/dist/contrib/auto-render.min.js"
+          onload="renderMathInElement(document.body);"></script>
+  <style>
+    .definition { padding: .75rem; border-left: 4px solid #2b7cff; background:#f3f8ff; border-radius:4px; margin: .75rem 0; }
+    .satz { padding: .75rem; border-left: 4px solid #2b7cff; background:#f9f9fb; border-radius:4px; margin: .75rem 0; }
+    .example { padding: .75rem; border-left: 4px solid #2e9a6a; background:#f4fffa; border-radius:4px; margin: .75rem 0; }
+    pre.math { background:#f7f7f7; padding: .5rem; border-radius:4px; overflow:auto; }
+    .small { font-size:0.95rem; color:#444; }
+  </style>
+</head>
+<body>
+
+<nav>
+  <a href="../index.html">Startseite</a>
+  <a href="../kapitel.html">Kapitel</a>
+</nav>
+
+<section>
+  <h1>Vektorräume</h1>
+  <p class="small">Theorie zu Vektoren, Vektorräumen, Skalarprodukten, Geraden, linearer Abhängigkeit, Basen, Orthogonalität, Projektionen, Winkeln und Vektorprodukt.</p>
+
+  <h2>1. Vektoren und Kräfte</h2>
+  <div class="definition">
+    <strong>Definition.</strong> Ein <em>Vektor</em> ist ein gerichteter Größenvektor mit Betrag und Richtung:
+    \[
+      \vec{v} = \begin{pmatrix}v_1 \\ v_2 \\ v_3\end{pmatrix} \in \mathbb{R}^3.
+    \]
+    Kräfte in der Physik können als Vektoren dargestellt werden.
+  </div>
+
+  <div class="example">
+    <strong>Beispiel:</strong> Eine Kraft von 10 N in Richtung der x-Achse: 
+    \(\vec{F} = \begin{pmatrix}10 \\ 0 \\ 0\end{pmatrix}\).
+  </div>
+
+  <h2>2. Vektorräume</h2>
+  <div class="definition">
+    Ein <em>Vektorraum</em> \(V\) über einem Körper \(K\) erfüllt:
+    <ul>
+      <li>Abgeschlossenheit unter Addition: \(\vec{u}, \vec{v} \in V \Rightarrow \vec{u}+\vec{v} \in V\)</li>
+      <li>Abgeschlossenheit unter Skalarmultiplikation: \(\lambda\in K, \vec{v}\in V \Rightarrow \lambda \vec{v} \in V\)</li>
+      <li>Existenz eines Nullvektors \(0 \in V\)</li>
+      <li>Existenz inverser Vektoren: \(\forall \vec{v}\in V, -\vec{v} \in V\)</li>
+    </ul>
+  </div>
+
+<h2>3. Skalarprodukt</h2>
+<div class="definition">
+  Für \(\vec{u},\vec{v}\in\mathbb{R}^n\) definiert:
+  \[
+    \langle \vec{v} | \vec{u} \rangle = \sum_{i=1}^n v_i u_i
+  \]
+  Eigenschaften:
+  <ul>
+    <li>Kommutativ: \(\langle \vec{v} | \vec{u} \rangle = \langle \vec{u} | \vec{v} \rangle\)</li>
+    <li>Linearität: \(\langle \lambda \vec{v} + \mu \vec{w} | \vec{u} \rangle = \lambda \langle \vec{v} | \vec{u} \rangle + \mu \langle \vec{w} | \vec{u} \rangle\)</li>
+    <li>Positiv definit: \(\langle \vec{v} | \vec{v} \rangle \ge 0\), Gleichheit nur für \(\vec{v}=0\)</li>
+  </ul>
+</div>
+
+<div class="example">
+  <strong>Beispiel:</strong>
+  \(\vec{u} = \begin{pmatrix}1\\2\\3\end{pmatrix}, \vec{v} = \begin{pmatrix}4\\-1\\2\end{pmatrix} \Rightarrow
+    \langle \vec{v} | \vec{u} \rangle = 4*1 + (-1)*2 + 2*3 = 8
+  \)
+</div>
+
+  <h2>4. Geraden und Linien</h2>
+  <div class="definition">
+    Eine Gerade durch Punkt \(\vec{p}\) in Richtung \(\vec{v}\):
+    \[
+      \vec{x} = \vec{p} + t \vec{v}, \quad t \in \mathbb{R}.
+    \]
+  </div>
+
+  <div class="example">
+    Gerade durch \((1,2,0)\) in Richtung \((1,1,0)\):
+    \[
+      \vec{x} = \begin{pmatrix}1\\2\\0\end{pmatrix} + t \begin{pmatrix}1\\1\\0\end{pmatrix}.
+    \]
+  </div>
+
+  <h2>5. Lineare Abhängigkeit</h2>
+  <div class="definition">
+    Vektoren \(\vec{v}_1,\dots,\vec{v}_n\) sind linear abhängig, wenn es nicht-triviale \(\lambda_i\) gibt:
+    \[
+      \sum_{i=1}^n \lambda_i \vec{v}_i = 0, \quad \exists i: \lambda_i \neq 0.
+    \]
+    Andernfalls linear unabhängig.
+  </div>
+
+  <div class="example">
+    \(\vec{v}_1 = (1,0,0), \vec{v}_2 = (2,0,0)\) → linear abhängig, da \(-2\vec{v}_1 + \vec{v}_2 = 0\).
+  </div>
+
+  <h2>6. Basen</h2>
+  <div class="definition">
+    Eine Basis \(\mathcal{B} = (\vec{b}_1,\dots,\vec{b}_n)\) eines Vektorraums \(V\) erfüllt:
+    <ul>
+      <li>linear unabhängig</li>
+      <li>spannen \(V\) auf</li>
+    </ul>
+    Jeder Vektor \(\vec{v}\in V\) lässt sich eindeutig darstellen:
+    \[
+      \vec{v} = a_1 \vec{b}_1 + \dots + a_n \vec{b}_n.
+    \]
+  </div>
+
+<h2>7. Orthogonalität</h2>
+<div class="definition">
+  Vektoren \(\vec{u},\vec{v}\) heißen orthogonal, falls
+  \(\langle \vec{v} | \vec{u} \rangle = 0\).
+</div>
+
+<h2>8. Projektion</h2>
+<div class="definition">
+  Projektion von \(\vec{u}\) auf \(\vec{v}\):
+  \[
+    \mathrm{proj}_{\vec{v}} \vec{u} = \frac{\langle \vec{v} | \vec{u} \rangle}{\langle \vec{v} | \vec{v} \rangle} \vec{v}.
+  \]
+</div>
+
+<h2>9. Winkel zwischen Vektoren</h2>
+<div class="definition">
+  Winkel \(\theta\) zwischen \(\vec{u},\vec{v}\):
+  \[
+    \cos\theta = \frac{\langle \vec{v} | \vec{u} \rangle}{\|\vec{v}\|\|\vec{u}\|}.
+  \]
+</div>
+
+  <h2>10. Vektorprodukt</h2>
+  <div class="definition">
+    Für \(\vec{u},\vec{v}\in\mathbb{R}^3\):
+    \[
+      \vec{u}\times \vec{v} = 
+      \begin{pmatrix} u_2v_3-u_3v_2 \\ u_3v_1-u_1v_3 \\ u_1v_2-u_2v_1 \end{pmatrix}.
+    \]
+    \(\vec{u}\times \vec{v}\) ist orthogonal zu \(\vec{u}\) und \(\vec{v}\), Betrag: \(\|\vec{u}\times \vec{v}\| = \|\vec{u}\|\|\vec{v}\|\sin\theta\).
+  </div>
+
+  <div class="example">
+    \(\vec{u}=(1,0,0), \vec{v}=(0,1,0) \Rightarrow \vec{u}\times \vec{v} = (0,0,1)\)
+  </div>
+
+  <h2>PDF Übungen</h2>
+  <p><a target="_blank" href="../assets/pdf/HM1_Vektorraum.pdf">Blatt 1</a></p>
+  <p><a target="_blank" href="../assets/pdf/HM1_Vektorraum_2.pdf">Blatt 2</a></p>
+
+</section>
+</body>
+</html>
