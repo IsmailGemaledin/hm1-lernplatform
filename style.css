@@ -24,6 +24,13 @@ nav a {
     transition: background 0.2s;
 }
 
+/* Make nav items and dropdown items the same visible size */
+nav a,
+.dropbtn,
+.dropdown-content a {
+    font-size: 18px; /* adjust this value if you want larger/smaller */
+}
+
 nav a:hover {
     background: rgba(0,0,0,0.1);
 }
