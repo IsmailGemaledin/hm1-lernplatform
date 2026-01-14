@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>HM1_Matrizen_und_Gleichungssysteme</title>
+  <link rel="stylesheet" href="../style.css">
+  <!-- KaTeX für Formeln -->
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.8/dist/katex.min.css">
+  <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.8/dist/katex.min.js"></script>
+  <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.8/dist/contrib/auto-render.min.js"
+          onload="renderMathInElement(document.body);"></script>
+  <style>
+    .definition { padding: .75rem; border-left: 4px solid #2b7cff; background:#f3f8ff; border-radius:4px; margin: .75rem 0; }
+    .satz { padding: .75rem; border-left: 4px solid #2b7cff; background:#f9f9fb; border-radius:4px; margin: .75rem 0; }
+    .example { padding: .75rem; border-left: 4px solid #2e9a6a; background:#f4fffa; border-radius:4px; margin: .75rem 0; }
+    pre.math { background:#f7f7f7; padding: .5rem; border-radius:4px; overflow:auto; }
+    .small { font-size:0.95rem; color:#444; }
+  </style>
+</head>
+<body>
+
+<nav>
+  <a href="../index.html">Startseite</a>
+  <a href="../kapitel.html">Kapitel</a>
+</nav>
+
+<section>
+  <h1>Matrizen und Gleichungssysteme</h1>
+  <p class="small">Theoretische Grundlagen zu Matrizen, Operationen, Rechenregeln, linearen Gleichungssystemen und homogenen Systemen (ohne Gauß-Verfahren).</p>
+
+  <h2>1. Definitionen</h2>
+  <div class="definition">
+    <strong>Definition.</strong> Eine <em>Matrix</em> ist eine rechteckige Anordnung von Zahlen:
+    \[
+      A = (a_{ij}) \in \mathbb{R}^{m \times n}, \quad i = 1,\dots,m, j=1,\dots,n.
+    \]
+    Zeilenvektoren: \(1 \times n\), Spaltenvektoren: \(n \times 1\).
+  </div>
+
+  <div class="definition">
+    <strong>Definition.</strong> Ein <em>lineares Gleichungssystem (LGS)</em> mit \(m\) Gleichungen und \(n\) Unbekannten kann in Matrixform geschrieben werden:
+    \[
+      A \mathbf{x} = \mathbf{b}, \quad
+      A \in \mathbb{R}^{m \times n},\ 
+      \mathbf{x} \in \mathbb{R}^{n},\ 
+      \mathbf{b} \in \mathbb{R}^{m}.
+    \]
+  </div>
+
+  <h2>2. Addition und Skalarmultiplikation</h2>
+  <div class="definition">
+    Für \(A,B\in\mathbb{R}^{m\times n}\) und \(\lambda\in\mathbb{R}\) gilt:
+    \[
+      (A+B)_{ij} = a_{ij}+b_{ij},\quad (\lambda A)_{ij} = \lambda a_{ij}.
+    \]
+  </div>
+
+  <h2>3. Matrixmultiplikation</h2>
+  <div class="definition">
+    Seien \(A\in\mathbb{R}^{m\times n}\) und \(B\in\mathbb{R}^{n\times p}\). Dann gilt:
+    \[
+      (AB)_{ik} = \sum_{j=1}^{n} a_{ij} b_{jk}, \quad AB \in \mathbb{R}^{m\times p}.
+    \]
+  </div>
+
+  <div class="example">
+    <strong>Beispiel:</strong> 
+    \[
+      A = \begin{pmatrix}1 & 2 \\ 3 & 4\end{pmatrix},\ 
+      B = \begin{pmatrix}2 & 0 \\ 1 & 3\end{pmatrix}.
+    \]
+    Dann:
+    \[
+      AB = \begin{pmatrix}1*2+2*1 & 1*0+2*3 \\ 3*2+4*1 & 3*0+4*3\end{pmatrix} 
+         = \begin{pmatrix}4 & 6 \\ 10 & 12\end{pmatrix}.
+    \]
+  </div>
+
+  <h2>4. Transponierte</h2>
+  <div class="definition">
+    Die Transponierte \(A^\top \in \mathbb{R}^{n \times m}\) einer Matrix \(A \in \mathbb{R}^{m \times n}\) hat Einträge:
+    \[
+      (A^\top)_{ij} = a_{ji}.
+    \]
+  </div>
+
+  <h2>5. Wichtige Rechenregeln</h2>
+  <ul>
+    <li>\((A+B)^\top = A^\top + B^\top\)</li>
+    <li>\((\lambda A)^\top = \lambda A^\top\)</li>
+    <li>\((AB)^\top = B^\top A^\top\)</li>
+    <li>Matrixmultiplikation ist im Allgemeinen nicht kommutativ: \(AB \neq BA\)</li>
+    <li>Assoziativität: \((AB)C = A(BC)\)</li>
+    <li>Distributivität: \(A(B+C)=AB+AC\)</li>
+  </ul>
+
+  <h2>6. Lineare Abbildungen & LGS</h2>
+  <div class="definition">
+    Eine Matrix \(A\in\mathbb{R}^{m\times n}\) definiert eine lineare Abbildung \(T:\mathbb{R}^n\to\mathbb{R}^m\) durch
+    \[
+      T(x) = A x.
+    \]
+  </div>
+
+  <div class="example">
+    <strong>Beispiel LGS:</strong>
+    \[
+      \begin{cases}2x + y = 5 \\ x - y = 1\end{cases}
+      \quad \Rightarrow \quad
+      x = 2, y = 1.
+    \]
+    Matrixdarstellung:
+    \[
+      A = \begin{pmatrix}2 & 1\\1 & -1\end{pmatrix},\quad
+      \mathbf{x} = \begin{pmatrix}x\\y\end{pmatrix},\quad
+      \mathbf{b} = \begin{pmatrix}5\\1\end{pmatrix}.
+    \]
+  </div>
+
+  <h2>7. Homogene Systeme</h2>
+  <div class="definition">
+    Ein LGS \(A\mathbf{x}=0\) heißt homogen. Triviale Lösung: \(\mathbf{x}=0\).  
+    Unendlich viele Lösungen, falls Spalten von \(A\) linear abhängig sind.
+  </div>
+
+  <div class="example">
+    \[
+      \begin{cases}x+y=0\\2x+2y=0\end{cases} \quad \Rightarrow \quad x=t, y=-t, t\in\mathbb{R}.
+    \]
+  </div>
+
+  <h2>8. Rang & Lösbarkeit</h2>
+  <div class="satz">
+    Ein LGS \(A\mathbf{x}=\mathbf{b}\) ist genau dann lösbar, wenn
+    \[
+      \operatorname{rang}(A) = \operatorname{rang}(A|\mathbf{b}).
+    \]
+  </div>
+  <p class="small">Ist \(\operatorname{rang}(A) = n\), Lösung eindeutig; ist \(\operatorname{rang}(A) < n\), unendlich viele Lösungen.</p>
+
+  <h2>9. Zusammenfassung & Rechenhinweise</h2>
+  <ul>
+    <li>Matrizenoperationen prüfen immer die Dimensionen.</li>
+    <li>Transponierte, Assoziativität, Distributivität beachten.</li>
+    <li>Lineare Abbildungen und LGS können ohne Gauß gelöst werden für kleine Systeme.</li>
+  </ul>
+
+  <h2>PDF Übungen</h2>
+  <p><a target="_blank" href="../assets/pdf/HM1_Matrizen_und_Gleichungssysteme.pdf">Blatt 1</a></p>
+
+</section>
+
+</body>
+</html>

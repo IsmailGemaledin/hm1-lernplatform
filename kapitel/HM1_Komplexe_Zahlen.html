@@ -1,0 +1,210 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>HM1_Komplexe_Zahlen</title>
+
+  <link rel="stylesheet" href="../style.css">
+  <!-- KaTeX -->
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.8/dist/katex.min.css">
+  <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.8/dist/katex.min.js"></script>
+  <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.8/dist/contrib/auto-render.min.js"
+          onload="renderMathInElement(document.body);"></script>
+
+  <style>
+    .definition { padding: .8rem; border-left: 4px solid #2b7cff; background:#f3f8ff; border-radius:6px; margin: .9rem 0; }
+    .satz { padding: .8rem; border-left: 4px solid #2b7cff; background:#f9f9fb; border-radius:6px; margin: .9rem 0; }
+    .example { padding: .8rem; border-left: 4px solid #2e9a6a; background:#f4fffa; border-radius:6px; margin: .9rem 0; }
+    pre.math { background:#f7f7f7; padding: .6rem; border-radius:6px; overflow:auto; }
+    .small { font-size:0.95rem; color:#444; }
+    ul.rules { margin-left:18px; margin-top:8px; }
+  </style>
+</head>
+<body>
+
+<nav>
+  <a href="../index.html">Startseite</a>
+  <a href="../kapitel.html">Kapitel</a>
+</nav>
+
+<section>
+  <h1>Komplexe Zahlen</h1>
+  <p class="small">Rechenregeln, Darstellung in der Algebra- und Polarform, Betrag, Argument, Potenzen, Wurzeln und typische Rechenaufgaben — vollständig vorbereitet für Übungen und Klausuren.</p>
+
+  <h2>1. Grundbegriffe und Notation</h2>
+  <div class="definition">
+    Eine komplexe Zahl \(z\) hat die Form
+    \[
+      z = a + b\,i,\qquad a,b\in\mathbb{R},\; i^2 = -1.
+    \]
+    Man nennt \(a=\Re(z)\) den Realteil und \(b=\Im(z)\) den Imaginärteil.
+  </div>
+
+  <h2>2. Rechenregeln (Algebra)</h2>
+  <div class="definition">
+    Für \(z_1 = a+bi,\ z_2 = c+di\) gelten:
+    <ul class="rules">
+      <li>\(z_1 + z_2 = (a+c) + (b+d)i\)</li>
+      <li>\(z_1 - z_2 = (a-c) + (b-d)i\)</li>
+      <li>\(z_1\cdot z_2 = (ac - bd) + (ad + bc)i\)</li>
+      <li>\(\dfrac{z_1}{z_2} = \dfrac{(a+bi)(c-di)}{c^2+d^2} = \dfrac{(ac+bd) + (bc-ad)i}{c^2+d^2}\) für \(z_2\neq 0\)</li>
+      <li>Konjugation: \(\overline{z} = a - bi\)</li>
+      <li>\(|z| = \sqrt{a^2 + b^2}\) (Betrag)</li>
+      <li>\(\langle z_1,z_2\rangle\) (Skalarprodukt-Bezug): \(\Re(\overline{z_1}z_2)=a c + b d\)</li>
+    </ul>
+  </div>
+
+  <h2>3. Konjugierte und Betragsregeln</h2>
+  <div class="definition">
+    Wichtige Identitäten:
+    <ul class="rules">
+      <li>\(\overline{z_1 + z_2} = \overline{z_1} + \overline{z_2}\)</li>
+      <li>\(\overline{z_1 z_2} = \overline{z_1}\,\overline{z_2}\)</li>
+      <li>\(|z|^2 = z\overline{z}\)</li>
+      <li>\(\overline{\overline{z}} = z\)</li>
+      <li>\(|z_1 z_2| = |z_1|\,|z_2|\), \(|z_1/z_2| = |z_1|/|z_2|\) für \(z_2\neq0\)</li>
+    </ul>
+  </div>
+
+  <h2>4. Geometrische Darstellung und Polarform</h2>
+  <div class="definition">
+    Eine komplexe Zahl \(z=a+bi\) entspricht dem Punkt \((a,b)\) in der Gaußschen Zahlenebene. Betrag und Argument:
+    \[
+      |z| = r = \sqrt{a^2+b^2},\qquad \arg(z)=\varphi \quad(\varphi\in[0,2\pi)).
+    \]
+    Polarform:
+    \[
+      z = r(\cos\varphi + i\sin\varphi).
+    \]
+    Mit der Euler-Formel:
+    \[
+      z = r\,e^{i\varphi}.
+    \]
+  </div>
+
+  <h2>5. Rechenregeln in Polarform</h2>
+  <div class="definition">
+    Für \(z_1=r_1 e^{i\varphi_1},\ z_2=r_2 e^{i\varphi_2}\) gilt:
+    <ul class="rules">
+      <li>\(z_1 z_2 = r_1 r_2 e^{i(\varphi_1+\varphi_2)}\)</li>
+      <li>\(\dfrac{z_1}{z_2} = \dfrac{r_1}{r_2} e^{i(\varphi_1-\varphi_2)}\)</li>
+      <li>\(z^n = r^n e^{i n\varphi}\) (De Moivre)</li>
+      <li>\( \sqrt[n]{z} = r^{1/n} e^{i(\varphi + 2\pi k)/n},\ k=0,\dots,n-1\)</li>
+    </ul>
+  </div>
+
+  <h2>6. Wichtige Methoden & Tricks</h2>
+  <div class="satz">
+    <ul class="rules">
+      <li>Zur Division: mit konjugiertem Nenner multiplizieren.</li>
+      <li>Argument korrekt bestimmen: Achte auf Quadrant (atan2-Funktion benutzen).</li>
+      <li>Bei Potenzen/Wurzeln: zuerst in Polarform bringen, dann De Moivre / Wurzeln anwenden.</li>
+      <li>Zur Umformung in \(a+bi\): nach Multiplikation in Polarform wieder in Kartesisch umrechnen via Cos/Sin.</li>
+    </ul>
+  </div>
+
+<h2>7. Beispiele / Übungen</h2>
+
+<div class="example">
+  <strong>Beispiel 1:</strong> Berechne \( (3 + 2i) + (5 - 4i) \).  
+  <p>Ergebnis: \( 8 - 2i \)</p>
+</div>
+
+<div class="example">
+  <strong>Beispiel 2:</strong> Berechne \( (7 - i) - (2 + 3i) \).  
+  <p>Ergebnis: \( 5 - 4i \)</p>
+</div>
+
+<div class="example">
+  <strong>Beispiel 3:</strong> Multipliziere \( (1 + 2i)(3 - i) \).  
+  <p>Ergebnis: \( 5 + 5i \)</p>
+</div>
+
+<div class="example">
+  <strong>Beispiel 4:</strong> Dividiere \( (4 + 3i) / (1 - i) \).  
+  <p>Ergebnis: \( \frac{1}{2}(7 + i) = 3.5 + 0.5i \)</p>
+</div>
+
+<div class="example">
+  <strong>Beispiel 5:</strong> Bestimme den Betrag von \( z = -3 + 4i \).  
+  <p>\(|z| = 5\)</p>
+</div>
+
+<div class="example">
+  <strong>Beispiel 6:</strong> Bestimme das Argument von \( z = 1 - i \).  
+  <p>\(\arg(z) = \frac{7\pi}{4}\)</p>
+</div>
+
+<div class="example">
+  <strong>Beispiel 7:</strong> Schreibe \( z = -1 + \sqrt{3}i \) in Polarform.  
+  <p>\( z = 2\left(\cos\frac{2\pi}{3} + i \sin\frac{2\pi}{3}\right) \)</p>
+</div>
+
+<div class="example">
+  <strong>Beispiel 8:</strong> Berechne \( i^5 \).  
+  <p>Ergebnis: \( i \)</p>
+</div>
+
+<div class="example">
+  <strong>Beispiel 9:</strong> Berechne \( (2 - i)^3 \).  
+  <p>Ergebnis: \( 2 - 11i \)</p>
+</div>
+
+<div class="example">
+  <strong>Beispiel 10:</strong> Finde alle dritten Wurzeln von \( 8i \) in Polarform.  
+  <p>\( w_k = 2\left(\cos\frac{\pi/6 + 2\pi k}{3} + i \sin\frac{\pi/6 + 2\pi k}{3}\right),\ k=0,1,2 \)</p>
+</div>
+
+<div class="example">
+  <strong>Beispiel 11:</strong> Berechne \(|1+2i|^2\).  
+  <p>\(|1+2i|^2 = 1^2 + 2^2 = 5\)</p>
+</div>
+
+<div class="example">
+  <strong>Beispiel 12:</strong> Vereinfache \( (3+i)(3-i)(2+i) \).  
+  <p>Ergebnis: \( 20 + 10i \)</p>
+</div>
+
+<div class="example">
+  <strong>Beispiel 13:</strong> Löse \(|z-2| = |z+2i|\) für \( z \in \mathbb{C} \).  
+  <p>Ergebnis: Gerade \( y = -x \)</p>
+</div>
+
+<div class="example">
+  <strong>Beispiel 14:</strong> Berechne \( (1+i)^6 \) in Polarform und \(a+bi\).  
+  <p>\( (1+i)^6 = 8i \)</p>
+</div>
+
+<div class="example">
+  <strong>Beispiel 15:</strong> Zeige: \(|z_1 z_2| = |z_1||z_2|\) für \( z_1=1+i, z_2=2-i \).  
+  <p>\(|z_1 z_2| = |1+i||2-i| = \sqrt{2} \cdot \sqrt{5} = \sqrt{10}\)</p>
+</div>
+
+  <h2>8. Nützliche Übungsaufgaben (zusätzliche Aufgaben)</h2>
+  <ul class="rules">
+    <li>Berechne \(\frac{(2+i)^3}{1-2i}\) in der Form \(a+bi\).</li>
+    <li>Finde alle vierten Wurzeln von \(1+i\).</li>
+    <li>Zeichne die Lösungen der Gleichung \(|z-1| = 2\) in der Gaußschen Ebene.</li>
+    <li>Beweise: \(|z+w| \le |z| + |w|\) für \(z,w\in\mathbb{C}\) (Dreiecksungleichung).</li>
+  </ul>
+
+  <h2>9. Kurze Zusammenfassung / Merkhilfen</h2>
+  <div class="satz">
+    <ul class="rules">
+      <li>Für algebraische Umformungen immer zuerst in \(a+bi\) arbeiten oder Nenner mit Konjugiertem entfernen.</li>
+      <li>Für Potenzen/Wurzeln immer in Polarform überführen (Euler + De Moivre).</li>
+      <li>Achte bei Argumenten auf den richtigen Quadranten (nutze \( \operatorname{atan2}(b,a)\) in numerischen Fällen).</li>
+      <li>Konjugation reflektiert an der reellen Achse: \( \overline{a+bi} = a - bi\).</li>
+    </ul>
+  </div>
+
+  <h2>PDF Übungen</h2>
+  <p><a target="_blank" href="../assets/pdf/HM1_Kompleze_Zahlen_1.pdf">Blatt 1</a></p>
+  <p><a target="_blank" href="../assets/pdf/HM1_Komplexe_Zahlen_2.pdf">Blatt 2</a></p>
+  <p><a target="_blank" href="../assets/pdf/HM1_Komplexe_Zahlen_3.pdf">Blatt 3</a></p>
+
+</section>
+
+</body>
+</html>

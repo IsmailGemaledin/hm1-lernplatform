@@ -1,0 +1,189 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>HM1 – Determinanten und Inverse</title>
+
+  <link rel="stylesheet" href="../style.css">
+
+  <!-- KaTeX -->
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.8/dist/katex.min.css">
+  <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.8/dist/katex.min.js"></script>
+  <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.8/dist/contrib/auto-render.min.js"
+          onload="renderMathInElement(document.body);"></script>
+
+  <style>
+    .definition { padding:.8rem; border-left:4px solid #2b7cff; background:#f3f8ff; border-radius:6px; margin:.9rem 0; }
+    .satz { padding:.8rem; border-left:4px solid #555; background:#f9f9fb; border-radius:6px; margin:.9rem 0; }
+    .example { padding:.8rem; border-left:4px solid #2e9a6a; background:#f4fffa; border-radius:6px; margin:.9rem 0; }
+    .small { font-size:.95rem; color:#444; }
+    ul { margin-left:18px; }
+  </style>
+</head>
+
+<body>
+
+<nav>
+  <a href="../index.html">Startseite</a>
+  <a href="../kapitel.html">Kapitel</a>
+</nav>
+
+<section>
+
+<h1>Determinanten und inverse Matrizen</h1>
+<p class="small">
+Determinanten, Invertierbarkeit und Berechnung der Inversen – zentraler Stoff für HM1.
+</p>
+
+<h2>1. Quadratische Matrizen</h2>
+<div class="definition">
+Eine Matrix heißt <strong>quadratisch</strong>, wenn sie gleich viele Zeilen wie Spalten besitzt,
+also \(A\in\mathbb{R}^{n\times n}\).
+<br><br>
+<strong>Nur quadratische Matrizen können invertierbar sein.</strong>
+</div>
+
+<div class="example">
+<strong>Beispiel:</strong>  
+\[
+A=\begin{pmatrix}1&2\\3&4\end{pmatrix}\in\mathbb{R}^{2\times2}
+\quad\text{(quadratisch)}
+\]
+\[
+B=\begin{pmatrix}1&2&3\\4&5&6\end{pmatrix}\in\mathbb{R}^{2\times3}
+\quad\text{(nicht quadratisch, keine Inverse)}
+\]
+</div>
+
+<h2>2. Determinante und Invertierbarkeit</h2>
+<div class="definition">
+Eine quadratische Matrix \(A\) ist genau dann <strong>invertierbar</strong>, wenn
+\[
+\det(A)\neq 0.
+\]
+Ist \(\det(A)=0\), so besitzt \(A\) keine Inverse.
+</div>
+
+<div class="example">
+<strong>Beispiel:</strong>  
+\[
+A=\begin{pmatrix}1&2\\2&4\end{pmatrix}
+\Rightarrow \det(A)=0
+\]
+Die Matrix ist nicht invertierbar.
+</div>
+
+<h2>3. Inverse einer \(2\times2\)-Matrix</h2>
+<div class="definition">
+Für
+\[
+A=\begin{pmatrix}a&b\\c&d\end{pmatrix}
+\quad\text{mit}\quad \det(A)=ad-bc\neq0
+\]
+gilt:
+\[
+A^{-1}=\frac{1}{ad-bc}
+\begin{pmatrix}
+d & -b\\
+-c & a
+\end{pmatrix}
+\]
+</div>
+
+<div class="example">
+<strong>Beispiel:</strong>  
+\[
+A=\begin{pmatrix}2&1\\1&1\end{pmatrix}
+\Rightarrow \det(A)=1
+\]
+\[
+A^{-1}=
+\begin{pmatrix}
+1 & -1\\
+-1 & 2
+\end{pmatrix}
+\]
+</div>
+
+<h2>4. Inverse einer \(3\times3\)-Matrix</h2>
+<div class="definition">
+Für \(3\times3\)-Matrizen existiert keine einfache Formel.
+Die Inverse wird mit dem <strong>Gauss-Jordan-Verfahren</strong> berechnet:
+\[
+(A \mid I_3)\;\longrightarrow\;(I_3 \mid A^{-1})
+\]
+durch elementare Zeilenumformungen.
+</div>
+
+<div class="example">
+<strong>Beispiel:</strong>  
+\[
+A=\begin{pmatrix}
+1&1&0\\
+0&1&1\\
+1&0&1
+\end{pmatrix}
+\]
+Man bildet:
+\[
+\left(\begin{array}{ccc|ccc}
+1&1&0&1&0&0\\
+0&1&1&0&1&0\\
+1&0&1&0&0&1
+\end{array}\right)
+\]
+und führt Zeilenumformungen bis links \(I_3\) steht.
+</div>
+
+<h2>5. Inverse für \(n\times n\)-Matrizen (\(n\ge 3\))</h2>
+<div class="satz">
+Für jede invertierbare Matrix \(A\in\mathbb{R}^{n\times n}\) wird die Inverse berechnet durch:
+\[
+(A \mid I_n)\;\xrightarrow{\text{Gauss}}\;(I_n \mid A^{-1})
+\]
+Es gibt keine geschlossene Formel für \(n\ge3\).
+</div>
+
+<div class="example">
+<strong>Beispiel:</strong>  
+Für eine \(4\times4\)-Matrix wird analog verfahren:
+\[
+(A \mid I_4)\rightarrow(I_4 \mid A^{-1})
+\]
+Das Verfahren ist identisch, nur rechenintensiver.
+</div>
+
+<h2>6. Wichtige Zusammenhänge</h2>
+<div class="satz">
+Für eine quadratische Matrix \(A\) sind äquivalent:
+<ul>
+  <li>\(\det(A)\neq0\)</li>
+  <li>\(A\) ist invertierbar</li>
+  <li>Die Zeilen (Spalten) sind linear unabhängig</li>
+  <li>Das LGS \(Ax=b\) hat genau eine Lösung</li>
+</ul>
+</div>
+
+<div class="example">
+<strong>Beispiel:</strong>  
+Hat \(A\) zwei proportionale Zeilen, dann sind sie linear abhängig
+⇒ \(\det(A)=0\) ⇒ keine Inverse.
+</div>
+
+<h2>7. Typische Klausurhinweise (HM1)</h2>
+<div class="satz">
+<ul>
+  <li>Nur quadratische Matrizen prüfen</li>
+  <li>Zuerst Determinante, dann Inverse</li>
+  <li>Bei \(n\ge3\): immer Gauss-Jordan</li>
+</ul>
+</div>
+
+<h2>PDF Übungen</h2>
+<p><a target="_blank" href="../assets/pdf/HM1_Determinanten.pdf">Blatt 1</a></p>
+
+</section>
+
+</body>
+</html>
