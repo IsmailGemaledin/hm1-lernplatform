@@ -3,6 +3,9 @@ body {
     margin: 0;
     background: #f4f4f4;
     color: #222;
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
 }
 
 nav {
@@ -22,13 +25,7 @@ nav a {
     padding: 6px 10px;
     border-radius: 4px;
     transition: background 0.2s;
-}
-
-/* Make nav items and dropdown items the same visible size */
-nav a,
-.dropbtn,
-.dropdown-content a {
-    font-size: 18px; /* adjust this value if you want larger/smaller */
+    font-size: 16px;
 }
 
 nav a:hover {
@@ -38,11 +35,13 @@ nav a:hover {
 .nav-left {
     display: flex;
     gap: 15px;
+    align-items: center;
 }
 
 .nav-right {
     display: flex;
     gap: 15px;
+    align-items: center;
 }
 
 /* Dropdown styles */
@@ -58,6 +57,8 @@ nav a:hover {
     padding: 6px 10px;
     border-radius: 4px;
     transition: background 0.2s;
+    font-size: 16px;
+    color: #000;
 }
 
 .dropbtn:hover {
@@ -68,16 +69,28 @@ nav a:hover {
     display: none;
     position: absolute;
     background-color: rgb(168, 210, 255);
-    min-width: 120px;
+    min-width: 180px;
     box-shadow: 0 2px 5px rgba(0,0,0,0.2);
     border-radius: 4px;
     z-index: 1;
     flex-direction: column;
+    top: 100%;
+    left: 0;
 }
 
 .dropdown-content a {
     display: block;
-    padding: 8px 12px;
+    padding: 10px 12px;
+    text-decoration: none;
+    color: #000;
+    font-weight: 500;
+    font-size: 16px;
+    border-radius: 4px;
+    transition: background 0.2s;
+}
+
+.dropdown-content a:hover {
+    background: rgba(0,0,0,0.1);
 }
 
 .dropdown:hover .dropdown-content {
@@ -85,28 +98,36 @@ nav a:hover {
     flex-direction: column;
 }
 
-nav a {
-    color: rgb(0, 0, 0);
-    text-decoration: none;
-    font-weight: bold;
-}
-
 header {
     max-width: 1200px;
-    margin: auto;
+    margin: 20px auto;
     padding: 20px;
     background: rgb(168, 210, 255);
-    margin-top: 20px;
     border-radius: 8px;
+    width: calc(100% - 40px);
 }
 
 section {
     max-width: 1200px;
-    margin: auto;
+    margin: 20px auto;
     padding: 20px;
     background: rgb(168, 210, 255);
-    margin-top: 20px;
     border-radius: 8px;
+    width: calc(100% - 40px);
+    flex: 1;
+}
+
+footer {
+    background: rgb(168, 210, 255);
+    padding: 20px;
+    text-align: center;
+    margin-top: auto;
+    font-size: 14px;
+    color: #333;
+}
+
+footer p {
+    margin: 0;
 }
 
 .example {
@@ -123,24 +144,34 @@ section {
 
 /* Telefoane mici (≤ 600px) */
 @media (max-width: 600px) {
-
     nav {
         justify-content: center;
         text-align: center;
+        flex-direction: column;
     }
 
-    nav a {
+    .nav-left, .nav-right {
+        width: 100%;
+        justify-content: center;
+    }
+
+    nav a, .dropbtn {
         padding: 10px;
-        font-size: 16px;
+        font-size: 14px;
     }
 
     header, section {
         margin: 10px;
         padding: 18px;
+        width: calc(100% - 36px);
     }
 
     body {
-        font-size: 17px;
+        font-size: 16px;
+    }
+
+    .dropdown-content {
+        min-width: 150px;
     }
 }
 
@@ -152,6 +183,7 @@ section {
 
     header, section {
         max-width: 95%;
+        width: auto;
     }
 }
 
