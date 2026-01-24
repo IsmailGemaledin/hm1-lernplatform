@@ -109,6 +109,27 @@ section {
     border-radius: 8px;
 }
 
+ol, ul {
+    padding-left: 30px;
+    line-height: 1.8;
+}
+
+ol li, ul li {
+    margin-bottom: 10px;
+}
+
+section a {
+    color: #0066cc;
+    text-decoration: none;
+    font-weight: 500;
+    transition: color 0.2s;
+}
+
+section a:hover {
+    color: #004499;
+    text-decoration: underline;
+}
+
 .example {
     background: #eef7ff;
     padding: 15px;
