@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>C++ – Klassen</title>
+  <link rel="stylesheet" href="../../style.css">
+  <style>
+    .definition { padding: .75rem; border-left: 4px solid #2b7cff; background:#f3f8ff; border-radius:4px; margin: .75rem 0; }
+    .satz { padding: .75rem; border-left: 4px solid #2b7cff; background:#f9f9fb; border-radius:4px; margin: .75rem 0; }
+    .example { padding: .75rem; border-left: 4px solid #2e9a6a; background:#f4fffa; border-radius:4px; margin: .75rem 0; }
+    .note { padding: .75rem; border-left: 4px solid #ff9800; background:#fff8f0; border-radius:4px; margin: .75rem 0; }
+    .small { font-size:0.95rem; color:#444; }
+    pre { background:#1e1e1e; color:#d4d4d4; padding:1rem; border-radius:4px; overflow-x:auto; font-size:0.95rem; }
+    code { font-family: Consolas, monospace; }
+  </style>
+</head>
+
+<body>
+
+<nav>
+  <a href="../../index.html">Startseite</a>
+</nav>
+
+<section>
+
+<h1>Klassen</h1>
+<p class="small">
+  Klassen sind der zentrale Baustein der Objektorientierung in C++.  
+  In dieser Lektion vertiefen wir die Definition, Konstruktoren, Methoden, Destruktoren und Zugriffsmodifikatoren.
+</p>
+
+<h2>1. Definition einer Klasse</h2>
+<div class="definition">
+  Eine Klasse bündelt Daten (Attribute) und Funktionen (Methoden), die auf diese Daten operieren.
+</div>
+
+<div class="example">
+  <pre><code>class Auto {
+public:
+    std::string marke;
+    int baujahr;
+
+    void anzeigen() {
+        std::cout &lt;&lt; marke &lt;&lt; ", " &lt;&lt; baujahr &lt;&lt; std::endl;
+    }
+};</code></pre>
+</div>
+
+<h2>2. Konstruktoren</h2>
+<div class="definition">
+  Konstruktoren initialisieren Objekte beim Erzeugen. Sie haben denselben Namen wie die Klasse und keinen Rückgabewert.
+</div>
+
+<div class="example">
+  <pre><code>class Auto {
+public:
+    std::string marke;
+    int baujahr;
+
+    Auto(std::string m, int j) : marke(m), baujahr(j) {} // Konstruktor
+};</code></pre>
+</div>
+
+<h2>3. Destruktoren</h2>
+<div class="definition">
+  Destruktoren werden automatisch aufgerufen, wenn ein Objekt den Gültigkeitsbereich verlässt. Sie haben denselben Namen wie die Klasse, mit vorangestelltem ~.
+</div>
+
+<div class="example">
+  <pre><code>class Auto {
+public:
+    ~Auto() {
+        std::cout &lt;&lt; "Objekt wird gelöscht" &lt;&lt; std::endl;
+    }
+};</code></pre>
+</div>
+
+<h2>4. Methoden und Zugriff</h2>
+<div class="definition">
+  Methoden definieren das Verhalten von Objekten. Zugriff über <code>public</code>, <code>private</code> und <code>protected</code>.
+</div>
+
+<div class="example">
+  <pre><code>class Konto {
+private:
+    double saldo;
+public:
+    Konto(double s) : saldo(s) {}
+    void einzahlen(double betrag) { saldo += betrag; }
+    double getSaldo() { return saldo; }
+};</code></pre>
+</div>
+
+<h2>5. Best Practices</h2>
+<div class="definition">
+  <ul>
+    <li>Attribute meist <code>private</code> halten</li>
+    <li>Öffentliche Schnittstellen über <code>public</code> Methoden bereitstellen</li>
+    <li>Konstruktoren für konsistente Initialisierung nutzen</li>
+    <li>Destruktoren für Aufräumarbeiten nutzen</li>
+  </ul>
+</div>
+
+<h2>6. Zusammenfassung</h2>
+<ul>
+  <li>Klassen bündeln Attribute und Methoden</li>
+  <li>Konstruktor initialisiert Objekte</li>
+  <li>Destruktor räumt auf</li>
+  <li>Zugriffsmodifikatoren regeln Sichtbarkeit</li>
+  <li>Saubere Kapselung für robusten Code</li>
+</ul>
+
+</section>
+
+</body>
+</html>

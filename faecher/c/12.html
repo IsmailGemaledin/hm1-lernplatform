@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>C++ – Objekt-Orientierte Programmierung</title>
+  <link rel="stylesheet" href="../../style.css">
+  <style>
+    .definition { padding: .75rem; border-left: 4px solid #2b7cff; background:#f3f8ff; border-radius:4px; margin: .75rem 0; }
+    .satz { padding: .75rem; border-left: 4px solid #2b7cff; background:#f9f9fb; border-radius:4px; margin: .75rem 0; }
+    .example { padding: .75rem; border-left: 4px solid #2e9a6a; background:#f4fffa; border-radius:4px; margin: .75rem 0; }
+    .note { padding: .75rem; border-left: 4px solid #ff9800; background:#fff8f0; border-radius:4px; margin: .75rem 0; }
+    .small { font-size:0.95rem; color:#444; }
+    pre { background:#1e1e1e; color:#d4d4d4; padding:1rem; border-radius:4px; overflow-x:auto; font-size:0.95rem; }
+    code { font-family: Consolas, monospace; }
+  </style>
+</head>
+
+<body>
+
+<nav>
+  <a href="../../index.html">Startseite</a>
+</nav>
+
+<section>
+
+<h1>Objekt-Orientierte Programmierung (OOP)</h1>
+<p class="small">
+  Objekt-Orientierte Programmierung in C++ erlaubt die Modellierung von Objekten mit Daten und Funktionen.  
+  Diese Lektion behandelt Klassen, Objekte, Konstruktoren und Methoden.
+</p>
+
+<h2>1. Klassen und Objekte</h2>
+<div class="definition">
+  Eine <strong>Klasse</strong> definiert den Bauplan für Objekte. Ein <strong>Objekt</strong> ist eine Instanz einer Klasse.
+</div>
+
+<div class="example">
+  <pre><code>class Punkt {
+public:
+    int x, y; // Attribute
+
+    void print() { // Methode
+        std::cout &lt;&lt; "(" &lt;&lt; x &lt;&lt; ", " &lt;&lt; y &lt;&lt; ")" &lt;&lt; std::endl;
+    }
+};
+
+int main() {
+    Punkt p1;
+    p1.x = 3;
+    p1.y = 4;
+    p1.print();
+    return 0;
+}</code></pre>
+</div>
+
+<h2>2. Konstruktoren</h2>
+<div class="definition">
+  Konstruktoren initialisieren Objekte beim Erstellen.
+</div>
+
+<div class="example">
+  <pre><code>class Punkt {
+public:
+    int x, y;
+    Punkt(int a, int b) : x(a), y(b) {} // Konstruktor
+
+    void print() {
+        std::cout &lt;&lt; "(" &lt;&lt; x &lt;&lt; ", " &lt;&lt; y &lt;&lt; ")" &lt;&lt; std::endl;
+    }
+};
+
+int main() {
+    Punkt p2(5,7);
+    p2.print();
+    return 0;
+}</code></pre>
+</div>
+
+<h2>3. Methoden und Zugriff</h2>
+<div class="definition">
+  Methoden implementieren Verhalten von Objekten. Sichtbarkeit wird über <code>public</code>, <code>private</code> und <code>protected</code> geregelt.
+</div>
+
+<div class="example">
+  <pre><code>class Kreis {
+private:
+    double radius;
+public:
+    Kreis(double r) : radius(r) {}
+    double flaeche() { return 3.14159 * radius * radius; }
+};
+
+int main() {
+    Kreis k(2.0);
+    std::cout &lt;&lt; "Fläche: " &lt;&lt; k.flaeche() &lt;&lt; std::endl;
+    return 0;
+}</code></pre>
+</div>
+
+<h2>4. Best Practices</h2>
+<div class="definition">
+  <ul>
+    <li>Attribute sollten <code>private</code> sein, Methoden <code>public</code></li>
+    <li>Verwende Konstruktoren für Initialisierung</li>
+    <li>Jede Klasse sollte klar definierten Verantwortungsbereich haben</li>
+  </ul>
+</div>
+
+<h2>5. Zusammenfassung</h2>
+<ul>
+  <li>Klassen definieren Daten &amp; Methoden</li>
+  <li>Objekte sind Instanzen von Klassen</li>
+  <li>Konstruktoren initialisieren Objekte</li>
+  <li>Zugriffsmodifikatoren regeln Sichtbarkeit</li>
+</ul>
+
+</section>
+
+</body>
+</html>

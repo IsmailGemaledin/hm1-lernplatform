@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>C++ – Polymorphismus</title>
+  <link rel="stylesheet" href="../../style.css">
+  <style>
+    .definition { padding: .75rem; border-left: 4px solid #2b7cff; background:#f3f8ff; border-radius:4px; margin: .75rem 0; }
+    .satz { padding: .75rem; border-left: 4px solid #2b7cff; background:#f9f9fb; border-radius:4px; margin: .75rem 0; }
+    .example { padding: .75rem; border-left: 4px solid #2e9a6a; background:#f4fffa; border-radius:4px; margin: .75rem 0; }
+    .note { padding: .75rem; border-left: 4px solid #ff9800; background:#fff8f0; border-radius:4px; margin: .75rem 0; }
+    .small { font-size:0.95rem; color:#444; }
+    pre { background:#1e1e1e; color:#d4d4d4; padding:1rem; border-radius:4px; overflow-x:auto; font-size:0.95rem; }
+    code { font-family: Consolas, monospace; }
+  </style>
+</head>
+
+<body>
+
+<nav>
+  <a href="../../index.html">Startseite</a>
+</nav>
+
+<section>
+
+<h1>Polymorphismus</h1>
+<p class="small">
+  Polymorphismus erlaubt Objekten verschiedener Klassen, über eine gemeinsame Schnittstelle angesprochen zu werden.  
+  Diese Lektion behandelt statischen und dynamischen Polymorphismus in C++.
+</p>
+
+<h2>1. Statischer Polymorphismus</h2>
+<div class="definition">
+  Methodenüberladung (Overloading) ist eine Form von statischem Polymorphismus: Mehrere Methoden gleichen Namens, unterschiedliche Parameter.
+</div>
+
+<div class="example">
+  <pre><code>class Rechner {
+public:
+    int add(int a, int b) { return a + b; }
+    double add(double a, double b) { return a + b; }
+};
+
+int main() {
+    Rechner r;
+    std::cout &lt;&lt; r.add(2,3) &lt;&lt; std::endl;      // 5
+    std::cout &lt;&lt; r.add(2.5,3.1) &lt;&lt; std::endl;  // 5.6
+    return 0;
+}</code></pre>
+</div>
+
+<h2>2. Dynamischer Polymorphismus</h2>
+<div class="definition">
+  Dynamischer Polymorphismus wird über virtuelle Funktionen (<code>virtual</code>) umgesetzt. Die Entscheidung, welche Methode aufgerufen wird, erfolgt zur Laufzeit.
+</div>
+
+<div class="example">
+  <pre><code>class Tier {
+public:
+    virtual void laut() { std::cout &lt;&lt; "Tier macht Geräusch" &lt;&lt; std::endl; }
+};
+
+class Hund : public Tier {
+public:
+    void laut() override { std::cout &lt;&lt; "Wuff" &lt;&lt; std::endl; }
+};
+
+int main() {
+    Tier* t = new Hund();
+    t->laut(); // Wuff
+    delete t;
+    return 0;
+}</code></pre>
+</div>
+
+<h2>3. Best Practices</h2>
+<div class="definition">
+  <ul>
+    <li>Virtuelle Destruktoren in Basisklassen verwenden</li>
+    <li>Klare Schnittstellen für polymorphe Klassen definieren</li>
+    <li>Methodenüberschreibung mit <code>override</code> markieren</li>
+  </ul>
+</div>
+
+<h2>4. Zusammenfassung</h2>
+<ul>
+  <li>Polymorphismus ermöglicht unterschiedliche Objekte über eine gemeinsame Schnittstelle</li>
+  <li>Statisch: Methodenüberladung</li>
+  <li>Dynamisch: virtuelle Funktionen</li>
+  <li>Virtuelle Destruktoren für sauberes Löschen polymorpher Objekte</li>
+</ul>
+
+</section>
+
+</body>
+</html>

@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>C++ – Standard Template Library (STL)</title>
+  <link rel="stylesheet" href="../../style.css">
+  <style>
+    .definition { padding: .75rem; border-left: 4px solid #2b7cff; background:#f3f8ff; border-radius:4px; margin: .75rem 0; }
+    .satz { padding: .75rem; border-left: 4px solid #2b7cff; background:#f9f9fb; border-radius:4px; margin: .75rem 0; }
+    .example { padding: .75rem; border-left: 4px solid #2e9a6a; background:#f4fffa; border-radius:4px; margin: .75rem 0; }
+    .note { padding: .75rem; border-left: 4px solid #ff9800; background:#fff8f0; border-radius:4px; margin: .75rem 0; }
+    .small { font-size:0.95rem; color:#444; }
+    pre { background:#1e1e1e; color:#d4d4d4; padding:1rem; border-radius:4px; overflow-x:auto; font-size:0.95rem; }
+    code { font-family: Consolas, monospace; }
+  </style>
+</head>
+
+<body>
+
+<nav>
+  <a href="../../index.html">Startseite</a>
+</nav>
+
+<section>
+
+<h1>Standard Template Library (STL)</h1>
+<p class="small">
+  Die STL ist eine Sammlung von C++-Templates für Datenstrukturen, Algorithmen und Iteratoren.  
+  Sie ermöglicht effiziente und wiederverwendbare Programmierung.
+</p>
+
+<h2>1. Container</h2>
+<div class="definition">
+  Container speichern Objekte verschiedener Typen. Haupttypen: <code>vector</code>, <code>list</code>, <code>deque</code>, <code>set</code>, <code>map</code>.
+</div>
+
+<div class="example">
+  <pre><code>#include &lt;vector&gt;
+#include &lt;iostream&gt;
+
+int main() {
+    std::vector&lt;int&gt; v = {1,2,3};
+    v.push_back(4);
+    for(int x : v) std::cout &lt;&lt; x &lt;&lt; " ";
+    return 0;
+}</code></pre>
+</div>
+
+<h2>2. Iteratoren</h2>
+<div class="definition">
+  Iteratoren erlauben den Zugriff auf Container ähnlich wie Pointer.
+</div>
+
+<div class="example">
+  <pre><code>for(auto it = v.begin(); it != v.end(); ++it) {
+    std::cout &lt;&lt; *it &lt;&lt; " ";
+}</code></pre>
+</div>
+
+<h2>3. Algorithmen</h2>
+<div class="definition">
+  STL stellt viele vorgefertigte Algorithmen zur Verfügung, z.B. <code>sort</code>, <code>find</code>, <code>accumulate</code>.
+</div>
+
+<div class="example">
+  <pre><code>#include &lt;algorithm&gt;
+#include &lt;numeric&gt;
+
+std::sort(v.begin(), v.end());
+int sum = std::accumulate(v.begin(), v.end(), 0);</code></pre>
+</div>
+
+<h2>4. Best Practices</h2>
+<div class="definition">
+  <ul>
+    <li>Container passend zum Szenario wählen (<code>vector</code> vs <code>list</code>)</li>
+    <li>Iteratoren für generischen Zugriff verwenden</li>
+    <li>STL-Algorithmen bevorzugen, statt eigene Loops</li>
+  </ul>
+</div>
+
+<h2>5. Zusammenfassung</h2>
+<ul>
+  <li>STL = Container + Iteratoren + Algorithmen</li>
+  <li>Effiziente, wiederverwendbare C++-Programmierung</li>
+  <li>Unterstützt generische Programmierung über Templates</li>
+</ul>
+
+</section>
+
+</body>
+</html>
