@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>C – Datentypen und Variablen</title>
+  <link rel="stylesheet" href="../../style.css">
+  <style>
+    .definition { padding: .75rem; border-left: 4px solid #2b7cff; background:#f3f8ff; border-radius:4px; margin: .75rem 0; }
+    .satz { padding: .75rem; border-left: 4px solid #2b7cff; background:#f9f9fb; border-radius:4px; margin: .75rem 0; }
+    .example { padding: .75rem; border-left: 4px solid #2e9a6a; background:#f4fffa; border-radius:4px; margin: .75rem 0; }
+    .note { padding: .75rem; border-left: 4px solid #ff9800; background:#fff8f0; border-radius:4px; margin: .75rem 0; }
+    .small { font-size:0.95rem; color:#444; }
+    pre { background:#1e1e1e; color:#d4d4d4; padding:1rem; border-radius:4px; overflow-x:auto; font-size:0.95rem; }
+    code { font-family: Consolas, monospace; }
+  </style>
+</head>
+
+<body>
+
+<nav>
+  <a href="../../index.html">Startseite</a>
+</nav>
+
+<section>
+
+<h1>Datentypen und Variablen</h1>
+<p class="small">
+  In dieser Lektion werden die Datentypen, Variablen und deren Eigenschaften in C auf fortgeschrittenem Niveau behandelt.  
+  Ziel ist, Speicher, Wertebereiche und Typumwandlungen zu verstehen.
+</p>
+
+<h2>1. Grundtypen</h2>
+<div class="definition">
+  <strong>Definition:</strong> Grundtypen in C legen fest, welche Art von Daten eine Variable speichert und wie viel Speicher dafür reserviert wird.
+</div>
+
+<ul>
+  <li><code>char</code> – einzelne Zeichen, typischerweise 1 Byte</li>
+  <li><code>int</code> – ganze Zahlen, typischerweise 4 Bytes</li>
+  <li><code>float</code> – Gleitkommazahlen, einfache Genauigkeit, 4 Bytes</li>
+  <li><code>double</code> – Gleitkommazahlen, doppelte Genauigkeit, 8 Bytes</li>
+  <li><code>_Bool</code> – Wahrheitswerte, 1 Byte</li>
+</ul>
+
+<div class="example">
+  <strong>Beispiel:</strong>
+  <pre><code>int alter = 21;
+char initial = 'A';
+float temperatur = 36.6f;
+double pi = 3.14159265359;
+_Bool aktiv = 1;</code></pre>
+</div>
+
+<h2>2. Modifikatoren</h2>
+<div class="definition">
+  Modifikatoren verändern Größe und Vorzeichen von Variablen.
+</div>
+
+<ul>
+  <li><code>signed</code>, <code>unsigned</code></li>
+  <li><code>short</code>, <code>long</code></li>
+</ul>
+
+<div class="example">
+  <pre><code>unsigned int positiveZahl = 300;
+long int grosseZahl = 1000000000;
+short int kleineZahl = -100;</code></pre>
+</div>
+
+<h2>3. Konstanten</h2>
+<div class="definition">
+  Konstanten sind unveränderliche Variablen. Verwendung von <code>const</code> schützt Werte vor unbeabsichtigter Änderung.
+</div>
+
+<div class="example">
+  <pre><code>const int MAX_VERBRAUCH = 100;
+const double G = 9.81;</code></pre>
+</div>
+
+<h2>4. Literaltypen</h2>
+<div class="definition">
+  Literale sind feste Werte im Code.
+</div>
+
+<ul>
+  <li>Integer-Literale: <code>42</code>, <code>0x2A</code> (hexadezimal), <code>052</code> (oktal)</li>
+  <li>Floating-Point-Literale: <code>3.14</code>, <code>2.718f</code></li>
+  <li>Char-Literale: <code>'A'</code>, <code>'\n'</code></li>
+  <li>String-Literale: <code>"Hallo Welt"</code></li>
+  <li>Bool-Literale: <code>0</code> (false), <code>1</code> (true)</li>
+</ul>
+
+<h2>5. Variablendeklaration</h2>
+<div class="definition">
+  Variablen müssen vor der Nutzung deklariert werden. Die Syntax lautet: <code>Typ Name [= Initialwert];</code>
+</div>
+
+<div class="example">
+  <pre><code>int a;          // Deklaration
+a = 5;            // Zuweisung
+double b = 2.71;  // Deklaration + Initialisierung</code></pre>
+</div>
+
+<h2>6. Speicher und Gültigkeitsbereich</h2>
+<div class="definition">
+  Variablen existieren im Speicher mit bestimmten Bereichen (Scope):
+</div>
+
+<ul>
+  <li><strong>lokal:</strong> innerhalb einer Funktion, nur dort sichtbar</li>
+  <li><strong>global:</strong> außerhalb aller Funktionen, überall sichtbar</li>
+  <li><strong>statisch:</strong> behält Wert zwischen Funktionsaufrufen</li>
+</ul>
+
+<div class="example">
+  <pre><code>int globalVar = 10; // global
+
+void test(void) {
+    int lokal = 5;     // lokal
+    static int counter = 0; // statisch
+    counter++;
+}</code></pre>
+</div>
+
+<h2>7. Typumwandlung (Casting)</h2>
+<div class="definition">
+  C erlaubt explizite und implizite Typumwandlungen.
+</div>
+
+<div class="example">
+  <pre><code>int a = 5;
+double b = 2.5;
+double sum = a + b;       // implizit: a wird zu double
+int c = (int) b;          // explizit: cast zu int
+printf("%f %d\n", sum, c);</code></pre>
+</div>
+
+<div class="note">
+  Implizite Umwandlungen können zu Rundungsfehlern führen. Explizite Casts geben volle Kontrolle.
+</div>
+
+<h2>8. Zusammenfassung</h2>
+<ul>
+  <li>Grundtypen: char, int, float, double, _Bool</li>
+  <li>Modifikatoren: signed, unsigned, short, long</li>
+  <li>Konstanten mit <code>const</code></li>
+  <li>Variablendeklaration: Typ + Name + optional Initialisierung</li>
+  <li>Gültigkeitsbereich: lokal, global, statisch</li>
+  <li>Typumwandlung: implizit oder explizit (Casting)</li>
+</ul>
+
+</section>
+</body>
+</html>

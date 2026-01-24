@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>C – Zeiger</title>
+  <link rel="stylesheet" href="../../style.css">
+  <style>
+    .definition { padding: .75rem; border-left: 4px solid #2b7cff; background:#f3f8ff; border-radius:4px; margin: .75rem 0; }
+    .satz { padding: .75rem; border-left: 4px solid #2b7cff; background:#f9f9fb; border-radius:4px; margin: .75rem 0; }
+    .example { padding: .75rem; border-left: 4px solid #2e9a6a; background:#f4fffa; border-radius:4px; margin: .75rem 0; }
+    .note { padding: .75rem; border-left: 4px solid #ff9800; background:#fff8f0; border-radius:4px; margin: .75rem 0; }
+    .small { font-size:0.95rem; color:#444; }
+    pre { background:#1e1e1e; color:#d4d4d4; padding:1rem; border-radius:4px; overflow-x:auto; font-size:0.95rem; }
+    code { font-family: Consolas, monospace; }
+  </style>
+</head>
+
+<body>
+
+<nav>
+  <a href="../../index.html">Startseite</a>
+</nav>
+
+<section>
+
+<h1>Zeiger</h1>
+<p class="small">
+  Zeiger (Pointers) sind Variablen, die die Adresse einer anderen Variablen speichern.  
+  Sie ermöglichen direkte Speicheradressierung, dynamische Speicherverwaltung und sind zentral in C.
+</p>
+
+<h2>1. Definition eines Zeigers</h2>
+<div class="definition">
+  Ein Zeiger ist eine Variable, die die Speicheradresse einer anderen Variablen enthält.
+</div>
+
+<div class="example">
+  <pre><code>int a = 10;
+int *p = &a;  // p speichert die Adresse von a
+printf("%p\n", (void*)p);</code></pre>
+</div>
+
+<div class="note">
+  <ul>
+    <li><code>*</code> kennzeichnet einen Zeiger beim Deklarieren</li>
+    <li><code>&</code> gibt die Adresse einer Variablen</li>
+  </ul>
+</div>
+
+<h2>2. Dereferenzierung</h2>
+<div class="definition">
+  Dereferenzierung bedeutet, den Wert an der Adresse zu lesen oder zu schreiben.
+</div>
+
+<div class="example">
+  <pre><code>int value = *p; // Wert von a lesen
+*p = 20;          // Wert von a ändern</code></pre>
+</div>
+
+<h2>3. Zeigerarithmetik</h2>
+<div class="definition">
+  Zeiger können inkrementiert oder dekrementiert werden, um durch Arrays zu iterieren.
+</div>
+
+<div class="example">
+  <pre><code>int arr[3] = {1,2,3};
+int *ptr = arr; // Zeiger auf erstes Element
+
+printf("%d\n", *ptr);   // 1
+ptr++;                  // nächstes Element
+printf("%d\n", *ptr);   // 2</code></pre>
+</div>
+
+<h2>4. Zeiger und Arrays</h2>
+<div class="definition">
+  Arrays werden oft über Zeiger adressiert, da der Arrayname wie ein Zeiger auf das erste Element wirkt.
+</div>
+
+<div class="example">
+  <pre><code>int arr[5] = {10,20,30,40,50};
+int *p = arr;
+
+for(int i=0; i&lt;5; i++) {
+    printf("%d ", *(p+i));
+}</code></pre>
+</div>
+
+<h2>5. Zeiger auf Zeiger</h2>
+<div class="definition">
+  Ein Zeiger auf Zeiger speichert die Adresse eines Zeigers.
+</div>
+
+<div class="example">
+  <pre><code>int a = 5;
+int *p = &a;
+int **pp = &p;
+
+printf("%d\n", **pp); // 5</code></pre>
+</div>
+
+<h2>6. Funktionsparameter als Zeiger</h2>
+<div class="definition">
+  Zeiger ermöglichen Call by Reference, um Werte in Funktionen zu ändern.
+</div>
+
+<div class="example">
+  <pre><code>void increment(int *x) {
+    (*x)++;
+}
+
+int main(void) {
+    int a = 10;
+    increment(&a);
+    printf("%d\n", a); // 11
+    return 0;
+}</code></pre>
+</div>
+
+<h2>7. Zusammenfassung</h2>
+<ul>
+  <li>Zeiger speichern Speicheradressen</li>
+  <li><code>*</code> zur Dereferenzierung, <code>&</code> zur Adressabfrage</li>
+  <li>Zeigerarithmetik erlaubt Iteration über Arrays</li>
+  <li>Zeiger auf Zeiger speichern Adressen von Zeigern</li>
+  <li>Funktionsparameter als Zeiger ermöglichen Call by Reference</li>
+</ul>
+
+</section>
+
+</body>
+</html>
