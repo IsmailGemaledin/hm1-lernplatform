@@ -138,6 +138,22 @@ footer p {
     margin-bottom: 15px;
 }
 
+pre {
+    background: #2d2d2d !important;
+    color: #fff !important;
+    padding: 1rem;
+    border-radius: 4px;
+    overflow: auto;
+}
+
+code {
+    background: #2d2d2d !important;
+    color: #fff !important;
+    padding: 0.2rem 0.4rem;
+    border-radius: 2px;
+    font-family: 'Courier New', monospace;
+}
+
 /* ===========================================
       RESPONSIVE DESIGN
    =========================================== */
