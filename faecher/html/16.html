@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>HTML – Bilder, Medien & Einbettung</title>
+  <link rel="stylesheet" href="../../style.css">
+  <style>
+    .definition { padding:.75rem; border-left:4px solid #2b7cff; background:#f3f8ff; border-radius:4px; margin:.75rem 0; }
+    .example { padding:.75rem; border-left:4px solid #2e9a6a; background:#f4fffa; border-radius:4px; margin:.75rem 0; }
+    .note { padding:.75rem; border-left:4px solid #ff9800; background:#fff8f0; border-radius:4px; margin:.75rem 0; }
+    .small { font-size:.95rem; color:#444; }
+    pre { background:#1e1e1e; color:#d4d4d4; padding:1rem; border-radius:4px; overflow-x:auto; font-size:.95rem; }
+    code { font-family: Consolas, monospace; }
+  </style>
+</head>
+
+<body>
+
+<nav>
+  <a href="../../index.html">Startseite</a>
+</nav>
+
+<section>
+
+<h1>Bilder, Medien & Einbettung</h1>
+
+<p class="small">
+In dieser Lektion lernen Sie, wie man Bilder, Audio, Video und externe Inhalte in HTML einbindet.
+</p>
+
+<h2>1. Bilder einfügen</h2>
+
+<div class="definition">
+Das <code>&lt;img&gt;</code>-Element bindet Bilder ein.
+</div>
+
+<ul>
+  <li>Attribute: <code>src</code> (Pfad), <code>alt</code> (Text), <code>width</code>, <code>height</code></li>
+  <li>Selbstschließend: <code>&lt;img ... /&gt;</code></li>
+</ul>
+
+<div class="example">
+<pre><code>&lt;img src="bild.jpg" alt="Beschreibung" width="300"&gt;</code></pre>
+</div>
+
+<h2>2. Audio einbinden</h2>
+
+<div class="definition">
+Das <code>&lt;audio&gt;</code>-Element bindet Audio-Dateien ein.
+</div>
+
+<ul>
+  <li>Attribute: <code>controls</code> zeigt Abspielsteuerung</li>
+  <li>Unterstützt Formate wie MP3, OGG, WAV</li>
+</ul>
+
+<div class="example">
+<pre><code>&lt;audio controls&gt;
+  &lt;source src="musik.mp3" type="audio/mpeg"&gt;
+  Ihr Browser unterstützt kein Audio-Element.
+&lt;/audio&gt;</code></pre>
+</div>
+
+<h2>3. Video einbinden</h2>
+
+<div class="definition">
+Das <code>&lt;video&gt;</code>-Element bindet Video-Dateien ein.
+</div>
+
+<ul>
+  <li>Attribute: <code>controls</code>, <code>width</code>, <code>height</code>, <code>autoplay</code>, <code>loop</code></li>
+  <li>Unterstützte Formate: MP4, WebM, OGG</li>
+</ul>
+
+<div class="example">
+<pre><code>&lt;video width="640" height="360" controls&gt;
+  &lt;source src="video.mp4" type="video/mp4"&gt;
+  Ihr Browser unterstützt kein Video-Element.
+&lt;/video&gt;</code></pre>
+</div>
+
+<h2>4. Iframes</h2>
+
+<div class="definition">
+Ein <code>&lt;iframe&gt;</code> bindet externe Webseiten oder Inhalte ein.
+</div>
+
+<ul>
+  <li>Attribute: <code>src</code>, <code>width</code>, <code>height</code>, <code>title</code></li>
+  <li>Beachten Sie Sicherheitsrichtlinien wie <code>sandbox</code></li>
+</ul>
+
+<div class="example">
+<pre><code>&lt;iframe src="https://example.com" width="600" height="400" title="Beispielseite"&gt;&lt;/iframe&gt;</code></pre>
+</div>
+
+<h2>5. Bildbeschriftungen</h2>
+
+<div class="definition">
+Mit <code>&lt;figure&gt;</code> und <code>&lt;figcaption&gt;</code> können Bilder kommentiert werden.
+</div>
+
+<div class="example">
+<pre><code>&lt;figure&gt;
+  &lt;img src="diagramm.png" alt="Diagramm"&gt;
+  &lt;figcaption&gt;Abbildung 1: Diagramm&lt;/figcaption&gt;
+&lt;/figure&gt;</code></pre>
+</div>
+
+<h2>6. Best Practices</h2>
+
+<ul>
+  <li>Immer <code>alt</code> für Bilder</li>
+  <li>Medien komprimieren für schnelle Ladezeiten</li>
+  <li>Externe Inhalte nur vertrauenswürdigen Quellen entnehmen</li>
+  <li>Responsive Design beachten</li>
+</ul>
+
+<h2>7. Zusammenfassung</h2>
+
+<ul>
+  <li><code>&lt;img&gt;</code> für Bilder</li>
+  <li><code>&lt;audio&gt;</code> für Audio</li>
+  <li><code>&lt;video&gt;</code> für Video</li>
+  <li><code>&lt;iframe&gt;</code> für externe Inhalte</li>
+  <li><code>&lt;figure&gt;</code> + <code>&lt;figcaption&gt;</code> für Bildunterschriften</li>
+</ul>
+
+</section>
+</body>
+</html>

@@ -3,7 +3,7 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width,initial-scale=1">
-  <title>C++ – Fehlerbehandlung</title>
+  <title>HTML & CSS – Layout mit Flexbox</title>
   <link rel="stylesheet" href="../../style.css">
   <style>
     .definition { padding:.75rem; border-left:4px solid #2b7cff; background:#f3f8ff; border-radius:4px; margin:.75rem 0; }
@@ -23,130 +23,165 @@
 
 <section>
 
-<h1>Fehlerbehandlung in C++</h1>
+<h1>Layout mit Flexbox</h1>
+
 <p class="small">
-  Diese Lektion behandelt die Techniken zur Erkennung und Behandlung von Fehlern in C++.  
-  Fokus liegt auf Ausnahmen (<code>exceptions</code>) und bewährten Vorgehensweisen.
+Flexbox ist ein modernes CSS-Layout-Modell zur Anordnung von Elementen
+in einer Dimension (Zeile oder Spalte).  
+Es ist zentral für saubere Seitenlayouts und responsive Designs.
 </p>
 
-<h2>1. Warum Fehlerbehandlung?</h2>
+<h2>1. Motivation</h2>
 <div class="definition">
-  Programme können zur Laufzeit auf unerwartete Zustände stoßen.  
-  Fehlerbehandlung sorgt dafür, dass Programme kontrolliert reagieren, statt abzustürzen.
+Flexbox löst klassische Probleme von Layouts:
+Ausrichtung, Zentrierung, flexible Breiten und Abstände.
 </div>
 
 <ul>
-  <li>Eingabefehler (falsche Dateinamen, ungültige Werte)</li>
-  <li>Division durch Null</li>
-  <li>Speicherprobleme</li>
-  <li>Externe Ressourcen nicht verfügbar (Dateien, Netzwerke)</li>
+  <li>keine Floats</li>
+  <li>keine Tabellen</li>
+  <li>vorhersagbares Verhalten</li>
 </ul>
 
-<h2>2. Fehler in C++</h2>
+<h2>2. Flex-Container</h2>
 <div class="definition">
-  Fehler können kategorisiert werden als:
+Ein Element wird zum <strong>Flex-Container</strong>, wenn
+<code>display: flex</code> gesetzt wird.
 </div>
-<ul>
-  <li><strong>Logische Fehler:</strong> Programm läuft, aber liefert falsche Ergebnisse</li>
-  <li><strong>Laufzeitfehler:</strong> z.B. Division durch Null, Nullpointerzugriff</li>
-  <li><strong>Syntaxfehler:</strong> Compile-Zeit Fehler, verhindert Übersetzung</li>
-</ul>
-
-<h2>3. Exceptions – Grundidee</h2>
-<div class="definition">
-  C++ verwendet <strong>Exceptions</strong> zur Behandlung von Laufzeitfehlern.
-</div>
-
-<ul>
-  <li>Mit <code>throw</code> wird eine Ausnahme ausgelöst</li>
-  <li>Mit <code>try</code> wird Code markiert, der Fehler auslösen kann</li>
-  <li>Mit <code>catch</code> wird die Ausnahme abgefangen und behandelt</li>
-</ul>
 
 <div class="example">
-  <pre><code>try {
-    int a = 10, b = 0;
-    if(b == 0) throw "Division durch Null!";
-    int c = a / b;
-} catch(const char* msg) {
-    std::cerr &lt;&lt; "Fehler: " &lt;&lt; msg &lt;&lt; std::endl;
+<pre><code>.container {
+  display: flex;
 }</code></pre>
 </div>
 
-<h2>4. Exception-Klassen</h2>
+<p>
+Alle direkten Kinder dieses Elements werden automatisch <em>Flex-Items</em>.
+</p>
+
+<h2>3. Haupt- und Querachse</h2>
 <div class="definition">
-  C++ bietet Standardklassen für Exceptions im Header <code>&lt;stdexcept&gt;</code>:
+Flexbox arbeitet mit zwei Achsen:
 </div>
 
 <ul>
-  <li><code>std::exception</code> – Basisklasse aller Standard-Exceptions</li>
-  <li><code>std::runtime_error</code> – allgemeiner Laufzeitfehler</li>
-  <li><code>std::logic_error</code> – logische Fehler</li>
-  <li><code>std::out_of_range</code> – Index außerhalb gültiger Bereiche</li>
+  <li><strong>Hauptachse</strong> (main axis)</li>
+  <li><strong>Querachse</strong> (cross axis)</li>
 </ul>
 
-<div class="example">
-  <pre><code>#include &lt;iostream&gt;
-#include &lt;stdexcept&gt;
+<div class="note">
+Die Richtung der Hauptachse wird durch <code>flex-direction</code> bestimmt.
+</div>
 
-int main() {
-    try {
-        throw std::out_of_range("Index außerhalb");
-    } catch(const std::out_of_range& e) {
-        std::cerr &lt;&lt; "Caught exception: " &lt;&lt; e.what() &lt;&lt; std::endl;
-    }
+<h2>4. flex-direction</h2>
+<div class="definition">
+Legt die Richtung der Hauptachse fest.
+</div>
+
+<div class="example">
+<pre><code>.container {
+  display: flex;
+  flex-direction: row;     /* Standard */
 }</code></pre>
 </div>
 
-<h2>5. Benutzerdefinierte Exceptions</h2>
+<ul>
+  <li><code>row</code> – horizontal</li>
+  <li><code>column</code> – vertikal</li>
+  <li><code>row-reverse</code></li>
+  <li><code>column-reverse</code></li>
+</ul>
+
+<h2>5. Ausrichtung entlang der Hauptachse</h2>
 <div class="definition">
-  Eigene Fehlerklassen können von <code>std::exception</code> abgeleitet werden.
+<code>justify-content</code> steuert die Verteilung entlang der Hauptachse.
 </div>
 
 <div class="example">
-  <pre><code>class MyError : public std::exception {
-    const char* what() const noexcept override {
-        return "Mein eigener Fehler!";
-    }
-};
-
-try {
-    throw MyError();
-} catch(const MyError& e) {
-    std::cerr &lt;&lt; e.what() &lt;&lt; std::endl;
+<pre><code>.container {
+  justify-content: space-between;
 }</code></pre>
 </div>
 
-<h2>6. Best Practices</h2>
 <ul>
-  <li>Nur Ausnahmen für unerwartete, nicht triviale Fehler verwenden</li>
-  <li>Ressourcen immer sauber freigeben (RAII-Prinzip)</li>
-  <li>Smart Pointer helfen, Speicherlecks auch bei Exceptions zu vermeiden</li>
-  <li>Catch-by-reference: <code>catch(const std::exception& e)</code></li>
-  <li>Generell: <code>try/catch</code> so eng wie möglich halten</li>
+  <li><code>flex-start</code></li>
+  <li><code>center</code></li>
+  <li><code>space-between</code></li>
+  <li><code>space-around</code></li>
 </ul>
 
-<h2>7. RAII (Resource Acquisition Is Initialization)</h2>
+<h2>6. Ausrichtung entlang der Querachse</h2>
 <div class="definition">
-  Objekte verwalten Ressourcen so, dass beim Verlassen des Gültigkeitsbereichs automatisch aufgeräumt wird.
+<code>align-items</code> steuert die Ausrichtung senkrecht zur Hauptachse.
 </div>
 
 <div class="example">
-  <pre><code>#include &lt;fstream&gt;
-std::ifstream file("data.txt");
-if(!file) throw std::runtime_error("Datei nicht gefunden");
-// file wird beim Verlassen des Scope automatisch geschlossen</code></pre>
+<pre><code>.container {
+  align-items: center;
+}</code></pre>
 </div>
 
-<h2>8. Zusammenfassung</h2>
 <ul>
-  <li>Fehlerbehandlung wichtig für stabile Programme</li>
-  <li>Exceptions mit <code>try</code>, <code>throw</code>, <code>catch</code></li>
-  <li>Standard- und benutzerdefinierte Exception-Klassen</li>
-  <li>RAII und Smart Pointer sichern Ressourcen automatisch</li>
-  <li>Fehler früh erkennen, korrekt behandeln, Speicherlecks vermeiden</li>
+  <li><code>stretch</code> (Standard)</li>
+  <li><code>center</code></li>
+  <li><code>flex-start</code></li>
+  <li><code>flex-end</code></li>
+</ul>
+
+<h2>7. Typisches Seitenlayout</h2>
+<div class="example">
+<pre><code>&lt;div class="page"&gt;
+  &lt;nav&gt;Navigation&lt;/nav&gt;
+  &lt;main&gt;Inhalt&lt;/main&gt;
+&lt;/div&gt;</code></pre>
+</div>
+
+<div class="example">
+<pre><code>.page {
+  display: flex;
+}
+
+nav {
+  width: 200px;
+}
+
+main {
+  flex: 1;
+}</code></pre>
+</div>
+
+<div class="note">
+<code>flex: 1</code> bedeutet: nimm den verbleibenden Platz ein.
+</div>
+
+<h2>8. Flexbox für Formulare</h2>
+<div class="definition">
+Flexbox eignet sich hervorragend zur Ausrichtung von Labels und Inputs.
+</div>
+
+<div class="example">
+<pre><code>.field {
+  display: flex;
+  gap: 1rem;
+}</code></pre>
+</div>
+
+<h2>9. Häufige Fehler</h2>
+<ul>
+  <li>Flexbox auf falschem Element gesetzt</li>
+  <li>Haupt- und Querachse verwechselt</li>
+  <li>Zu viele verschachtelte Container</li>
+</ul>
+
+<h2>10. Zusammenfassung</h2>
+<ul>
+  <li>Flexbox ist eindimensional</li>
+  <li>Container steuert das Verhalten</li>
+  <li>Ausrichtung über <code>justify-content</code> und <code>align-items</code></li>
+  <li>Grundlage für modernes Webdesign</li>
 </ul>
 
 </section>
+
 </body>
 </html>

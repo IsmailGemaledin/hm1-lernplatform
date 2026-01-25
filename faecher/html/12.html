@@ -3,13 +3,12 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width,initial-scale=1">
-  <title>C++ – Objekt-Orientierte Programmierung</title>
+  <title>HTML & CSS – Layout mit Grid</title>
   <link rel="stylesheet" href="../../style.css">
   <style>
-    .definition { padding: .75rem; border-left: 4px solid #2b7cff; background:#f3f8ff; border-radius:4px; margin: .75rem 0; }
-    .satz { padding: .75rem; border-left: 4px solid #2b7cff; background:#f9f9fb; border-radius:4px; margin: .75rem 0; }
-    .example { padding: .75rem; border-left: 4px solid #2e9a6a; background:#f4fffa; border-radius:4px; margin: .75rem 0; }
-    .note { padding: .75rem; border-left: 4px solid #ff9800; background:#fff8f0; border-radius:4px; margin: .75rem 0; }
+    .definition { padding:.75rem; border-left:4px solid #2b7cff; background:#f3f8ff; border-radius:4px; margin:.75rem 0; }
+    .example { padding:.75rem; border-left:4px solid #2e9a6a; background:#f4fffa; border-radius:4px; margin:.75rem 0; }
+    .note { padding:.75rem; border-left:4px solid #ff9800; background:#fff8f0; border-radius:4px; margin:.75rem 0; }
     .small { font-size:0.95rem; color:#444; }
     pre { background:#1e1e1e; color:#d4d4d4; padding:1rem; border-radius:4px; overflow-x:auto; font-size:0.95rem; }
     code { font-family: Consolas, monospace; }
@@ -24,95 +23,168 @@
 
 <section>
 
-<h1>Objekt-Orientierte Programmierung (OOP)</h1>
+<h1>Layout mit CSS Grid</h1>
+
 <p class="small">
-  Objekt-Orientierte Programmierung in C++ erlaubt die Modellierung von Objekten mit Daten und Funktionen.  
-  Diese Lektion behandelt Klassen, Objekte, Konstruktoren und Methoden.
+CSS Grid ist ein zweidimensionales Layout-System für Webseiten.
+Im Gegensatz zu Flexbox können gleichzeitig <strong>Zeilen und Spalten</strong>
+kontrolliert werden.
 </p>
 
-<h2>1. Klassen und Objekte</h2>
+<h2>1. Motivation</h2>
 <div class="definition">
-  Eine <strong>Klasse</strong> definiert den Bauplan für Objekte. Ein <strong>Objekt</strong> ist eine Instanz einer Klasse.
+Grid ist ideal für komplette Seitenlayouts:
+Header, Navigation, Inhalt, Sidebar und Footer.
 </div>
 
-<div class="example">
-  <pre><code>class Punkt {
-public:
-    int x, y; // Attribute
-
-    void print() { // Methode
-        std::cout &lt;&lt; "(" &lt;&lt; x &lt;&lt; ", " &lt;&lt; y &lt;&lt; ")" &lt;&lt; std::endl;
-    }
-};
-
-int main() {
-    Punkt p1;
-    p1.x = 3;
-    p1.y = 4;
-    p1.print();
-    return 0;
-}</code></pre>
-</div>
-
-<h2>2. Konstruktoren</h2>
-<div class="definition">
-  Konstruktoren initialisieren Objekte beim Erstellen.
-</div>
-
-<div class="example">
-  <pre><code>class Punkt {
-public:
-    int x, y;
-    Punkt(int a, int b) : x(a), y(b) {} // Konstruktor
-
-    void print() {
-        std::cout &lt;&lt; "(" &lt;&lt; x &lt;&lt; ", " &lt;&lt; y &lt;&lt; ")" &lt;&lt; std::endl;
-    }
-};
-
-int main() {
-    Punkt p2(5,7);
-    p2.print();
-    return 0;
-}</code></pre>
-</div>
-
-<h2>3. Methoden und Zugriff</h2>
-<div class="definition">
-  Methoden implementieren Verhalten von Objekten. Sichtbarkeit wird über <code>public</code>, <code>private</code> und <code>protected</code> geregelt.
-</div>
-
-<div class="example">
-  <pre><code>class Kreis {
-private:
-    double radius;
-public:
-    Kreis(double r) : radius(r) {}
-    double flaeche() { return 3.14159 * radius * radius; }
-};
-
-int main() {
-    Kreis k(2.0);
-    std::cout &lt;&lt; "Fläche: " &lt;&lt; k.flaeche() &lt;&lt; std::endl;
-    return 0;
-}</code></pre>
-</div>
-
-<h2>4. Best Practices</h2>
-<div class="definition">
-  <ul>
-    <li>Attribute sollten <code>private</code> sein, Methoden <code>public</code></li>
-    <li>Verwende Konstruktoren für Initialisierung</li>
-    <li>Jede Klasse sollte klar definierten Verantwortungsbereich haben</li>
-  </ul>
-</div>
-
-<h2>5. Zusammenfassung</h2>
 <ul>
-  <li>Klassen definieren Daten &amp; Methoden</li>
-  <li>Objekte sind Instanzen von Klassen</li>
-  <li>Konstruktoren initialisieren Objekte</li>
-  <li>Zugriffsmodifikatoren regeln Sichtbarkeit</li>
+  <li>exakte Kontrolle über Zeilen und Spalten</li>
+  <li>klare visuelle Struktur</li>
+  <li>perfekt für komplexe Layouts</li>
+</ul>
+
+<h2>2. Grid-Container</h2>
+<div class="definition">
+Ein Element wird zum Grid-Container mit
+<code>display: grid</code>.
+</div>
+
+<div class="example">
+<pre><code>.container {
+  display: grid;
+}</code></pre>
+</div>
+
+<p>
+Alle direkten Kinder werden automatisch Grid-Items.
+</p>
+
+<h2>3. Spalten und Zeilen definieren</h2>
+<div class="definition">
+Spalten und Zeilen werden mit
+<code>grid-template-columns</code> und
+<code>grid-template-rows</code> definiert.
+</div>
+
+<div class="example">
+<pre><code>.container {
+  display: grid;
+  grid-template-columns: 200px 1fr;
+  grid-template-rows: auto 1fr auto;
+}</code></pre>
+</div>
+
+<div class="note">
+<code>fr</code> steht für einen Anteil des verfügbaren Platzes.
+</div>
+
+<h2>4. Typisches Seitenlayout</h2>
+<div class="example">
+<pre><code>&lt;div class="page"&gt;
+  &lt;header&gt;Header&lt;/header&gt;
+  &lt;nav&gt;Navigation&lt;/nav&gt;
+  &lt;main&gt;Inhalt&lt;/main&gt;
+  &lt;footer&gt;Footer&lt;/footer&gt;
+&lt;/div&gt;</code></pre>
+</div>
+
+<div class="example">
+<pre><code>.page {
+  display: grid;
+  grid-template-columns: 200px 1fr;
+  grid-template-rows: auto 1fr auto;
+  min-height: 100vh;
+}</code></pre>
+</div>
+
+<h2>5. Platzierung von Elementen</h2>
+<div class="definition">
+Grid-Items können explizit positioniert werden.
+</div>
+
+<div class="example">
+<pre><code>header {
+  grid-column: 1 / 3;
+}
+
+nav {
+  grid-row: 2;
+}
+
+main {
+  grid-row: 2;
+  grid-column: 2;
+}</code></pre>
+</div>
+
+<h2>6. Grid Areas</h2>
+<div class="definition">
+Grid Areas erlauben eine besonders lesbare Layout-Beschreibung.
+</div>
+
+<div class="example">
+<pre><code>.page {
+  display: grid;
+  grid-template-areas:
+    "header header"
+    "nav    main"
+    "footer footer";
+  grid-template-columns: 200px 1fr;
+}</code></pre>
+</div>
+
+<div class="example">
+<pre><code>header { grid-area: header; }
+nav    { grid-area: nav; }
+main   { grid-area: main; }
+footer { grid-area: footer; }</code></pre>
+</div>
+
+<h2>7. Abstände im Grid</h2>
+<div class="definition">
+Abstände zwischen Zellen werden mit <code>gap</code> definiert.
+</div>
+
+<div class="example">
+<pre><code>.container {
+  gap: 1rem;
+}</code></pre>
+</div>
+
+<h2>8. Responsives Grid</h2>
+<div class="definition">
+Grid lässt sich leicht an Bildschirmgrößen anpassen.
+</div>
+
+<div class="example">
+<pre><code>@media (max-width: 700px) {
+  .page {
+    grid-template-columns: 1fr;
+    grid-template-areas:
+      "header"
+      "nav"
+      "main"
+      "footer";
+  }
+}</code></pre>
+</div>
+
+<h2>9. Grid vs. Flexbox</h2>
+<ul>
+  <li><strong>Grid:</strong> zweidimensional (Seitenlayout)</li>
+  <li><strong>Flexbox:</strong> eindimensional (Komponenten)</li>
+</ul>
+
+<div class="note">
+In der Praxis werden Grid und Flexbox gemeinsam eingesetzt.
+</div>
+
+<h2>10. Zusammenfassung</h2>
+<ul>
+  <li>Grid kontrolliert Zeilen und Spalten</li>
+  <li>Ideal für vollständige Layouts</li>
+  <li>Grid Areas erhöhen Lesbarkeit</li>
+  <li>Basis für modernes Responsive Design</li>
 </ul>
 
 </section>

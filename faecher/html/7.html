@@ -3,7 +3,7 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width,initial-scale=1">
-  <title>C++ – Zeiger</title>
+  <title>HTML – Listen</title>
   <link rel="stylesheet" href="../../style.css">
   <style>
     .definition { padding:.75rem; border-left:4px solid #2b7cff; background:#f3f8ff; border-radius:4px; margin:.75rem 0; }
@@ -23,136 +23,126 @@
 
 <section>
 
-<h1>Zeiger (Pointers) in C++</h1>
+<h1>Listen in HTML</h1>
 <p class="small">
-  In dieser Lektion werden Zeiger in C++ behandelt. Ziel ist, die direkte Adressierung von Speicher, Pointer-Arithmetik und Referenzen zu verstehen.
+Listen werden verwendet, um zusammengehörige Elemente strukturiert darzustellen.
+HTML kennt ungeordnete, geordnete und beschreibende Listen.
 </p>
 
-<h2>1. Was ist ein Zeiger?</h2>
+<h2>1. Ungeordnete Listen (&lt;ul&gt;)</h2>
 <div class="definition">
-  Ein <strong>Zeiger</strong> ist eine Variable, die die Speicheradresse einer anderen Variablen speichert.
+Eine <strong>ungeordnete Liste</strong> stellt Elemente ohne feste Reihenfolge dar.
 </div>
 
 <div class="example">
-  <pre><code>int a = 10;
-int* p = &a; // p speichert die Adresse von a
-std::cout &lt;&lt; "Adresse von a: " &lt;&lt; p &lt;&lt; std::endl;
-std::cout &lt;&lt; "Wert von a über p: " &lt;&lt; *p &lt;&lt; std::endl;</code></pre>
+<pre><code>&lt;ul&gt;
+  &lt;li&gt;Apfel&lt;/li&gt;
+  &lt;li&gt;Banane&lt;/li&gt;
+  &lt;li&gt;Orange&lt;/li&gt;
+&lt;/ul&gt;</code></pre>
 </div>
 
-<h2>2. Syntax von Zeigern</h2>
+<p>
+Browser stellen ungeordnete Listen standardmäßig mit Aufzählungszeichen dar.
+</p>
+
+<h2>2. Geordnete Listen (&lt;ol&gt;)</h2>
 <div class="definition">
-  Ein Zeiger wird durch das Sternchen <code>*</code> deklariert. 
-  Das Ampersand <code>&</code> liefert die Adresse einer Variable.
+Eine <strong>geordnete Liste</strong> wird verwendet, wenn die Reihenfolge der Elemente wichtig ist.
+</div>
+
+<div class="example">
+<pre><code>&lt;ol&gt;
+  &lt;li&gt;HTML lernen&lt;/li&gt;
+  &lt;li&gt;CSS lernen&lt;/li&gt;
+  &lt;li&gt;JavaScript lernen&lt;/li&gt;
+&lt;/ol&gt;</code></pre>
+</div>
+
+<div class="note">
+Standardmäßig werden Zahlen verwendet, das Aussehen kann mit CSS angepasst werden.
+</div>
+
+<h2>3. Listenelemente (&lt;li&gt;)</h2>
+<div class="definition">
+Jeder Eintrag einer Liste wird mit dem <code>&lt;li&gt;</code>-Element definiert.
 </div>
 
 <ul>
-  <li><code>int* p;</code> – Zeiger auf int</li>
-  <li><code>double* d;</code> – Zeiger auf double</li>
-  <li><code>char* c;</code> – Zeiger auf char</li>
+  <li><code>&lt;li&gt;</code> darf nur innerhalb von <code>&lt;ul&gt;</code> oder <code>&lt;ol&gt;</code> stehen</li>
+  <li>Ein <code>&lt;li&gt;</code> kann auch andere HTML-Elemente enthalten</li>
 </ul>
 
-<h2>3. Zugriff auf Werte über Zeiger</h2>
+<h2>4. Verschachtelte Listen</h2>
 <div class="definition">
-  Mit <code>*p</code> kann auf den Wert der Variablen zugegriffen werden, auf die der Zeiger zeigt.
+Listen können ineinander verschachtelt werden, um hierarchische Strukturen darzustellen.
 </div>
 
 <div class="example">
-  <pre><code>int a = 5;
-int* ptr = &a;
-
-std::cout &lt;&lt; *ptr &lt;&lt; std::endl; // Ausgabe: 5
-*ptr = 20; 
-std::cout &lt;&lt; a &lt;&lt; std::endl;    // Ausgabe: 20</code></pre>
+<pre><code>&lt;ul&gt;
+  &lt;li&gt;Programmiersprachen
+    &lt;ul&gt;
+      &lt;li&gt;C&lt;/li&gt;
+      &lt;li&gt;C++&lt;/li&gt;
+      &lt;li&gt;Python&lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/li&gt;
+  &lt;li&gt;Webtechnologien&lt;/li&gt;
+&lt;/ul&gt;</code></pre>
 </div>
 
-<h2>4. Pointer-Arithmetik</h2>
+<h2>5. Beschreibende Listen (&lt;dl&gt;)</h2>
 <div class="definition">
-  Zeiger können inkrementiert oder dekrementiert werden, um auf benachbarte Speicheradressen zuzugreifen (besonders bei Arrays nützlich).
+Eine <strong>beschreibende Liste</strong> besteht aus Begriffen und deren Beschreibungen.
 </div>
 
 <div class="example">
-  <pre><code>int arr[3] = {10, 20, 30};
-int* p = arr;
+<pre><code>&lt;dl&gt;
+  &lt;dt&gt;HTML&lt;/dt&gt;
+  &lt;dd&gt;Struktursprache für Webseiten&lt;/dd&gt;
 
-std::cout &lt;&lt; *p &lt;&lt; std::endl;   // 10
-p++;
-std::cout &lt;&lt; *p &lt;&lt; std::endl;   // 20
-p++;
-std::cout &lt;&lt; *p &lt;&lt; std::endl;   // 30</code></pre>
+  &lt;dt&gt;CSS&lt;/dt&gt;
+  &lt;dd&gt;Gestaltung von Webseiten&lt;/dd&gt;
+&lt;/dl&gt;</code></pre>
 </div>
 
-<h2>5. Null-Zeiger und Sicherheitsaspekte</h2>
-<div class="definition">
-  Ein Zeiger, der auf nichts zeigt, sollte <code>nullptr</code> sein.
-</div>
-
-<div class="example">
-  <pre><code>int* p = nullptr;
-if (p != nullptr) {
-    std::cout &lt;&lt; *p &lt;&lt; std::endl;
-} else {
-    std::cout &lt;&lt; "Zeiger zeigt auf nichts!" &lt;&lt; std::endl;
-}</code></pre>
-</div>
-
-<div class="note">
-  Dereferenzierung von Null-Zeigern führt zu undefiniertem Verhalten (crash). Deshalb immer überprüfen.
-</div>
-
-<h2>6. Zeiger auf Zeiger</h2>
-<div class="definition">
-  Ein Zeiger kann die Adresse eines anderen Zeigers speichern.
-</div>
-
-<div class="example">
-  <pre><code>int a = 5;
-int* p = &a;
-int** pp = &p;
-
-std::cout &lt;&lt; **pp &lt;&lt; std::endl; // Ausgabe: 5</code></pre>
-</div>
-
-<h2>7. Zeiger und Arrays</h2>
-<div class="definition">
-  Arrays und Zeiger sind eng verbunden. Der Name eines Arrays ist ein Zeiger auf das erste Element.
-</div>
-
-<div class="example">
-  <pre><code>int arr[3] = {1,2,3};
-int* p = arr;       // arr &lt;=&gt; &amp;arr[0]
-for(int i=0;i&lt;3;i++)
-    std::cout &lt;&lt; *(p+i) &lt;&lt; " ";
-std::cout &lt;&lt; std::endl;</code></pre>
-</div>
-
-<h2>8. Referenzen vs. Zeiger</h2>
-<div class="definition">
-  Eine <strong>Referenz</strong> ist ein Alias für eine Variable und wird mit <code>&</code> deklariert.  
-  Anders als Zeiger kann eine Referenz nicht null sein und muss bei Deklaration initialisiert werden.
-</div>
-
-<div class="example">
-  <pre><code>int a = 10;
-int& ref = a;
-ref = 20;
-std::cout &lt;&lt; a &lt;&lt; std::endl; // Ausgabe: 20</code></pre>
-</div>
-
-<div class="note">
-  Referenzen sind oft sicherer und einfacher zu verwenden als rohe Zeiger.
-</div>
-
-<h2>9. Zusammenfassung</h2>
 <ul>
-  <li>Zeiger speichern Adressen von Variablen</li>
-  <li>Zugriff auf Wert mit <code>*</code>, Adresse mit <code>&</code></li>
-  <li>Pointer-Arithmetik erlaubt Iteration über Arrays</li>
-  <li>Null-Zeiger vermeiden und überprüfen</li>
-  <li>Zeiger auf Zeiger und Referenzen für komplexe Datenstrukturen</li>
-  <li><code>std::string</code> und moderne Container reduzieren oft die Notwendigkeit von rohen Zeigern</li>
+  <li><code>&lt;dt&gt;</code> – Begriff (definition term)</li>
+  <li><code>&lt;dd&gt;</code> – Beschreibung (definition description)</li>
+</ul>
+
+<h2>6. Semantische Bedeutung von Listen</h2>
+<div class="definition">
+Listen sind nicht nur visuell, sondern auch semantisch wichtig.
+</div>
+
+<ul>
+  <li>Screenreader erkennen Listenstrukturen</li>
+  <li>Suchmaschinen verstehen Zusammenhänge besser</li>
+  <li>Navigationen werden häufig als Listen umgesetzt</li>
+</ul>
+
+<div class="note">
+Listen sollten verwendet werden, wenn Inhalte logisch zusammengehören.
+</div>
+
+<h2>7. Typische Fehler</h2>
+<ul>
+  <li><code>&lt;li&gt;</code> außerhalb von <code>&lt;ul&gt;</code> oder <code>&lt;ol&gt;</code></li>
+  <li>Listen nur für Layout-Zwecke missbrauchen</li>
+  <li>Zu tiefe Verschachtelungen ohne Struktur</li>
+</ul>
+
+<h2>8. Zusammenfassung</h2>
+<ul>
+  <li>Ungeordnete Listen: <code>&lt;ul&gt;</code></li>
+  <li>Geordnete Listen: <code>&lt;ol&gt;</code></li>
+  <li>Listeneinträge: <code>&lt;li&gt;</code></li>
+  <li>Beschreibende Listen: <code>&lt;dl&gt;</code>, <code>&lt;dt&gt;</code>, <code>&lt;dd&gt;</code></li>
+  <li>Listen haben semantische Bedeutung</li>
 </ul>
 
 </section>
+
 </body>
 </html>

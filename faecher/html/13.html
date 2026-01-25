@@ -3,13 +3,12 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width,initial-scale=1">
-  <title>C++ – Klassen</title>
+  <title>HTML & CSS – Responsive Design & Media Queries</title>
   <link rel="stylesheet" href="../../style.css">
   <style>
-    .definition { padding: .75rem; border-left: 4px solid #2b7cff; background:#f3f8ff; border-radius:4px; margin: .75rem 0; }
-    .satz { padding: .75rem; border-left: 4px solid #2b7cff; background:#f9f9fb; border-radius:4px; margin: .75rem 0; }
-    .example { padding: .75rem; border-left: 4px solid #2e9a6a; background:#f4fffa; border-radius:4px; margin: .75rem 0; }
-    .note { padding: .75rem; border-left: 4px solid #ff9800; background:#fff8f0; border-radius:4px; margin: .75rem 0; }
+    .definition { padding:.75rem; border-left:4px solid #2b7cff; background:#f3f8ff; border-radius:4px; margin:.75rem 0; }
+    .example { padding:.75rem; border-left:4px solid #2e9a6a; background:#f4fffa; border-radius:4px; margin:.75rem 0; }
+    .note { padding:.75rem; border-left:4px solid #ff9800; background:#fff8f0; border-radius:4px; margin:.75rem 0; }
     .small { font-size:0.95rem; color:#444; }
     pre { background:#1e1e1e; color:#d4d4d4; padding:1rem; border-radius:4px; overflow-x:auto; font-size:0.95rem; }
     code { font-family: Consolas, monospace; }
@@ -24,91 +23,134 @@
 
 <section>
 
-<h1>Klassen</h1>
+<h1>Responsive Design & Media Queries</h1>
+
 <p class="small">
-  Klassen sind der zentrale Baustein der Objektorientierung in C++.  
-  In dieser Lektion vertiefen wir die Definition, Konstruktoren, Methoden, Destruktoren und Zugriffsmodifikatoren.
+Responsive Design bedeutet, dass sich eine Webseite automatisch
+an unterschiedliche Bildschirmgrößen und Geräte anpasst.
 </p>
 
-<h2>1. Definition einer Klasse</h2>
+<h2>1. Warum Responsive Design?</h2>
 <div class="definition">
-  Eine Klasse bündelt Daten (Attribute) und Funktionen (Methoden), die auf diese Daten operieren.
+Moderne Webseiten müssen auf Smartphones, Tablets und Desktops
+gleichzeitig gut funktionieren.
 </div>
 
-<div class="example">
-  <pre><code>class Auto {
-public:
-    std::string marke;
-    int baujahr;
-
-    void anzeigen() {
-        std::cout &lt;&lt; marke &lt;&lt; ", " &lt;&lt; baujahr &lt;&lt; std::endl;
-    }
-};</code></pre>
-</div>
-
-<h2>2. Konstruktoren</h2>
-<div class="definition">
-  Konstruktoren initialisieren Objekte beim Erzeugen. Sie haben denselben Namen wie die Klasse und keinen Rückgabewert.
-</div>
-
-<div class="example">
-  <pre><code>class Auto {
-public:
-    std::string marke;
-    int baujahr;
-
-    Auto(std::string m, int j) : marke(m), baujahr(j) {} // Konstruktor
-};</code></pre>
-</div>
-
-<h2>3. Destruktoren</h2>
-<div class="definition">
-  Destruktoren werden automatisch aufgerufen, wenn ein Objekt den Gültigkeitsbereich verlässt. Sie haben denselben Namen wie die Klasse, mit vorangestelltem ~.
-</div>
-
-<div class="example">
-  <pre><code>class Auto {
-public:
-    ~Auto() {
-        std::cout &lt;&lt; "Objekt wird gelöscht" &lt;&lt; std::endl;
-    }
-};</code></pre>
-</div>
-
-<h2>4. Methoden und Zugriff</h2>
-<div class="definition">
-  Methoden definieren das Verhalten von Objekten. Zugriff über <code>public</code>, <code>private</code> und <code>protected</code>.
-</div>
-
-<div class="example">
-  <pre><code>class Konto {
-private:
-    double saldo;
-public:
-    Konto(double s) : saldo(s) {}
-    void einzahlen(double betrag) { saldo += betrag; }
-    double getSaldo() { return saldo; }
-};</code></pre>
-</div>
-
-<h2>5. Best Practices</h2>
-<div class="definition">
-  <ul>
-    <li>Attribute meist <code>private</code> halten</li>
-    <li>Öffentliche Schnittstellen über <code>public</code> Methoden bereitstellen</li>
-    <li>Konstruktoren für konsistente Initialisierung nutzen</li>
-    <li>Destruktoren für Aufräumarbeiten nutzen</li>
-  </ul>
-</div>
-
-<h2>6. Zusammenfassung</h2>
 <ul>
-  <li>Klassen bündeln Attribute und Methoden</li>
-  <li>Konstruktor initialisiert Objekte</li>
-  <li>Destruktor räumt auf</li>
-  <li>Zugriffsmodifikatoren regeln Sichtbarkeit</li>
-  <li>Saubere Kapselung für robusten Code</li>
+  <li>unterschiedliche Bildschirmgrößen</li>
+  <li>unterschiedliche Eingabemethoden</li>
+  <li>bessere Benutzererfahrung</li>
+</ul>
+
+<h2>2. Viewport</h2>
+<div class="definition">
+Der Viewport beschreibt den sichtbaren Bereich der Webseite
+auf einem Gerät.
+</div>
+
+<div class="example">
+<pre><code>&lt;meta name="viewport"
+      content="width=device-width, initial-scale=1"&gt;</code></pre>
+</div>
+
+<div class="note">
+Ohne korrekt gesetzten Viewport sind mobile Layouts oft unbrauchbar.
+</div>
+
+<h2>3. Mobile First</h2>
+<div class="definition">
+Beim Mobile-First-Ansatz wird das Layout zuerst für kleine
+Bildschirme entworfen.
+</div>
+
+<ul>
+  <li>Basis-Styles für Smartphones</li>
+  <li>Erweiterungen für größere Bildschirme</li>
+</ul>
+
+<h2>4. Media Queries – Grundlagen</h2>
+<div class="definition">
+Media Queries erlauben es, CSS abhängig von Geräteeigenschaften
+anzuwenden.
+</div>
+
+<div class="example">
+<pre><code>@media (max-width: 600px) {
+  body {
+    font-size: 16px;
+  }
+}</code></pre>
+</div>
+
+<h2>5. Typische Breakpoints</h2>
+<div class="example">
+<pre><code>/* Smartphones */
+@media (max-width: 600px) {}
+
+/* Tablets */
+@media (min-width: 601px) and (max-width: 1024px) {}
+
+/* Desktop */
+@media (min-width: 1025px) {}</code></pre>
+</div>
+
+<div class="note">
+Breakpoints sind Design-Entscheidungen, keine festen Regeln.
+</div>
+
+<h2>6. Responsive Layouts mit Grid</h2>
+<div class="example">
+<pre><code>.container {
+  display: grid;
+  grid-template-columns: 1fr;
+}
+
+@media (min-width: 800px) {
+  .container {
+    grid-template-columns: 200px 1fr;
+  }
+}</code></pre>
+</div>
+
+<h2>7. Responsive Layouts mit Flexbox</h2>
+<div class="example">
+<pre><code>.menu {
+  display: flex;
+  flex-direction: column;
+}
+
+@media (min-width: 700px) {
+  .menu {
+    flex-direction: row;
+  }
+}</code></pre>
+</div>
+
+<h2>8. Responsive Bilder</h2>
+<div class="definition">
+Bilder sollten sich an die verfügbare Breite anpassen.
+</div>
+
+<div class="example">
+<pre><code>img {
+  max-width: 100%;
+  height: auto;
+}</code></pre>
+</div>
+
+<h2>9. Vermeiden häufiger Fehler</h2>
+<ul>
+  <li>feste Breiten in px</li>
+  <li>zu kleine Schrift auf Mobile</li>
+  <li>fehlende Media Queries</li>
+</ul>
+
+<h2>10. Zusammenfassung</h2>
+<ul>
+  <li>Responsive Design ist Pflicht</li>
+  <li>Mobile First vereinfacht Planung</li>
+  <li>Media Queries steuern Layout-Anpassungen</li>
+  <li>Grid und Flexbox sind ideale Werkzeuge</li>
 </ul>
 
 </section>

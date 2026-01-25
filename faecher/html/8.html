@@ -3,7 +3,7 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width,initial-scale=1">
-  <title>C++ – Strukturen und Vereinigungen</title>
+  <title>HTML – Tabellen</title>
   <link rel="stylesheet" href="../../style.css">
   <style>
     .definition { padding:.75rem; border-left:4px solid #2b7cff; background:#f3f8ff; border-radius:4px; margin:.75rem 0; }
@@ -23,135 +23,170 @@
 
 <section>
 
-<h1>Strukturen und Vereinigungen in C++</h1>
+<h1>Tabellen in HTML</h1>
 <p class="small">
-  Diese Lektion behandelt <strong>structs</strong> und <strong>unions</strong> in C++. Ziel ist, komplexe Datentypen zu definieren, zu speichern und korrekt zu verwenden.
+Tabellen dienen zur strukturierten Darstellung von <strong>tabellarischen Daten</strong>.
+Sie sind kein Layout-Werkzeug, sondern ein semantisches Mittel zur Organisation von Informationen.
 </p>
 
-<h2>1. Strukturen</h2>
+<h2>1. Grundidee einer Tabelle</h2>
 <div class="definition">
-  Eine <strong>Struktur</strong> ist ein zusammengesetzter Datentyp, der mehrere verschiedene Datenelemente unter einem Namen zusammenfasst.
+Eine <strong>HTML-Tabelle</strong> besteht aus Zeilen und Spalten.
+Jede Zelle enthält einen Datenwert.
+</div>
+
+<p>
+Typische Anwendungsfälle:
+</p>
+<ul>
+  <li>Messwerte</li>
+  <li>Preislisten</li>
+  <li>Stundenpläne</li>
+  <li>Vergleichstabellen</li>
+</ul>
+
+<h2>2. Grundstruktur einer Tabelle</h2>
+<div class="definition">
+Die grundlegenden Elemente einer Tabelle sind:
+</div>
+
+<ul>
+  <li><code>&lt;table&gt;</code> – die Tabelle selbst</li>
+  <li><code>&lt;tr&gt;</code> – Tabellenzeile (table row)</li>
+  <li><code>&lt;td&gt;</code> – Tabellenzelle (table data)</li>
+</ul>
+
+<div class="example">
+<pre><code>&lt;table&gt;
+  &lt;tr&gt;
+    &lt;td&gt;A&lt;/td&gt;
+    &lt;td&gt;B&lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+    &lt;td&gt;C&lt;/td&gt;
+    &lt;td&gt;D&lt;/td&gt;
+  &lt;/tr&gt;
+&lt;/table&gt;</code></pre>
+</div>
+
+<h2>3. Tabellenüberschriften (&lt;th&gt;)</h2>
+<div class="definition">
+Tabellenüberschriften werden mit <code>&lt;th&gt;</code> definiert
+und beschreiben den Inhalt einer Spalte oder Zeile.
 </div>
 
 <div class="example">
-  <pre><code>struct Punkt {
-    double x;
-    double y;
-};
-
-Punkt p1;         // Deklaration
-p1.x = 3.0;
-p1.y = 4.0;
-
-std::cout &lt;&lt; "Punkt: (" &lt;&lt; p1.x &lt;&lt; ", " &lt;&lt; p1.y &lt;&lt; ")" &lt;&lt; std::endl;</code></pre>
-</div>
-
-<h2>2. Initialisierung von Strukturen</h2>
-<div class="definition">
-  Strukturen können direkt bei der Deklaration initialisiert werden.
-</div>
-
-<div class="example">
-  <pre><code>Punkt p2 = {1.0, 2.0};
-std::cout &lt;&lt; "p2: (" &lt;&lt; p2.x &lt;&lt; ", " &lt;&lt; p2.y &lt;&lt; ")" &lt;&lt; std::endl;</code></pre>
-</div>
-
-<h2>3. Arrays von Strukturen</h2>
-<div class="definition">
-  Man kann Arrays von Strukturen definieren, um mehrere Objekte desselben Typs zu speichern.
-</div>
-
-<div class="example">
-  <pre><code>Punkt punkte[3] = {{0,0}, {1,2}, {3,4}};
-for(int i=0;i&lt;3;i++)
-    std::cout &lt;&lt; "Punkt " &lt;&lt; i &lt;&lt; ": (" &lt;&lt; punkte[i].x &lt;&lt; ", " &lt;&lt; punkte[i].y &lt;&lt; ")" &lt;&lt; std::endl;</code></pre>
-</div>
-
-<h2>4. Strukturen als Parameter</h2>
-<div class="definition">
-  Strukturen können an Funktionen übergeben werden – entweder <strong>by value</strong> oder <strong>by reference</strong>.
-</div>
-
-<div class="example">
-  <pre><code>void printPunkt(const Punkt& p) {
-    std::cout &lt;&lt; "(" &lt;&lt; p.x &lt;&lt; ", " &lt;&lt; p.y &lt;&lt; ")" &lt;&lt; std::endl;
-}
-
-printPunkt(p1);</code></pre>
-</div>
-
-<h2>5. Vereinigungen (Unions)</h2>
-<div class="definition">
-  Eine <strong>union</strong> ist ein spezieller zusammengesetzter Typ, bei dem alle Mitglieder denselben Speicherbereich teilen.
-</div>
-
-<div class="example">
-  <pre><code>union Zahl {
-    int i;
-    float f;
-};
-
-Zahl z;
-z.i = 42;
-std::cout &lt;&lt; "i = " &lt;&lt; z.i &lt;&lt; std::endl;
-
-z.f = 3.14;
-std::cout &lt;&lt; "f = " &lt;&lt; z.f &lt;&lt; std::endl;
-// Achtung: z.i ist nun undefiniert</code></pre>
+<pre><code>&lt;table&gt;
+  &lt;tr&gt;
+    &lt;th&gt;Name&lt;/th&gt;
+    &lt;th&gt;Alter&lt;/th&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+    &lt;td&gt;Anna&lt;/td&gt;
+    &lt;td&gt;22&lt;/td&gt;
+  &lt;/tr&gt;
+&lt;/table&gt;</code></pre>
 </div>
 
 <div class="note">
-  Unions sparen Speicher, aber nur ein Mitglied kann zu einem Zeitpunkt sinnvoll genutzt werden.
+<code>&lt;th&gt;</code>-Zellen sind semantisch wichtig und werden von Screenreadern hervorgehoben.
 </div>
 
-<h2>6. Strukturen vs. Klassen</h2>
+<h2>4. Tabellenkopf, -körper und -fuß</h2>
 <div class="definition">
-  In C++ ist der einzige Unterschied zwischen <code>struct</code> und <code>class</code> die Standardzugriffssteuerung:
-  <ul>
-    <li>struct: Mitglieder standardmäßig <strong>public</strong></li>
-    <li>class: Mitglieder standardmäßig <strong>private</strong></li>
-  </ul>
+Komplexere Tabellen können logisch unterteilt werden:
 </div>
+
+<ul>
+  <li><code>&lt;thead&gt;</code> – Kopfbereich</li>
+  <li><code>&lt;tbody&gt;</code> – Hauptinhalt</li>
+  <li><code>&lt;tfoot&gt;</code> – Fußbereich</li>
+</ul>
 
 <div class="example">
-  <pre><code>struct Punkt {
-    double x;
-    double y; // public standard
-};
+<pre><code>&lt;table&gt;
+  &lt;thead&gt;
+    &lt;tr&gt;
+      &lt;th&gt;Produkt&lt;/th&gt;
+      &lt;th&gt;Preis&lt;/th&gt;
+    &lt;/tr&gt;
+  &lt;/thead&gt;
 
-class PunktC {
-    double x;
-    double y; // private standard
-public:
-    void set(double a, double b) { x=a; y=b; }
-    void print() { std::cout &lt;&lt; x &lt;&lt; "," &lt;&lt; y &lt;&lt; std::endl; }
-};</code></pre>
+  &lt;tbody&gt;
+    &lt;tr&gt;
+      &lt;td&gt;Buch&lt;/td&gt;
+      &lt;td&gt;12 €&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td&gt;Heft&lt;/td&gt;
+      &lt;td&gt;3 €&lt;/td&gt;
+    &lt;/tr&gt;
+  &lt;/tbody&gt;
+
+  &lt;tfoot&gt;
+    &lt;tr&gt;
+      &lt;td&gt;Summe&lt;/td&gt;
+      &lt;td&gt;15 €&lt;/td&gt;
+    &lt;/tr&gt;
+  &lt;/tfoot&gt;
+&lt;/table&gt;</code></pre>
 </div>
 
-<h2>7. Zusammengesetzte Strukturen</h2>
+<h2>5. Zeilen- und Spaltenzusammenfassung</h2>
 <div class="definition">
-  Strukturen können andere Strukturen als Mitglieder enthalten.
+Zellen können mehrere Zeilen oder Spalten überspannen.
 </div>
+
+<ul>
+  <li><code>colspan</code> – über mehrere Spalten</li>
+  <li><code>rowspan</code> – über mehrere Zeilen</li>
+</ul>
 
 <div class="example">
-  <pre><code>struct Kreis {
-    Punkt mittelpunkt;
-    double radius;
-};
-
-Kreis k = {{0,0}, 5.0};
-std::cout &lt;&lt; "Kreis: Mittelpunkt(" &lt;&lt; k.mittelpunkt.x &lt;&lt; "," &lt;&lt; k.mittelpunkt.y &lt;&lt; "), Radius " &lt;&lt; k.radius &lt;&lt; std::endl;</code></pre>
+<pre><code>&lt;table&gt;
+  &lt;tr&gt;
+    &lt;th colspan="2"&gt;Überschrift&lt;/th&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+    &lt;td&gt;Links&lt;/td&gt;
+    &lt;td&gt;Rechts&lt;/td&gt;
+  &lt;/tr&gt;
+&lt;/table&gt;</code></pre>
 </div>
+
+<h2>6. Semantik und Barrierefreiheit</h2>
+<div class="definition">
+Tabellen haben eine starke semantische Bedeutung.
+</div>
+
+<ul>
+  <li>Screenreader lesen Tabellen strukturiert vor</li>
+  <li>Überschriften geben Orientierung</li>
+  <li>Tabellen sind maschinenlesbar</li>
+</ul>
+
+<div class="note">
+Tabellen dürfen <strong>nicht</strong> für allgemeines Seitenlayout verwendet werden.
+</div>
+
+<h2>7. Typische Fehler</h2>
+<ul>
+  <li>Tabellen für Layout missbrauchen</li>
+  <li>Fehlende <code>&lt;th&gt;</code>-Elemente</li>
+  <li>Unklare oder zu große Tabellen</li>
+  <li>Keine logische Gruppierung</li>
+</ul>
 
 <h2>8. Zusammenfassung</h2>
 <ul>
-  <li>Structs: Zusammengesetzte Datentypen, mehrere Mitglieder</li>
-  <li>Unions: Gemeinsamer Speicherbereich, nur ein aktives Mitglied sinnvoll</li>
-  <li>Structs können als Parameter übergeben werden (by value/by reference)</li>
-  <li>Structs und Klassen unterscheiden sich nur im Standard-Zugriff</li>
-  <li>Komposition: Strukturen können andere Strukturen enthalten</li>
+  <li><code>&lt;table&gt;</code> enthält die gesamte Tabelle</li>
+  <li><code>&lt;tr&gt;</code> definiert eine Zeile</li>
+  <li><code>&lt;td&gt;</code> enthält Daten</li>
+  <li><code>&lt;th&gt;</code> definiert Überschriften</li>
+  <li><code>&lt;thead&gt;</code>, <code>&lt;tbody&gt;</code>, <code>&lt;tfoot&gt;</code> strukturieren Tabellen</li>
 </ul>
 
 </section>
+
 </body>
 </html>

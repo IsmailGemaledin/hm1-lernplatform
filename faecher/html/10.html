@@ -3,7 +3,7 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width,initial-scale=1">
-  <title>C++ – Dynamische Speicherverwaltung</title>
+  <title>HTML & CSS – Formulare gestalten</title>
   <link rel="stylesheet" href="../../style.css">
   <style>
     .definition { padding:.75rem; border-left:4px solid #2b7cff; background:#f3f8ff; border-radius:4px; margin:.75rem 0; }
@@ -23,113 +23,156 @@
 
 <section>
 
-<h1>Dynamische Speicherverwaltung in C++</h1>
+<h1>Formulare mit CSS gestalten</h1>
+
 <p class="small">
-  Diese Lektion behandelt das Anlegen und Verwalten von Speicher zur Laufzeit.  
-  Fokus liegt auf <code>new</code>, <code>delete</code> und modernen C++-Techniken wie Smart Pointern.
+HTML definiert die <em>Struktur</em> eines Formulars.  
+CSS ist zuständig für <strong>Layout, Abstände, Farben und Benutzererlebnis</strong>.
 </p>
 
-<h2>1. Warum dynamischer Speicher?</h2>
+<h2>1. Grundprinzip</h2>
 <div class="definition">
-  Statischer Speicher wird zur Compile-Zeit festgelegt. Dynamischer Speicher erlaubt:
+Formularelemente sind normale HTML-Elemente und können mit CSS
+genauso gestaltet werden wie <code>div</code> oder <code>p</code>.
 </div>
+
+<p>
+Ohne CSS wirken Formulare technisch und unübersichtlich.
+Mit CSS werden sie benutzerfreundlich und visuell klar.
+</p>
+
+<h2>2. Formulare strukturieren</h2>
+<div class="definition">
+Ein sauberes Layout entsteht durch Gruppierung und Abstände.
+</div>
+
+<div class="example">
+<pre><code>&lt;form class="login-form"&gt;
+  &lt;div class="field"&gt;
+    &lt;label&gt;Benutzername&lt;/label&gt;
+    &lt;input type="text"&gt;
+  &lt;/div&gt;
+&lt;/form&gt;</code></pre>
+</div>
+
+<div class="example">
+<pre><code>.field {
+  margin-bottom: 1rem;
+}</code></pre>
+</div>
+
+<h2>3. Eingabefelder stylen</h2>
+<div class="definition">
+<code>input</code>-Felder lassen sich über Rahmen, Farben und Größen anpassen.
+</div>
+
+<div class="example">
+<pre><code>input {
+  width: 100%;
+  padding: 0.5rem;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+}</code></pre>
+</div>
+
+<div class="note">
+Breite 100 % sorgt für saubere Ausrichtung im Formular.
+</div>
+
+<h2>4. Fokus und Benutzerfeedback</h2>
+<div class="definition">
+Pseudoklassen zeigen Interaktionen des Benutzers an.
+</div>
+
 <ul>
-  <li>Anlegen von Variablen/Arrays zur Laufzeit</li>
-  <li>Flexibilität bei unbekannter Größe</li>
-  <li>Vermeidung von festen Limits im Code</li>
+  <li><code>:focus</code> – Feld ist aktiv</li>
+  <li><code>:hover</code> – Maus darüber</li>
 </ul>
 
-<h2>2. Grundlegende Syntax: new und delete</h2>
+<div class="example">
+<pre><code>input:focus {
+  border-color: #2b7cff;
+  outline: none;
+}</code></pre>
+</div>
+
+<h2>5. Buttons gestalten</h2>
 <div class="definition">
-  <code>new</code> reserviert Speicher dynamisch, <code>delete</code> gibt ihn wieder frei.
+Buttons sollten klar als Aktion erkennbar sein.
 </div>
 
 <div class="example">
-  <pre><code>int* ptr = new int;   // einzelnes int
-*ptr = 42;
+<pre><code>button {
+  background: #2b7cff;
+  color: white;
+  padding: 0.6rem 1.2rem;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+}</code></pre>
+</div>
 
-int* arr = new int[10]; // Array mit 10 ints
+<div class="example">
+<pre><code>button:hover {
+  background: #1f5fd1;
+}</code></pre>
+</div>
 
-delete ptr;             // Speicher freigeben
-delete[] arr;           // Array-Speicher freigeben</code></pre>
+<h2>6. Formulare zentrieren</h2>
+<div class="definition">
+Formulare werden häufig mittig dargestellt.
+</div>
+
+<div class="example">
+<pre><code>.login-form {
+  max-width: 400px;
+  margin: 2rem auto;
+}</code></pre>
+</div>
+
+<h2>7. Pflichtfelder markieren</h2>
+<div class="definition">
+Pflichtfelder sollten visuell hervorgehoben werden.
+</div>
+
+<div class="example">
+<pre><code>input:required {
+  border-left: 4px solid #ff9800;
+}</code></pre>
+</div>
+
+<h2>8. Fehlereingaben</h2>
+<div class="definition">
+HTML5 meldet ungültige Eingaben automatisch.
+</div>
+
+<div class="example">
+<pre><code>input:invalid {
+  border-color: red;
+}</code></pre>
 </div>
 
 <div class="note">
-  Immer <code>delete</code> aufrufen, sonst entsteht ein Memory Leak!
+Clientseitige Validierung ersetzt keine Serverprüfung.
 </div>
 
-<h2>3. Initialisierung beim new</h2>
-<div class="definition">
-  Neue Objekte können sofort initialisiert werden.
-</div>
-
-<div class="example">
-  <pre><code>int* p = new int(5);       // Einzelwert 5
-double* d = new double(3.14);  // Einzelwert 3.14
-
-int* arr = new int[5]{1,2,3,4,5}; // Array initialisiert</code></pre>
-</div>
-
-<h2>4. Pointer und Zugriff</h2>
-<div class="definition">
-  Dynamische Variablen werden über Pointer adressiert.
-</div>
-
-<div class="example">
-  <pre><code>int* ptr = new int(10);
-cout &lt;&lt; *ptr &lt;&lt; endl; // Dereferenzierung
-*ptr = 20;                     // Wert ändern
-cout &lt;&lt; *ptr &lt;&lt; endl;
-delete ptr;</code></pre>
-</div>
-
-<h2>5. Mehrdimensionale Arrays</h2>
-<div class="definition">
-  Mehrdimensionale Arrays können dynamisch mit Schleifen angelegt werden.
-</div>
-
-<div class="example">
-  <pre><code>int rows = 3, cols = 4;
-int** matrix = new int*[rows];
-for(int i = 0; i &lt; rows; i++)
-    matrix[i] = new int[cols];
-
-// Zugriff:
-matrix[1][2] = 42;
-
-// Speicher freigeben:
-for(int i = 0; i &lt; rows; i++)
-    delete[] matrix[i];
-delete[] matrix;</code></pre>
-</div>
-
-<h2>6. Smart Pointer</h2>
-<div class="definition">
-  Moderne C++-Technik nutzt Smart Pointer (<code>unique_ptr</code>, <code>shared_ptr</code>) um Speicherlecks zu vermeiden.
-</div>
-
-<div class="example">
-  <pre><code>#include &lt;memory&gt;
-
-unique_ptr&lt;int&gt; uptr = make_unique&lt;int&gt;(10);
-cout &lt;&lt; *uptr &lt;&lt; endl;
-
-// kein delete nötig, automatisch freigegeben</code></pre>
-</div>
-
-<div class="note">
-  Smart Pointer übernehmen Lebenszyklusverwaltung. Alte <code>new/delete</code>-Aufrufe können so sicher ersetzt werden.
-</div>
-
-<h2>7. Zusammenfassung</h2>
+<h2>9. Typische Designregeln</h2>
 <ul>
-  <li><code>new</code> / <code>delete</code> für dynamischen Speicher</li>
-  <li>Pointer werden benötigt, um auf Speicher zuzugreifen</li>
-  <li>Memory Leaks vermeiden durch korrektes <code>delete</code> oder Smart Pointer</li>
-  <li>Arrays, Objekte und mehrdimensionale Strukturen können dynamisch angelegt werden</li>
-  <li>Smart Pointer in C++17+ erleichtern Speicherverwaltung und erhöhen Sicherheit</li>
+  <li>klare Abstände</li>
+  <li>lesbare Schriftgrößen</li>
+  <li>deutliche Fokus-Zustände</li>
+  <li>konsequente Farben</li>
+</ul>
+
+<h2>10. Zusammenfassung</h2>
+<ul>
+  <li>CSS macht Formulare benutzbar</li>
+  <li>Pseudoklassen geben Feedback</li>
+  <li>Layout entsteht durch Abstände, nicht durch Tabellen</li>
+  <li>Design unterstützt Funktionalität</li>
 </ul>
 
 </section>
+
 </body>
 </html>

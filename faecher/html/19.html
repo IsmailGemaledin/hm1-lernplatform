@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>HTML – Formulare und Eingabefelder</title>
+  <link rel="stylesheet" href="../../style.css">
+  <style>
+    .definition { padding:.75rem; border-left:4px solid #2b7cff; background:#f3f8ff; border-radius:4px; margin:.75rem 0; }
+    .example { padding:.75rem; border-left:4px solid #2e9a6a; background:#f4fffa; border-radius:4px; margin:.75rem 0; }
+    .note { padding:.75rem; border-left:4px solid #ff9800; background:#fff8f0; border-radius:4px; margin:.75rem 0; }
+    .small { font-size:.95rem; color:#444; }
+    pre { background:#1e1e1e; color:#d4d4d4; padding:1rem; border-radius:4px; overflow-x:auto; font-size:.95rem; }
+    code { font-family: Consolas, monospace; }
+  </style>
+</head>
+
+<body>
+
+<nav>
+  <a href="../../index.html">Startseite</a>
+</nav>
+
+<section>
+
+<h1>Formulare und Eingabefelder</h1>
+
+<p class="small">
+In dieser Lektion lernen Sie, wie HTML-Formulare aufgebaut werden, um Benutzereingaben zu erfassen.
+</p>
+
+<h2>1. Das <code>&lt;form&gt;</code>-Element</h2>
+
+<div class="definition">
+Ein Formular wird mit dem Tag <code>&lt;form&gt;</code> erstellt. Es kann Eingabefelder, Buttons und andere Steuerelemente enthalten.
+</div>
+
+<ul>
+  <li>Attribute: <code>action</code> – Ziel-URL</li>
+  <li>Attribute: <code>method</code> – HTTP-Methode (GET oder POST)</li>
+</ul>
+
+<div class="example">
+<pre><code>&lt;form action="/submit" method="post"&gt;
+  ...
+&lt;/form&gt;</code></pre>
+</div>
+
+<h2>2. Eingabefelder (<code>&lt;input&gt;</code>)</h2>
+
+<div class="definition">
+Das <code>&lt;input&gt;</code>-Element ermöglicht die Eingabe verschiedener Datentypen.
+</div>
+
+<ul>
+  <li><code>type="text"</code> – einzeiliger Text</li>
+  <li><code>type="password"</code> – Passwort</li>
+  <li><code>type="email"</code> – E-Mail-Adresse</li>
+  <li><code>type="number"</code> – Zahlen</li>
+  <li><code>type="checkbox"</code> – Auswahlfeld</li>
+  <li><code>type="radio"</code> – Optionsfelder</li>
+  <li><code>type="submit"</code> – Senden-Button</li>
+</ul>
+
+<div class="example">
+<pre><code>&lt;form action="/submit" method="post"&gt;
+  Name: &lt;input type="text" name="name"&gt;&lt;br&gt;
+  Passwort: &lt;input type="password" name="pass"&gt;&lt;br&gt;
+  &lt;input type="submit" value="Absenden"&gt;
+&lt;/form&gt;</code></pre>
+</div>
+
+<h2>3. Textbereiche (<code>&lt;textarea&gt;</code>)</h2>
+
+<div class="definition">
+Für längere Texteingaben verwendet man <code>&lt;textarea&gt;</code>.
+</div>
+
+<div class="example">
+<pre><code>&lt;label for="nachricht"&gt;Nachricht:&lt;/label&gt;
+&lt;textarea id="nachricht" name="nachricht" rows="4" cols="50"&gt;&lt;/textarea&gt;</code></pre>
+</div>
+
+<h2>4. Auswahlfelder (<code>&lt;select&gt;</code>)</h2>
+
+<div class="definition">
+Mit <code>&lt;select&gt;</code> kann der Benutzer eine oder mehrere Optionen aus einer Liste wählen.
+</div>
+
+<div class="example">
+<pre><code>&lt;label for="farbe"&gt;Farbe:&lt;/label&gt;
+&lt;select id="farbe" name="farbe"&gt;
+  &lt;option value="rot"&gt;Rot&lt;/option&gt;
+  &lt;option value="grün"&gt;Grün&lt;/option&gt;
+  &lt;option value="blau"&gt;Blau&lt;/option&gt;
+&lt;/select&gt;</code></pre>
+</div>
+
+<h2>5. Formulare strukturieren</h2>
+
+<div class="note">
+Es ist empfehlenswert, <code>&lt;label&gt;</code> für jedes Eingabefeld zu verwenden. Das verbessert Barrierefreiheit und Klickbarkeit.
+</div>
+
+<div class="example">
+<pre><code>&lt;label for="email"&gt;E-Mail:&lt;/label&gt;
+&lt;input type="email" id="email" name="email"&gt;</code></pre>
+</div>
+
+<h2>6. Buttons</h2>
+
+<ul>
+  <li><code>&lt;input type="submit"&gt;</code> – Formular senden</li>
+  <li><code>&lt;input type="reset"&gt;</code> – Formular zurücksetzen</li>
+  <li><code>&lt;button&gt;</code> – flexibler Button, kann Text oder HTML enthalten</li>
+</ul>
+
+<h2>7. Best Practices</h2>
+
+<ul>
+  <li>Formulare logisch gruppieren (<code>&lt;fieldset&gt;</code> und <code>&lt;legend&gt;</code>)</li>
+  <li>Benutzerfreundliche Labels und Platzhalter verwenden</li>
+  <li>Validierung auf Client- und Serverseite durchführen</li>
+  <li>Responsive Gestaltung mit CSS</li>
+</ul>
+
+<h2>8. Zusammenfassung</h2>
+
+<ul>
+  <li><code>&lt;form&gt;</code> – Container für Eingaben</li>
+  <li><code>&lt;input&gt;</code>, <code>&lt;textarea&gt;</code>, <code>&lt;select&gt;</code> – Eingabeelemente</li>
+  <li><code>&lt;label&gt;</code> – Zugänglichkeit verbessern</li>
+  <li>Buttons: Senden, Zurücksetzen, eigene Aktionen</li>
+</ul>
+
+</section>
+</body>
+</html>

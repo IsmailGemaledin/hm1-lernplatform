@@ -1,0 +1,176 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>HTML – Semantisches HTML</title>
+  <link rel="stylesheet" href="../../style.css">
+  <style>
+    .definition { padding:.75rem; border-left:4px solid #2b7cff; background:#f3f8ff; border-radius:4px; margin:.75rem 0; }
+    .example { padding:.75rem; border-left:4px solid #2e9a6a; background:#f4fffa; border-radius:4px; margin:.75rem 0; }
+    .note { padding:.75rem; border-left:4px solid #ff9800; background:#fff8f0; border-radius:4px; margin:.75rem 0; }
+    .small { font-size:.95rem; color:#444; }
+    pre { background:#1e1e1e; color:#d4d4d4; padding:1rem; border-radius:4px; overflow-x:auto; font-size:.95rem; }
+    code { font-family: Consolas, monospace; }
+  </style>
+</head>
+
+<body>
+
+<nav>
+  <a href="../../index.html">Startseite</a>
+</nav>
+
+<section>
+
+<h1>Semantisches HTML</h1>
+
+<p class="small">
+In dieser Lektion geht es um semantische HTML-Elemente.
+Sie beschreiben die Bedeutung von Inhalten – nicht deren Aussehen.
+</p>
+
+<h2>1. Was bedeutet „semantisch“?</h2>
+
+<div class="definition">
+<strong>Semantisches HTML</strong> verwendet Elemente,
+deren Name und Zweck die Bedeutung des Inhalts klar beschreiben.
+</div>
+
+<p>
+Ein Browser, eine Suchmaschine oder ein Screenreader
+kann dadurch besser verstehen, <em>was</em> ein Inhalt ist.
+</p>
+
+<div class="note">
+Semantik ist unabhängig von CSS.
+Sie beschreibt Struktur und Bedeutung, nicht Design.
+</div>
+
+<h2>2. Warum ist semantisches HTML wichtig?</h2>
+
+<ul>
+  <li>bessere Zugänglichkeit (Accessibility)</li>
+  <li>bessere Suchmaschinenoptimierung (SEO)</li>
+  <li>klarere, wartbare Struktur</li>
+  <li>standardisierte Dokumente</li>
+</ul>
+
+<h2>3. Strukturierende Hauptelemente</h2>
+
+<div class="definition">
+HTML5 definiert spezielle Elemente für typische Seitenbereiche.
+</div>
+
+<ul>
+  <li><code>&lt;header&gt;</code> – Kopfbereich</li>
+  <li><code>&lt;nav&gt;</code> – Navigation</li>
+  <li><code>&lt;main&gt;</code> – Hauptinhalt</li>
+  <li><code>&lt;section&gt;</code> – thematischer Abschnitt</li>
+  <li><code>&lt;article&gt;</code> – in sich geschlossener Inhalt</li>
+  <li><code>&lt;footer&gt;</code> – Fußbereich</li>
+</ul>
+
+<h2>4. &lt;header&gt;</h2>
+
+<div class="definition">
+Der <code>&lt;header&gt;</code> enthält einleitende Inhalte
+wie Überschriften, Logos oder Metainformationen.
+</div>
+
+<div class="example">
+<pre><code>&lt;header&gt;
+  &lt;h1&gt;Meine Website&lt;/h1&gt;
+  &lt;p&gt;Ein kurzer Untertitel&lt;/p&gt;
+&lt;/header&gt;</code></pre>
+</div>
+
+<h2>5. &lt;nav&gt;</h2>
+
+<div class="definition">
+<code>&lt;nav&gt;</code> enthält Haupt-Navigationslinks.
+</div>
+
+<div class="example">
+<pre><code>&lt;nav&gt;
+  &lt;a href="index.html"&gt;Start&lt;/a&gt;
+  &lt;a href="kontakt.html"&gt;Kontakt&lt;/a&gt;
+&lt;/nav&gt;</code></pre>
+</div>
+
+<div class="note">
+Nicht jede Linkliste ist eine Navigation.
+</div>
+
+<h2>6. &lt;main&gt;</h2>
+
+<div class="definition">
+<code>&lt;main&gt;</code> enthält den einzigartigen Hauptinhalt der Seite.
+</div>
+
+<ul>
+  <li>nur einmal pro Seite</li>
+  <li>darf nicht in <code>header</code>, <code>nav</code>, <code>footer</code> stehen</li>
+</ul>
+
+<h2>7. &lt;section&gt; vs. &lt;article&gt;</h2>
+
+<div class="definition">
+Beide strukturieren Inhalte, aber mit unterschiedlicher Bedeutung.
+</div>
+
+<ul>
+  <li><code>&lt;section&gt;</code>: thematischer Abschnitt</li>
+  <li><code>&lt;article&gt;</code>: eigenständiger, wiederverwendbarer Inhalt</li>
+</ul>
+
+<div class="example">
+<pre><code>&lt;article&gt;
+  &lt;h2&gt;Blogpost&lt;/h2&gt;
+  &lt;p&gt;Text des Artikels...&lt;/p&gt;
+&lt;/article&gt;</code></pre>
+</div>
+
+<h2>8. &lt;footer&gt;</h2>
+
+<div class="definition">
+Der <code>&lt;footer&gt;</code> enthält ergänzende Informationen
+wie Copyright, Autor, Links oder Metadaten.
+</div>
+
+<div class="example">
+<pre><code>&lt;footer&gt;
+  &lt;p&gt;© 2026&lt;/p&gt;
+&lt;/footer&gt;</code></pre>
+</div>
+
+<h2>9. Komplettes Strukturbeispiel</h2>
+
+<div class="example">
+<pre><code>&lt;body&gt;
+  &lt;header&gt;...&lt;/header&gt;
+  &lt;nav&gt;...&lt;/nav&gt;
+
+  &lt;main&gt;
+    &lt;section&gt;
+      &lt;article&gt;...&lt;/article&gt;
+    &lt;/section&gt;
+  &lt;/main&gt;
+
+  &lt;footer&gt;...&lt;/footer&gt;
+&lt;/body&gt;</code></pre>
+</div>
+
+<h2>10. Zusammenfassung</h2>
+
+<ul>
+  <li>Semantische Elemente beschreiben Bedeutung</li>
+  <li>Verbessern Accessibility und SEO</li>
+  <li>Ersetzen generische <code>&lt;div&gt;</code>-Strukturen</li>
+  <li>Machen HTML lesbar und standardkonform</li>
+</ul>
+
+</section>
+
+</body>
+</html>

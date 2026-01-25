@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>HTML – Formulare & Eingabe</title>
+  <link rel="stylesheet" href="../../style.css">
+  <style>
+    .definition { padding:.75rem; border-left:4px solid #2b7cff; background:#f3f8ff; border-radius:4px; margin:.75rem 0; }
+    .example { padding:.75rem; border-left:4px solid #2e9a6a; background:#f4fffa; border-radius:4px; margin:.75rem 0; }
+    .note { padding:.75rem; border-left:4px solid #ff9800; background:#fff8f0; border-radius:4px; margin:.75rem 0; }
+    .small { font-size:.95rem; color:#444; }
+    pre { background:#1e1e1e; color:#d4d4d4; padding:1rem; border-radius:4px; overflow-x:auto; font-size:.95rem; }
+    code { font-family: Consolas, monospace; }
+  </style>
+</head>
+
+<body>
+
+<nav>
+  <a href="../../index.html">Startseite</a>
+</nav>
+
+<section>
+
+<h1>Formulare & Eingabe</h1>
+
+<p class="small">
+In dieser Lektion lernen Sie, wie Benutzerinteraktion mit Formularen in HTML umgesetzt wird, inklusive Eingabefelder, Buttons und Auswahlmöglichkeiten.
+</p>
+
+<h2>1. Das Formular-Element</h2>
+
+<div class="definition">
+Ein <code>&lt;form&gt;</code> fasst Eingabeelemente zusammen und definiert, wie Daten gesendet werden.
+</div>
+
+<ul>
+  <li>Attribute: <code>action</code> (Ziel der Daten), <code>method</code> (GET oder POST)</li>
+</ul>
+
+<div class="example">
+<pre><code>&lt;form action="/submit" method="post"&gt;
+  ...
+&lt;/form&gt;</code></pre>
+</div>
+
+<h2>2. Eingabefelder</h2>
+
+<div class="definition">
+Das <code>&lt;input&gt;</code>-Element wird für einzeilige Benutzereingaben genutzt.
+</div>
+
+<ul>
+  <li>Attribute: <code>type</code>, <code>name</code>, <code>value</code>, <code>placeholder</code>, <code>required</code></li>
+  <li>Typen: <code>text</code>, <code>password</code>, <code>email</code>, <code>number</code>, <code>checkbox</code>, <code>radio</code>, etc.</li>
+</ul>
+
+<div class="example">
+<pre><code>&lt;input type="text" name="vorname" placeholder="Vorname" required&gt;
+&lt;input type="password" name="passwort"&gt;
+&lt;input type="email" name="email"&gt;</code></pre>
+</div>
+
+<h2>3. Textbereiche</h2>
+
+<div class="definition">
+Das <code>&lt;textarea&gt;</code> ermöglicht mehrzeilige Texteingabe.
+</div>
+
+<div class="example">
+<pre><code>&lt;textarea name="nachricht" rows="4" cols="50"&gt;&lt;/textarea&gt;</code></pre>
+</div>
+
+<h2>4. Auswahlfelder</h2>
+
+<div class="definition">
+Mit <code>&lt;select&gt;</code> und <code>&lt;option&gt;</code> können Benutzer aus vorgegebenen Optionen wählen.
+</div>
+
+<div class="example">
+<pre><code>&lt;select name="land"&gt;
+  &lt;option value="de"&gt;Deutschland&lt;/option&gt;
+  &lt;option value="at"&gt;Österreich&lt;/option&gt;
+  &lt;option value="ch"&gt;Schweiz&lt;/option&gt;
+&lt;/select&gt;</code></pre>
+</div>
+
+<h2>5. Buttons und Absenden</h2>
+
+<div class="definition">
+Formulare werden mit <code>&lt;button&gt;</code> oder <code>&lt;input type="submit"&gt;</code> abgeschickt.
+</div>
+
+<div class="example">
+<pre><code>&lt;button type="submit"&gt;Absenden&lt;/button&gt;
+&lt;input type="submit" value="Senden"&gt;</code></pre>
+</div>
+
+<h2>6. Formular-Gruppierung</h2>
+
+<div class="definition">
+Mit <code>&lt;fieldset&gt;</code> können zusammengehörige Eingaben optisch gruppiert werden.
+<code>&lt;legend&gt;</code> definiert eine Beschriftung.
+</div>
+
+<div class="example">
+<pre><code>&lt;fieldset&gt;
+  &lt;legend&gt;Persönliche Daten&lt;/legend&gt;
+  &lt;input type="text" name="name"&gt;
+  &lt;input type="email" name="email"&gt;
+&lt;/fieldset&gt;</code></pre>
+</div>
+
+<h2>7. Best Practices</h2>
+
+<ul>
+  <li>Alle Felder mit <code>name</code> versehen, sonst werden Daten nicht übertragen</li>
+  <li>Barrierefreiheit: <code>&lt;label&gt;</code> verwenden</li>
+  <li>Formulare validieren (HTML5 Attribute oder JavaScript)</li>
+  <li>Responsive Design beachten</li>
+</ul>
+
+<h2>8. Zusammenfassung</h2>
+
+<ul>
+  <li><code>&lt;form&gt;</code> fasst Eingaben zusammen</li>
+  <li><code>&lt;input&gt;</code> für einzeilige Eingaben</li>
+  <li><code>&lt;textarea&gt;</code> für mehrzeilige Eingaben</li>
+  <li><code>&lt;select&gt;</code> für Auswahlfelder</li>
+  <li><code>&lt;button&gt;</code> oder <code>&lt;input type="submit"&gt;</code> zum Absenden</li>
+  <li><code>&lt;fieldset&gt;</code> + <code>&lt;legend&gt;</code> für Gruppierung</li>
+</ul>
+
+</section>
+</body>
+</html>

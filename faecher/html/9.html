@@ -3,7 +3,7 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width,initial-scale=1">
-  <title>C++ – Dateiverarbeitung</title>
+  <title>HTML – Formulare</title>
   <link rel="stylesheet" href="../../style.css">
   <style>
     .definition { padding:.75rem; border-left:4px solid #2b7cff; background:#f3f8ff; border-radius:4px; margin:.75rem 0; }
@@ -23,109 +23,156 @@
 
 <section>
 
-<h1>Dateiverarbeitung in C++</h1>
+<h1>Formulare in HTML</h1>
 <p class="small">
-  In dieser Lektion lernen Sie, wie C++ Dateien öffnet, liest, schreibt und schließt.  
-  Es wird der Umgang mit <code>fstream</code>, <code>ifstream</code> und <code>ofstream</code> erklärt.
+Formulare ermöglichen die <strong>Interaktion zwischen Benutzer und Website</strong>.
+Sie sind die Grundlage für Login-Systeme, Suchfelder, Kontaktformulare und Dateneingaben.
 </p>
 
-<h2>1. Einbinden der Bibliotheken</h2>
+<h2>1. Grundidee von Formularen</h2>
 <div class="definition">
-  Für Dateiverarbeitung wird die Standardbibliothek <code>&lt;fstream&gt;</code> benötigt.
+Ein <strong>HTML-Formular</strong> sammelt Eingaben des Benutzers
+und sendet sie zur Verarbeitung weiter (z.B. an einen Server).
 </div>
 
-<div class="example">
-  <pre><code>#include &lt;iostream&gt;
-#include &lt;fstream&gt;
+<p>
+HTML ist nur für die <em>Struktur</em> zuständig –  
+die eigentliche Verarbeitung erfolgt meist durch Server-Code oder JavaScript.
+</p>
 
-using namespace std;</code></pre>
-</div>
-
-<h2>2. Dateistreamtypen</h2>
+<h2>2. Das &lt;form&gt;-Element</h2>
 <div class="definition">
-  C++ unterscheidet drei Haupttypen:
+Das <code>&lt;form&gt;</code>-Element umschließt alle Eingabefelder eines Formulars.
 </div>
 
 <ul>
-  <li><code>ifstream</code> – Eingabe von Dateien</li>
-  <li><code>ofstream</code> – Ausgabe in Dateien</li>
-  <li><code>fstream</code> – sowohl Ein- als auch Ausgabe</li>
+  <li><code>action</code> – Zieladresse der Daten</li>
+  <li><code>method</code> – Übertragungsmethode (<code>GET</code> oder <code>POST</code>)</li>
 </ul>
 
-<h2>3. Datei öffnen und schließen</h2>
-<div class="definition">
-  Dateien müssen geöffnet werden, bevor sie gelesen oder beschrieben werden, und anschließend geschlossen werden.
-</div>
-
 <div class="example">
-  <pre><code>ofstream outFile("output.txt");  // Datei öffnen zum Schreiben
-if(!outFile) {
-    cerr &lt;&lt; "Fehler beim Öffnen der Datei!" &lt;&lt; endl;
-}
-outFile &lt;&lt; "Hallo Welt!" &lt;&lt; endl;
-outFile.close();  // Datei schließen</code></pre>
-</div>
-
-<h2>4. Lesen aus Dateien</h2>
-<div class="definition">
-  Für das Lesen von Textdateien wird <code>ifstream</code> verwendet.
-</div>
-
-<div class="example">
-  <pre><code>ifstream inFile("input.txt");
-string zeile;
-while(getline(inFile, zeile)) {
-    cout &lt;&lt; zeile &lt;&lt; endl;
-}
-inFile.close();</code></pre>
-</div>
-
-<h2>5. Binärdateien</h2>
-<div class="definition">
-  Dateien können auch binär gelesen oder geschrieben werden, z.B. für strukturierte Daten.
-</div>
-
-<div class="example">
-  <pre><code>struct Punkt { double x; double y; };
-Punkt p = {1.0, 2.0};
-
-ofstream out("punkte.bin", ios::binary);
-out.write(reinterpret_cast&lt;char*&gt;(&p), sizeof(Punkt));
-out.close();
-
-Punkt p2;
-ifstream in("punkte.bin", ios::binary);
-in.read(reinterpret_cast&lt;char*&gt;(&p2), sizeof(Punkt));
-in.close();
-
-cout &lt;&lt; p2.x &lt;&lt; "," &lt;&lt; p2.y &lt;&lt; endl;</code></pre>
+<pre><code>&lt;form action="submit.php" method="post"&gt;
+  ...
+&lt;/form&gt;</code></pre>
 </div>
 
 <div class="note">
-  Binäre Dateien speichern Daten genau wie im Speicher, ohne Textdarstellung.
+Ohne Backend werden die Daten zwar gesendet, aber nicht weiterverarbeitet.
 </div>
 
-<h2>6. Fehlerbehandlung</h2>
+<h2>3. Texteingaben (&lt;input&gt;)</h2>
 <div class="definition">
-  Dateien können aus verschiedenen Gründen nicht geöffnet werden. Prüfen Sie den Zustand immer mit <code>.fail()</code> oder <code>!stream</code>.
+Das <code>&lt;input&gt;</code>-Element ist das wichtigste Formularelement.
+Der Typ wird über das Attribut <code>type</code> festgelegt.
+</div>
+
+<ul>
+  <li><code>text</code> – normaler Text</li>
+  <li><code>password</code> – versteckte Eingabe</li>
+  <li><code>email</code> – E-Mail-Adresse</li>
+</ul>
+
+<div class="example">
+<pre><code>&lt;form&gt;
+  &lt;input type="text" name="username"&gt;
+  &lt;input type="password" name="password"&gt;
+&lt;/form&gt;</code></pre>
+</div>
+
+<h2>4. Labels und Zugänglichkeit</h2>
+<div class="definition">
+<code>&lt;label&gt;</code>-Elemente beschreiben Eingabefelder
+und sind wichtig für Barrierefreiheit.
 </div>
 
 <div class="example">
-  <pre><code>ifstream file("nicht_existiert.txt");
-if(!file) {
-    cerr &lt;&lt; "Fehler: Datei konnte nicht geöffnet werden!" &lt;&lt; endl;
-}</code></pre>
+<pre><code>&lt;label for="email"&gt;E-Mail:&lt;/label&gt;
+&lt;input type="email" id="email" name="email"&gt;</code></pre>
 </div>
 
-<h2>7. Zusammenfassung</h2>
+<div class="note">
+Labels verbessern Bedienbarkeit und Screenreader-Unterstützung.
+</div>
+
+<h2>5. Auswahlfelder</h2>
+<div class="definition">
+HTML bietet verschiedene Elemente zur Auswahl aus mehreren Optionen.
+</div>
+
 <ul>
-  <li>Dateien öffnen mit <code>ifstream</code>, <code>ofstream</code>, <code>fstream</code></li>
-  <li>Textdateien lesen/schreiben mit <code>&lt;&lt;</code> und <code>getline</code></li>
-  <li>Binärdateien mit <code>read</code> und <code>write</code></li>
-  <li>Dateien nach Gebrauch immer schließen (<code>close()</code>)</li>
-  <li>Fehler prüfen, bevor Dateioperationen durchgeführt werden</li>
+  <li><code>radio</code> – genau eine Auswahl</li>
+  <li><code>checkbox</code> – mehrere Auswahlen</li>
+  <li><code>&lt;select&gt;</code> – Dropdown-Menü</li>
+</ul>
+
+<div class="example">
+<pre><code>&lt;input type="radio" name="geschlecht" value="m"&gt; Männlich
+&lt;input type="radio" name="geschlecht" value="w"&gt; Weiblich
+
+&lt;select name="land"&gt;
+  &lt;option value="de"&gt;Deutschland&lt;/option&gt;
+  &lt;option value="at"&gt;Österreich&lt;/option&gt;
+&lt;/select&gt;</code></pre>
+</div>
+
+<h2>6. Mehrzeilige Texte (&lt;textarea&gt;)</h2>
+<div class="definition">
+<code>&lt;textarea&gt;</code> erlaubt längere Texteingaben.
+</div>
+
+<div class="example">
+<pre><code>&lt;textarea name="nachricht" rows="5" cols="40"&gt;&lt;/textarea&gt;</code></pre>
+</div>
+
+<h2>7. Buttons</h2>
+<div class="definition">
+Buttons lösen Aktionen im Formular aus.
+</div>
+
+<ul>
+  <li><code>submit</code> – sendet das Formular</li>
+  <li><code>reset</code> – setzt Felder zurück</li>
+  <li><code>button</code> – frei verwendbar</li>
+</ul>
+
+<div class="example">
+<pre><code>&lt;button type="submit"&gt;Absenden&lt;/button&gt;
+&lt;button type="reset"&gt;Zurücksetzen&lt;/button&gt;</code></pre>
+</div>
+
+<h2>8. Validierung mit HTML</h2>
+<div class="definition">
+HTML5 bietet einfache Validierung ohne JavaScript.
+</div>
+
+<ul>
+  <li><code>required</code></li>
+  <li><code>min</code>, <code>max</code></li>
+  <li><code>pattern</code></li>
+</ul>
+
+<div class="example">
+<pre><code>&lt;input type="email" required&gt;
+&lt;input type="number" min="0" max="100"&gt;</code></pre>
+</div>
+
+<h2>9. Typische Fehler</h2>
+<ul>
+  <li>fehlende <code>name</code>-Attribute</li>
+  <li>keine Labels</li>
+  <li>Formulare ohne Zweck</li>
+  <li>Validierung nur clientseitig</li>
+</ul>
+
+<h2>10. Zusammenfassung</h2>
+<ul>
+  <li><code>&lt;form&gt;</code> umschließt Eingaben</li>
+  <li><code>&lt;input&gt;</code>, <code>&lt;textarea&gt;</code>, <code>&lt;select&gt;</code> erfassen Daten</li>
+  <li><code>&lt;label&gt;</code> verbessert Zugänglichkeit</li>
+  <li>HTML validiert nur grundlegend</li>
 </ul>
 
 </section>
+
 </body>
 </html>

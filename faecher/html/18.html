@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>HTML – Tabellen & Listen</title>
+  <link rel="stylesheet" href="../../style.css">
+  <style>
+    .definition { padding:.75rem; border-left:4px solid #2b7cff; background:#f3f8ff; border-radius:4px; margin:.75rem 0; }
+    .example { padding:.75rem; border-left:4px solid #2e9a6a; background:#f4fffa; border-radius:4px; margin:.75rem 0; }
+    .note { padding:.75rem; border-left:4px solid #ff9800; background:#fff8f0; border-radius:4px; margin:.75rem 0; }
+    .small { font-size:.95rem; color:#444; }
+    pre { background:#1e1e1e; color:#d4d4d4; padding:1rem; border-radius:4px; overflow-x:auto; font-size:.95rem; }
+    code { font-family: Consolas, monospace; }
+  </style>
+</head>
+
+<body>
+
+<nav>
+  <a href="../../index.html">Startseite</a>
+</nav>
+
+<section>
+
+<h1>Tabellen & Listen</h1>
+
+<p class="small">
+Diese Lektion behandelt die Strukturierung von Daten in HTML mittels Tabellen und Listen. Sie lernen, wie Informationen übersichtlich dargestellt werden können.
+</p>
+
+<h2>1. Listenarten</h2>
+
+<div class="definition">
+HTML unterstützt drei Haupttypen von Listen:
+</div>
+
+<ul>
+  <li><code>&lt;ul&gt;</code> – ungeordnete Liste (Bullet Points)</li>
+  <li><code>&lt;ol&gt;</code> – geordnete Liste (Nummerierung)</li>
+  <li><code>&lt;dl&gt;</code> – Definitionsliste (Begriffe & Beschreibungen)</li>
+</ul>
+
+<div class="example">
+<pre><code>&lt;ul&gt;
+  &lt;li&gt;Apfel&lt;/li&gt;
+  &lt;li&gt;Banane&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;ol&gt;
+  &lt;li&gt;Erster Schritt&lt;/li&gt;
+  &lt;li&gt;Zweiter Schritt&lt;/li&gt;
+&lt;/ol&gt;
+
+&lt;dl&gt;
+  &lt;dt&gt;HTML&lt;/dt&gt;
+  &lt;dd&gt;HyperText Markup Language&lt;/dd&gt;
+&lt;/dl&gt;</code></pre>
+</div>
+
+<h2>2. Tabellen</h2>
+
+<div class="definition">
+Tabellen dienen zur strukturierten Darstellung von Daten in Zeilen (<code>&lt;tr&gt;</code>) und Spalten (<code>&lt;td&gt;</code>).
+</div>
+
+<div class="example">
+<pre><code>&lt;table border="1"&gt;
+  &lt;tr&gt;
+    &lt;th&gt;Name&lt;/th&gt;
+    &lt;th&gt;Alter&lt;/th&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+    &lt;td&gt;Anna&lt;/td&gt;
+    &lt;td&gt;23&lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+    &lt;td&gt;Ben&lt;/td&gt;
+    &lt;td&gt;30&lt;/td&gt;
+  &lt;/tr&gt;
+&lt;/table&gt;</code></pre>
+</div>
+
+<h2>3. Tabellen-Header</h2>
+
+<div class="definition">
+Mit <code>&lt;th&gt;</code> werden Kopfzellen definiert. Sie sind standardmäßig fett und zentriert.
+</div>
+
+<div class="note">
+Semantisch korrektes Markup verbessert Barrierefreiheit und SEO.
+</div>
+
+<h2>4. Tabellenattribute</h2>
+
+<ul>
+  <li><code>border</code> – Rahmenstärke</li>
+  <li><code>cellpadding</code> – Innenabstand in Zellen</li>
+  <li><code>cellspacing</code> – Abstand zwischen Zellen</li>
+  <li>Für modernes Styling besser CSS verwenden</li>
+</ul>
+
+<h2>5. Verschachtelte Tabellen und Listen</h2>
+
+<div class="definition">
+Tabellen und Listen können ineinander verschachtelt werden, um komplexe Layouts oder Unterlisten darzustellen.
+</div>
+
+<div class="example">
+<pre><code>&lt;ul&gt;
+  &lt;li&gt;Obst
+    &lt;ul&gt;
+      &lt;li&gt;Apfel&lt;/li&gt;
+      &lt;li&gt;Banane&lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;table border="1"&gt;
+  &lt;tr&gt;
+    &lt;td&gt;Name&lt;/td&gt;
+    &lt;td&gt;
+      &lt;table border="1"&gt;
+        &lt;tr&gt;&lt;td&gt;Unterwert1&lt;/td&gt;&lt;/tr&gt;
+        &lt;tr&gt;&lt;td&gt;Unterwert2&lt;/td&gt;&lt;/tr&gt;
+      &lt;/table&gt;
+    &lt;/td&gt;
+  &lt;/tr&gt;
+&lt;/table&gt;</code></pre>
+</div>
+
+<h2>6. Best Practices</h2>
+
+<ul>
+  <li>Tabellen für tabellarische Daten, nicht für Layout</li>
+  <li>Listen verwenden, wenn Reihenfolge oder Gruppierung wichtig ist</li>
+  <li>Header-Zellen mit <code>&lt;th&gt;</code> und <code>scope</code> verwenden</li>
+  <li>Responsive Tabellen ggf. mit CSS <code>overflow-x:auto;</code></li>
+</ul>
+
+<h2>7. Zusammenfassung</h2>
+
+<ul>
+  <li>Listen: <code>&lt;ul&gt;</code>, <code>&lt;ol&gt;</code>, <code>&lt;dl&gt;</code></li>
+  <li>Tabellen: <code>&lt;table&gt;</code>, <code>&lt;tr&gt;</code>, <code>&lt;td&gt;</code>, <code>&lt;th&gt;</code></li>
+  <li>Verschachtelung und semantische Struktur verbessern Lesbarkeit und Barrierefreiheit</li>
+</ul>
+
+</section>
+</body>
+</html>

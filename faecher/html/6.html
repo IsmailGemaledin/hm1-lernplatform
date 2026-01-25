@@ -3,7 +3,7 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width,initial-scale=1">
-  <title>C++ – Arrays und Strings</title>
+  <title>HTML – Bilder und Medien</title>
   <link rel="stylesheet" href="../../style.css">
   <style>
     .definition { padding:.75rem; border-left:4px solid #2b7cff; background:#f3f8ff; border-radius:4px; margin:.75rem 0; }
@@ -23,113 +23,116 @@
 
 <section>
 
-<h1>Arrays und Strings in C++</h1>
+<h1>Bilder und Medien</h1>
 <p class="small">
-  Diese Lektion behandelt Arrays und Strings in C++. Ziel ist, die Speicherung von Daten in zusammenhängenden Speicherblöcken und die Arbeit mit Text zu verstehen.
+Diese Lektion erklärt, wie Bilder, Audio- und Videodateien in HTML eingebunden werden
+und welche Attribute dabei wichtig sind.
 </p>
 
-<h2>1. Arrays</h2>
+<h2>1. Bilder mit &lt;img&gt;</h2>
 <div class="definition">
-  Ein <strong>Array</strong> ist eine Sammlung von Elementen desselben Typs, die in aufeinanderfolgenden Speicherplätzen liegen.
+Bilder werden mit dem <code>&lt;img&gt;</code>-Element eingebunden.
+Es ist ein leeres Element (kein schließender Tag).
 </div>
 
 <div class="example">
-  <pre><code>int zahlen[5]; // Array von 5 ints
-zahlen[0] = 10;
-zahlen[1] = 20;
-// Zugriff auf Elemente über Index (0-basiert)</code></pre>
+<pre><code>&lt;img src="bild.jpg" alt="Beschreibung des Bildes"&gt;</code></pre>
 </div>
 
-<h2>2. Initialisierung von Arrays</h2>
+<ul>
+  <li><code>src</code> – Pfad zur Bilddatei</li>
+  <li><code>alt</code> – Alternativtext (wichtig für Barrierefreiheit)</li>
+</ul>
+
+<div class="note">
+Das <code>alt</code>-Attribut ist verpflichtend und beschreibt den Bildinhalt für Screenreader
+oder falls das Bild nicht geladen werden kann.
+</div>
+
+<h2>2. Bildgrößen festlegen</h2>
 <div class="definition">
-  Arrays können bei Deklaration initialisiert werden.
+Die Anzeigegröße eines Bildes kann mit <code>width</code> und <code>height</code> festgelegt werden.
 </div>
 
 <div class="example">
-  <pre><code>int zahlen[5] = {1, 2, 3, 4, 5};
-double werte[] = {0.1, 0.2, 0.3}; // Größe wird automatisch erkannt
-char buchstaben[3] = {'A', 'B', 'C'};</code></pre>
-</div>
-
-<h2>3. Zugriff und Iteration</h2>
-<div class="definition">
-  Elemente eines Arrays werden über den Index angesprochen. Schleifen sind ideal zur Iteration.
-</div>
-
-<div class="example">
-  <pre><code>for (int i = 0; i &lt; 5; i++) {
-    std::cout &lt;&lt; zahlen[i] &lt;&lt; " ";
-}
-std::cout &lt;&lt; std::endl;</code></pre>
-</div>
-
-<h2>4. Mehrdimensionale Arrays</h2>
-<div class="definition">
-  Arrays können mehrere Dimensionen haben, z.B. für Matrizen.
-</div>
-
-<div class="example">
-  <pre><code>int matrix[2][3] = {
-    {1, 2, 3},
-    {4, 5, 6}
-};
-std::cout &lt;&lt; matrix[1][2] &lt;&lt; std::endl; // Ausgabe: 6</code></pre>
-</div>
-
-<h2>5. Strings in C++</h2>
-<div class="definition">
-  In modernem C++ werden Zeichenketten bevorzugt mit <code>std::string</code> aus der Standardbibliothek verwaltet.
-</div>
-
-<div class="example">
-  <pre><code>#include &lt;string&gt;
-#include &lt;iostream&gt;
-
-int main() {
-    std::string name = "C++ lernen";
-    std::cout &lt;&lt; "Text: " &lt;&lt; name &lt;&lt; std::endl;
-}</code></pre>
-</div>
-
-<h2>6. Grundoperationen mit Strings</h2>
-<div class="definition">
-  Strings unterstützen viele nützliche Operationen.
-</div>
-
-<div class="example">
-  <pre><code>std::string s1 = "Hallo";
-std::string s2 = "Welt";
-std::string s3 = s1 + " " + s2; // Verkettung
-std::cout &lt;&lt; s3 &lt;&lt; std::endl;
-
-std::cout &lt;&lt; "Länge: " &lt;&lt; s3.length() &lt;&lt; std::endl;
-std::cout &lt;&lt; "Erstes Zeichen: " &lt;&lt; s3[0] &lt;&lt; std::endl;</code></pre>
-</div>
-
-<h2>7. Char-Arrays als klassische Strings</h2>
-<div class="definition">
-  Historisch wurden Strings als nullterminierte <code>char</code>-Arrays verwendet.
-</div>
-
-<div class="example">
-  <pre><code>char name[] = "C++";
-std::cout &lt;&lt; name &lt;&lt; std::endl;</code></pre>
+<pre><code>&lt;img src="logo.png" alt="Logo" width="200" height="100"&gt;</code></pre>
 </div>
 
 <div class="note">
-  Die Länge eines Char-Arrays muss mindestens das Endezeichen <code>'\0'</code> enthalten. Modernes C++ bevorzugt <code>std::string</code>.
+In der Praxis werden Größen häufig über CSS gesteuert.
 </div>
+
+<h2>3. Bildformate</h2>
+<div class="definition">
+HTML unterstützt gängige Bildformate.
+</div>
+
+<ul>
+  <li><strong>JPG / JPEG</strong> – Fotos</li>
+  <li><strong>PNG</strong> – Grafiken mit Transparenz</li>
+  <li><strong>GIF</strong> – einfache Animationen</li>
+  <li><strong>SVG</strong> – skalierbare Vektorgrafiken</li>
+</ul>
+
+<h2>4. Audio einbinden</h2>
+<div class="definition">
+Audiodateien werden mit dem <code>&lt;audio&gt;</code>-Element eingebunden.
+</div>
+
+<div class="example">
+<pre><code>&lt;audio controls&gt;
+  &lt;source src="musik.mp3" type="audio/mpeg"&gt;
+  Ihr Browser unterstützt dieses Audioformat nicht.
+&lt;/audio&gt;</code></pre>
+</div>
+
+<ul>
+  <li><code>controls</code> – zeigt Play-/Pause-Steuerung</li>
+  <li><code>source</code> – Audiodatei und Typ</li>
+</ul>
+
+<h2>5. Video einbinden</h2>
+<div class="definition">
+Videos werden mit dem <code>&lt;video&gt;</code>-Element eingebunden.
+</div>
+
+<div class="example">
+<pre><code>&lt;video controls width="400"&gt;
+  &lt;source src="film.mp4" type="video/mp4"&gt;
+  Ihr Browser unterstützt dieses Videoformat nicht.
+&lt;/video&gt;</code></pre>
+</div>
+
+<h2>6. Automatische Wiedergabe und Schleifen</h2>
+<div class="definition">
+Medienelemente können automatisch starten oder sich wiederholen.
+</div>
+
+<div class="example">
+<pre><code>&lt;audio src="sound.mp3" autoplay loop&gt;&lt;/audio&gt;</code></pre>
+</div>
+
+<div class="note">
+Autoplay wird von vielen Browsern eingeschränkt, insbesondere bei Audio.
+</div>
+
+<h2>7. Barrierefreiheit und Best Practices</h2>
+<ul>
+  <li>Immer sinnvolle <code>alt</code>-Texte verwenden</li>
+  <li>Keine wichtigen Informationen nur über Bilder vermitteln</li>
+  <li>Medien nicht ungefragt automatisch abspielen</li>
+</ul>
 
 <h2>8. Zusammenfassung</h2>
 <ul>
-  <li>Arrays speichern mehrere Werte desselben Typs zusammenhängend im Speicher</li>
-  <li>Index beginnt bei 0</li>
-  <li>Mehrdimensionale Arrays für Matrizen und Tabellen</li>
-  <li><code>std::string</code> ist die bevorzugte Art, Strings zu handhaben</li>
-  <li>Strings unterstützen Verkettung, Zugriff auf Zeichen, Länge und viele Methoden</li>
-  <li>Char-Arrays sind historisch, aber std::string ist sicherer und komfortabler</li>
+  <li>Bilder: <code>&lt;img&gt;</code> mit <code>src</code> und <code>alt</code></li>
+  <li>Audio: <code>&lt;audio&gt;</code></li>
+  <li>Video: <code>&lt;video&gt;</code></li>
+  <li>Steuerung mit <code>controls</code>, <code>autoplay</code>, <code>loop</code></li>
+  <li>Barrierefreiheit ist zentral</li>
 </ul>
 
 </section>
+
 </body>
 </html>
