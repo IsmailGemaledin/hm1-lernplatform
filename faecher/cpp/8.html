@@ -3,13 +3,12 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width,initial-scale=1">
-  <title>C – Strukturen und Vereinigungen</title>
+  <title>C++ – Strukturen und Vereinigungen</title>
   <link rel="stylesheet" href="../../style.css">
   <style>
-    .definition { padding: .75rem; border-left: 4px solid #2b7cff; background:#f3f8ff; border-radius:4px; margin: .75rem 0; }
-    .satz { padding: .75rem; border-left: 4px solid #2b7cff; background:#f9f9fb; border-radius:4px; margin: .75rem 0; }
-    .example { padding: .75rem; border-left: 4px solid #2e9a6a; background:#f4fffa; border-radius:4px; margin: .75rem 0; }
-    .note { padding: .75rem; border-left: 4px solid #ff9800; background:#fff8f0; border-radius:4px; margin: .75rem 0; }
+    .definition { padding:.75rem; border-left:4px solid #2b7cff; background:#f3f8ff; border-radius:4px; margin:.75rem 0; }
+    .example { padding:.75rem; border-left:4px solid #2e9a6a; background:#f4fffa; border-radius:4px; margin:.75rem 0; }
+    .note { padding:.75rem; border-left:4px solid #ff9800; background:#fff8f0; border-radius:4px; margin:.75rem 0; }
     .small { font-size:0.95rem; color:#444; }
     pre { background:#1e1e1e; color:#d4d4d4; padding:1rem; border-radius:4px; overflow-x:auto; font-size:0.95rem; }
     code { font-family: Consolas, monospace; }
@@ -24,69 +23,66 @@
 
 <section>
 
-<h1>Strukturen und Vereinigungen</h1>
+<h1>Strukturen und Vereinigungen in C++</h1>
 <p class="small">
-  Strukturen (<em>struct</em>) und Vereinigungen (<em>union</em>) ermöglichen die Zusammenfassung von Variablen verschiedener Typen unter einem Namen.  
-  Sie sind zentral für komplexe Datentypen in C.
+  Diese Lektion behandelt <strong>structs</strong> und <strong>unions</strong> in C++. Ziel ist, komplexe Datentypen zu definieren, zu speichern und korrekt zu verwenden.
 </p>
 
-<h2>1. Strukturen (struct)</h2>
+<h2>1. Strukturen</h2>
 <div class="definition">
-  Eine <strong>Struktur</strong> fasst verschiedene Datentypen zu einem neuen Typ zusammen.
+  Eine <strong>Struktur</strong> ist ein zusammengesetzter Datentyp, der mehrere verschiedene Datenelemente unter einem Namen zusammenfasst.
 </div>
 
 <div class="example">
   <pre><code>struct Punkt {
-    int x;
-    int y;
+    double x;
+    double y;
 };
 
-struct Punkt p1;
-p1.x = 10;
-p1.y = 20;
+Punkt p1;         // Deklaration
+p1.x = 3.0;
+p1.y = 4.0;
 
-printf("(%d,%d)\n", p1.x, p1.y);</code></pre>
-</div>
-
-<div class="note">
-  Strukturen ermöglichen **logische Gruppierung** zusammenhängender Daten.
+std::cout &lt;&lt; "Punkt: (" &lt;&lt; p1.x &lt;&lt; ", " &lt;&lt; p1.y &lt;&lt; ")" &lt;&lt; std::endl;</code></pre>
 </div>
 
 <h2>2. Initialisierung von Strukturen</h2>
 <div class="definition">
-  Strukturen können bei der Deklaration initialisiert werden.
+  Strukturen können direkt bei der Deklaration initialisiert werden.
 </div>
 
 <div class="example">
-  <pre><code>struct Punkt p2 = {5, 15};
-printf("(%d,%d)\n", p2.x, p2.y);</code></pre>
+  <pre><code>Punkt p2 = {1.0, 2.0};
+std::cout &lt;&lt; "p2: (" &lt;&lt; p2.x &lt;&lt; ", " &lt;&lt; p2.y &lt;&lt; ")" &lt;&lt; std::endl;</code></pre>
 </div>
 
-<h2>3. Zugriff auf Strukturelemente</h2>
+<h2>3. Arrays von Strukturen</h2>
 <div class="definition">
-  Zugriff auf Elemente erfolgt über den Punktoperator <code>.</code>.
+  Man kann Arrays von Strukturen definieren, um mehrere Objekte desselben Typs zu speichern.
 </div>
 
 <div class="example">
-  <pre><code>p2.x = p2.x + 1;
-printf("%d\n", p2.x);</code></pre>
+  <pre><code>Punkt punkte[3] = {{0,0}, {1,2}, {3,4}};
+for(int i=0;i&lt;3;i++)
+    std::cout &lt;&lt; "Punkt " &lt;&lt; i &lt;&lt; ": (" &lt;&lt; punkte[i].x &lt;&lt; ", " &lt;&lt; punkte[i].y &lt;&lt; ")" &lt;&lt; std::endl;</code></pre>
 </div>
 
-<h2>4. Zeiger auf Strukturen</h2>
+<h2>4. Strukturen als Parameter</h2>
 <div class="definition">
-  Zeiger auf Strukturen nutzen den Pfeiloperator <code>-></code> zur Dereferenzierung.
+  Strukturen können an Funktionen übergeben werden – entweder <strong>by value</strong> oder <strong>by reference</strong>.
 </div>
 
 <div class="example">
-  <pre><code>struct Punkt *pp = &p2;
-pp->y = 30;
-printf("%d\n", pp->y);</code></pre>
+  <pre><code>void printPunkt(const Punkt& p) {
+    std::cout &lt;&lt; "(" &lt;&lt; p.x &lt;&lt; ", " &lt;&lt; p.y &lt;&lt; ")" &lt;&lt; std::endl;
+}
+
+printPunkt(p1);</code></pre>
 </div>
 
-<h2>5. Vereinigungen (union)</h2>
+<h2>5. Vereinigungen (Unions)</h2>
 <div class="definition">
-  Eine <strong>Union</strong> speichert verschiedene Typen an derselben Speicherstelle.  
-  Es kann immer nur **ein Wert** gleichzeitig gültig sein.
+  Eine <strong>union</strong> ist ein spezieller zusammengesetzter Typ, bei dem alle Mitglieder denselben Speicherbereich teilen.
 </div>
 
 <div class="example">
@@ -95,32 +91,67 @@ printf("%d\n", pp->y);</code></pre>
     float f;
 };
 
-union Zahl z;
+Zahl z;
 z.i = 42;
-printf("%d\n", z.i);
+std::cout &lt;&lt; "i = " &lt;&lt; z.i &lt;&lt; std::endl;
 
 z.f = 3.14;
-printf("%f\n", z.f);  // vorheriges int wird überschrieben</code></pre>
+std::cout &lt;&lt; "f = " &lt;&lt; z.f &lt;&lt; std::endl;
+// Achtung: z.i ist nun undefiniert</code></pre>
 </div>
 
-<h2>6. Vorteile und typische Anwendungen</h2>
+<div class="note">
+  Unions sparen Speicher, aber nur ein Mitglied kann zu einem Zeitpunkt sinnvoll genutzt werden.
+</div>
+
+<h2>6. Strukturen vs. Klassen</h2>
 <div class="definition">
+  In C++ ist der einzige Unterschied zwischen <code>struct</code> und <code>class</code> die Standardzugriffssteuerung:
   <ul>
-    <li><strong>Struct:</strong> komplexe Daten zusammenfassen (z.B. Punkt, Datum, Student)</li>
-    <li><strong>Union:</strong> Speicher sparen, nur ein Typ wird zu einem Zeitpunkt verwendet</li>
-    <li>In Kombination mit Arrays und Zeigern sehr mächtig</li>
+    <li>struct: Mitglieder standardmäßig <strong>public</strong></li>
+    <li>class: Mitglieder standardmäßig <strong>private</strong></li>
   </ul>
 </div>
 
-<h2>7. Zusammenfassung</h2>
+<div class="example">
+  <pre><code>struct Punkt {
+    double x;
+    double y; // public standard
+};
+
+class PunktC {
+    double x;
+    double y; // private standard
+public:
+    void set(double a, double b) { x=a; y=b; }
+    void print() { std::cout &lt;&lt; x &lt;&lt; "," &lt;&lt; y &lt;&lt; std::endl; }
+};</code></pre>
+</div>
+
+<h2>7. Zusammengesetzte Strukturen</h2>
+<div class="definition">
+  Strukturen können andere Strukturen als Mitglieder enthalten.
+</div>
+
+<div class="example">
+  <pre><code>struct Kreis {
+    Punkt mittelpunkt;
+    double radius;
+};
+
+Kreis k = {{0,0}, 5.0};
+std::cout &lt;&lt; "Kreis: Mittelpunkt(" &lt;&lt; k.mittelpunkt.x &lt;&lt; "," &lt;&lt; k.mittelpunkt.y &lt;&lt; "), Radius " &lt;&lt; k.radius &lt;&lt; std::endl;</code></pre>
+</div>
+
+<h2>8. Zusammenfassung</h2>
 <ul>
-  <li>Strukturen fassen mehrere Datentypen logisch zusammen</li>
-  <li>Zeiger auf Strukturen verwenden <code>-></code></li>
-  <li>Unions teilen denselben Speicher für verschiedene Typen</li>
-  <li>Strukturen und Unions sind Basis für komplexe Datentypen in C</li>
+  <li>Structs: Zusammengesetzte Datentypen, mehrere Mitglieder</li>
+  <li>Unions: Gemeinsamer Speicherbereich, nur ein aktives Mitglied sinnvoll</li>
+  <li>Structs können als Parameter übergeben werden (by value/by reference)</li>
+  <li>Structs und Klassen unterscheiden sich nur im Standard-Zugriff</li>
+  <li>Komposition: Strukturen können andere Strukturen enthalten</li>
 </ul>
 
 </section>
-
 </body>
 </html>

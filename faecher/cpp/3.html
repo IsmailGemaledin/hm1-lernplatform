@@ -3,13 +3,12 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width,initial-scale=1">
-  <title>C – Operatoren und Ausdrücke</title>
+  <title>C++ – Operatoren und Ausdrücke</title>
   <link rel="stylesheet" href="../../style.css">
   <style>
-    .definition { padding: .75rem; border-left: 4px solid #2b7cff; background:#f3f8ff; border-radius:4px; margin: .75rem 0; }
-    .satz { padding: .75rem; border-left: 4px solid #2b7cff; background:#f9f9fb; border-radius:4px; margin: .75rem 0; }
-    .example { padding: .75rem; border-left: 4px solid #2e9a6a; background:#f4fffa; border-radius:4px; margin: .75rem 0; }
-    .note { padding: .75rem; border-left: 4px solid #ff9800; background:#fff8f0; border-radius:4px; margin: .75rem 0; }
+    .definition { padding:.75rem; border-left:4px solid #2b7cff; background:#f3f8ff; border-radius:4px; margin:.75rem 0; }
+    .example { padding:.75rem; border-left:4px solid #2e9a6a; background:#f4fffa; border-radius:4px; margin:.75rem 0; }
+    .note { padding:.75rem; border-left:4px solid #ff9800; background:#fff8f0; border-radius:4px; margin:.75rem 0; }
     .small { font-size:0.95rem; color:#444; }
     pre { background:#1e1e1e; color:#d4d4d4; padding:1rem; border-radius:4px; overflow-x:auto; font-size:0.95rem; }
     code { font-family: Consolas, monospace; }
@@ -24,142 +23,160 @@
 
 <section>
 
-<h1>Operatoren und Ausdrücke</h1>
+<h1>Operatoren und Ausdrücke in C++</h1>
 <p class="small">
-  Diese Lektion behandelt Operatoren und Ausdrücke in C. Ziel ist ein tiefes Verständnis der arithmetischen, logischen und Zuweisungsoperatoren sowie ihrer Prioritäten.
+  In dieser Lektion werden die Operatoren in C++ behandelt.  
+  Ziel ist, arithmetische, logische und Zuweisungs-Operatoren korrekt zu verwenden und Ausdruckswerte zu verstehen.
 </p>
 
 <h2>1. Arithmetische Operatoren</h2>
 <div class="definition">
-  Arithmetische Operatoren führen mathematische Operationen auf numerischen Datentypen aus.
+  Arithmetische Operatoren dienen zur Berechnung von Zahlenwerten.
 </div>
 
 <ul>
-  <li><code>+</code> Addition</li>
-  <li><code>-</code> Subtraktion</li>
-  <li><code>*</code> Multiplikation</li>
-  <li><code>/</code> Division</li>
-  <li><code>%</code> Modulo (Rest bei Division)</li>
-</ul>
-
-<div class="example">
-  <pre><code>int a = 10, b = 3;
-int sum = a + b;        // 13
-int diff = a - b;       // 7
-int prod = a * b;       // 30
-int quot = a / b;       // 3 (ganzzahlig)
-int rem = a % b;        // 1</code></pre>
-</div>
-
-<h2>2. Inkrement und Dekrement</h2>
-<div class="definition">
-  <code>++</code> erhöht den Wert um 1, <code>--</code> verringert um 1.
-</div>
-
-<div class="example">
-  <pre><code>int x = 5;
-x++;   // x = 6
-++x;   // x = 7
-x--;   // x = 6
---x;   // x = 5</code></pre>
-</div>
-
-<div class="note">
-  Präfix (++x) und Postfix (x++) unterscheiden sich in Auswertung innerhalb von Ausdrücken.
-</div>
-
-<h2>3. Zuweisungsoperatoren</h2>
-<div class="definition">
-  Zuweisungsoperatoren speichern Werte in Variablen. Erweiterte Zuweisungen kombinieren Operation + Zuweisung.
-</div>
-
-<ul>
-  <li><code>=</code> einfache Zuweisung</li>
-  <li><code>+=</code>, <code>-=</code>, <code>*=</code>, <code>/=</code>, <code>%=</code></li>
+  <li><code>+</code> – Addition</li>
+  <li><code>-</code> – Subtraktion</li>
+  <li><code>*</code> – Multiplikation</li>
+  <li><code>/</code> – Division</li>
+  <li><code>%</code> – Modulo (Rest bei Ganzzahldivision)</li>
 </ul>
 
 <div class="example">
   <pre><code>int a = 10;
-a += 5;   // a = 15
-a *= 2;   // a = 30
-a %= 7;   // a = 2</code></pre>
+int b = 3;
+
+int sum = a + b;
+int diff = a - b;
+int prod = a * b;
+int quot = a / b;    // ganzzahlige Division
+int rem = a % b;     // Rest
+
+std::cout &lt;&lt; "sum = " &lt;&lt; sum &lt;&lt; ", rem = " &lt;&lt; rem &lt;&lt; std::endl;</code></pre>
+</div>
+
+<h2>2. Zuweisungsoperatoren</h2>
+<div class="definition">
+  Zuweisungsoperatoren speichern Werte in Variablen. Neben <code>=</code> gibt es Kurzformen:
+</div>
+
+<ul>
+  <li><code>+=</code>, <code>-=</code>, <code>*=</code>, <code>/=</code>, <code>%=</code></li>
+</ul>
+
+<div class="example">
+  <pre><code>int x = 5;
+x += 3; // x = x + 3
+x *= 2; // x = x * 2
+std::cout &lt;&lt; "x = " &lt;&lt; x &lt;&lt; std::endl;</code></pre>
+</div>
+
+<h2>3. Inkrement und Dekrement</h2>
+<div class="definition">
+  <code>++</code> erhöht, <code>--</code> verringert um 1. Es gibt Präfix- und Postfix-Formen:
+</div>
+
+<div class="example">
+  <pre><code>int i = 5;
+std::cout &lt;&lt; ++i &lt;&lt; std::endl; // Präfix: zuerst erhöhen, dann ausgeben
+std::cout &lt;&lt; i++ &lt;&lt; std::endl; // Postfix: zuerst ausgeben, dann erhöhen
+std::cout &lt;&lt; i &lt;&lt; std::endl;   // aktueller Wert</code></pre>
 </div>
 
 <h2>4. Vergleichsoperatoren</h2>
 <div class="definition">
-  Vergleichsoperatoren liefern <code>0</code> (false) oder <code>1</code> (true).
+  Vergleichsoperatoren liefern <code>true</code> oder <code>false</code>.
 </div>
 
 <ul>
-  <li><code>==</code> gleich</li>
-  <li><code>!=</code> ungleich</li>
-  <li><code>&lt;</code>, <code>&lt;=</code>, <code>&gt;</code>, <code>&gt;=</code></li>
+  <li><code>==</code> – gleich</li>
+  <li><code>!=</code> – ungleich</li>
+  <li><code>&lt;</code> – kleiner</li>
+  <li><code>&lt;=</code> – kleiner oder gleich</li>
+  <li><code>&gt;</code> – größer</li>
+  <li><code>&gt;=</code> – größer oder gleich</li>
 </ul>
 
 <div class="example">
-  <pre><code>int a = 5, b = 10;
-printf("%d\n", a == b);   // 0
-printf("%d\n", a != b);   // 1
-printf("%d\n", a &lt; b);  // 1</code></pre>
+  <pre><code>int a = 5, b = 7;
+bool result = (a &lt; b);
+std::cout &lt;&lt; "a &lt; b? " &lt;&lt; result &lt;&lt; std::endl;</code></pre>
 </div>
 
 <h2>5. Logische Operatoren</h2>
 <div class="definition">
-  Logische Operatoren arbeiten auf <code>_Bool</code> Werten oder 0/1.
+  Logische Operatoren verbinden boolesche Ausdrücke.
 </div>
 
 <ul>
   <li><code>&&</code> – logisches UND</li>
   <li><code>||</code> – logisches ODER</li>
-  <li><code>!</code> – logisches NICHT</li>
+  <li><code>!</code> – logische Negation</li>
 </ul>
 
 <div class="example">
-  <pre><code>_Bool a = 1, b = 0;
-printf("%d\n", a && b); // 0
-printf("%d\n", a || b); // 1
-printf("%d\n", !a);     // 0</code></pre>
+  <pre><code>bool a = true;
+bool b = false;
+
+std::cout &lt;&lt; (a && b) &lt;&lt; std::endl; // false
+std::cout &lt;&lt; (a || b) &lt;&lt; std::endl; // true
+std::cout &lt;&lt; (!a) &lt;&lt; std::endl;     // false</code></pre>
 </div>
 
-<h2>6. Präzedenz und Klammern</h2>
+<h2>6. Bitweise Operatoren</h2>
 <div class="definition">
-  Operatoren haben Priorität. Klammern <code>()</code> können Auswertungsreihenfolge ändern.
+  Operatoren, die auf einzelnen Bits wirken.
+</div>
+
+<ul>
+  <li><code>&amp;</code> – AND</li>
+  <li><code>||</code> – OR</li>
+  <li><code>^</code> – XOR</li>
+  <li><code>~</code> – NOT</li>
+  <li><code>&lt;&lt;</code> – left shift</li>
+  <li><code>&gt;&gt;</code> – right shift</li>
+</ul>
+
+<div class="example">
+  <pre><code>unsigned char x = 5;   // 00000101
+unsigned char y = 3;       // 00000011
+std::cout &lt;&lt; (x &amp; y) &lt;&lt; std::endl; // 1 (00000001)
+std::cout &lt;&lt; (x | y) &lt;&lt; std::endl; // 7 (00000111)</code></pre>
+</div>
+
+<h2>7. Ausdrücke</h2>
+<div class="definition">
+  Ein Ausdruck ist jede Kombination von Operatoren, Operanden und Funktionsaufrufen, die zu einem Wert ausgewertet wird.
 </div>
 
 <div class="example">
-  <pre><code>int a = 2 + 3 * 4;    // 14
-int b = (2 + 3) * 4;      // 20</code></pre>
+  <pre><code>int a = 5, b = 2, c = 3;
+int result = a + b * c; // Multiplikation vor Addition
+std::cout &lt;&lt; "Ergebnis: " &lt;&lt; result &lt;&lt; std::endl;</code></pre>
 </div>
 
-<h2>7. Typumwandlung in Ausdrücken</h2>
-<div class="definition">
-  Bei Mischtypen erfolgt implizite oder explizite Typumwandlung.
-</div>
-
-<div class="example">
-  <pre><code>int a = 5;
-double b = 2.5;
-double sum = a + b;   // a wird implizit zu double
-int c = (int) b;      // explizites Casting
-printf("%f %d\n", sum, c);</code></pre>
-</div>
-
+<h2>8. Reihenfolge der Auswertung</h2>
 <div class="note">
-  Implizite Konvertierung kann zu Rundungsfehlern führen. Explizite Casts geben volle Kontrolle.
+  Operatorpräzedenz regelt, welcher Operator zuerst ausgeführt wird.  
+  Klammern <code>()</code> können zur Steuerung der Reihenfolge verwendet werden.
 </div>
 
-<h2>8. Zusammenfassung</h2>
+<div class="example">
+  <pre><code>int x = 2 + 3 * 4;   // 14
+int y = (2 + 3) * 4;   // 20</code></pre>
+</div>
+
+<h2>9. Zusammenfassung</h2>
 <ul>
   <li>Arithmetische Operatoren: +, -, *, /, %</li>
-  <li>Inkrement/Dekrement: ++, -- (Präfix/Postfix)</li>
-  <li>Zuweisungen: =, +=, -=, *=, /=, %=</li>
+  <li>Zuweisung: =, +=, -=, *=, /=, %=</li>
+  <li>Inkrement/Dekrement: ++, --</li>
   <li>Vergleich: ==, !=, &lt;, &lt;=, &gt;, &gt;=</li>
   <li>Logisch: &&, ||, !</li>
-  <li>Priorität: Multiplikation vor Addition, Klammern ändern Reihenfolge</li>
-  <li>Typumwandlung: implizit oder explizit innerhalb von Ausdrücken</li>
+  <li>Bitweise: &, |, ^, ~, &lt;&lt;, &gt;&gt;</li>
+  <li>Ausdrücke folgen Präzedenzregeln, Klammern zur Steuerung</li>
 </ul>
 
 </section>
-
 </body>
 </html>

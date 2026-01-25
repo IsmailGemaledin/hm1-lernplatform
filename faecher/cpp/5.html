@@ -3,13 +3,12 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width,initial-scale=1">
-  <title>C – Funktionen</title>
+  <title>C++ – Funktionen</title>
   <link rel="stylesheet" href="../../style.css">
   <style>
-    .definition { padding: .75rem; border-left: 4px solid #2b7cff; background:#f3f8ff; border-radius:4px; margin: .75rem 0; }
-    .satz { padding: .75rem; border-left: 4px solid #2b7cff; background:#f9f9fb; border-radius:4px; margin: .75rem 0; }
-    .example { padding: .75rem; border-left: 4px solid #2e9a6a; background:#f4fffa; border-radius:4px; margin: .75rem 0; }
-    .note { padding: .75rem; border-left: 4px solid #ff9800; background:#fff8f0; border-radius:4px; margin: .75rem 0; }
+    .definition { padding:.75rem; border-left:4px solid #2b7cff; background:#f3f8ff; border-radius:4px; margin:.75rem 0; }
+    .example { padding:.75rem; border-left:4px solid #2e9a6a; background:#f4fffa; border-radius:4px; margin:.75rem 0; }
+    .note { padding:.75rem; border-left:4px solid #ff9800; background:#fff8f0; border-radius:4px; margin:.75rem 0; }
     .small { font-size:0.95rem; color:#444; }
     pre { background:#1e1e1e; color:#d4d4d4; padding:1rem; border-radius:4px; overflow-x:auto; font-size:0.95rem; }
     code { font-family: Consolas, monospace; }
@@ -24,127 +23,158 @@
 
 <section>
 
-<h1>Funktionen</h1>
+<h1>Funktionen in C++</h1>
 <p class="small">
-  Funktionen in C ermöglichen die Strukturierung des Programms, Wiederverwendbarkeit von Code und bessere Lesbarkeit.  
-  Diese Lektion behandelt Deklaration, Definition, Parameter, Rückgabewerte und Gültigkeitsbereich.
+  Diese Lektion behandelt Funktionen in C++. Ziel ist, Programme modular, wiederverwendbar und übersichtlich zu gestalten.
 </p>
 
-<h2>1. Definition einer Funktion</h2>
+<h2>1. Was ist eine Funktion?</h2>
 <div class="definition">
-  Eine Funktion ist ein benannter Codeblock, der optional Parameter empfängt und einen Wert zurückgeben kann.
+  Eine <strong>Funktion</strong> ist ein benannter Codeblock, der bestimmte Aufgaben ausführt und optional Werte zurückgibt.
 </div>
 
 <div class="example">
-  <pre><code>int add(int a, int b) {
+  <pre><code>int addiere(int a, int b) {
     return a + b;
 }</code></pre>
 </div>
 
 <div class="note">
+  Funktionen ermöglichen:
   <ul>
-    <li><code>int</code> vor dem Funktionsnamen bezeichnet den Rückgabewert</li>
-    <li><code>void</code> bedeutet, dass keine Rückgabe erfolgt</li>
+    <li>Reduzierung von Code-Wiederholungen</li>
+    <li>Übersichtliche Struktur</li>
+    <li>Trennung von Aufgaben und Logik</li>
   </ul>
 </div>
 
-<h2>2. Funktionsdeklaration vs. Definition</h2>
+<h2>2. Funktionsdeklaration und Definition</h2>
 <div class="definition">
-  Die Deklaration informiert den Compiler über Name, Parameter und Rückgabewert, die Definition enthält den eigentlichen Code.
+  Eine Funktion kann vorher deklariert werden, bevor sie im Code definiert ist.
 </div>
 
 <div class="example">
   <pre><code>// Deklaration
-int multiply(int x, int y);
+int quadriere(int x);
 
 // Definition
-int multiply(int x, int y) {
-    return x * y;
-}</code></pre>
-</div>
-
-<h2>3. Funktionsaufruf</h2>
-<div class="definition">
-  Funktionen werden durch ihren Namen mit passenden Argumenten aufgerufen.
-</div>
-
-<div class="example">
-  <pre><code>int result = multiply(3, 4); // result = 12
-printf("%d\n", result);</code></pre>
-</div>
-
-<h2>4. Parameterarten</h2>
-<div class="definition">
-  In C gibt es **Call by Value**. Parameterwerte werden kopiert. Änderungen wirken nur lokal.
-</div>
-
-<div class="example">
-  <pre><code>void increment(int x) {
-    x++;
-}
-int a = 5;
-increment(a);  // a bleibt 5
-</code></pre>
-</div>
-
-<div class="note">
-  Änderungen innerhalb der Funktion wirken **nicht** auf den ursprünglichen Wert außerhalb.
-</div>
-
-<h2>5. Rückgabewerte</h2>
-<div class="definition">
-  Funktionen können einen Wert zurückgeben. Rückgabe erfolgt mit <code>return</code>.
-</div>
-
-<div class="example">
-  <pre><code>double square(double x) {
+int quadriere(int x) {
     return x * x;
 }
-double result = square(2.5);  // 6.25
-</code></pre>
-</div>
 
-<h2>6. Gültigkeitsbereich (Scope)</h2>
-<div class="definition">
-  Variablen in Funktionen haben **lokalen Scope** und existieren nur während der Funktionsausführung.
-</div>
-
-<div class="example">
-  <pre><code>void foo() {
-    int x = 10; // lokal
-    printf("%d\n", x);
-}
-// x hier nicht definiert</code></pre>
-</div>
-
-<h2>7. Mehrere Funktionen und Modularität</h2>
-<div class="definition">
-  Durch Aufteilung in Funktionen wird Code modular und wiederverwendbar.
-</div>
-
-<div class="example">
-  <pre><code>int add(int a, int b) { return a + b; }
-int multiply(int a, int b) { return a * b; }
-
-int main(void) {
-    int sum = add(3,4);
-    int prod = multiply(3,4);
-    printf("sum=%d prod=%d\n", sum, prod);
+int main() {
+    std::cout &lt;&lt; quadriere(5) &lt;&lt; std::endl;
     return 0;
 }</code></pre>
 </div>
 
-<h2>8. Zusammenfassung</h2>
+<h2>3. Parameter und Argumente</h2>
+<div class="definition">
+  Parameter sind Variablen in der Funktionsdefinition, Argumente sind die übergebenen Werte beim Aufruf.
+</div>
+
+<div class="example">
+  <pre><code>void druckeSumme(int a, int b) {
+    std::cout &lt;&lt; "Summe = " &lt;&lt; a + b &lt;&lt; std::endl;
+}
+
+int main() {
+    druckeSumme(3, 4); // a=3, b=4
+}</code></pre>
+</div>
+
+<h2>4. Rückgabewerte</h2>
+<div class="definition">
+  Funktionen können einen Wert zurückgeben, der im Aufruf weiterverwendet wird.
+</div>
+
+<div class="example">
+  <pre><code>double berechneKreisFlaeche(double r) {
+    return 3.14159 * r * r;
+}
+
+int main() {
+    double f = berechneKreisFlaeche(2.0);
+    std::cout &lt;&lt; "Fläche = " &lt;&lt; f &lt;&lt; std::endl;
+}</code></pre>
+</div>
+
+<h2>5. Void-Funktionen</h2>
+<div class="definition">
+  Funktionen ohne Rückgabewert verwenden den Typ <code>void</code>.
+</div>
+
+<div class="example">
+  <pre><code>void begruessung() {
+    std::cout &lt;&lt; "Hallo C++!" &lt;&lt; std::endl;
+}
+
+int main() {
+    begruessung();
+}</code></pre>
+</div>
+
+<h2>6. Überladung von Funktionen</h2>
+<div class="definition">
+  In C++ können mehrere Funktionen denselben Namen haben, solange sie unterschiedliche Parameterlisten besitzen.
+</div>
+
+<div class="example">
+  <pre><code>int max(int a, int b) { return (a &gt; b ? a : b); }
+double max(double a, double b) { return (a &gt; b ? a : b); }
+
+int main() {
+    std::cout &lt;&lt; max(3, 5) &lt;&lt; std::endl;
+    std::cout &lt;&lt; max(2.5, 7.1) &lt;&lt; std::endl;
+}</code></pre>
+</div>
+
+<h2>7. Standardargumente</h2>
+<div class="definition">
+  Parameter können Standardwerte haben, die beim Aufruf weggelassen werden können.
+</div>
+
+<div class="example">
+  <pre><code>void druckeText(std::string text = "Hallo Welt") {
+    std::cout &lt;&lt; text &lt;&lt; std::endl;
+}
+
+int main() {
+    druckeText();             // "Hallo Welt"
+    druckeText("C++ Regeln"); // "C++ Regeln"
+}</code></pre>
+</div>
+
+<h2>8. Rekursive Funktionen</h2>
+<div class="definition">
+  Funktionen können sich selbst aufrufen, z.B. für mathematische Berechnungen.
+</div>
+
+<div class="example">
+  <pre><code>int fakultaet(int n) {
+    if (n &lt;= 1) return 1;
+    return n * fakultaet(n - 1);
+}
+
+int main() {
+    std::cout &lt;&lt; fakultaet(5) &lt;&lt; std::endl;
+}</code></pre>
+</div>
+
+<div class="note">
+  Vorsicht: Jede Rekursion benötigt eine Abbruchbedingung, sonst führt sie zu Stackoverflow.
+</div>
+
+<h2>9. Zusammenfassung</h2>
 <ul>
-  <li>Funktionen sind benannte Codeblöcke mit Parametern und Rückgabewerten</li>
-  <li>Deklaration vs. Definition: Compiler vs. Code</li>
-  <li>Aufruf mit Argumenten</li>
-  <li>Call by Value: Parameter werden kopiert</li>
-  <li>Lokaler Scope: Variablen existieren nur in der Funktion</li>
-  <li>Modularität: Wiederverwendbarkeit und bessere Struktur</li>
+  <li>Funktionen modularisieren den Code</li>
+  <li>Parameter und Argumente übergeben Daten</li>
+  <li>Rückgabewerte liefern Ergebnisse zurück</li>
+  <li>Void-Funktionen liefern keinen Wert</li>
+  <li>Überladung und Standardargumente erhöhen Flexibilität</li>
+  <li>Rekursion erlaubt elegante Lösungen für iterative Probleme</li>
 </ul>
 
 </section>
-
 </body>
 </html>

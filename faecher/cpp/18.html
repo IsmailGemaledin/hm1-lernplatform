@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>C++ – Namespaces und Bibliotheken</title>
+  <link rel="stylesheet" href="../../style.css">
+  <style>
+    .definition { padding:.75rem; border-left:4px solid #2b7cff; background:#f3f8ff; border-radius:4px; margin:.75rem 0; }
+    .example { padding:.75rem; border-left:4px solid #2e9a6a; background:#f4fffa; border-radius:4px; margin:.75rem 0; }
+    .note { padding:.75rem; border-left:4px solid #ff9800; background:#fff8f0; border-radius:4px; margin:.75rem 0; }
+    .small { font-size:0.95rem; color:#444; }
+    pre { background:#1e1e1e; color:#d4d4d4; padding:1rem; border-radius:4px; overflow-x:auto; font-size:0.95rem; }
+    code { font-family: Consolas, monospace; }
+  </style>
+</head>
+
+<body>
+
+<nav>
+  <a href="../../index.html">Startseite</a>
+</nav>
+
+<section>
+
+<h1>Namespaces, std und Bibliotheken in C++</h1>
+<p class="small">
+  In dieser Lektion werden Namespaces, die Standardbibliothek <code>std</code>, Ein-/Ausgabe über <code>iostream</code> und der Einsatz von Bibliotheken in C++ erklärt.
+</p>
+
+<h2>1. Namespaces – Grundidee</h2>
+<div class="definition">
+  Ein <strong>Namespace</strong> ist ein Namensraum, der Bezeichner (Variablen, Funktionen, Klassen) gruppiert, um Namenskollisionen zu vermeiden.
+</div>
+
+<div class="example">
+  <pre><code>namespace Mathematik {
+    int add(int a, int b) { return a + b; }
+}
+
+int main() {
+    int sum = Mathematik::add(2,3);
+}</code></pre>
+</div>
+
+<div class="note">
+Namespaces verhindern Konflikte zwischen gleichnamigen Funktionen oder Variablen in großen Projekten.
+</div>
+
+<h2>2. Die Standardbibliothek <code>std</code></h2>
+<div class="definition">
+  Die Standardbibliothek C++ bündelt grundlegende Klassen, Funktionen und Objekte.  
+  Alle befinden sich im Namespace <code>std</code>.
+</div>
+
+<ul>
+  <li>Ein- und Ausgabe (<code>iostream</code>)</li>
+  <li>Strings (<code>string</code>)</li>
+  <li>Container (<code>vector</code>, <code>map</code>, <code>set</code>)</li>
+  <li>Algorithmen (<code>algorithm</code>)</li>
+  <li>Mathematische Funktionen (<code>cmath</code>)</li>
+</ul>
+
+<div class="example">
+  <pre><code>#include &lt;iostream&gt;
+#include &lt;string&gt;
+
+int main() {
+    std::string name = "Ismail";
+    std::cout &lt;&lt; "Hallo " &lt;&lt; name &lt;&lt; std::endl;
+}</code></pre>
+</div>
+
+<h2>3. Using-Declaration</h2>
+<div class="definition">
+  Um <code>std::</code> nicht immer schreiben zu müssen, kann man <code>using</code> einsetzen.
+</div>
+
+<div class="example">
+  <pre><code>#include &lt;iostream&gt;
+using std::cout;
+using std::endl;
+
+int main() {
+    cout &lt;&lt; "Hallo Welt!" &lt;&lt; endl;
+}</code></pre>
+</div>
+
+<div class="note">
+Generell <code>using namespace std;</code> vermeiden in Header-Dateien großer Projekte, um Namenskollisionen zu verhindern.
+</div>
+
+<h2>4. Einbinden von Bibliotheken</h2>
+<div class="definition">
+  Bibliotheken erweitern C++-Programme mit vorgefertigten Funktionen, Klassen und Algorithmen.
+</div>
+
+<ul>
+  <li><code>#include &lt;iostream&gt;</code> – Ein-/Ausgabe</li>
+  <li><code>#include &lt;vector&gt;</code> – dynamische Arrays</li>
+  <li><code>#include &lt;algorithm&gt;</code> – sortieren, suchen, transformieren</li>
+  <li><code>#include &lt;cmath&gt;</code> – mathematische Funktionen</li>
+  <li><code>#include &lt;string&gt;</code> – Zeichenkettenklassen</li>
+</ul>
+
+<div class="example">
+  <pre><code>#include &lt;iostream&gt;
+#include &lt;vector&gt;
+#include &lt;algorithm&gt;
+
+int main() {
+    std::vector&lt;int&gt; v = {3,1,4};
+    std::sort(v.begin(), v.end());
+    for(int n : v) std::cout &lt;&lt; n &lt;&lt; " ";
+}</code></pre>
+</div>
+
+<h2>5. Unterschied: Header vs. Bibliothek</h2>
+<div class="definition">
+  <strong>Header:</strong> Enthalten Deklarationen (Interfaces)  
+  <strong>Bibliothek:</strong> Enthält implementierten Code, der gelinkt wird
+</div>
+
+<div class="example">
+  <pre><code>#include &lt;cmath&gt;   // Header
+double w = std::sqrt(9.0);   // Funktion aus Bibliothek
+</code></pre>
+</div>
+
+<h2>6. Zusammenfassung</h2>
+<ul>
+  <li>Namespaces verhindern Namenskonflikte</li>
+  <li><code>std</code> enthält die Standardbibliothek</li>
+  <li>Ein-/Ausgabe erfolgt über <code>iostream</code></li>
+  <li>Bibliotheken erweitern Programme mit vordefiniertem Code</li>
+  <li>Using-Declaration erleichtert Schreibarbeit, aber vorsichtig einsetzen</li>
+</ul>
+
+</section>
+</body>
+</html>

@@ -3,7 +3,7 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width,initial-scale=1">
-  <title>C – Datentypen und Variablen</title>
+  <title>C++ – Datentypen und Variablen</title>
   <link rel="stylesheet" href="../../style.css">
   <style>
     .definition { padding: .75rem; border-left: 4px solid #2b7cff; background:#f3f8ff; border-radius:4px; margin: .75rem 0; }
@@ -24,15 +24,15 @@
 
 <section>
 
-<h1>Datentypen und Variablen</h1>
+<h1>Datentypen und Variablen in C++</h1>
 <p class="small">
-  In dieser Lektion werden die Datentypen, Variablen und deren Eigenschaften in C auf fortgeschrittenem Niveau behandelt.  
-  Ziel ist, Speicher, Wertebereiche und Typumwandlungen zu verstehen.
+  In dieser Lektion werden die Datentypen, Variablen und deren Eigenschaften in C++ behandelt.  
+  Ziel ist, die Unterschiede zu C zu verstehen, Speicher, Wertebereiche und Typumwandlungen zu erkennen und moderne C++-Konzepte zu nutzen.
 </p>
 
 <h2>1. Grundtypen</h2>
 <div class="definition">
-  <strong>Definition:</strong> Grundtypen in C legen fest, welche Art von Daten eine Variable speichert und wie viel Speicher dafür reserviert wird.
+  <strong>Definition:</strong> Grundtypen in C++ legen fest, welche Art von Daten eine Variable speichert und wie viel Speicher dafür reserviert wird.
 </div>
 
 <ul>
@@ -40,16 +40,26 @@
   <li><code>int</code> – ganze Zahlen, typischerweise 4 Bytes</li>
   <li><code>float</code> – Gleitkommazahlen, einfache Genauigkeit, 4 Bytes</li>
   <li><code>double</code> – Gleitkommazahlen, doppelte Genauigkeit, 8 Bytes</li>
-  <li><code>_Bool</code> – Wahrheitswerte, 1 Byte</li>
+  <li><code>bool</code> – Wahrheitswerte (<code>true</code> oder <code>false</code>), 1 Byte</li>
+  <li><code>std::string</code> – Zeichenketten (Teil der Standardbibliothek)</li>
 </ul>
 
 <div class="example">
   <strong>Beispiel:</strong>
-  <pre><code>int alter = 21;
-char initial = 'A';
-float temperatur = 36.6f;
-double pi = 3.14159265359;
-_Bool aktiv = 1;</code></pre>
+  <pre><code>#include &lt;iostream&gt;
+#include &lt;string&gt;
+
+int main() {
+    int alter = 21;
+    char initial = 'A';
+    float temperatur = 36.6f;
+    double pi = 3.14159265359;
+    bool aktiv = true;
+    std::string name = "Max";
+
+    std::cout &lt;&lt; "Name: " &lt;&lt; name &lt;&lt; ", Alter: " &lt;&lt; alter &lt;&lt; std::endl;
+    return 0;
+}</code></pre>
 </div>
 
 <h2>2. Modifikatoren</h2>
@@ -65,7 +75,9 @@ _Bool aktiv = 1;</code></pre>
 <div class="example">
   <pre><code>unsigned int positiveZahl = 300;
 long int grosseZahl = 1000000000;
-short int kleineZahl = -100;</code></pre>
+short int kleineZahl = -100;
+
+std::cout &lt;&lt; "Positive Zahl: " &lt;&lt; positiveZahl &lt;&lt; std::endl;</code></pre>
 </div>
 
 <h2>3. Konstanten</h2>
@@ -75,7 +87,8 @@ short int kleineZahl = -100;</code></pre>
 
 <div class="example">
   <pre><code>const int MAX_VERBRAUCH = 100;
-const double G = 9.81;</code></pre>
+const double G = 9.81;
+std::cout &lt;&lt; "Maximalverbrauch: " &lt;&lt; MAX_VERBRAUCH &lt;&lt; std::endl;</code></pre>
 </div>
 
 <h2>4. Literaltypen</h2>
@@ -88,7 +101,7 @@ const double G = 9.81;</code></pre>
   <li>Floating-Point-Literale: <code>3.14</code>, <code>2.718f</code></li>
   <li>Char-Literale: <code>'A'</code>, <code>'\n'</code></li>
   <li>String-Literale: <code>"Hallo Welt"</code></li>
-  <li>Bool-Literale: <code>0</code> (false), <code>1</code> (true)</li>
+  <li>Bool-Literale: <code>true</code>, <code>false</code></li>
 </ul>
 
 <h2>5. Variablendeklaration</h2>
@@ -97,9 +110,10 @@ const double G = 9.81;</code></pre>
 </div>
 
 <div class="example">
-  <pre><code>int a;          // Deklaration
-a = 5;            // Zuweisung
-double b = 2.71;  // Deklaration + Initialisierung</code></pre>
+  <pre><code>int a;            // Deklaration
+a = 5;              // Zuweisung
+double b = 2.71;    // Deklaration + Initialisierung
+std::string text = "Hallo C++";</code></pre>
 </div>
 
 <h2>6. Speicher und Gültigkeitsbereich</h2>
@@ -116,24 +130,25 @@ double b = 2.71;  // Deklaration + Initialisierung</code></pre>
 <div class="example">
   <pre><code>int globalVar = 10; // global
 
-void test(void) {
-    int lokal = 5;     // lokal
+void test() {
+    int lokal = 5;          // lokal
     static int counter = 0; // statisch
     counter++;
+    std::cout &lt;&lt; "Counter: " &lt;&lt; counter &lt;&lt; std::endl;
 }</code></pre>
 </div>
 
 <h2>7. Typumwandlung (Casting)</h2>
 <div class="definition">
-  C erlaubt explizite und implizite Typumwandlungen.
+  C++ erlaubt implizite und explizite Typumwandlungen.
 </div>
 
 <div class="example">
   <pre><code>int a = 5;
 double b = 2.5;
 double sum = a + b;       // implizit: a wird zu double
-int c = (int) b;          // explizit: cast zu int
-printf("%f %d\n", sum, c);</code></pre>
+int c = static_cast&lt;int&gt;(b); // explizit: cast zu int
+std::cout &lt;&lt; "Summe: " &lt;&lt; sum &lt;&lt; ", c: " &lt;&lt; c &lt;&lt; std::endl;</code></pre>
 </div>
 
 <div class="note">
@@ -142,7 +157,7 @@ printf("%f %d\n", sum, c);</code></pre>
 
 <h2>8. Zusammenfassung</h2>
 <ul>
-  <li>Grundtypen: char, int, float, double, _Bool</li>
+  <li>Grundtypen: char, int, float, double, bool, std::string</li>
   <li>Modifikatoren: signed, unsigned, short, long</li>
   <li>Konstanten mit <code>const</code></li>
   <li>Variablendeklaration: Typ + Name + optional Initialisierung</li>

@@ -6,11 +6,9 @@
   <title>C++ – Einführung</title>
   <link rel="stylesheet" href="../../style.css">
   <style>
-    /* Lokale Ergänzungen für Kapitel-Layout */
-    .definition { padding: .75rem; border-left: 4px solid #2b7cff; background:#f3f8ff; border-radius:4px; margin: .75rem 0; }
-    .satz { padding: .75rem; border-left: 4px solid #2b7cff; background:#f9f9fb; border-radius:4px; margin: .75rem 0; }
-    .example { padding: .75rem; border-left: 4px solid #2e9a6a; background:#f4fffa; border-radius:4px; margin: .75rem 0; }
-    .note { padding: .75rem; border-left: 4px solid #ff9800; background:#fff8f0; border-radius:4px; margin: .75rem 0; }
+    .definition { padding:.75rem; border-left:4px solid #2b7cff; background:#f3f8ff; border-radius:4px; margin:.75rem 0; }
+    .example { padding:.75rem; border-left:4px solid #2e9a6a; background:#f4fffa; border-radius:4px; margin:.75rem 0; }
+    .note { padding:.75rem; border-left:4px solid #ff9800; background:#fff8f0; border-radius:4px; margin:.75rem 0; }
     .small { font-size:0.95rem; color:#444; }
   </style>
 </head>
@@ -23,150 +21,157 @@
 
 <section>
 
-  <h1>Einführung in C</h1>
-  <p class="small">
-    Dieses Kapitel führt in die Programmiersprache C ein.  
-    Ziel ist es, die Grundidee, Struktur und Denkweise von C zu verstehen.
-  </p>
+<h1>Einführung in C++</h1>
 
-  <h2>1. Was ist C?</h2>
+<p class="small">
+Dieses Kapitel gibt einen konzeptuellen Überblick über Programmierung und die Rolle der Programmiersprache C++.
+Es werden bewusst noch keine technischen Details behandelt.
+</p>
 
-  <div class="definition">
-    <strong>Definition.</strong><br>
-    <strong>C</strong> ist eine prozedurale, kompilierte Programmiersprache, die in den 1970er-Jahren entwickelt wurde.
-    Sie ist nah an der Hardware, effizient und bildet die Grundlage vieler moderner Systeme
-    (z.B. Betriebssysteme, Embedded Systems).
-  </div>
+<h2>1. Was ist Programmierung?</h2>
 
-  <ul>
-    <li>sehr schnell</li>
-    <li>manuelle Speicherverwaltung</li>
-    <li>klare, einfache Syntax</li>
-    <li>Basis vieler anderer Sprachen (C++, Java, Python intern)</li>
-  </ul>
+<div class="definition">
+<strong>Definition.</strong><br>
+<strong>Programmierung</strong> ist der Prozess, bei dem ein Mensch einer Maschine
+eine präzise, formale Abfolge von Anweisungen gibt, um ein Problem zu lösen.
+</div>
 
-  <h2>2. Aufbau eines C-Programms</h2>
+<p>
+Ein Programm ist keine Idee, sondern eine exakt beschriebene Handlungsanweisung. 
+Computer führen Programme <em>deterministisch</em> aus – sie interpretieren nichts.
+</p>
 
-  <div class="definition">
-    Jedes C-Programm besitzt eine <strong>main-Funktion</strong>.
-    Das Programm startet immer dort.
-  </div>
+<div class="example">
+<strong>Beispiel (abstrakt):</strong><br>
+„Addiere zwei Zahlen, speichere das Ergebnis und gib es aus.“
+</div>
 
-  <div class="example">
-    <strong>Beispiel – kleinstes C-Programm:</strong>
-    <pre><code>#include &lt;stdio.h&gt;
+<div class="note">
+Computer sind extrem schnell, aber ohne Verständnis. Programme müssen daher eindeutig und vollständig sein.
+</div>
 
-int main(void) {
+<h2>2. Was ist ein Programm?</h2>
+
+<div class="definition">
+Ein <strong>Programm</strong> ist eine endliche Folge von Anweisungen,
+die vom Computer ausgeführt werden können.
+</div>
+
+<ul>
+  <li>Programme bestehen aus Quelltext</li>
+  <li>Sie werden in einer Programmiersprache geschrieben</li>
+  <li>Sie werden vom Compiler übersetzt und vom Computer ausgeführt</li>
+</ul>
+
+<p class="small">
+C++ ist eine Hochsprache, die Abstraktion mit direktem Zugriff auf Speicher kombiniert.
+</p>
+
+<h2>3. Was ist die Programmiersprache C++?</h2>
+
+<div class="definition">
+<strong>C++</strong> ist eine kompilierte, prozedurale und objektorientierte Programmiersprache.
+Sie erweitert C um Klassen, Templates, STL, Namespaces und viele moderne Features.
+</div>
+
+<p>
+C++ erlaubt Programme zu schreiben, die:
+</p>
+
+<ul>
+  <li>effizient ausgeführt werden</li>
+  <li>gut strukturiert und wartbar sind</li>
+  <li>direkt mit Hardware und Speicher arbeiten können</li>
+</ul>
+
+<div class="note">
+C++ abstrahiert die Maschine stärker als C, bietet aber auch moderne Werkzeuge für Softwareentwicklung.
+</div>
+
+<h2>4. Wofür wird C++ verwendet?</h2>
+
+<div class="definition">
+C++ wird eingesetzt, wo Effizienz, Kontrolle und gleichzeitig moderne Programmiermethoden gefragt sind.
+</div>
+
+<ul>
+  <li>Betriebssystemkomponenten</li>
+  <li>Spiele-Engines und Grafiksoftware</li>
+  <li>Treiber, Embedded Systems</li>
+  <li>Leistungs­kritische Anwendungen (Finance, Simulation)</li>
+  <li>Bibliotheken und Frameworks (STL, Boost)</li>
+</ul>
+
+<div class="example">
+Viele moderne Programme (Browsers, Games, Systemsoftware) werden in C++ entwickelt.
+</div>
+
+<h2>5. Historischer Hintergrund</h2>
+
+<div class="definition">
+C++ wurde Anfang der 1980er Jahre von Bjarne Stroustrup entwickelt.
+</div>
+
+<p>
+Ziel war es, die Effizienz von C zu behalten, aber Programmierbarkeit und Wartbarkeit durch Objektorientierung zu verbessern.
+</p>
+
+<div class="note">
+C++ kann alles, was C kann, plus zusätzliche Abstraktionen.
+</div>
+
+<h2>6. Besonderheiten von C++ gegenüber C</h2>
+
+<ul>
+  <li>Ein- und Ausgabe über <code>std::cout</code> und <code>std::cin</code></li>
+  <li>Namespaces (<code>std::</code>) für sauberen Code</li>
+  <li>Klassen, Objekte, Vererbung, Polymorphismus</li>
+  <li>Templates und generische Programmierung</li>
+  <li>Standardbibliothek STL mit Vektoren, Listen, Maps, Algorithmen</li>
+</ul>
+
+<div class="definition">
+C++ ist sowohl für systemnahe Programmierung als auch für Softwareentwicklung auf hohem Abstraktionsniveau geeignet.
+</div>
+
+<h2>7. Beispiel: Erste Ausgabe</h2>
+
+<div class="example">
+<strong>Einfaches C++-Programm:</strong>
+<pre><code>#include &lt;iostream&gt;
+
+int main() {
+    std::cout &lt;&lt; "Hallo C++!" &lt;&lt; std::endl;
     return 0;
 }</code></pre>
-  </div>
+</div>
 
-  <div class="note">
-    <strong>Erläuterung:</strong>
-    <ul>
-      <li><code>#include &lt;stdio.h&gt;</code> bindet Standard-Ein/Ausgabe ein</li>
-      <li><code>int main(void)</code> ist der Programmeinstieg</li>
-      <li><code>return 0;</code> signalisiert erfolgreiches Beenden</li>
-    </ul>
-  </div>
+<div class="note">
+<ul>
+  <li><code>#include &lt;iostream&gt;</code> bindet die Standard-Ein/Ausgabe ein</li>
+  <li><code>std::cout</code> gibt Text auf der Konsole aus</li>
+  <li><code>std::endl</code> erzeugt einen Zeilenumbruch</li>
+</ul>
+</div>
 
-  <h2>3. Ausgabe mit printf</h2>
+<h2>8. Aufbau dieses Kurses</h2>
 
-  <div class="definition">
-    Die Funktion <code>printf</code> wird verwendet, um Text oder Werte auf der Konsole auszugeben.
-  </div>
+<p>
+Der Kurs führt von grundlegenden Konzepten zu modernen C++-Mechanismen.
+</p>
 
-  <div class="example">
-    <strong>Beispiel:</strong>
-    <pre><code>#include &lt;stdio.h&gt;
+<ul>
+  <li>Datentypen und Variablen</li>
+  <li>Operatoren und Ausdrücke</li>
+  <li>Kontrollstrukturen</li>
+  <li>Funktionen und Modularisierung</li>
+  <li>Arrays, Speicher und Zeiger</li>
+  <li>Objektorientierte Konzepte, STL, Templates</li>
+</ul>
 
-int main(void) {
-    printf("Hallo Welt!\n");
-    return 0;
-}</code></pre>
-  </div>
-
-  <div class="note">
-    <ul>
-      <li><code>\n</code> erzeugt einen Zeilenumbruch</li>
-      <li>Anführungszeichen sind Pflicht für Text</li>
-    </ul>
-  </div>
-
-  <h2>4. Variablen und Datentypen</h2>
-
-  <div class="definition">
-    Eine <strong>Variable</strong> speichert einen Wert eines bestimmten Datentyps.
-  </div>
-
-  <ul>
-    <li><code>int</code> – ganze Zahlen</li>
-    <li><code>double</code> – Kommazahlen</li>
-    <li><code>char</code> – einzelne Zeichen</li>
-  </ul>
-
-  <div class="example">
-    <strong>Beispiel:</strong>
-    <pre><code>#include &lt;stdio.h&gt;
-
-int main(void) {
-    int a = 5;
-    double b = 3.14;
-    char c = 'A';
-
-    printf("a = %d\n", a);
-    printf("b = %f\n", b);
-    printf("c = %c\n", c);
-
-    return 0;
-}</code></pre>
-  </div>
-
-  <h2>5. Rechnen in C</h2>
-
-  <div class="definition">
-    C unterstützt die üblichen arithmetischen Operatoren:
-    <code>+</code>, <code>-</code>, <code>*</code>, <code>/</code>.
-  </div>
-
-  <div class="example">
-    <pre><code>int x = 10;
-int y = 3;
-
-int sum = x + y;
-int prod = x * y;
-int quot = x / y;   // ganzzahlige Division</code></pre>
-  </div>
-
-  <div class="note">
-    Bei <code>int</code>-Division wird **abgeschnitten**, nicht gerundet.
-  </div>
-
-  <h2>6. Struktur und Denkweise</h2>
-
-  <div class="definition">
-    C denkt in:
-    <ul>
-      <li>klaren Anweisungen</li>
-      <li>exakter Kontrolle über Speicher</li>
-      <li>expliziten Schritten</li>
-    </ul>
-  </div>
-
-  <p class="small">
-    Wer C versteht, versteht später auch,
-    <em>warum</em> andere Sprachen funktionieren.
-  </p>
-
-  <h2>7. Ausblick</h2>
-
-  <ul>
-    <li>Eingabe mit <code>scanf</code></li>
-    <li>Bedingungen (<code>if</code>)</li>
-    <li>Schleifen (<code>for</code>, <code>while</code>)</li>
-    <li>Funktionen</li>
-    <li>Pointer (zentral in C)</li>
-  </ul>
+<div class="definition">
+Ziel ist nicht nur C++ zu benutzen, sondern C++ zu <strong>verstehen</strong>.
+</div>
 
 </section>
 
