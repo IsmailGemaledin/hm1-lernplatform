@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>C – Dynamische Speicherverwaltung</title>
+  <link rel="stylesheet" href="../../style.css">
+  <style>
+    .definition { padding: .75rem; border-left: 4px solid #2b7cff; background:#f3f8ff; border-radius:4px; margin: .75rem 0; }
+    .satz { padding: .75rem; border-left: 4px solid #2b7cff; background:#f9f9fb; border-radius:4px; margin: .75rem 0; }
+    .example { padding: .75rem; border-left: 4px solid #2e9a6a; background:#f4fffa; border-radius:4px; margin: .75rem 0; }
+    .note { padding: .75rem; border-left: 4px solid #ff9800; background:#fff8f0; border-radius:4px; margin: .75rem 0; }
+    .small { font-size:0.95rem; color:#444; }
+    pre { background:#1e1e1e; color:#d4d4d4; padding:1rem; border-radius:4px; overflow-x:auto; font-size:0.95rem; }
+    code { font-family: Consolas, monospace; }
+  </style>
+</head>
+
+<body>
+
+<nav>
+  <a href="../../index.html">Startseite</a>
+</nav>
+
+<section>
+
+<h1>Dynamische Speicherverwaltung</h1>
+<p class="small">
+  In C kann Speicher während der Laufzeit dynamisch reserviert und wieder freigegeben werden.  
+  Diese Lektion behandelt <code>malloc</code>, <code>calloc</code>, <code>realloc</code> und <code>free</code>.
+</p>
+
+<h2>1. Speicher reservieren: malloc</h2>
+<div class="definition">
+  <strong>malloc</strong> reserviert einen Block zusammenhängenden Speichers und gibt einen Zeiger auf den Anfang zurück.
+</div>
+
+<div class="example">
+  <pre><code>int *p = (int*) malloc(5 * sizeof(int));
+if(p == NULL) {
+    perror("Speicher konnte nicht reserviert werden");
+    return 1;
+}</code></pre>
+</div>
+
+<div class="note">
+  <ul>
+    <li>Rückgabewert von <code>malloc</code> muss immer überprüft werden</li>
+    <li>Speicher ist uninitialisiert</li>
+  </ul>
+</div>
+
+<h2>2. Speicher reservieren und initialisieren: calloc</h2>
+<div class="definition">
+  <strong>calloc</strong> reserviert Speicher für ein Array und initialisiert alle Bits auf 0.
+</div>
+
+<div class="example">
+  <pre><code>int *arr = (int*) calloc(5, sizeof(int));
+for(int i=0; i&lt;5; i++) {
+    printf("%d ", arr[i]); // Ausgabe: 0 0 0 0 0
+}</code></pre>
+</div>
+
+<h2>3. Speicher vergrößern oder verkleinern: realloc</h2>
+<div class="definition">
+  <strong>realloc</strong> passt die Größe eines zuvor reservierten Speicherblocks an.
+</div>
+
+<div class="example">
+  <pre><code>arr = (int*) realloc(arr, 10 * sizeof(int));
+if(arr == NULL) {
+    perror("Speicher konnte nicht vergrößert werden");
+    return 1;
+}</code></pre>
+</div>
+
+<h2>4. Speicher freigeben: free</h2>
+<div class="definition">
+  Reservierter Speicher muss mit <strong>free</strong> wieder freigegeben werden.
+</div>
+
+<div class="example">
+  <pre><code>free(arr);
+arr = NULL; // Dangling Pointer vermeiden</code></pre>
+</div>
+
+<h2>5. Tipps für dynamische Speicherverwaltung</h2>
+<div class="definition">
+  <ul>
+    <li>Immer <code>NULL</code>-Zeiger überprüfen</li>
+    <li>Nach <code>free</code> Zeiger auf <code>NULL</code> setzen</li>
+    <li>Keine mehrfachen <code>free</code> auf dieselbe Adresse</li>
+    <li>Begrenzung von Speicherlecks: jede <code>malloc/calloc/realloc</code> muss ein <code>free</code> haben</li>
+  </ul>
+</div>
+
+<h2>6. Zusammenfassung</h2>
+<ul>
+  <li><code>malloc</code> – uninitialisierten Speicher reservieren</li>
+  <li><code>calloc</code> – Speicher reservieren und initialisieren</li>
+  <li><code>realloc</code> – Größe anpassen</li>
+  <li><code>free</code> – Speicher freigeben</li>
+  <li>Speicherlecks vermeiden durch konsequentes Freigeben</li>
+</ul>
+
+</section>
+
+</body>
+</html>

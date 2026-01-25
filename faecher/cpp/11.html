@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>C – Fehlerbehandlung</title>
+  <link rel="stylesheet" href="../../style.css">
+  <style>
+    .definition { padding: .75rem; border-left: 4px solid #2b7cff; background:#f3f8ff; border-radius:4px; margin: .75rem 0; }
+    .satz { padding: .75rem; border-left: 4px solid #2b7cff; background:#f9f9fb; border-radius:4px; margin: .75rem 0; }
+    .example { padding: .75rem; border-left: 4px solid #2e9a6a; background:#f4fffa; border-radius:4px; margin: .75rem 0; }
+    .note { padding: .75rem; border-left: 4px solid #ff9800; background:#fff8f0; border-radius:4px; margin: .75rem 0; }
+    .small { font-size:0.95rem; color:#444; }
+    pre { background:#1e1e1e; color:#d4d4d4; padding:1rem; border-radius:4px; overflow-x:auto; font-size:0.95rem; }
+    code { font-family: Consolas, monospace; }
+  </style>
+</head>
+
+<body>
+
+<nav>
+  <a href="../../index.html">Startseite</a>
+</nav>
+
+<section>
+
+<h1>Fehlerbehandlung</h1>
+<p class="small">
+  Fehlerbehandlung ist essentiell in C, um Programme robust zu gestalten.  
+  Diese Lektion behandelt <code>errno</code>, <code>perror</code>, <code>assert</code> und eigene Fehlercodes.
+</p>
+
+<h2>1. errno</h2>
+<div class="definition">
+  <code>errno</code> ist eine globale Variable, die den letzten Fehlercode speichert.
+</div>
+
+<div class="example">
+  <pre><code>#include &lt;stdio.h&gt;
+#include &lt;errno.h&gt;
+
+FILE *fp = fopen("nicht_existiert.txt", "r");
+if(fp == NULL) {
+    printf("Fehlercode: %d\n", errno);
+}</code></pre>
+</div>
+
+<h2>2. perror</h2>
+<div class="definition">
+  <code>perror</code> gibt eine Fehlermeldung basierend auf <code>errno</code> aus.
+</div>
+
+<div class="example">
+  <pre><code>if(fp == NULL) {
+    perror("Fehler beim Öffnen der Datei");
+}</code></pre>
+</div>
+
+<h2>3. assert</h2>
+<div class="definition">
+  <code>assert</code> überprüft Annahmen während der Entwicklung und bricht das Programm ab, falls die Bedingung falsch ist.
+</div>
+
+<div class="example">
+  <pre><code>#include &lt;assert.h&gt;
+
+int x = -1;
+assert(x &gt;= 0); // Programm bricht ab, da Bedingung falsch</code></pre>
+</div>
+
+<h2>4. Eigene Fehlercodes</h2>
+<div class="definition">
+  Programme können eigene Fehlercodes definieren und zurückgeben.
+</div>
+
+<div class="example">
+  <pre><code>#define ERR_DATEI 1
+#define ERR_MEMORY 2
+
+if(fp == NULL) return ERR_DATEI;
+
+int *p = malloc(100 * sizeof(int));
+if(p == NULL) return ERR_MEMORY;</code></pre>
+</div>
+
+<h2>5. Best Practices</h2>
+<div class="definition">
+  <ul>
+    <li>Immer prüfen, ob Rückgabewerte gültig sind</li>
+    <li>Fehlercodes dokumentieren</li>
+    <li>Entwicklungs- vs. Produktionsprüfungen unterscheiden (<code>assert</code> nur während Entwicklung)</li>
+  </ul>
+</div>
+
+<h2>6. Zusammenfassung</h2>
+<ul>
+  <li><code>errno</code> speichert Standardfehlercodes</li>
+  <li><code>perror</code> gibt Fehlermeldungen aus</li>
+  <li><code>assert</code> überprüft Bedingungen während der Entwicklung</li>
+  <li>Eigene Fehlercodes ermöglichen detailliertes Fehlermanagement</li>
+  <li>Immer Rückgabewerte prüfen für robuste Programme</li>
+</ul>
+
+</section>
+
+</body>
+</html>

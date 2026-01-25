@@ -6,11 +6,9 @@
   <title>C – Einführung</title>
   <link rel="stylesheet" href="../../style.css">
   <style>
-    /* Lokale Ergänzungen für Kapitel-Layout */
-    .definition { padding: .75rem; border-left: 4px solid #2b7cff; background:#f3f8ff; border-radius:4px; margin: .75rem 0; }
-    .satz { padding: .75rem; border-left: 4px solid #2b7cff; background:#f9f9fb; border-radius:4px; margin: .75rem 0; }
-    .example { padding: .75rem; border-left: 4px solid #2e9a6a; background:#f4fffa; border-radius:4px; margin: .75rem 0; }
-    .note { padding: .75rem; border-left: 4px solid #ff9800; background:#fff8f0; border-radius:4px; margin: .75rem 0; }
+    .definition { padding:.75rem; border-left:4px solid #2b7cff; background:#f3f8ff; border-radius:4px; margin:.75rem 0; }
+    .example { padding:.75rem; border-left:4px solid #2e9a6a; background:#f4fffa; border-radius:4px; margin:.75rem 0; }
+    .note { padding:.75rem; border-left:4px solid #ff9800; background:#fff8f0; border-radius:4px; margin:.75rem 0; }
     .small { font-size:0.95rem; color:#444; }
   </style>
 </head>
@@ -23,150 +21,154 @@
 
 <section>
 
-  <h1>Einführung in C</h1>
-  <p class="small">
-    Dieses Kapitel führt in die Programmiersprache C ein.  
-    Ziel ist es, die Grundidee, Struktur und Denkweise von C zu verstehen.
-  </p>
+<h1>Einführung in C</h1>
 
-  <h2>1. Was ist C?</h2>
+<p class="small">
+Dieses Kapitel gibt einen konzeptuellen Überblick über Programmierung und die Rolle der Programmiersprache C.
+Es werden bewusst noch keine technischen Details behandelt.
+</p>
 
-  <div class="definition">
-    <strong>Definition.</strong><br>
-    <strong>C</strong> ist eine prozedurale, kompilierte Programmiersprache, die in den 1970er-Jahren entwickelt wurde.
-    Sie ist nah an der Hardware, effizient und bildet die Grundlage vieler moderner Systeme
-    (z.B. Betriebssysteme, Embedded Systems).
-  </div>
+<h2>1. Was ist Programmierung?</h2>
 
-  <ul>
-    <li>sehr schnell</li>
-    <li>manuelle Speicherverwaltung</li>
-    <li>klare, einfache Syntax</li>
-    <li>Basis vieler anderer Sprachen (C++, Java, Python intern)</li>
-  </ul>
+<div class="definition">
+<strong>Definition.</strong><br>
+<strong>Programmierung</strong> ist der Prozess, bei dem ein Mensch einer Maschine
+eine präzise, formale Abfolge von Anweisungen gibt, um ein bestimmtes Problem zu lösen.
+</div>
 
-  <h2>2. Aufbau eines C-Programms</h2>
+<p>
+Ein Programm ist dabei keine „Idee“, sondern eine exakt beschriebene Handlungsanweisung.
+Computer führen Programme <em>deterministisch</em> aus – sie interpretieren nichts.
+</p>
 
-  <div class="definition">
-    Jedes C-Programm besitzt eine <strong>main-Funktion</strong>.
-    Das Programm startet immer dort.
-  </div>
+<div class="example">
+<strong>Beispiel (abstrakt):</strong><br>
+„Addiere zwei Zahlen, speichere das Ergebnis und gib es aus.“
+</div>
 
-  <div class="example">
-    <strong>Beispiel – kleinstes C-Programm:</strong>
-    <pre><code>#include &lt;stdio.h&gt;
+<div class="note">
+Computer sind extrem schnell, aber vollständig ohne Verständnis.
+Deshalb müssen Programme eindeutig, vollständig und widerspruchsfrei sein.
+</div>
 
-int main(void) {
-    return 0;
-}</code></pre>
-  </div>
+<h2>2. Was ist ein Programm?</h2>
 
-  <div class="note">
-    <strong>Erläuterung:</strong>
-    <ul>
-      <li><code>#include &lt;stdio.h&gt;</code> bindet Standard-Ein/Ausgabe ein</li>
-      <li><code>int main(void)</code> ist der Programmeinstieg</li>
-      <li><code>return 0;</code> signalisiert erfolgreiches Beenden</li>
-    </ul>
-  </div>
+<div class="definition">
+Ein <strong>Programm</strong> ist eine endliche Folge von Anweisungen,
+die von einem Computer ausgeführt werden können.
+</div>
 
-  <h2>3. Ausgabe mit printf</h2>
+<ul>
+  <li>Programme bestehen aus Text (Quellcode)</li>
+  <li>Sie werden in einer Programmiersprache geschrieben</li>
+  <li>Sie werden vom Computer übersetzt und ausgeführt</li>
+</ul>
 
-  <div class="definition">
-    Die Funktion <code>printf</code> wird verwendet, um Text oder Werte auf der Konsole auszugeben.
-  </div>
+<p class="small">
+C ist eine Sprache, die sehr nahe an dieser maschinellen Ausführung arbeitet.
+</p>
 
-  <div class="example">
-    <strong>Beispiel:</strong>
-    <pre><code>#include &lt;stdio.h&gt;
+<h2>3. Was ist die Programmiersprache C?</h2>
 
-int main(void) {
-    printf("Hallo Welt!\n");
-    return 0;
-}</code></pre>
-  </div>
+<div class="definition">
+<strong>C</strong> ist eine prozedurale, kompilierte Programmiersprache,
+die einen direkten Zugriff auf Speicher und Hardware erlaubt.
+</div>
 
-  <div class="note">
-    <ul>
-      <li><code>\n</code> erzeugt einen Zeilenumbruch</li>
-      <li>Anführungszeichen sind Pflicht für Text</li>
-    </ul>
-  </div>
+<p>
+C wurde so entworfen, dass Programme:
+</p>
 
-  <h2>4. Variablen und Datentypen</h2>
+<ul>
+  <li>sehr effizient ausgeführt werden</li>
+  <li>vorhersagbares Verhalten haben</li>
+  <li>direkt mit Hardware interagieren können</li>
+</ul>
 
-  <div class="definition">
-    Eine <strong>Variable</strong> speichert einen Wert eines bestimmten Datentyps.
-  </div>
+<div class="note">
+C abstrahiert den Computer nur minimal.
+Der Programmierer trägt daher viel Verantwortung.
+</div>
 
-  <ul>
-    <li><code>int</code> – ganze Zahlen</li>
-    <li><code>double</code> – Kommazahlen</li>
-    <li><code>char</code> – einzelne Zeichen</li>
-  </ul>
+<h2>4. Wofür wird C verwendet?</h2>
 
-  <div class="example">
-    <strong>Beispiel:</strong>
-    <pre><code>#include &lt;stdio.h&gt;
+<div class="definition">
+C wird überall dort eingesetzt, wo Kontrolle, Effizienz und Nähe zur Hardware entscheidend sind.
+</div>
 
-int main(void) {
-    int a = 5;
-    double b = 3.14;
-    char c = 'A';
+<ul>
+  <li>Betriebssysteme (z.B. UNIX, Linux-Kernel)</li>
+  <li>Embedded Systems</li>
+  <li>Treiber und Systemsoftware</li>
+  <li>Compiler und Interpreter</li>
+  <li>Leistungs­kritische Bibliotheken</li>
+</ul>
 
-    printf("a = %d\n", a);
-    printf("b = %f\n", b);
-    printf("c = %c\n", c);
+<div class="example">
+Viele moderne Sprachen (C++, Java, Python) sind intern ganz oder teilweise in C implementiert.
+</div>
 
-    return 0;
-}</code></pre>
-  </div>
+<h2>5. Historischer Hintergrund</h2>
 
-  <h2>5. Rechnen in C</h2>
+<div class="definition">
+C wurde Anfang der 1970er Jahre von Dennis Ritchie bei Bell Labs entwickelt.
+</div>
 
-  <div class="definition">
-    C unterstützt die üblichen arithmetischen Operatoren:
-    <code>+</code>, <code>-</code>, <code>*</code>, <code>/</code>.
-  </div>
+<p>
+Ziel war es, ein Betriebssystem (UNIX) in einer portablen Hochsprache zu schreiben,
+statt ausschließlich in Assembler.
+</p>
 
-  <div class="example">
-    <pre><code>int x = 10;
-int y = 3;
+<div class="note">
+Diese Entscheidung prägte die gesamte moderne Informatik.
+</div>
 
-int sum = x + y;
-int prod = x * y;
-int quot = x / y;   // ganzzahlige Division</code></pre>
-  </div>
+<h2>6. Warum wird C an der Universität gelehrt?</h2>
 
-  <div class="note">
-    Bei <code>int</code>-Division wird **abgeschnitten**, nicht gerundet.
-  </div>
+<ul>
+  <li>vermittelt ein tiefes Verständnis von Computern</li>
+  <li>macht Speicher und Daten explizit sichtbar</li>
+  <li>zwingt zu sauberem, präzisem Denken</li>
+  <li>bildet Grundlage für viele weitere Sprachen</li>
+</ul>
 
-  <h2>6. Struktur und Denkweise</h2>
+<div class="definition">
+Wer C versteht, versteht, wie Programme auf Maschinenebene funktionieren.
+</div>
 
-  <div class="definition">
-    C denkt in:
-    <ul>
-      <li>klaren Anweisungen</li>
-      <li>exakter Kontrolle über Speicher</li>
-      <li>expliziten Schritten</li>
-    </ul>
-  </div>
+<h2>7. Was C nicht ist</h2>
 
-  <p class="small">
-    Wer C versteht, versteht später auch,
-    <em>warum</em> andere Sprachen funktionieren.
-  </p>
+<div class="note">
+C ist <strong>keine</strong> moderne Komfortsprache.
+</div>
 
-  <h2>7. Ausblick</h2>
+<ul>
+  <li>keine automatische Speicherverwaltung</li>
+  <li>keine eingebaute Objektorientierung</li>
+  <li>keine umfangreiche Standardbibliothek</li>
+</ul>
 
-  <ul>
-    <li>Eingabe mit <code>scanf</code></li>
-    <li>Bedingungen (<code>if</code>)</li>
-    <li>Schleifen (<code>for</code>, <code>while</code>)</li>
-    <li>Funktionen</li>
-    <li>Pointer (zentral in C)</li>
-  </ul>
+<p class="small">
+Genau diese Einschränkungen machen C didaktisch wertvoll.
+</p>
+
+<h2>8. Aufbau dieses Kurses</h2>
+
+<p>
+Der Kurs führt schrittweise von grundlegenden Konzepten
+zu immer tieferen Mechanismen der Sprache C.
+</p>
+
+<ul>
+  <li>Datentypen und Variablen</li>
+  <li>Ausdrücke und Kontrollstrukturen</li>
+  <li>Funktionen und Modularisierung</li>
+  <li>Arrays, Speicher und Zeiger</li>
+</ul>
+
+<div class="definition">
+Ziel ist nicht nur „C zu benutzen“, sondern C zu <strong>verstehen</strong>.
+</div>
 
 </section>
 

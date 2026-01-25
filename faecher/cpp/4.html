@@ -1,0 +1,167 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>C – Kontrollstrukturen</title>
+  <link rel="stylesheet" href="../../style.css">
+  <style>
+    .definition { padding: .75rem; border-left: 4px solid #2b7cff; background:#f3f8ff; border-radius:4px; margin: .75rem 0; }
+    .satz { padding: .75rem; border-left: 4px solid #2b7cff; background:#f9f9fb; border-radius:4px; margin: .75rem 0; }
+    .example { padding: .75rem; border-left: 4px solid #2e9a6a; background:#f4fffa; border-radius:4px; margin: .75rem 0; }
+    .note { padding: .75rem; border-left: 4px solid #ff9800; background:#fff8f0; border-radius:4px; margin: .75rem 0; }
+    .small { font-size:0.95rem; color:#444; }
+    pre { background:#1e1e1e; color:#d4d4d4; padding:1rem; border-radius:4px; overflow-x:auto; font-size:0.95rem; }
+    code { font-family: Consolas, monospace; }
+  </style>
+</head>
+
+<body>
+
+<nav>
+  <a href="../../index.html">Startseite</a>
+</nav>
+
+<section>
+
+<h1>Kontrollstrukturen</h1>
+<p class="small">
+  In dieser Lektion werden die Kontrollstrukturen in C behandelt: bedingte Anweisungen, Schleifen und Sprunganweisungen. Ziel ist es, den Programmfluss präzise zu steuern.
+</p>
+
+<h2>1. Bedingte Anweisungen: if / else</h2>
+<div class="definition">
+  Die <code>if</code>-Anweisung erlaubt das Ausführen von Code nur, wenn eine Bedingung erfüllt ist.
+</div>
+
+<div class="example">
+  <pre><code>int a = 5;
+if(a &gt; 0) {
+    printf("a ist positiv\n");
+} else {
+    printf("a ist null oder negativ\n");
+}</code></pre>
+</div>
+
+<div class="note">
+  <ul>
+    <li>Bedingungen müssen einen Wert vom Typ <code>_Bool</code> liefern</li>
+    <li>Mehrere if/else if möglich für komplexe Entscheidungen</li>
+  </ul>
+</div>
+
+<h2>2. Switch-Anweisung</h2>
+<div class="definition">
+  Mit <code>switch</code> kann eine Variable gegen mehrere Werte geprüft werden.
+</div>
+
+<div class="example">
+  <pre><code>int tag = 3;
+switch(tag) {
+    case 1:
+        printf("Montag\n"); break;
+    case 2:
+        printf("Dienstag\n"); break;
+    case 3:
+        printf("Mittwoch\n"); break;
+    default:
+        printf("Ungültiger Tag\n");
+}</code></pre>
+</div>
+
+<div class="note">
+  <strong>break</strong> beendet den aktuellen case, sonst fallen die Anweisungen durch (fall-through).
+</div>
+
+<h2>3. Schleifen: while</h2>
+<div class="definition">
+  Die <code>while</code>-Schleife wiederholt einen Block, solange die Bedingung wahr ist.
+</div>
+
+<div class="example">
+  <pre><code>int i = 0;
+while(i &lt; 5) {
+    printf("%d\n", i);
+    i++;
+}</code></pre>
+</div>
+
+<h2>4. Schleifen: do / while</h2>
+<div class="definition">
+  <code>do / while</code> führt den Block mindestens einmal aus und prüft die Bedingung danach.
+</div>
+
+<div class="example">
+  <pre><code>int i = 0;
+do {
+    printf("%d\n", i);
+    i++;
+} while(i &lt; 5);</code></pre>
+</div>
+
+<h2>5. Schleifen: for</h2>
+<div class="definition">
+  <code>for</code> ist geeignet, wenn Anzahl der Durchläufe bekannt ist.
+</div>
+
+<div class="example">
+  <pre><code>for(int i = 0; i &lt; 5; i++) {
+    printf("%d\n", i);
+}</code></pre>
+</div>
+
+<h2>6. Verschachtelte Schleifen</h2>
+<div class="definition">
+  Schleifen können ineinander geschachtelt werden, z.B. für Matrizen oder kombinatorische Probleme.
+</div>
+
+<div class="example">
+  <pre><code>for(int i = 1; i &lt;= 3; i++) {
+    for(int j = 1; j &lt;= 3; j++) {
+        printf("%d,%d\n", i, j);
+    }
+}</code></pre>
+</div>
+
+<h2>7. Sprunganweisungen: break / continue</h2>
+<div class="definition">
+  <ul>
+    <li><code>break</code> beendet Schleifen oder switch sofort</li>
+    <li><code>continue</code> überspringt den aktuellen Schleifendurchlauf</li>
+  </ul>
+</div>
+
+<div class="example">
+  <pre><code>for(int i = 0; i &lt; 10; i++) {
+    if(i == 5) break;
+    if(i % 2 == 0) continue;
+    printf("%d\n", i);
+}</code></pre>
+</div>
+
+<h2>8. Gültigkeitsbereich und Lebensdauer</h2>
+<div class="definition">
+  Lokale Variablen in Schleifen oder if-Blöcken existieren nur innerhalb des Blocks.
+</div>
+
+<div class="example">
+  <pre><code>if(1) {
+    int x = 10;
+    printf("%d\n", x);
+}
+// x ist hier nicht definiert</code></pre>
+</div>
+
+<h2>9. Zusammenfassung</h2>
+<ul>
+  <li>Bedingungen: if / else, verschachtelt, logische Operatoren</li>
+  <li>Mehrfachentscheidungen: switch / case / default</li>
+  <li>Schleifen: while, do/while, for, verschachtelt</li>
+  <li>Sprunganweisungen: break, continue</li>
+  <li>Gültigkeit: lokale Variablen in Blöcken</li>
+</ul>
+
+</section>
+
+</body>
+</html>

@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>C – Dateiverarbeitung</title>
+  <link rel="stylesheet" href="../../style.css">
+  <style>
+    .definition { padding: .75rem; border-left: 4px solid #2b7cff; background:#f3f8ff; border-radius:4px; margin: .75rem 0; }
+    .satz { padding: .75rem; border-left: 4px solid #2b7cff; background:#f9f9fb; border-radius:4px; margin: .75rem 0; }
+    .example { padding: .75rem; border-left: 4px solid #2e9a6a; background:#f4fffa; border-radius:4px; margin: .75rem 0; }
+    .note { padding: .75rem; border-left: 4px solid #ff9800; background:#fff8f0; border-radius:4px; margin: .75rem 0; }
+    .small { font-size:0.95rem; color:#444; }
+    pre { background:#1e1e1e; color:#d4d4d4; padding:1rem; border-radius:4px; overflow-x:auto; font-size:0.95rem; }
+    code { font-family: Consolas, monospace; }
+  </style>
+</head>
+
+<body>
+
+<nav>
+  <a href="../../index.html">Startseite</a>
+</nav>
+
+<section>
+
+<h1>Dateiverarbeitung</h1>
+<p class="small">
+  In C können Dateien gelesen, geschrieben und manipuliert werden.  
+  Diese Lektion behandelt die grundlegende Dateiverarbeitung mit <code>FILE*</code>, <code>fopen</code>, <code>fclose</code>, <code>fscanf</code>, <code>fprintf</code> und anderen Funktionen.
+</p>
+
+<h2>1. Öffnen und Schließen von Dateien</h2>
+<div class="definition">
+  Dateien werden mit <code>fopen</code> geöffnet und mit <code>fclose</code> wieder geschlossen.
+</div>
+
+<div class="example">
+  <pre><code>FILE *fp;
+fp = fopen("datei.txt", "r"); // Datei im Lese-Modus öffnen
+if(fp == NULL) {
+    perror("Fehler beim Öffnen");
+    return 1;
+}
+
+// Datei verarbeiten
+
+fclose(fp); // Datei schließen</code></pre>
+</div>
+
+<h2>2. Modi beim Öffnen</h2>
+<div class="definition">
+  <ul>
+    <li><code>"r"</code> – Lesen</li>
+    <li><code>"w"</code> – Schreiben (existierende Datei wird überschrieben)</li>
+    <li><code>"a"</code> – Anhängen</li>
+    <li><code>"rb"</code>, <code>"wb"</code>, <code>"ab"</code> – Binärmodus</li>
+  </ul>
+</div>
+
+<h2>3. Lesen aus Dateien</h2>
+<div class="definition">
+  Lesen erfolgt zeilenweise oder formatbasiert.
+</div>
+
+<div class="example">
+  <pre><code>char line[100];
+while(fgets(line, sizeof(line), fp) != NULL) {
+    printf("%s", line);
+}</code></pre>
+</div>
+
+<div class="note">
+  <ul>
+    <li><code>fgets</code> liest eine Zeile inkl. Zeilenumbruch</li>
+    <li>Ende der Datei wird mit <code>NULL</code> erkannt</li>
+  </ul>
+</div>
+
+<h2>4. Schreiben in Dateien</h2>
+<div class="definition">
+  Schreiben erfolgt formatbasiert mit <code>fprintf</code> oder zeichenweise mit <code>fputc</code>.
+</div>
+
+<div class="example">
+  <pre><code>FILE *fp = fopen("out.txt", "w");
+if(fp != NULL) {
+    fprintf(fp, "Zahl: %d\n", 42);
+    fclose(fp);
+}</code></pre>
+</div>
+
+<h2>5. Zufälliger Zugriff (Random Access)</h2>
+<div class="definition">
+  Mit <code>fseek</code> und <code>ftell</code> kann an eine bestimmte Position in der Datei gesprungen werden.
+</div>
+
+<div class="example">
+  <pre><code>fseek(fp, 0, SEEK_END);   // ans Ende der Datei springen
+long size = ftell(fp);       // aktuelle Position = Dateigröße
+fseek(fp, 0, SEEK_SET);     // zurück zum Anfang</code></pre>
+</div>
+
+<h2>6. Fehlerbehandlung bei Dateien</h2>
+<div class="definition">
+  Prüfe immer, ob die Datei erfolgreich geöffnet wurde und handle Fehler.
+</div>
+
+<div class="example">
+  <pre><code>FILE *fp = fopen("nicht_existiert.txt", "r");
+if(fp == NULL) {
+    perror("Datei konnte nicht geöffnet werden");
+    return 1;
+}</code></pre>
+</div>
+
+<h2>7. Zusammenfassung</h2>
+<ul>
+  <li>Dateien werden mit <code>FILE*</code> geöffnet und geschlossen</li>
+  <li>Modi: Lesen, Schreiben, Anhängen, Binär</li>
+  <li>Lesen mit <code>fgets</code>, Schreiben mit <code>fprintf</code></li>
+  <li>Zufälliger Zugriff über <code>fseek</code> und <code>ftell</code></li>
+  <li>Fehler immer prüfen (NULL Pointer)</li>
+</ul>
+
+</section>
+
+</body>
+</html>

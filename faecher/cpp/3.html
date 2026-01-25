@@ -1,0 +1,165 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>C – Operatoren und Ausdrücke</title>
+  <link rel="stylesheet" href="../../style.css">
+  <style>
+    .definition { padding: .75rem; border-left: 4px solid #2b7cff; background:#f3f8ff; border-radius:4px; margin: .75rem 0; }
+    .satz { padding: .75rem; border-left: 4px solid #2b7cff; background:#f9f9fb; border-radius:4px; margin: .75rem 0; }
+    .example { padding: .75rem; border-left: 4px solid #2e9a6a; background:#f4fffa; border-radius:4px; margin: .75rem 0; }
+    .note { padding: .75rem; border-left: 4px solid #ff9800; background:#fff8f0; border-radius:4px; margin: .75rem 0; }
+    .small { font-size:0.95rem; color:#444; }
+    pre { background:#1e1e1e; color:#d4d4d4; padding:1rem; border-radius:4px; overflow-x:auto; font-size:0.95rem; }
+    code { font-family: Consolas, monospace; }
+  </style>
+</head>
+
+<body>
+
+<nav>
+  <a href="../../index.html">Startseite</a>
+</nav>
+
+<section>
+
+<h1>Operatoren und Ausdrücke</h1>
+<p class="small">
+  Diese Lektion behandelt Operatoren und Ausdrücke in C. Ziel ist ein tiefes Verständnis der arithmetischen, logischen und Zuweisungsoperatoren sowie ihrer Prioritäten.
+</p>
+
+<h2>1. Arithmetische Operatoren</h2>
+<div class="definition">
+  Arithmetische Operatoren führen mathematische Operationen auf numerischen Datentypen aus.
+</div>
+
+<ul>
+  <li><code>+</code> Addition</li>
+  <li><code>-</code> Subtraktion</li>
+  <li><code>*</code> Multiplikation</li>
+  <li><code>/</code> Division</li>
+  <li><code>%</code> Modulo (Rest bei Division)</li>
+</ul>
+
+<div class="example">
+  <pre><code>int a = 10, b = 3;
+int sum = a + b;        // 13
+int diff = a - b;       // 7
+int prod = a * b;       // 30
+int quot = a / b;       // 3 (ganzzahlig)
+int rem = a % b;        // 1</code></pre>
+</div>
+
+<h2>2. Inkrement und Dekrement</h2>
+<div class="definition">
+  <code>++</code> erhöht den Wert um 1, <code>--</code> verringert um 1.
+</div>
+
+<div class="example">
+  <pre><code>int x = 5;
+x++;   // x = 6
+++x;   // x = 7
+x--;   // x = 6
+--x;   // x = 5</code></pre>
+</div>
+
+<div class="note">
+  Präfix (++x) und Postfix (x++) unterscheiden sich in Auswertung innerhalb von Ausdrücken.
+</div>
+
+<h2>3. Zuweisungsoperatoren</h2>
+<div class="definition">
+  Zuweisungsoperatoren speichern Werte in Variablen. Erweiterte Zuweisungen kombinieren Operation + Zuweisung.
+</div>
+
+<ul>
+  <li><code>=</code> einfache Zuweisung</li>
+  <li><code>+=</code>, <code>-=</code>, <code>*=</code>, <code>/=</code>, <code>%=</code></li>
+</ul>
+
+<div class="example">
+  <pre><code>int a = 10;
+a += 5;   // a = 15
+a *= 2;   // a = 30
+a %= 7;   // a = 2</code></pre>
+</div>
+
+<h2>4. Vergleichsoperatoren</h2>
+<div class="definition">
+  Vergleichsoperatoren liefern <code>0</code> (false) oder <code>1</code> (true).
+</div>
+
+<ul>
+  <li><code>==</code> gleich</li>
+  <li><code>!=</code> ungleich</li>
+  <li><code>&lt;</code>, <code>&lt;=</code>, <code>&gt;</code>, <code>&gt;=</code></li>
+</ul>
+
+<div class="example">
+  <pre><code>int a = 5, b = 10;
+printf("%d\n", a == b);   // 0
+printf("%d\n", a != b);   // 1
+printf("%d\n", a &lt; b);  // 1</code></pre>
+</div>
+
+<h2>5. Logische Operatoren</h2>
+<div class="definition">
+  Logische Operatoren arbeiten auf <code>_Bool</code> Werten oder 0/1.
+</div>
+
+<ul>
+  <li><code>&&</code> – logisches UND</li>
+  <li><code>||</code> – logisches ODER</li>
+  <li><code>!</code> – logisches NICHT</li>
+</ul>
+
+<div class="example">
+  <pre><code>_Bool a = 1, b = 0;
+printf("%d\n", a && b); // 0
+printf("%d\n", a || b); // 1
+printf("%d\n", !a);     // 0</code></pre>
+</div>
+
+<h2>6. Präzedenz und Klammern</h2>
+<div class="definition">
+  Operatoren haben Priorität. Klammern <code>()</code> können Auswertungsreihenfolge ändern.
+</div>
+
+<div class="example">
+  <pre><code>int a = 2 + 3 * 4;    // 14
+int b = (2 + 3) * 4;      // 20</code></pre>
+</div>
+
+<h2>7. Typumwandlung in Ausdrücken</h2>
+<div class="definition">
+  Bei Mischtypen erfolgt implizite oder explizite Typumwandlung.
+</div>
+
+<div class="example">
+  <pre><code>int a = 5;
+double b = 2.5;
+double sum = a + b;   // a wird implizit zu double
+int c = (int) b;      // explizites Casting
+printf("%f %d\n", sum, c);</code></pre>
+</div>
+
+<div class="note">
+  Implizite Konvertierung kann zu Rundungsfehlern führen. Explizite Casts geben volle Kontrolle.
+</div>
+
+<h2>8. Zusammenfassung</h2>
+<ul>
+  <li>Arithmetische Operatoren: +, -, *, /, %</li>
+  <li>Inkrement/Dekrement: ++, -- (Präfix/Postfix)</li>
+  <li>Zuweisungen: =, +=, -=, *=, /=, %=</li>
+  <li>Vergleich: ==, !=, &lt;, &lt;=, &gt;, &gt;=</li>
+  <li>Logisch: &&, ||, !</li>
+  <li>Priorität: Multiplikation vor Addition, Klammern ändern Reihenfolge</li>
+  <li>Typumwandlung: implizit oder explizit innerhalb von Ausdrücken</li>
+</ul>
+
+</section>
+
+</body>
+</html>
