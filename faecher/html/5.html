@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>HTML – Links und Hyperverweise</title>
+  <link rel="stylesheet" href="../../style.css">
+  <style>
+    .definition { padding:.75rem; border-left:4px solid #2b7cff; background:#f3f8ff; border-radius:4px; margin:.75rem 0; }
+    .example { padding:.75rem; border-left:4px solid #2e9a6a; background:#f4fffa; border-radius:4px; margin:.75rem 0; }
+    .note { padding:.75rem; border-left:4px solid #ff9800; background:#fff8f0; border-radius:4px; margin:.75rem 0; }
+    .small { font-size:0.95rem; color:#444; }
+    pre { background:#1e1e1e; color:#d4d4d4; padding:1rem; border-radius:4px; overflow-x:auto; font-size:0.95rem; }
+    code { font-family: Consolas, monospace; }
+  </style>
+</head>
+
+<body>
+
+<nav>
+  <a href="../../index.html">Startseite</a>
+</nav>
+
+<section>
+
+<h1>Links und Hyperverweise</h1>
+<p class="small">
+Diese Lektion behandelt die Erstellung von Hyperlinks in HTML, deren Typen, Zielattribute und Best Practices.
+</p>
+
+<h2>1. Grundlegender Hyperlink</h2>
+<div class="definition">
+Ein Hyperlink wird mit dem <code>&lt;a&gt;</code>-Element erzeugt. Das Attribut <code>href</code> enthält die Zieladresse.
+</div>
+
+<div class="example">
+<pre><code>&lt;a href="https://www.example.com"&gt;Besuche Example&lt;/a&gt;</code></pre>
+</div>
+
+<h2>2. Relative und absolute Pfade</h2>
+<div class="definition">
+Hyperlinks können absolut (vollständige URL) oder relativ (bezogen auf die aktuelle Seite) sein.
+</div>
+
+<ul>
+  <li>Absolute URL: <code>https://www.example.com/page.html</code></li>
+  <li>Relative URL: <code>./seite.html</code> oder <code>../ordner/seite.html</code></li>
+</ul>
+
+<div class="example">
+<pre><code>&lt;a href="./kontakt.html"&gt;Kontakt&lt;/a&gt;</code></pre>
+</div>
+
+<h2>3. Öffnen in neuem Tab/Fenster</h2>
+<div class="definition">
+Mit <code>target="_blank"</code> öffnet sich der Link in einem neuen Tab oder Fenster.
+</div>
+
+<div class="example">
+<pre><code>&lt;a href="https://www.example.com" target="_blank"&gt;Externe Seite öffnen&lt;/a&gt;</code></pre>
+</div>
+
+<h2>4. Titel-Attribut</h2>
+<div class="definition">
+Das <code>title</code>-Attribut zeigt beim Überfahren mit der Maus zusätzlichen Text.
+</div>
+
+<div class="example">
+<pre><code>&lt;a href="https://www.example.com" title="Zur offiziellen Website"&gt;Example&lt;/a&gt;</code></pre>
+</div>
+
+<h2>5. E-Mail-Links</h2>
+<div class="definition">
+Mit <code>mailto:</code> kann ein Link zum Öffnen eines E-Mail-Programms erstellt werden.
+</div>
+
+<div class="example">
+<pre><code>&lt;a href="mailto:info@example.com"&gt;E-Mail senden&lt;/a&gt;</code></pre>
+</div>
+
+<h2>6. Anker-Links (Sprungmarken)</h2>
+<div class="definition">
+Anker-Links springen innerhalb derselben Seite zu einem bestimmten Element mit einer <code>id</code>.
+</div>
+
+<div class="example">
+<pre><code>&lt;a href="#abschnitt1"&gt;Zu Abschnitt 1&lt;/a&gt;
+
+&lt;h2 id="abschnitt1"&gt;Abschnitt 1&lt;/h2&gt;</code></pre>
+</div>
+
+<h2>7. Zusammenfassung</h2>
+<ul>
+  <li>Grundelement: <code>&lt;a href="URL"&gt;Text&lt;/a&gt;</code></li>
+  <li>Relative und absolute Pfade</li>
+  <li>Öffnen in neuem Tab: <code>target="_blank"</code></li>
+  <li>Zusätzliche Hinweise: <code>title</code></li>
+  <li>E-Mail-Links: <code>mailto:</code></li>
+  <li>Anker-Links: Sprung innerhalb der Seite</li>
+</ul>
+
+</section>
+</body>
+</html>

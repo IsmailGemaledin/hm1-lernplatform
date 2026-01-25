@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>C++ – Arrays und Strings</title>
+  <link rel="stylesheet" href="../../style.css">
+  <style>
+    .definition { padding:.75rem; border-left:4px solid #2b7cff; background:#f3f8ff; border-radius:4px; margin:.75rem 0; }
+    .example { padding:.75rem; border-left:4px solid #2e9a6a; background:#f4fffa; border-radius:4px; margin:.75rem 0; }
+    .note { padding:.75rem; border-left:4px solid #ff9800; background:#fff8f0; border-radius:4px; margin:.75rem 0; }
+    .small { font-size:0.95rem; color:#444; }
+    pre { background:#1e1e1e; color:#d4d4d4; padding:1rem; border-radius:4px; overflow-x:auto; font-size:0.95rem; }
+    code { font-family: Consolas, monospace; }
+  </style>
+</head>
+
+<body>
+
+<nav>
+  <a href="../../index.html">Startseite</a>
+</nav>
+
+<section>
+
+<h1>Arrays und Strings in C++</h1>
+<p class="small">
+  Diese Lektion behandelt Arrays und Strings in C++. Ziel ist, die Speicherung von Daten in zusammenhängenden Speicherblöcken und die Arbeit mit Text zu verstehen.
+</p>
+
+<h2>1. Arrays</h2>
+<div class="definition">
+  Ein <strong>Array</strong> ist eine Sammlung von Elementen desselben Typs, die in aufeinanderfolgenden Speicherplätzen liegen.
+</div>
+
+<div class="example">
+  <pre><code>int zahlen[5]; // Array von 5 ints
+zahlen[0] = 10;
+zahlen[1] = 20;
+// Zugriff auf Elemente über Index (0-basiert)</code></pre>
+</div>
+
+<h2>2. Initialisierung von Arrays</h2>
+<div class="definition">
+  Arrays können bei Deklaration initialisiert werden.
+</div>
+
+<div class="example">
+  <pre><code>int zahlen[5] = {1, 2, 3, 4, 5};
+double werte[] = {0.1, 0.2, 0.3}; // Größe wird automatisch erkannt
+char buchstaben[3] = {'A', 'B', 'C'};</code></pre>
+</div>
+
+<h2>3. Zugriff und Iteration</h2>
+<div class="definition">
+  Elemente eines Arrays werden über den Index angesprochen. Schleifen sind ideal zur Iteration.
+</div>
+
+<div class="example">
+  <pre><code>for (int i = 0; i &lt; 5; i++) {
+    std::cout &lt;&lt; zahlen[i] &lt;&lt; " ";
+}
+std::cout &lt;&lt; std::endl;</code></pre>
+</div>
+
+<h2>4. Mehrdimensionale Arrays</h2>
+<div class="definition">
+  Arrays können mehrere Dimensionen haben, z.B. für Matrizen.
+</div>
+
+<div class="example">
+  <pre><code>int matrix[2][3] = {
+    {1, 2, 3},
+    {4, 5, 6}
+};
+std::cout &lt;&lt; matrix[1][2] &lt;&lt; std::endl; // Ausgabe: 6</code></pre>
+</div>
+
+<h2>5. Strings in C++</h2>
+<div class="definition">
+  In modernem C++ werden Zeichenketten bevorzugt mit <code>std::string</code> aus der Standardbibliothek verwaltet.
+</div>
+
+<div class="example">
+  <pre><code>#include &lt;string&gt;
+#include &lt;iostream&gt;
+
+int main() {
+    std::string name = "C++ lernen";
+    std::cout &lt;&lt; "Text: " &lt;&lt; name &lt;&lt; std::endl;
+}</code></pre>
+</div>
+
+<h2>6. Grundoperationen mit Strings</h2>
+<div class="definition">
+  Strings unterstützen viele nützliche Operationen.
+</div>
+
+<div class="example">
+  <pre><code>std::string s1 = "Hallo";
+std::string s2 = "Welt";
+std::string s3 = s1 + " " + s2; // Verkettung
+std::cout &lt;&lt; s3 &lt;&lt; std::endl;
+
+std::cout &lt;&lt; "Länge: " &lt;&lt; s3.length() &lt;&lt; std::endl;
+std::cout &lt;&lt; "Erstes Zeichen: " &lt;&lt; s3[0] &lt;&lt; std::endl;</code></pre>
+</div>
+
+<h2>7. Char-Arrays als klassische Strings</h2>
+<div class="definition">
+  Historisch wurden Strings als nullterminierte <code>char</code>-Arrays verwendet.
+</div>
+
+<div class="example">
+  <pre><code>char name[] = "C++";
+std::cout &lt;&lt; name &lt;&lt; std::endl;</code></pre>
+</div>
+
+<div class="note">
+  Die Länge eines Char-Arrays muss mindestens das Endezeichen <code>'\0'</code> enthalten. Modernes C++ bevorzugt <code>std::string</code>.
+</div>
+
+<h2>8. Zusammenfassung</h2>
+<ul>
+  <li>Arrays speichern mehrere Werte desselben Typs zusammenhängend im Speicher</li>
+  <li>Index beginnt bei 0</li>
+  <li>Mehrdimensionale Arrays für Matrizen und Tabellen</li>
+  <li><code>std::string</code> ist die bevorzugte Art, Strings zu handhaben</li>
+  <li>Strings unterstützen Verkettung, Zugriff auf Zeichen, Länge und viele Methoden</li>
+  <li>Char-Arrays sind historisch, aber std::string ist sicherer und komfortabler</li>
+</ul>
+
+</section>
+</body>
+</html>

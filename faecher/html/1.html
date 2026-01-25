@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>HTML – Einführung</title>
+  <link rel="stylesheet" href="../../style.css">
+  <style>
+    .definition { padding:.75rem; border-left:4px solid #2b7cff; background:#f3f8ff; border-radius:4px; margin:.75rem 0; }
+    .example { padding:.75rem; border-left:4px solid #2e9a6a; background:#f4fffa; border-radius:4px; margin:.75rem 0; }
+    .note { padding:.75rem; border-left:4px solid #ff9800; background:#fff8f0; border-radius:4px; margin:.75rem 0; }
+    .small { font-size:0.95rem; color:#444; }
+    pre { background:#1e1e1e; color:#d4d4d4; padding:1rem; border-radius:4px; overflow-x:auto; font-size:0.95rem; }
+    code { font-family: Consolas, monospace; }
+  </style>
+</head>
+
+<body>
+
+<nav>
+  <a href="../../index.html">Startseite</a>
+</nav>
+
+<section>
+
+<h1>Einführung in HTML</h1>
+<p class="small">
+Dieses Kapitel gibt einen Überblick über HTML und dessen Rolle beim Erstellen von Webseiten.  
+Ziel ist es, zu verstehen, was HTML ist, wofür es verwendet wird und wie Webseiten strukturiert werden.
+</p>
+
+<h2>1. Was ist HTML?</h2>
+<div class="definition">
+<strong>Definition:</strong><br>
+HTML (<strong>HyperText Markup Language</strong>) ist eine Auszeichnungssprache, die zur Strukturierung von Inhalten im Web verwendet wird.  
+Sie definiert <em>Semantik</em> und <em>Struktur</em> von Texten, Bildern, Links und anderen Elementen.
+</div>
+
+<p>
+HTML selbst ist keine Programmiersprache, sondern beschreibt, <em>was</em> angezeigt wird, nicht <em>wie</em> es verarbeitet wird.
+</p>
+
+<div class="note">
+Webbrowser interpretieren HTML und rendern daraus die sichtbare Webseite.
+</div>
+
+<h2>2. Wofür wird HTML verwendet?</h2>
+<ul>
+  <li>Erstellung und Strukturierung von Webseiten</li>
+  <li>Darstellung von Text, Bildern, Links, Tabellen und Formularen</li>
+  <li>Grundlage für CSS (Design) und JavaScript (Interaktivität)</li>
+</ul>
+
+<div class="example">
+<strong>Beispiel:</strong><br>
+Eine einfache HTML-Struktur:
+<pre><code>&lt;!DOCTYPE html&gt;
+&lt;html&gt;
+  &lt;head&gt;
+    &lt;title&gt;Meine erste Seite&lt;/title&gt;
+  &lt;/head&gt;
+  &lt;body&gt;
+    &lt;h1&gt;Willkommen!&lt;/h1&gt;
+    &lt;p&gt;Dies ist ein Beispieltext.&lt;/p&gt;
+  &lt;/body&gt;
+&lt;/html&gt;</code></pre>
+</div>
+
+<h2>3. Historischer Hintergrund</h2>
+<div class="definition">
+HTML wurde 1991 von Tim Berners-Lee entwickelt, um wissenschaftliche Dokumente über das Internet zu verknüpfen.
+</div>
+
+<ul>
+  <li>Ziel: Hypertext-Dokumente verlinken</li>
+  <li>Später Erweiterung durch Tabellen, Formulare, Multimedia</li>
+  <li>HTML5: moderne Standards, Multimedia, semantische Elemente</li>
+</ul>
+
+<h2>4. Grundprinzipien von HTML</h2>
+<div class="definition">
+HTML besteht aus <strong>Elementen</strong>, die Inhalte markieren. Jedes Element wird meist durch ein Start- und ein End-Tag definiert:
+</div>
+
+<div class="example">
+<pre><code>&lt;tagname&gt;Inhalt&lt;/tagname&gt;</code></pre>
+</div>
+
+<ul>
+  <li>Elemente können Attribute haben, z.B. <code>&lt;img src="bild.jpg" alt="Beschreibung"&gt;</code></li>
+  <li>Einige Elemente sind selbstschließend, z.B. <code>&lt;br&gt;</code> oder <code>&lt;img&gt;</code></li>
+  <li>HTML ist hierarchisch: Elemente können andere Elemente enthalten</li>
+</ul>
+
+<h2>5. Hyperlinks und Navigation</h2>
+<div class="definition">
+Hyperlinks verbinden Seiten und Ressourcen im Web. Sie werden mit dem <code>&lt;a&gt;</code>-Tag erstellt.
+</div>
+
+<div class="example">
+<pre><code>&lt;a href="https://www.example.com"&gt;Besuche Example&lt;/a&gt;</code></pre>
+</div>
+
+<div class="note">
+Das <code>href</code>-Attribut gibt die Ziel-URL an.
+</div>
+
+<h2>6. Bilder und Multimedia</h2>
+<div class="definition">
+HTML ermöglicht die Einbindung von Bildern, Videos und Audio über entsprechende Tags.
+</div>
+
+<div class="example">
+<pre><code>&lt;img src="bild.jpg" alt="Beschreibung" width="300"&gt;
+&lt;video src="video.mp4" controls&gt;&lt;/video&gt;
+&lt;audio src="audio.mp3" controls&gt;&lt;/audio&gt;</code></pre>
+</div>
+
+<h2>7. Tabellen und Listen</h2>
+<p class="small">Tabellen werden mit <code>&lt;table&gt;</code>, <code>&lt;tr&gt;</code> und <code>&lt;td&gt;</code> erstellt. Listen mit <code>&lt;ul&gt;</code> oder <code>&lt;ol&gt;</code>.</p>
+
+<div class="example">
+<pre><code>&lt;ul&gt;
+  &lt;li&gt;Erster Punkt&lt;/li&gt;
+  &lt;li&gt;Zweiter Punkt&lt;/li;
+&lt;/ul&gt;
+
+&lt;table&gt;
+  &lt;tr&gt;&lt;td&gt;Name&lt;/td&gt;&lt;td&gt;Alter&lt;/td&gt;&lt;/tr&gt;
+  &lt;tr&gt;&lt;td&gt;Anna&lt;/td&gt;&lt;td&gt;21&lt;/td&gt;&lt;/tr&gt;
+&lt;/table&gt;</code></pre>
+</div>
+
+<h2>8. Zusammenfassung</h2>
+<ul>
+  <li>HTML strukturiert Webseiten, keine Programmlogik</li>
+  <li>Grundelemente: Text, Links, Bilder, Listen, Tabellen</li>
+  <li>HTML ist hierarchisch und semantisch</li>
+  <li>Hyperlinks verbinden Ressourcen</li>
+  <li>Multimedia wird über spezielle Tags eingebunden</li>
+</ul>
+
+</section>
+</body>
+</html>

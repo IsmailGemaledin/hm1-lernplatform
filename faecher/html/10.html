@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>C++ – Dynamische Speicherverwaltung</title>
+  <link rel="stylesheet" href="../../style.css">
+  <style>
+    .definition { padding:.75rem; border-left:4px solid #2b7cff; background:#f3f8ff; border-radius:4px; margin:.75rem 0; }
+    .example { padding:.75rem; border-left:4px solid #2e9a6a; background:#f4fffa; border-radius:4px; margin:.75rem 0; }
+    .note { padding:.75rem; border-left:4px solid #ff9800; background:#fff8f0; border-radius:4px; margin:.75rem 0; }
+    .small { font-size:0.95rem; color:#444; }
+    pre { background:#1e1e1e; color:#d4d4d4; padding:1rem; border-radius:4px; overflow-x:auto; font-size:0.95rem; }
+    code { font-family: Consolas, monospace; }
+  </style>
+</head>
+
+<body>
+
+<nav>
+  <a href="../../index.html">Startseite</a>
+</nav>
+
+<section>
+
+<h1>Dynamische Speicherverwaltung in C++</h1>
+<p class="small">
+  Diese Lektion behandelt das Anlegen und Verwalten von Speicher zur Laufzeit.  
+  Fokus liegt auf <code>new</code>, <code>delete</code> und modernen C++-Techniken wie Smart Pointern.
+</p>
+
+<h2>1. Warum dynamischer Speicher?</h2>
+<div class="definition">
+  Statischer Speicher wird zur Compile-Zeit festgelegt. Dynamischer Speicher erlaubt:
+</div>
+<ul>
+  <li>Anlegen von Variablen/Arrays zur Laufzeit</li>
+  <li>Flexibilität bei unbekannter Größe</li>
+  <li>Vermeidung von festen Limits im Code</li>
+</ul>
+
+<h2>2. Grundlegende Syntax: new und delete</h2>
+<div class="definition">
+  <code>new</code> reserviert Speicher dynamisch, <code>delete</code> gibt ihn wieder frei.
+</div>
+
+<div class="example">
+  <pre><code>int* ptr = new int;   // einzelnes int
+*ptr = 42;
+
+int* arr = new int[10]; // Array mit 10 ints
+
+delete ptr;             // Speicher freigeben
+delete[] arr;           // Array-Speicher freigeben</code></pre>
+</div>
+
+<div class="note">
+  Immer <code>delete</code> aufrufen, sonst entsteht ein Memory Leak!
+</div>
+
+<h2>3. Initialisierung beim new</h2>
+<div class="definition">
+  Neue Objekte können sofort initialisiert werden.
+</div>
+
+<div class="example">
+  <pre><code>int* p = new int(5);       // Einzelwert 5
+double* d = new double(3.14);  // Einzelwert 3.14
+
+int* arr = new int[5]{1,2,3,4,5}; // Array initialisiert</code></pre>
+</div>
+
+<h2>4. Pointer und Zugriff</h2>
+<div class="definition">
+  Dynamische Variablen werden über Pointer adressiert.
+</div>
+
+<div class="example">
+  <pre><code>int* ptr = new int(10);
+cout &lt;&lt; *ptr &lt;&lt; endl; // Dereferenzierung
+*ptr = 20;                     // Wert ändern
+cout &lt;&lt; *ptr &lt;&lt; endl;
+delete ptr;</code></pre>
+</div>
+
+<h2>5. Mehrdimensionale Arrays</h2>
+<div class="definition">
+  Mehrdimensionale Arrays können dynamisch mit Schleifen angelegt werden.
+</div>
+
+<div class="example">
+  <pre><code>int rows = 3, cols = 4;
+int** matrix = new int*[rows];
+for(int i = 0; i &lt; rows; i++)
+    matrix[i] = new int[cols];
+
+// Zugriff:
+matrix[1][2] = 42;
+
+// Speicher freigeben:
+for(int i = 0; i &lt; rows; i++)
+    delete[] matrix[i];
+delete[] matrix;</code></pre>
+</div>
+
+<h2>6. Smart Pointer</h2>
+<div class="definition">
+  Moderne C++-Technik nutzt Smart Pointer (<code>unique_ptr</code>, <code>shared_ptr</code>) um Speicherlecks zu vermeiden.
+</div>
+
+<div class="example">
+  <pre><code>#include &lt;memory&gt;
+
+unique_ptr&lt;int&gt; uptr = make_unique&lt;int&gt;(10);
+cout &lt;&lt; *uptr &lt;&lt; endl;
+
+// kein delete nötig, automatisch freigegeben</code></pre>
+</div>
+
+<div class="note">
+  Smart Pointer übernehmen Lebenszyklusverwaltung. Alte <code>new/delete</code>-Aufrufe können so sicher ersetzt werden.
+</div>
+
+<h2>7. Zusammenfassung</h2>
+<ul>
+  <li><code>new</code> / <code>delete</code> für dynamischen Speicher</li>
+  <li>Pointer werden benötigt, um auf Speicher zuzugreifen</li>
+  <li>Memory Leaks vermeiden durch korrektes <code>delete</code> oder Smart Pointer</li>
+  <li>Arrays, Objekte und mehrdimensionale Strukturen können dynamisch angelegt werden</li>
+  <li>Smart Pointer in C++17+ erleichtern Speicherverwaltung und erhöhen Sicherheit</li>
+</ul>
+
+</section>
+</body>
+</html>

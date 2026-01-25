@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>C++ – Zeiger</title>
+  <link rel="stylesheet" href="../../style.css">
+  <style>
+    .definition { padding:.75rem; border-left:4px solid #2b7cff; background:#f3f8ff; border-radius:4px; margin:.75rem 0; }
+    .example { padding:.75rem; border-left:4px solid #2e9a6a; background:#f4fffa; border-radius:4px; margin:.75rem 0; }
+    .note { padding:.75rem; border-left:4px solid #ff9800; background:#fff8f0; border-radius:4px; margin:.75rem 0; }
+    .small { font-size:0.95rem; color:#444; }
+    pre { background:#1e1e1e; color:#d4d4d4; padding:1rem; border-radius:4px; overflow-x:auto; font-size:0.95rem; }
+    code { font-family: Consolas, monospace; }
+  </style>
+</head>
+
+<body>
+
+<nav>
+  <a href="../../index.html">Startseite</a>
+</nav>
+
+<section>
+
+<h1>Zeiger (Pointers) in C++</h1>
+<p class="small">
+  In dieser Lektion werden Zeiger in C++ behandelt. Ziel ist, die direkte Adressierung von Speicher, Pointer-Arithmetik und Referenzen zu verstehen.
+</p>
+
+<h2>1. Was ist ein Zeiger?</h2>
+<div class="definition">
+  Ein <strong>Zeiger</strong> ist eine Variable, die die Speicheradresse einer anderen Variablen speichert.
+</div>
+
+<div class="example">
+  <pre><code>int a = 10;
+int* p = &a; // p speichert die Adresse von a
+std::cout &lt;&lt; "Adresse von a: " &lt;&lt; p &lt;&lt; std::endl;
+std::cout &lt;&lt; "Wert von a über p: " &lt;&lt; *p &lt;&lt; std::endl;</code></pre>
+</div>
+
+<h2>2. Syntax von Zeigern</h2>
+<div class="definition">
+  Ein Zeiger wird durch das Sternchen <code>*</code> deklariert. 
+  Das Ampersand <code>&</code> liefert die Adresse einer Variable.
+</div>
+
+<ul>
+  <li><code>int* p;</code> – Zeiger auf int</li>
+  <li><code>double* d;</code> – Zeiger auf double</li>
+  <li><code>char* c;</code> – Zeiger auf char</li>
+</ul>
+
+<h2>3. Zugriff auf Werte über Zeiger</h2>
+<div class="definition">
+  Mit <code>*p</code> kann auf den Wert der Variablen zugegriffen werden, auf die der Zeiger zeigt.
+</div>
+
+<div class="example">
+  <pre><code>int a = 5;
+int* ptr = &a;
+
+std::cout &lt;&lt; *ptr &lt;&lt; std::endl; // Ausgabe: 5
+*ptr = 20; 
+std::cout &lt;&lt; a &lt;&lt; std::endl;    // Ausgabe: 20</code></pre>
+</div>
+
+<h2>4. Pointer-Arithmetik</h2>
+<div class="definition">
+  Zeiger können inkrementiert oder dekrementiert werden, um auf benachbarte Speicheradressen zuzugreifen (besonders bei Arrays nützlich).
+</div>
+
+<div class="example">
+  <pre><code>int arr[3] = {10, 20, 30};
+int* p = arr;
+
+std::cout &lt;&lt; *p &lt;&lt; std::endl;   // 10
+p++;
+std::cout &lt;&lt; *p &lt;&lt; std::endl;   // 20
+p++;
+std::cout &lt;&lt; *p &lt;&lt; std::endl;   // 30</code></pre>
+</div>
+
+<h2>5. Null-Zeiger und Sicherheitsaspekte</h2>
+<div class="definition">
+  Ein Zeiger, der auf nichts zeigt, sollte <code>nullptr</code> sein.
+</div>
+
+<div class="example">
+  <pre><code>int* p = nullptr;
+if (p != nullptr) {
+    std::cout &lt;&lt; *p &lt;&lt; std::endl;
+} else {
+    std::cout &lt;&lt; "Zeiger zeigt auf nichts!" &lt;&lt; std::endl;
+}</code></pre>
+</div>
+
+<div class="note">
+  Dereferenzierung von Null-Zeigern führt zu undefiniertem Verhalten (crash). Deshalb immer überprüfen.
+</div>
+
+<h2>6. Zeiger auf Zeiger</h2>
+<div class="definition">
+  Ein Zeiger kann die Adresse eines anderen Zeigers speichern.
+</div>
+
+<div class="example">
+  <pre><code>int a = 5;
+int* p = &a;
+int** pp = &p;
+
+std::cout &lt;&lt; **pp &lt;&lt; std::endl; // Ausgabe: 5</code></pre>
+</div>
+
+<h2>7. Zeiger und Arrays</h2>
+<div class="definition">
+  Arrays und Zeiger sind eng verbunden. Der Name eines Arrays ist ein Zeiger auf das erste Element.
+</div>
+
+<div class="example">
+  <pre><code>int arr[3] = {1,2,3};
+int* p = arr;       // arr &lt;=&gt; &amp;arr[0]
+for(int i=0;i&lt;3;i++)
+    std::cout &lt;&lt; *(p+i) &lt;&lt; " ";
+std::cout &lt;&lt; std::endl;</code></pre>
+</div>
+
+<h2>8. Referenzen vs. Zeiger</h2>
+<div class="definition">
+  Eine <strong>Referenz</strong> ist ein Alias für eine Variable und wird mit <code>&</code> deklariert.  
+  Anders als Zeiger kann eine Referenz nicht null sein und muss bei Deklaration initialisiert werden.
+</div>
+
+<div class="example">
+  <pre><code>int a = 10;
+int& ref = a;
+ref = 20;
+std::cout &lt;&lt; a &lt;&lt; std::endl; // Ausgabe: 20</code></pre>
+</div>
+
+<div class="note">
+  Referenzen sind oft sicherer und einfacher zu verwenden als rohe Zeiger.
+</div>
+
+<h2>9. Zusammenfassung</h2>
+<ul>
+  <li>Zeiger speichern Adressen von Variablen</li>
+  <li>Zugriff auf Wert mit <code>*</code>, Adresse mit <code>&</code></li>
+  <li>Pointer-Arithmetik erlaubt Iteration über Arrays</li>
+  <li>Null-Zeiger vermeiden und überprüfen</li>
+  <li>Zeiger auf Zeiger und Referenzen für komplexe Datenstrukturen</li>
+  <li><code>std::string</code> und moderne Container reduzieren oft die Notwendigkeit von rohen Zeigern</li>
+</ul>
+
+</section>
+</body>
+</html>

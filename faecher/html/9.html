@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>C++ – Dateiverarbeitung</title>
+  <link rel="stylesheet" href="../../style.css">
+  <style>
+    .definition { padding:.75rem; border-left:4px solid #2b7cff; background:#f3f8ff; border-radius:4px; margin:.75rem 0; }
+    .example { padding:.75rem; border-left:4px solid #2e9a6a; background:#f4fffa; border-radius:4px; margin:.75rem 0; }
+    .note { padding:.75rem; border-left:4px solid #ff9800; background:#fff8f0; border-radius:4px; margin:.75rem 0; }
+    .small { font-size:0.95rem; color:#444; }
+    pre { background:#1e1e1e; color:#d4d4d4; padding:1rem; border-radius:4px; overflow-x:auto; font-size:0.95rem; }
+    code { font-family: Consolas, monospace; }
+  </style>
+</head>
+
+<body>
+
+<nav>
+  <a href="../../index.html">Startseite</a>
+</nav>
+
+<section>
+
+<h1>Dateiverarbeitung in C++</h1>
+<p class="small">
+  In dieser Lektion lernen Sie, wie C++ Dateien öffnet, liest, schreibt und schließt.  
+  Es wird der Umgang mit <code>fstream</code>, <code>ifstream</code> und <code>ofstream</code> erklärt.
+</p>
+
+<h2>1. Einbinden der Bibliotheken</h2>
+<div class="definition">
+  Für Dateiverarbeitung wird die Standardbibliothek <code>&lt;fstream&gt;</code> benötigt.
+</div>
+
+<div class="example">
+  <pre><code>#include &lt;iostream&gt;
+#include &lt;fstream&gt;
+
+using namespace std;</code></pre>
+</div>
+
+<h2>2. Dateistreamtypen</h2>
+<div class="definition">
+  C++ unterscheidet drei Haupttypen:
+</div>
+
+<ul>
+  <li><code>ifstream</code> – Eingabe von Dateien</li>
+  <li><code>ofstream</code> – Ausgabe in Dateien</li>
+  <li><code>fstream</code> – sowohl Ein- als auch Ausgabe</li>
+</ul>
+
+<h2>3. Datei öffnen und schließen</h2>
+<div class="definition">
+  Dateien müssen geöffnet werden, bevor sie gelesen oder beschrieben werden, und anschließend geschlossen werden.
+</div>
+
+<div class="example">
+  <pre><code>ofstream outFile("output.txt");  // Datei öffnen zum Schreiben
+if(!outFile) {
+    cerr &lt;&lt; "Fehler beim Öffnen der Datei!" &lt;&lt; endl;
+}
+outFile &lt;&lt; "Hallo Welt!" &lt;&lt; endl;
+outFile.close();  // Datei schließen</code></pre>
+</div>
+
+<h2>4. Lesen aus Dateien</h2>
+<div class="definition">
+  Für das Lesen von Textdateien wird <code>ifstream</code> verwendet.
+</div>
+
+<div class="example">
+  <pre><code>ifstream inFile("input.txt");
+string zeile;
+while(getline(inFile, zeile)) {
+    cout &lt;&lt; zeile &lt;&lt; endl;
+}
+inFile.close();</code></pre>
+</div>
+
+<h2>5. Binärdateien</h2>
+<div class="definition">
+  Dateien können auch binär gelesen oder geschrieben werden, z.B. für strukturierte Daten.
+</div>
+
+<div class="example">
+  <pre><code>struct Punkt { double x; double y; };
+Punkt p = {1.0, 2.0};
+
+ofstream out("punkte.bin", ios::binary);
+out.write(reinterpret_cast&lt;char*&gt;(&p), sizeof(Punkt));
+out.close();
+
+Punkt p2;
+ifstream in("punkte.bin", ios::binary);
+in.read(reinterpret_cast&lt;char*&gt;(&p2), sizeof(Punkt));
+in.close();
+
+cout &lt;&lt; p2.x &lt;&lt; "," &lt;&lt; p2.y &lt;&lt; endl;</code></pre>
+</div>
+
+<div class="note">
+  Binäre Dateien speichern Daten genau wie im Speicher, ohne Textdarstellung.
+</div>
+
+<h2>6. Fehlerbehandlung</h2>
+<div class="definition">
+  Dateien können aus verschiedenen Gründen nicht geöffnet werden. Prüfen Sie den Zustand immer mit <code>.fail()</code> oder <code>!stream</code>.
+</div>
+
+<div class="example">
+  <pre><code>ifstream file("nicht_existiert.txt");
+if(!file) {
+    cerr &lt;&lt; "Fehler: Datei konnte nicht geöffnet werden!" &lt;&lt; endl;
+}</code></pre>
+</div>
+
+<h2>7. Zusammenfassung</h2>
+<ul>
+  <li>Dateien öffnen mit <code>ifstream</code>, <code>ofstream</code>, <code>fstream</code></li>
+  <li>Textdateien lesen/schreiben mit <code>&lt;&lt;</code> und <code>getline</code></li>
+  <li>Binärdateien mit <code>read</code> und <code>write</code></li>
+  <li>Dateien nach Gebrauch immer schließen (<code>close()</code>)</li>
+  <li>Fehler prüfen, bevor Dateioperationen durchgeführt werden</li>
+</ul>
+
+</section>
+</body>
+</html>
