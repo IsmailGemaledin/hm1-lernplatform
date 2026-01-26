@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>HTML – Textformatierung und Überschriften</title>
+  <link rel="stylesheet" href="../../style.css">
+  <style>
+    .definition { padding:.75rem; border-left:4px solid #2b7cff; background:#f3f8ff; border-radius:4px; margin:.75rem 0; }
+    .example { padding:.75rem; border-left:4px solid #2e9a6a; background:#f4fffa; border-radius:4px; margin:.75rem 0; }
+    .note { padding:.75rem; border-left:4px solid #ff9800; background:#fff8f0; border-radius:4px; margin:.75rem 0; }
+    .small { font-size:0.95rem; color:#444; }
+    pre { background:#1e1e1e; color:#d4d4d4; padding:1rem; border-radius:4px; overflow-x:auto; font-size:0.95rem; }
+    code { font-family: Consolas, monospace; }
+  </style>
+</head>
+
+<body>
+
+<nav>
+  <a href="../../index.html">Startseite</a>
+</nav>
+
+<section>
+
+<h1>Textformatierung und Überschriften</h1>
+<p class="small">
+In dieser Lektion lernen wir, wie Texte in HTML strukturiert und formatiert werden.  
+Fokus liegt auf Überschriften, Absätzen, Textstil und semantischer Bedeutung.
+</p>
+
+<h2>1. Überschriften</h2>
+<div class="definition">
+HTML bietet sechs Ebenen von Überschriften: <code>&lt;h1&gt;</code> bis <code>&lt;h6&gt;</code>.  
+Sie dienen der semantischen Strukturierung, nicht nur der Darstellung.
+</div>
+
+<div class="example">
+<pre><code>&lt;h1&gt;Hauptüberschrift&lt;/h1&gt;
+&lt;h2&gt;Unterüberschrift&lt;/h2&gt;
+&lt;h3&gt;Sektionstitel&lt;/h3&gt;
+&lt;h4&gt;Untersektion&lt;/h4&gt;
+&lt;h5&gt;Kleinere Überschrift&lt;/h5&gt;
+&lt;h6&gt;Kleinste Überschrift&lt;/h6&gt;</code></pre>
+</div>
+
+<div class="note">
+Überschriften sollten in logischer Reihenfolge genutzt werden, um Barrierefreiheit und SEO zu verbessern.
+</div>
+
+<h2>2. Absätze</h2>
+<div class="definition">
+Absätze werden mit <code>&lt;p&gt;</code> markiert. Jeder Absatz erzeugt einen vertikalen Abstand.
+</div>
+
+<div class="example">
+<pre><code>&lt;p&gt;Dies ist ein Absatz.&lt;/p&gt;
+&lt;p&gt;Noch ein Absatz mit etwas Text.&lt;/p&gt;</code></pre>
+</div>
+
+<h2>3. Textauszeichnung</h2>
+<div class="definition">
+HTML bietet semantische Tags für Textformatierung:
+</div>
+
+<ul>
+  <li><code>&lt;strong&gt;</code> – wichtiger Text (fett)</li>
+  <li><code>&lt;em&gt;</code> – betonter Text (kursiv)</li>
+  <li><code>&lt;mark&gt;</code> – markierter Text</li>
+  <li><code>&lt;small&gt;</code> – kleiner Text</li>
+  <li><code>&lt;del&gt;</code> – durchgestrichener Text</li>
+  <li><code>&lt;ins&gt;</code> – eingefügter Text</li>
+</ul>
+
+<div class="example">
+<pre><code>&lt;p&gt;Dies ist &lt;strong&gt;wichtiger&lt;/strong&gt; Text.&lt;/p&gt;
+&lt;p&gt;Dies ist &lt;em&gt;betont&lt;/em&gt;.&lt;/p&gt;
+&lt;p&gt;&lt;mark&gt;Markierter Text&lt;/mark&gt;&lt;/p&gt;
+&lt;p&gt;&lt;small&gt;Kleiner Text&lt;/small&gt;&lt;/p&gt;
+&lt;p&gt;&lt;del&gt;Durchgestrichen&lt;/del&gt; und &lt;ins&gt;eingefügt&lt;/ins&gt;&lt;/p&gt;</code></pre>
+</div>
+
+<h2>4. Zeilenumbrüche und horizontale Linien</h2>
+<div class="definition">
+Zeilenumbrüche werden mit <code>&lt;br&gt;</code> erzeugt, horizontale Linien mit <code>&lt;hr&gt;</code>.
+</div>
+
+<div class="example">
+<pre><code>&lt;p&gt;Erste Zeile&lt;br&gt;Zweite Zeile&lt;/p&gt;
+&lt;hr&gt;
+&lt;p&gt;Text nach einer Linie&lt;/p&gt;</code></pre>
+</div>
+
+<h2>5. Zusammenfassung</h2>
+<ul>
+  <li>Überschriften: <code>&lt;h1&gt;</code> bis <code>&lt;h6&gt;</code>, logisch einsetzen</li>
+  <li>Absätze: <code>&lt;p&gt;</code>, erzeugt Block mit Abstand</li>
+  <li>Textauszeichnung: <code>&lt;strong&gt;</code>, <code>&lt;em&gt;</code>, <code>&lt;mark&gt;</code> usw.</li>
+  <li>Zeilenumbrüche und Linien: <code>&lt;br&gt;</code>, <code>&lt;hr&gt;</code></li>
+  <li>Semantik und Barrierefreiheit beachten</li>
+</ul>
+
+</section>
+</body>
+</html>
