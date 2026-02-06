@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>ExpPhys1_Physikalische_Einheiten</title>
+  <link rel="stylesheet" href="../style.css">
+  <!-- KaTeX für Formeln -->
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.8/dist/katex.min.css">
+  <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.8/dist/katex.min.js"></script>
+  <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.8/dist/contrib/auto-render.min.js"
+          onload="renderMathInElement(document.body);"></script>
+  <style>
+    /* Lokale Ergänzungen für Kapitel-Layout */
+    .definition { padding: .75rem; border-left: 4px solid #2b7cff; background:#f3f8ff; border-radius:4px; margin: .75rem 0; }
+    .satz { padding: .75rem; border-left: 4px solid #2b7cff; background:#f9f9fb; border-radius:4px; margin: .75rem 0; }
+    .example { padding: .75rem; border-left: 4px solid #2e9a6a; background:#f4fffa; border-radius:4px; margin: .75rem 0; }
+    .small { font-size:0.95rem; color:#444; }
+  </style>
+</head>
+<body>
+
+<nav>
+  <a href="../../index.html">Startseite</a>
+</nav>
+
+<section>
+  <h1>Physikalische Einheiten</h1>
+  <p class="small">
+    Diese Seite gibt einen Überblick über physikalische Einheiten in der Experimentalphysik 1.
+    Schwerpunkt sind die SI-Basiseinheiten, wichtige abgeleitete Einheiten und gebräuchliche Vorsätze.
+  </p>
+
+  <h2>1. Physikalische Größen und Einheiten</h2>
+  <div class="definition">
+    <strong>Definition.</strong>
+    Eine <em>physikalische Größe</em> ist eine messbare Eigenschaft eines physikalischen Systems.
+    Sie wird angegeben durch
+    \[
+      \text{Größe} = \text{Zahlenwert} \times \text{Einheit}.
+    \]
+    Beispiel: \( v = 5\,\mathrm{m/s} \).
+  </div>
+
+  <h2>2. SI-Basiseinheiten</h2>
+  <div class="definition">
+    <strong>SI-Basiseinheiten.</strong>
+    Das Internationale Einheitensystem (SI) basiert auf sieben Basiseinheiten:
+    <ul>
+      <li>Länge: Meter (\(\mathrm{m}\))</li>
+      <li>Masse: Kilogramm (\(\mathrm{kg}\))</li>
+      <li>Zeit: Sekunde (\(\mathrm{s}\))</li>
+      <li>Elektrische Stromstärke: Ampere (\(\mathrm{A}\))</li>
+      <li>Temperatur: Kelvin (\(\mathrm{K}\))</li>
+      <li>Stoffmenge: Mol (\(\mathrm{mol}\))</li>
+      <li>Lichtstärke: Candela (\(\mathrm{cd}\))</li>
+    </ul>
+  </div>
+
+  <p class="small">
+    Alle weiteren physikalischen Einheiten lassen sich aus diesen sieben Basiseinheiten ableiten.
+  </p>
+
+  <h2>3. Wichtige abgeleitete SI-Einheiten</h2>
+  <div class="definition">
+    <strong>Mechanische Einheiten.</strong>
+    <ul>
+      <li>Fläche: Quadratmeter (\(\mathrm{m^2}\))</li>
+      <li>Volumen: Kubikmeter (\(\mathrm{m^3}\))</li>
+      <li>Geschwindigkeit: \(\mathrm{m/s}\)</li>
+      <li>Beschleunigung: \(\mathrm{m/s^2}\)</li>
+      <li>Kraft: Newton (\(\mathrm{N} = \mathrm{kg\,m/s^2}\))</li>
+      <li>Arbeit / Energie: Joule (\(\mathrm{J} = \mathrm{N\,m}\))</li>
+      <li>Leistung: Watt (\(\mathrm{W} = \mathrm{J/s}\))</li>
+      <li>Druck: Pascal (\(\mathrm{Pa} = \mathrm{N/m^2}\))</li>
+    </ul>
+  </div>
+
+  <div class="definition">
+    <strong>Elektrische und magnetische Einheiten.</strong>
+    <ul>
+      <li>Ladung: Coulomb (\(\mathrm{C} = \mathrm{A\,s}\))</li>
+      <li>Spannung: Volt (\(\mathrm{V} = \mathrm{J/C}\))</li>
+      <li>Widerstand: Ohm (\(\mathrm{\Omega} = \mathrm{V/A}\))</li>
+      <li>Kapazität: Farad (\(\mathrm{F} = \mathrm{C/V}\))</li>
+      <li>Magnetischer Fluss: Weber (\(\mathrm{Wb}\))</li>
+      <li>Magnetische Flussdichte: Tesla (\(\mathrm{T} = \mathrm{Wb/m^2}\))</li>
+    </ul>
+  </div>
+
+  <div class="definition">
+    <strong>Thermische und weitere Einheiten.</strong>
+    <ul>
+      <li>Temperaturdifferenz: Kelvin (\(\mathrm{K}\))</li>
+      <li>Wärmemenge: Joule (\(\mathrm{J}\))</li>
+      <li>Frequenz: Hertz (\(\mathrm{Hz} = \mathrm{s^{-1}}\))</li>
+      <li>Winkel: Radiant (\(\mathrm{rad}\))</li>
+    </ul>
+  </div>
+
+  <h2>4. SI-Vorsätze (Zehnerpotenzen)</h2>
+  <div class="definition">
+    <strong>Vorsätze.</strong>
+    Häufig verwendete Vorsätze zur Darstellung sehr großer oder sehr kleiner Werte:
+    <ul>
+      <li>Giga (\(\mathrm{G}\)) = \(10^9\)</li>
+      <li>Mega (\(\mathrm{M}\)) = \(10^6\)</li>
+      <li>Kilo (\(\mathrm{k}\)) = \(10^3\)</li>
+      <li>Zenti (\(\mathrm{c}\)) = \(10^{-2}\)</li>
+      <li>Milli (\(\mathrm{m}\)) = \(10^{-3}\)</li>
+      <li>Mikro (\(\mathrm{\mu}\)) = \(10^{-6}\)</li>
+      <li>Nano (\(\mathrm{n}\)) = \(10^{-9}\)</li>
+      <li>Piko (\(\mathrm{p}\)) = \(10^{-12}\)</li>
+    </ul>
+  </div>
+
+  <h2>5. Wichtige Hinweise für die Klausur</h2>
+  <div class="satz">
+    <ul>
+      <li>Einheiten müssen in Rechnungen immer korrekt mitgeführt werden.</li>
+      <li>Falsche oder fehlende Einheiten führen oft zu Punktabzug.</li>
+      <li>Vor dem Einsetzen in Formeln Einheiten möglichst in SI-Einheiten umrechnen.</li>
+      <li>Ergebnisse ohne Einheit gelten als unvollständig.</li>
+    </ul>
+  </div>
+
+  <h2>6. Kurze Beispiele</h2>
+  <div class="example">
+    <strong>Beispiel 1 — Geschwindigkeit.</strong>
+    Ein Körper legt \(s=10\,\mathrm{m}\) in \(t=2\,\mathrm{s}\) zurück.
+    \[
+      v=\frac{s}{t}=\frac{10\,\mathrm{m}}{2\,\mathrm{s}}=5\,\mathrm{m/s}.
+    \]
+  </div>
+
+  <div class="example">
+    <strong>Beispiel 2 — Kraft.</strong>
+    Eine Masse von \(m=2\,\mathrm{kg}\) wird mit \(a=3\,\mathrm{m/s^2}\) beschleunigt.
+    \[
+      F=m a = 6\,\mathrm{N}.
+    \]
+  </div>
+
+  <h2>PDF Übungen</h2>
+  <p><a target="_blank" href="../assets/pdf/ExpPhys1_Physikalische_Einheiten.pdf">Blatt 1</a></p>
+
+</section>
+
+</body>
+</html>
