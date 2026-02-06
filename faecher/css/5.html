@@ -1,0 +1,171 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>CSS – Typografie und Schriftarten</title>
+  <link rel="stylesheet" href="../../style.css">
+  <style>
+    .definition { padding:.75rem; border-left:4px solid #2b7cff; background:#f3f8ff; border-radius:4px; margin:.75rem 0; }
+    .example { padding:.75rem; border-left:4px solid #2e9a6a; background:#f4fffa; border-radius:4px; margin:.75rem 0; }
+    .note { padding:.75rem; border-left:4px solid #ff9800; background:#fff8f0; border-radius:4px; margin:.75rem 0; }
+    .small { font-size:0.95rem; color:#444; }
+    pre { background:#1e1e1e; color:#d4d4d4; padding:1rem; border-radius:4px; overflow-x:auto; font-size:0.95rem; }
+    code { font-family: Consolas, monospace; }
+  </style>
+</head>
+
+<body>
+
+<nav>
+  <a href="../../index.html">Startseite</a>
+</nav>
+
+<section>
+
+<h1>Typografie und Schriftarten</h1>
+
+<p class="small">
+Diese Lektion behandelt Schriftarten, Textformatierung und typografische Eigenschaften in CSS.  
+Richtiges Setzen von Text ist entscheidend für Lesbarkeit und Design.
+</p>
+
+<h2>1. Schriftfamilien</h2>
+
+<div class="definition">
+Die <strong>font-family</strong> bestimmt, welche Schriftart für ein Element verwendet wird.
+</div>
+
+<ul>
+  <li><code>serif</code> – klassische Schriftarten mit Serifen</li>
+  <li><code>sans-serif</code> – moderne, serifenlose Schriften</li>
+  <li><code>monospace</code> – feste Breite für jedes Zeichen</li>
+  <li><code>cursive</code> – kursiv, dekorativ</li>
+  <li><code>fantasy</code> – ausgefallene, dekorative Schriften</li>
+</ul>
+
+<div class="example">
+<pre><code>p {
+    font-family: Arial, Helvetica, sans-serif;
+}</code></pre>
+</div>
+
+<h2>2. Schriftgröße</h2>
+
+<div class="definition">
+Mit <strong>font-size</strong> wird die Größe des Textes bestimmt.  
+Es können absolute (px, pt) oder relative Einheiten (em, rem, %) genutzt werden.
+</div>
+
+<div class="example">
+<pre><code>h1 {
+    font-size: 2.5rem;
+}
+p {
+    font-size: 16px;
+}</code></pre>
+</div>
+
+<h2>3. Schriftstil und Gewicht</h2>
+
+<div class="definition">
+CSS ermöglicht die Anpassung von Stil (kursiv, normal) und Gewicht (dünn bis fett).
+</div>
+
+<ul>
+  <li><code>font-style: normal | italic | oblique;</code></li>
+  <li><code>font-weight: normal | bold | 100–900;</code></li>
+</ul>
+
+<div class="example">
+<pre><code>em {
+    font-style: italic;
+}
+strong {
+    font-weight: bold;
+}</code></pre>
+</div>
+
+<h2>4. Zeilenhöhe und Buchstabenabstand</h2>
+
+<div class="definition">
+Textabstände beeinflussen Lesbarkeit:
+</div>
+
+<ul>
+  <li><code>line-height</code> – Zeilenhöhe</li>
+  <li><code>letter-spacing</code> – Abstand zwischen Buchstaben</li>
+  <li><code>word-spacing</code> – Abstand zwischen Wörtern</li>
+</ul>
+
+<div class="example">
+<pre><code>p {
+    line-height: 1.6;
+    letter-spacing: 0.05em;
+    word-spacing: 0.1em;
+}</code></pre>
+</div>
+
+<h2>5. Textausrichtung</h2>
+
+<div class="definition">
+Mit <strong>text-align</strong> kann Text linksbündig, zentriert, rechtsbündig oder im Blocksatz gesetzt werden.
+</div>
+
+<div class="example">
+<pre><code>h2 {
+    text-align: center;
+}
+p {
+    text-align: justify;
+}</code></pre>
+</div>
+
+<h2>6. Textdekoration und Transformation</h2>
+
+<ul>
+  <li><code>text-decoration: none | underline | overline | line-through;</code></li>
+  <li><code>text-transform: uppercase | lowercase | capitalize;</code></li>
+</ul>
+
+<div class="example">
+<pre><code>a {
+    text-decoration: none;
+    text-transform: uppercase;
+}</code></pre>
+</div>
+
+<h2>7. Farbe</h2>
+
+<div class="definition">
+Textfarbe wird mit <code>color</code> festgelegt. Hexadezimal, RGB(A) oder HSL Werte sind möglich.
+</div>
+
+<div class="example">
+<pre><code>p {
+    color: #2b7cff;
+}
+span {
+    color: rgba(255,0,0,0.8);
+}</code></pre>
+</div>
+
+<h2>8. Zusammenfassung</h2>
+
+<ul>
+  <li>font-family: Wahl der Schriftart</li>
+  <li>font-size: Textgröße in px, em, rem etc.</li>
+  <li>font-style & font-weight: Stil und Gewicht</li>
+  <li>line-height, letter-spacing, word-spacing: Abstände für bessere Lesbarkeit</li>
+  <li>text-align, text-decoration, text-transform: Ausrichtung und Stil</li>
+  <li>color: Textfarbe</li>
+</ul>
+
+<div class="definition">
+Durch korrekte Typografie wird Text lesbar, ansprechend und strukturiert präsentiert.
+</div>
+
+</section>
+
+</body>
+</html>

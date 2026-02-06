@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>CSS – Box-Modell</title>
+  <link rel="stylesheet" href="../../style.css">
+  <style>
+    .definition { padding:.75rem; border-left:4px solid #2b7cff; background:#f3f8ff; border-radius:4px; margin:.75rem 0; }
+    .example { padding:.75rem; border-left:4px solid #2e9a6a; background:#f4fffa; border-radius:4px; margin:.75rem 0; }
+    .note { padding:.75rem; border-left:4px solid #ff9800; background:#fff8f0; border-radius:4px; margin:.75rem 0; }
+    .small { font-size:0.95rem; color:#444; }
+    pre { background:#1e1e1e; color:#d4d4d4; padding:1rem; border-radius:4px; overflow-x:auto; font-size:0.95rem; }
+    code { font-family: Consolas, monospace; }
+  </style>
+</head>
+
+<body>
+
+<nav>
+  <a href="../../index.html">Startseite</a>
+</nav>
+
+<section>
+
+<h1>Das Box-Modell</h1>
+
+<p class="small">
+In dieser Lektion behandeln wir das grundlegende Konzept des CSS-Box-Modells,  
+das die Darstellung und Abstände von HTML-Elementen steuert.
+</p>
+
+<h2>1. Aufbau des Box-Modells</h2>
+
+<div class="definition">
+Jedes HTML-Element wird als rechteckige Box dargestellt. Eine Box besteht aus vier Bereichen:
+</div>
+
+<ul>
+  <li><strong>Content:</strong> der eigentliche Inhalt, z.B. Text oder Bild</li>
+  <li><strong>Padding:</strong> Innenabstand zwischen Inhalt und Rahmen</li>
+  <li><strong>Border:</strong> Rahmen um die Box</li>
+  <li><strong>Margin:</strong> Außenabstand zur nächsten Box</li>
+</ul>
+
+<div class="example">
+<pre><code>div {
+    width: 200px;
+    padding: 10px;
+    border: 2px solid #2b7cff;
+    margin: 20px;
+}</code></pre>
+</div>
+
+<h2>2. Breite und Höhe</h2>
+
+<div class="definition">
+Die CSS-Eigenschaften <code>width</code> und <code>height</code> beziehen sich standardmäßig nur auf den Content-Bereich.
+</div>
+
+<div class="example">
+<pre><code>div {
+    width: 300px;
+    height: 150px;
+}</code></pre>
+</div>
+
+<h2>3. Padding</h2>
+
+<div class="definition">
+Padding definiert den Innenabstand zwischen Inhalt und Rahmen.
+</div>
+
+<ul>
+  <li>Top, Right, Bottom, Left – individuell einstellbar</li>
+  <li>Kurzschreibweise: <code>padding: 10px 20px 15px 5px;</code></li>
+</ul>
+
+<div class="example">
+<pre><code>div {
+    padding: 10px 15px;
+}</code></pre>
+</div>
+
+<h2>4. Border</h2>
+
+<div class="definition">
+Der Border umschließt den Inhalt und das Padding.  
+Eigenschaften: <code>border-width</code>, <code>border-style</code>, <code>border-color</code>
+</div>
+
+<div class="example">
+<pre><code>div {
+    border: 3px dashed #2e9a6a;
+}</code></pre>
+</div>
+
+<h2>5. Margin</h2>
+
+<div class="definition">
+Margin definiert den Außenabstand zwischen der Box und anderen Elementen.
+</div>
+
+<div class="example">
+<pre><code>div {
+    margin: 20px auto;
+}</code></pre>
+</div>
+
+<h2>6. Box-Sizing</h2>
+
+<div class="definition">
+Mit <code>box-sizing</code> kann gesteuert werden, ob <code>width</code> und <code>height</code> den Content oder die gesamte Box (inkl. Padding und Border) betreffen.
+</div>
+
+<ul>
+  <li><code>content-box</code> – Standard, Breite = Content</li>
+  <li><code>border-box</code> – Breite = Content + Padding + Border</li>
+</ul>
+
+<div class="example">
+<pre><code>div {
+    box-sizing: border-box;
+}</code></pre>
+</div>
+
+<h2>7. Zusammenfassung</h2>
+
+<ul>
+  <li>Jede Box besteht aus Content, Padding, Border, Margin</li>
+  <li>width & height beeinflussen standardmäßig nur den Content</li>
+  <li>Padding = Innenabstand, Border = Rahmen, Margin = Außenabstand</li>
+  <li>box-sizing steuert Berechnung der Gesamtgröße</li>
+</ul>
+
+<div class="definition">
+Das Box-Modell ist essenziell für Layout und Design von Webseiten.
+</div>
+
+</section>
+
+</body>
+</html>

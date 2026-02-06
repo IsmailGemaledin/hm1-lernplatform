@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>CSS – Flexbox und Grid</title>
+  <link rel="stylesheet" href="../../style.css">
+  <style>
+    .definition { padding:.75rem; border-left:4px solid #2b7cff; background:#f3f8ff; border-radius:4px; margin:.75rem 0; }
+    .example { padding:.75rem; border-left:4px solid #2e9a6a; background:#f4fffa; border-radius:4px; margin:.75rem 0; }
+    .note { padding:.75rem; border-left:4px solid #ff9800; background:#fff8f0; border-radius:4px; margin:.75rem 0; }
+    .small { font-size:0.95rem; color:#444; }
+    pre { background:#1e1e1e; color:#d4d4d4; padding:1rem; border-radius:4px; overflow-x:auto; font-size:0.95rem; }
+    code { font-family: Consolas, monospace; }
+  </style>
+</head>
+
+<body>
+
+<nav>
+  <a href="../../index.html">Startseite</a>
+</nav>
+
+<section>
+
+<h1>Flexbox und Grid</h1>
+
+<p class="small">
+Diese Lektion behandelt die modernen Layout-Methoden in CSS: Flexbox und Grid.  
+Ziel ist, responsive und flexible Layouts effizient zu gestalten.
+</p>
+
+<h2>1. Flexbox</h2>
+
+<div class="definition">
+Flexbox (Flexible Box) ist ein Layout-Modell, um Elemente in einer Dimension (Zeile oder Spalte) auszurichten und zu verteilen.
+</div>
+
+<ul>
+  <li>Container: <code>display: flex;</code></li>
+  <li>Richtung: <code>flex-direction</code> (row, column)</li>
+  <li>Ausrichtung entlang der Hauptachse: <code>justify-content</code></li>
+  <li>Ausrichtung entlang der Querachse: <code>align-items</code></li>
+  <li>Flexibles Wachstum/Schrumpfen: <code>flex-grow</code>, <code>flex-shrink</code>, <code>flex-basis</code></li>
+</ul>
+
+<div class="example">
+<pre><code>.container {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.item {
+    flex: 1; /* gleichmäßige Verteilung */
+}</code></pre>
+</div>
+
+<h2>2. Grid</h2>
+
+<div class="definition">
+CSS Grid ist ein zweidimensionales Layout-System, das Zeilen und Spalten gleichzeitig verwaltet.
+</div>
+
+<ul>
+  <li>Container: <code>display: grid;</code></li>
+  <li>Zeilen und Spalten definieren: <code>grid-template-rows</code>, <code>grid-template-columns</code></li>
+  <li>Abstand: <code>gap</code> oder <code>row-gap</code>/<code>column-gap</code></li>
+  <li>Positionierung: <code>grid-row</code>, <code>grid-column</code></li>
+</ul>
+
+<div class="example">
+<pre><code>.grid-container {
+    display: grid;
+    grid-template-columns: 1fr 2fr 1fr;
+    grid-template-rows: auto;
+    gap: 10px;
+}
+
+.grid-item {
+    grid-column: 2 / 3;
+    grid-row: 1;
+}</code></pre>
+</div>
+
+<h2>3. Flexbox vs Grid</h2>
+
+<div class="definition">
+Flexbox eignet sich für lineare Layouts (eine Dimension), Grid für komplexe, zweidimensionale Layouts.
+</div>
+
+<ul>
+  <li>Flexbox: besser für Navigation, Toolbars, einfache Reihen/Spalten</li>
+  <li>Grid: besser für gesamte Seitenlayouts, komplexe Anordnungen</li>
+  <li>Beide können kombiniert werden</li>
+</ul>
+
+<h2>4. Zusammenfassung</h2>
+
+<ul>
+  <li>Flexbox = ein-dimensional, einfach zu justieren</li>
+  <li>Grid = zwei-dimensional, sehr mächtig für komplexe Layouts</li>
+  <li>Abstände: Gap, Padding, Margin beachten</li>
+  <li>Responsives Design: Flexbox und Grid erleichtern Anpassung an Bildschirmgrößen</li>
+</ul>
+
+<div class="definition">
+Flexbox und Grid sind die modernen Werkzeuge, um HTML-Elemente sauber, flexibel und responsive zu platzieren.
+</div>
+
+</section>
+
+</body>
+</html>

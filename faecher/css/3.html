@@ -3,7 +3,7 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width,initial-scale=1">
-  <title>HTML – Textformatierung und Überschriften</title>
+  <title>CSS – Farben, Einheiten und Werte</title>
   <link rel="stylesheet" href="../../style.css">
   <style>
     .definition { padding:.75rem; border-left:4px solid #2b7cff; background:#f3f8ff; border-radius:4px; margin:.75rem 0; }
@@ -23,83 +23,188 @@
 
 <section>
 
-<h1>Textformatierung und Überschriften</h1>
+<h1>Farben, Einheiten und Werte</h1>
+
 <p class="small">
-In dieser Lektion lernen wir, wie Texte in HTML strukturiert und formatiert werden.  
-Fokus liegt auf Überschriften, Absätzen, Textstil und semantischer Bedeutung.
+Diese Lektion behandelt die Darstellung von Farben sowie die wichtigsten
+Einheiten und Wertetypen in CSS. Diese Konzepte sind zentral für Layout,
+Lesbarkeit und responsives Design.
 </p>
 
-<h2>1. Überschriften</h2>
+<h2>1. Farben in CSS</h2>
+
 <div class="definition">
-HTML bietet sechs Ebenen von Überschriften: <code>&lt;h1&gt;</code> bis <code>&lt;h6&gt;</code>.  
-Sie dienen der semantischen Strukturierung, nicht nur der Darstellung.
+<strong>Definition.</strong><br>
+Farben in CSS beschreiben die visuelle Darstellung von Text,
+Hintergründen, Rahmen und anderen Elementen.
 </div>
 
+<h3>1.1 Farbname</h3>
+
 <div class="example">
-<pre><code>&lt;h1&gt;Hauptüberschrift&lt;/h1&gt;
-&lt;h2&gt;Unterüberschrift&lt;/h2&gt;
-&lt;h3&gt;Sektionstitel&lt;/h3&gt;
-&lt;h4&gt;Untersektion&lt;/h4&gt;
-&lt;h5&gt;Kleinere Überschrift&lt;/h5&gt;
-&lt;h6&gt;Kleinste Überschrift&lt;/h6&gt;</code></pre>
+<pre><code>p {
+    color: red;
+}</code></pre>
 </div>
 
 <div class="note">
-Überschriften sollten in logischer Reihenfolge genutzt werden, um Barrierefreiheit und SEO zu verbessern.
+Farb­namen sind einfach, aber begrenzt und nicht exakt.
 </div>
 
-<h2>2. Absätze</h2>
+<h3>1.2 Hexadezimale Farben</h3>
+
 <div class="definition">
-Absätze werden mit <code>&lt;p&gt;</code> markiert. Jeder Absatz erzeugt einen vertikalen Abstand.
+Hex-Farben bestehen aus drei Paaren hexadezimaler Ziffern:
+Rot, Grün und Blau.
 </div>
 
 <div class="example">
-<pre><code>&lt;p&gt;Dies ist ein Absatz.&lt;/p&gt;
-&lt;p&gt;Noch ein Absatz mit etwas Text.&lt;/p&gt;</code></pre>
-</div>
-
-<h2>3. Textauszeichnung</h2>
-<div class="definition">
-HTML bietet semantische Tags für Textformatierung:
+<pre><code>h1 {
+    color: #2b7cff;
+}</code></pre>
 </div>
 
 <ul>
-  <li><code>&lt;strong&gt;</code> – wichtiger Text (fett)</li>
-  <li><code>&lt;em&gt;</code> – betonter Text (kursiv)</li>
-  <li><code>&lt;mark&gt;</code> – markierter Text</li>
-  <li><code>&lt;small&gt;</code> – kleiner Text</li>
-  <li><code>&lt;del&gt;</code> – durchgestrichener Text</li>
-  <li><code>&lt;ins&gt;</code> – eingefügter Text</li>
+  <li><code>#000000</code> – schwarz</li>
+  <li><code>#ffffff</code> – weiß</li>
+  <li><code>#ff0000</code> – rot</li>
 </ul>
 
-<div class="example">
-<pre><code>&lt;p&gt;Dies ist &lt;strong&gt;wichtiger&lt;/strong&gt; Text.&lt;/p&gt;
-&lt;p&gt;Dies ist &lt;em&gt;betont&lt;/em&gt;.&lt;/p&gt;
-&lt;p&gt;&lt;mark&gt;Markierter Text&lt;/mark&gt;&lt;/p&gt;
-&lt;p&gt;&lt;small&gt;Kleiner Text&lt;/small&gt;&lt;/p&gt;
-&lt;p&gt;&lt;del&gt;Durchgestrichen&lt;/del&gt; und &lt;ins&gt;eingefügt&lt;/ins&gt;&lt;/p&gt;</code></pre>
-</div>
+<h3>1.3 RGB und RGBA</h3>
 
-<h2>4. Zeilenumbrüche und horizontale Linien</h2>
 <div class="definition">
-Zeilenumbrüche werden mit <code>&lt;br&gt;</code> erzeugt, horizontale Linien mit <code>&lt;hr&gt;</code>.
+RGB beschreibt Farben durch Intensitäten von Rot, Grün und Blau
+im Bereich von 0 bis 255.
 </div>
 
 <div class="example">
-<pre><code>&lt;p&gt;Erste Zeile&lt;br&gt;Zweite Zeile&lt;/p&gt;
-&lt;hr&gt;
-&lt;p&gt;Text nach einer Linie&lt;/p&gt;</code></pre>
+<pre><code>div {
+    background-color: rgb(43, 124, 255);
+}</code></pre>
 </div>
 
-<h2>5. Zusammenfassung</h2>
+<div class="note">
+RGBA erlaubt zusätzlich Transparenz (Alpha-Kanal).
+</div>
+
+<div class="example">
+<pre><code>.overlay {
+    background-color: rgba(0, 0, 0, 0.5);
+}</code></pre>
+</div>
+
+<h3>1.4 HSL und HSLA</h3>
+
+<div class="definition">
+HSL steht für Hue (Farbton), Saturation (Sättigung) und Lightness (Helligkeit).
+</div>
+
+<div class="example">
+<pre><code>p {
+    color: hsl(210, 80%, 50%);
+}</code></pre>
+</div>
+
+<p class="small">
+HSL ist oft intuitiver als RGB, besonders bei Design-Anpassungen.
+</p>
+
+<h2>2. Absolute Einheiten</h2>
+
+<div class="definition">
+Absolute Einheiten haben feste Größen unabhängig vom Kontext.
+</div>
+
 <ul>
-  <li>Überschriften: <code>&lt;h1&gt;</code> bis <code>&lt;h6&gt;</code>, logisch einsetzen</li>
-  <li>Absätze: <code>&lt;p&gt;</code>, erzeugt Block mit Abstand</li>
-  <li>Textauszeichnung: <code>&lt;strong&gt;</code>, <code>&lt;em&gt;</code>, <code>&lt;mark&gt;</code> usw.</li>
-  <li>Zeilenumbrüche und Linien: <code>&lt;br&gt;</code>, <code>&lt;hr&gt;</code></li>
-  <li>Semantik und Barrierefreiheit beachten</li>
+  <li><code>px</code> – Pixel (am häufigsten)</li>
+  <li><code>cm</code>, <code>mm</code></li>
+  <li><code>in</code>, <code>pt</code></li>
 </ul>
+
+<div class="example">
+<pre><code>h1 {
+    font-size: 32px;
+}</code></pre>
+</div>
+
+<div class="note">
+Absolute Einheiten sind für Druck geeignet,
+aber eingeschränkt flexibel.
+</div>
+
+<h2>3. Relative Einheiten</h2>
+
+<div class="definition">
+Relative Einheiten passen sich an Kontext oder Bildschirmgröße an.
+</div>
+
+<ul>
+  <li><code>%</code> – relativ zum Elternelement</li>
+  <li><code>em</code> – relativ zur Schriftgröße des Elternelements</li>
+  <li><code>rem</code> – relativ zur Schriftgröße des Root-Elements</li>
+</ul>
+
+<div class="example">
+<pre><code>p {
+    font-size: 1.2em;
+}</code></pre>
+</div>
+
+<div class="note">
+<code>rem</code> wird für skalierbare Layouts bevorzugt.
+</div>
+
+<h2>4. Viewport-Einheiten</h2>
+
+<div class="definition">
+Viewport-Einheiten beziehen sich auf die Größe des Browserfensters.
+</div>
+
+<ul>
+  <li><code>vw</code> – 1% der Viewport-Breite</li>
+  <li><code>vh</code> – 1% der Viewport-Höhe</li>
+  <li><code>vmin</code>, <code>vmax</code></li>
+</ul>
+
+<div class="example">
+<pre><code>section {
+    min-height: 100vh;
+}</code></pre>
+</div>
+
+<h2>5. Zahlen, Schlüsselwörter und Funktionen</h2>
+
+<div class="definition">
+CSS-Werte können unterschiedliche Typen haben.
+</div>
+
+<ul>
+  <li>Zahlen: <code>0</code>, <code>1.5</code></li>
+  <li>Schlüsselwörter: <code>auto</code>, <code>inherit</code>, <code>none</code></li>
+  <li>Funktionen: <code>rgb()</code>, <code>calc()</code></li>
+</ul>
+
+<div class="example">
+<pre><code>.box {
+    width: calc(100% - 2rem);
+}</code></pre>
+</div>
+
+<h2>6. Zusammenfassung</h2>
+
+<ul>
+  <li>Farben: Name, Hex, RGB(A), HSL(A)</li>
+  <li>Absolute vs. relative Einheiten</li>
+  <li>Viewport-Einheiten für responsives Design</li>
+  <li>CSS-Werte können Zahlen, Keywords oder Funktionen sein</li>
+</ul>
+
+<div class="definition">
+Die richtige Wahl von Farben und Einheiten ist entscheidend
+für modernes, responsives Webdesign.
+</div>
 
 </section>
+
 </body>
 </html>

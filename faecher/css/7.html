@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>CSS – Positionierung und Layout</title>
+  <link rel="stylesheet" href="../../style.css">
+  <style>
+    .definition { padding:.75rem; border-left:4px solid #2b7cff; background:#f3f8ff; border-radius:4px; margin:.75rem 0; }
+    .example { padding:.75rem; border-left:4px solid #2e9a6a; background:#f4fffa; border-radius:4px; margin:.75rem 0; }
+    .note { padding:.75rem; border-left:4px solid #ff9800; background:#fff8f0; border-radius:4px; margin:.75rem 0; }
+    .small { font-size:0.95rem; color:#444; }
+    pre { background:#1e1e1e; color:#d4d4d4; padding:1rem; border-radius:4px; overflow-x:auto; font-size:0.95rem; }
+    code { font-family: Consolas, monospace; }
+  </style>
+</head>
+
+<body>
+
+<nav>
+  <a href="../../index.html">Startseite</a>
+</nav>
+
+<section>
+
+<h1>Positionierung und Layout</h1>
+
+<p class="small">
+Diese Lektion behandelt CSS-Techniken zur Positionierung von Elementen und grundlegendes Layout-Management.
+</p>
+
+<h2>1. Position-Eigenschaft</h2>
+
+<div class="definition">
+Die Eigenschaft <code>position</code> bestimmt, wie ein Element im Layout positioniert wird.
+</div>
+
+<ul>
+  <li><code>static</code> – Standardposition, normales Layoutfluss-Verhalten</li>
+  <li><code>relative</code> – relativ zur normalen Position</li>
+  <li><code>absolute</code> – absolut relativ zum nächstgelegenen positionierten Vorfahren</li>
+  <li><code>fixed</code> – relativ zum Viewport, bleibt beim Scrollen stehen</li>
+  <li><code>sticky</code> – kombiniert <code>relative</code> und <code>fixed</code> abhängig vom Scroll</li>
+</ul>
+
+<div class="example">
+<pre><code>div {
+    position: absolute;
+    top: 50px;
+    left: 100px;
+}</code></pre>
+</div>
+
+<h2>2. Z-Index</h2>
+
+<div class="definition">
+Mit <code>z-index</code> wird die Stapelreihenfolge von positionierten Elementen festgelegt.
+</div>
+
+<div class="example">
+<pre><code>div {
+    position: relative;
+    z-index: 10; /* höher = weiter vorne */
+}</code></pre>
+</div>
+
+<h2>3. Float</h2>
+
+<div class="definition">
+Float erlaubt es, Elemente nach links oder rechts auszurichten und Text oder andere Elemente darum fließen zu lassen.
+</div>
+
+<div class="example">
+<pre><code>img {
+    float: left;
+    margin-right: 10px;
+}</code></pre>
+</div>
+
+<div class="note">
+Float sollte mit <code>clear</code> kombiniert werden, um Layout-Probleme zu vermeiden.
+</div>
+
+<h2>4. Display-Eigenschaft</h2>
+
+<div class="definition">
+<code>display</code> steuert, wie ein Element im Layout dargestellt wird.
+</div>
+
+<ul>
+  <li><code>block</code> – Blockelement, beginnt in neuer Zeile</li>
+  <li><code>inline</code> – Inline-Element, fließt im Text</li>
+  <li><code>inline-block</code> – Inline-Element mit Block-Eigenschaften</li>
+  <li><code>none</code> – Element wird nicht angezeigt</li>
+</ul>
+
+<div class="example">
+<pre><code>span {
+    display: inline-block;
+    width: 100px;
+}</code></pre>
+</div>
+
+<h2>5. Flexbox-Grundlagen</h2>
+
+<div class="definition">
+Flexbox erleichtert das Layout und die Ausrichtung von Elementen innerhalb eines Containers.
+</div>
+
+<ul>
+  <li>Eltern-Container: <code>display: flex;</code></li>
+  <li>Richtung: <code>flex-direction: row | column;</code></li>
+  <li>Justify-Content: horizontale Ausrichtung</li>
+  <li>Align-Items: vertikale Ausrichtung</li>
+</ul>
+
+<div class="example">
+<pre><code>div.container {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+}</code></pre>
+</div>
+
+<h2>6. Zusammenfassung</h2>
+
+<ul>
+  <li><strong>Position:</strong> static, relative, absolute, fixed, sticky</li>
+  <li><strong>Z-Index:</strong> Steuerung der Stapelreihenfolge</li>
+  <li><strong>Float:</strong> Elemente links/rechts ausrichten</li>
+  <li><strong>Display:</strong> block, inline, inline-block, none</li>
+  <li><strong>Flexbox:</strong> flexibles Layout und Ausrichtung von Elementen</li>
+</ul>
+
+<div class="definition">
+Die Beherrschung von Positionierung und Layout ist essenziell für sauberes und flexibles Webdesign.
+</div>
+
+</section>
+
+</body>
+</html>

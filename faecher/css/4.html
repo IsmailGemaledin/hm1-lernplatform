@@ -1,0 +1,178 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>CSS – Box-Modell und Layout</title>
+  <link rel="stylesheet" href="../../style.css">
+  <style>
+    .definition { padding:.75rem; border-left:4px solid #2b7cff; background:#f3f8ff; border-radius:4px; margin:.75rem 0; }
+    .example { padding:.75rem; border-left:4px solid #2e9a6a; background:#f4fffa; border-radius:4px; margin:.75rem 0; }
+    .note { padding:.75rem; border-left:4px solid #ff9800; background:#fff8f0; border-radius:4px; margin:.75rem 0; }
+    .small { font-size:0.95rem; color:#444; }
+    pre { background:#1e1e1e; color:#d4d4d4; padding:1rem; border-radius:4px; overflow-x:auto; font-size:0.95rem; }
+    code { font-family: Consolas, monospace; }
+  </style>
+</head>
+
+<body>
+
+<nav>
+  <a href="../../index.html">Startseite</a>
+</nav>
+
+<section>
+
+<h1>Box-Modell und Layout</h1>
+
+<p class="small">
+Diese Lektion behandelt das CSS-Box-Modell, Abstände, Ränder, Größen und Positionierung von Elementen.  
+Das Verständnis des Box-Modells ist essentiell für korrektes Layout und Design.
+</p>
+
+<h2>1. Das Box-Modell</h2>
+
+<div class="definition">
+Jedes HTML-Element wird als rechteckige Box dargestellt, die aus vier Bereichen besteht:
+<em>Content</em>, <em>Padding</em>, <em>Border</em> und <em>Margin</em>.
+</div>
+
+<div class="example">
+<pre><code>div {
+    width: 200px;       /* Content-Breite */
+    padding: 10px;      /* Innenabstand */
+    border: 5px solid black; /* Rahmen */
+    margin: 20px;       /* Außenabstand */
+}</code></pre>
+</div>
+
+<h2>2. Content-Bereich</h2>
+
+<div class="definition">
+Der <strong>Content</strong> ist der eigentliche Inhalt, wie Text oder Bilder.
+</div>
+
+<h2>3. Padding</h2>
+
+<div class="definition">
+Padding definiert den Abstand zwischen Content und Rahmen.
+</div>
+
+<div class="example">
+<pre><code>p {
+    padding: 15px;
+}</code></pre>
+</div>
+
+<h2>4. Border</h2>
+
+<div class="definition">
+Der <strong>Border</strong> ist der sichtbare Rahmen um das Element.
+</div>
+
+<div class="example">
+<pre><code>div {
+    border: 2px dashed #2b7cff;
+}</code></pre>
+</div>
+
+<h2>5. Margin</h2>
+
+<div class="definition">
+Margin definiert den Abstand zu anderen Elementen.
+</div>
+
+<div class="example">
+<pre><code>section {
+    margin: 20px auto; /* zentriert horizontal */
+}</code></pre>
+</div>
+
+<h2>6. Box-Sizing</h2>
+
+<div class="definition">
+Mit <code>box-sizing</code> lässt sich festlegen, wie Breite und Höhe berechnet werden.
+</div>
+
+<ul>
+  <li><code>content-box</code> – Standard, Breite = Content</li>
+  <li><code>border-box</code> – Breite = Content + Padding + Border</li>
+</ul>
+
+<div class="example">
+<pre><code>*, *::before, *::after {
+    box-sizing: border-box;
+}</code></pre>
+</div>
+
+<h2>7. Positionierung</h2>
+
+<div class="definition">
+CSS-Positionierung steuert, wo ein Element angezeigt wird.
+</div>
+
+<ul>
+  <li><code>static</code> – Standardposition</li>
+  <li><code>relative</code> – relativ zur eigenen Position</li>
+  <li><code>absolute</code> – relativ zum nächstgelegenen positionierten Vorfahren</li>
+  <li><code>fixed</code> – relativ zum Viewport</li>
+  <li><code>sticky</code> – scrollt, bleibt aber an einer Position kleben</li>
+</ul>
+
+<div class="example">
+<pre><code>header {
+    position: sticky;
+    top: 0;
+}</code></pre>
+</div>
+
+<h2>8. Float und Clear</h2>
+
+<div class="definition">
+Float verschiebt Elemente nach links oder rechts; Clear verhindert Überlappung.
+</div>
+
+<div class="example">
+<pre><code>img {
+    float: left;
+    margin-right: 10px;
+}
+.clearfix::after {
+    content: "";
+    display: table;
+    clear: both;
+}</code></pre>
+</div>
+
+<h2>9. Flexbox (Einführung)</h2>
+
+<div class="definition">
+Flexbox ermöglicht flexible Anordnung von Elementen in einer Zeile oder Spalte.
+</div>
+
+<div class="example">
+<pre><code>nav {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}</code></pre>
+</div>
+
+<h2>10. Zusammenfassung</h2>
+
+<ul>
+  <li>Box-Modell: Content, Padding, Border, Margin</li>
+  <li>Box-Sizing bestimmt Berechnung der Breite/Höhe</li>
+  <li>Positionierung: static, relative, absolute, fixed, sticky</li>
+  <li>Float/clear beeinflusst Layout von Elementen</li>
+  <li>Flexbox für flexible Layouts</li>
+</ul>
+
+<div class="definition">
+Das Verständnis des Box-Modells ist essenziell, um CSS-Layouts korrekt zu gestalten.
+</div>
+
+</section>
+
+</body>
+</html>

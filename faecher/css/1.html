@@ -3,7 +3,7 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width,initial-scale=1">
-  <title>HTML – Einführung</title>
+  <title>CSS – Einführung</title>
   <link rel="stylesheet" href="../../style.css">
   <style>
     .definition { padding:.75rem; border-left:4px solid #2b7cff; background:#f3f8ff; border-radius:4px; margin:.75rem 0; }
@@ -23,123 +23,180 @@
 
 <section>
 
-<h1>Einführung in HTML</h1>
+<h1>Einführung in CSS</h1>
+
 <p class="small">
-Dieses Kapitel gibt einen Überblick über HTML und dessen Rolle beim Erstellen von Webseiten.  
-Ziel ist es, zu verstehen, was HTML ist, wofür es verwendet wird und wie Webseiten strukturiert werden.
+Dieses Kapitel führt in Cascading Style Sheets (CSS) ein.
+Ziel ist es zu verstehen, <em>warum</em> CSS existiert, welches Problem es löst
+und wie es mit HTML zusammenspielt.
 </p>
 
-<h2>1. Was ist HTML?</h2>
+<h2>1. Was ist CSS?</h2>
+
 <div class="definition">
-<strong>Definition:</strong><br>
-HTML (<strong>HyperText Markup Language</strong>) ist eine Auszeichnungssprache, die zur Strukturierung von Inhalten im Web verwendet wird.  
-Sie definiert <em>Semantik</em> und <em>Struktur</em> von Texten, Bildern, Links und anderen Elementen.
+<strong>Definition.</strong><br>
+<strong>CSS (Cascading Style Sheets)</strong> ist eine Stylesheet-Sprache,
+mit der das visuelle Erscheinungsbild von HTML-Dokumenten beschrieben wird.
 </div>
 
 <p>
-HTML selbst ist keine Programmiersprache, sondern beschreibt, <em>was</em> angezeigt wird, nicht <em>wie</em> es verarbeitet wird.
+Während HTML die <em>Struktur</em> und <em>Bedeutung</em> von Inhalten festlegt,
+ist CSS ausschließlich für deren <em>Darstellung</em> zuständig.
+</p>
+
+<div class="example">
+<strong>Trennung der Aufgaben:</strong>
+<ul>
+  <li>HTML: Was ist der Inhalt?</li>
+  <li>CSS: Wie sieht der Inhalt aus?</li>
+</ul>
+</div>
+
+<h2>2. Warum braucht man CSS?</h2>
+
+<div class="definition">
+CSS wurde eingeführt, um Inhalt und Darstellung strikt zu trennen.
+</div>
+
+<p>
+In frühen Webseiten wurden Layout und Design direkt in HTML beschrieben.
+Dies führte zu unübersichtlichem, schwer wartbarem Code.
 </p>
 
 <div class="note">
-Webbrowser interpretieren HTML und rendern daraus die sichtbare Webseite.
+Ohne CSS müsste jede visuelle Änderung direkt im HTML vorgenommen werden.
 </div>
 
-<h2>2. Wofür wird HTML verwendet?</h2>
+<p>
+CSS ermöglicht:
+</p>
+
 <ul>
-  <li>Erstellung und Strukturierung von Webseiten</li>
-  <li>Darstellung von Text, Bildern, Links, Tabellen und Formularen</li>
-  <li>Grundlage für CSS (Design) und JavaScript (Interaktivität)</li>
+  <li>zentrale Gestaltung vieler Seiten</li>
+  <li>konsistentes Design</li>
+  <li>einfache Wartung und Erweiterung</li>
+  <li>responsive und moderne Layouts</li>
+</ul>
+
+<h2>3. Grundidee von CSS</h2>
+
+<div class="definition">
+CSS beschreibt Regeln, die festlegen,
+<strong>welche HTML-Elemente</strong> wie dargestellt werden.
+</div>
+
+<p>
+Eine CSS-Regel besteht konzeptionell aus:
+</p>
+
+<ul>
+  <li>einem Selektor (welches Element?)</li>
+  <li>einer oder mehreren Eigenschaften</li>
+  <li>zugehörigen Werten</li>
 </ul>
 
 <div class="example">
-<strong>Beispiel:</strong><br>
-Eine einfache HTML-Struktur:
-<pre><code>&lt;!DOCTYPE html&gt;
-&lt;html&gt;
-  &lt;head&gt;
-    &lt;title&gt;Meine erste Seite&lt;/title&gt;
-  &lt;/head&gt;
-  &lt;body&gt;
-    &lt;h1&gt;Willkommen!&lt;/h1&gt;
-    &lt;p&gt;Dies ist ein Beispieltext.&lt;/p&gt;
-  &lt;/body&gt;
-&lt;/html&gt;</code></pre>
+<strong>Beispiel (konzeptionell):</strong>
+<pre><code>Element {
+    Eigenschaft: Wert;
+}</code></pre>
 </div>
 
-<h2>3. Historischer Hintergrund</h2>
+<h2>4. CSS und HTML – Zusammenspiel</h2>
+
 <div class="definition">
-HTML wurde 1991 von Tim Berners-Lee entwickelt, um wissenschaftliche Dokumente über das Internet zu verknüpfen.
+HTML-Elemente werden durch CSS <em>gestylt</em>, aber nicht verändert.
+</div>
+
+<p>
+CSS kann:
+</p>
+
+<ul>
+  <li>Farben ändern</li>
+  <li>Abstände festlegen</li>
+  <li>Layout steuern</li>
+  <li>Schriften definieren</li>
+</ul>
+
+<div class="note">
+CSS kann keine neuen Inhalte erzeugen und keine Logik ausführen.
+</div>
+
+<h2>5. Arten von CSS</h2>
+
+<div class="definition">
+Es gibt drei grundlegende Arten, CSS in ein HTML-Dokument einzubinden.
 </div>
 
 <ul>
-  <li>Ziel: Hypertext-Dokumente verlinken</li>
-  <li>Später Erweiterung durch Tabellen, Formulare, Multimedia</li>
-  <li>HTML5: moderne Standards, Multimedia, semantische Elemente</li>
+  <li><strong>Inline-CSS</strong> (direkt im HTML-Element)</li>
+  <li><strong>Internes CSS</strong> (im &lt;style&gt;-Tag)</li>
+  <li><strong>Externes CSS</strong> (separate .css-Datei)</li>
 </ul>
 
-<h2>4. Grundprinzipien von HTML</h2>
-<div class="definition">
-HTML besteht aus <strong>Elementen</strong>, die Inhalte markieren. Jedes Element wird meist durch ein Start- und ein End-Tag definiert:
-</div>
-
 <div class="example">
-<pre><code>&lt;tagname&gt;Inhalt&lt;/tagname&gt;</code></pre>
-</div>
-
-<ul>
-  <li>Elemente können Attribute haben, z.B. <code>&lt;img src="bild.jpg" alt="Beschreibung"&gt;</code></li>
-  <li>Einige Elemente sind selbstschließend, z.B. <code>&lt;br&gt;</code> oder <code>&lt;img&gt;</code></li>
-  <li>HTML ist hierarchisch: Elemente können andere Elemente enthalten</li>
-</ul>
-
-<h2>5. Hyperlinks und Navigation</h2>
-<div class="definition">
-Hyperlinks verbinden Seiten und Ressourcen im Web. Sie werden mit dem <code>&lt;a&gt;</code>-Tag erstellt.
-</div>
-
-<div class="example">
-<pre><code>&lt;a href="https://www.example.com"&gt;Besuche Example&lt;/a&gt;</code></pre>
+<strong>Beispiel – externes CSS:</strong>
+<pre><code>&lt;link rel="stylesheet" href="style.css"&gt;</code></pre>
 </div>
 
 <div class="note">
-Das <code>href</code>-Attribut gibt die Ziel-URL an.
+Externes CSS ist der Standard in professionellen Projekten.
 </div>
 
-<h2>6. Bilder und Multimedia</h2>
+<h2>6. Das „C“ in CSS: Cascading</h2>
+
 <div class="definition">
-HTML ermöglicht die Einbindung von Bildern, Videos und Audio über entsprechende Tags.
+<strong>Cascading</strong> beschreibt, wie CSS-Regeln priorisiert und kombiniert werden.
 </div>
 
-<div class="example">
-<pre><code>&lt;img src="bild.jpg" alt="Beschreibung" width="300"&gt;
-&lt;video src="video.mp4" controls&gt;&lt;/video&gt;
-&lt;audio src="audio.mp3" controls&gt;&lt;/audio&gt;</code></pre>
-</div>
+<p>
+Mehrere Regeln können auf dasselbe Element zutreffen.
+CSS entscheidet anhand von:
+</p>
 
-<h2>7. Tabellen und Listen</h2>
-<p class="small">Tabellen werden mit <code>&lt;table&gt;</code>, <code>&lt;tr&gt;</code> und <code>&lt;td&gt;</code> erstellt. Listen mit <code>&lt;ul&gt;</code> oder <code>&lt;ol&gt;</code>.</p>
-
-<div class="example">
-<pre><code>&lt;ul&gt;
-  &lt;li&gt;Erster Punkt&lt;/li&gt;
-  &lt;li&gt;Zweiter Punkt&lt;/li;
-&lt;/ul&gt;
-
-&lt;table&gt;
-  &lt;tr&gt;&lt;td&gt;Name&lt;/td&gt;&lt;td&gt;Alter&lt;/td&gt;&lt;/tr&gt;
-  &lt;tr&gt;&lt;td&gt;Anna&lt;/td&gt;&lt;td&gt;21&lt;/td&gt;&lt;/tr&gt;
-&lt;/table&gt;</code></pre>
-</div>
-
-<h2>8. Zusammenfassung</h2>
 <ul>
-  <li>HTML strukturiert Webseiten, keine Programmlogik</li>
-  <li>Grundelemente: Text, Links, Bilder, Listen, Tabellen</li>
-  <li>HTML ist hierarchisch und semantisch</li>
-  <li>Hyperlinks verbinden Ressourcen</li>
-  <li>Multimedia wird über spezielle Tags eingebunden</li>
+  <li>Herkunft der Regel</li>
+  <li>Spezifität des Selektors</li>
+  <li>Reihenfolge im Code</li>
 </ul>
 
+<div class="note">
+Dieses Prinzip wird in späteren Lektionen formal behandelt.
+</div>
+
+<h2>7. Ziel dieses CSS-Kurses</h2>
+
+<div class="definition">
+Ziel ist es, CSS nicht nur anzuwenden, sondern systematisch zu verstehen.
+</div>
+
+<ul>
+  <li>sauberes Layout ohne Hacks</li>
+  <li>moderne Techniken (Flexbox, Grid)</li>
+  <li>responsive Designs</li>
+  <li>wartbarer, skalierbarer Code</li>
+</ul>
+
+<p class="small">
+CSS ist kein „Dekorationswerkzeug“, sondern eine eigenständige Sprache
+mit klaren Regeln und Modellen.
+</p>
+
+<h2>8. Ausblick</h2>
+
+<ul>
+  <li>CSS-Syntax und Selektoren</li>
+  <li>Box-Modell</li>
+  <li>Layout-Systeme</li>
+  <li>Responsive Design</li>
+</ul>
+
+<div class="definition">
+Wer CSS beherrscht, kontrolliert das Erscheinungsbild des Webs.
+</div>
+
 </section>
+
 </body>
 </html>

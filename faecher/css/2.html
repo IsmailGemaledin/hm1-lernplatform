@@ -3,7 +3,7 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width,initial-scale=1">
-  <title>HTML – Grundstruktur einer Seite</title>
+  <title>CSS – Syntax, Selektoren und Kommentare</title>
   <link rel="stylesheet" href="../../style.css">
   <style>
     .definition { padding:.75rem; border-left:4px solid #2b7cff; background:#f3f8ff; border-radius:4px; margin:.75rem 0; }
@@ -23,89 +23,186 @@
 
 <section>
 
-<h1>Grundstruktur einer HTML-Seite</h1>
+<h1>CSS-Syntax, Selektoren und Kommentare</h1>
+
 <p class="small">
-Diese Lektion behandelt den Aufbau einer vollständigen HTML-Seite.  
-Ziel ist zu verstehen, welche Elemente in jedem HTML-Dokument vorhanden sein sollten und wie sie organisiert sind.
+In dieser Lektion werden die formale Struktur von CSS,
+die grundlegenden Selektortypen sowie Kommentare behandelt.
+Diese Konzepte bilden das Fundament jeder CSS-Regel.
 </p>
 
-<h2>1. HTML-Dokumenttyp und Root-Element</h2>
+<h2>1. Grundaufbau einer CSS-Regel</h2>
+
 <div class="definition">
-Jedes HTML-Dokument beginnt mit der Deklaration des Dokumenttyps und einem Root-Element <code>&lt;html&gt;</code>.
+<strong>Definition.</strong><br>
+Eine CSS-Regel beschreibt, wie bestimmte HTML-Elemente dargestellt werden.
 </div>
 
+<p>
+Eine Regel besteht aus zwei Hauptteilen:
+</p>
+
+<ul>
+  <li><strong>Selektor</strong> – wählt HTML-Elemente aus</li>
+  <li><strong>Deklarationsblock</strong> – enthält Stildefinitionen</li>
+</ul>
+
 <div class="example">
-<pre><code>&lt;!DOCTYPE html&gt;
-&lt;html lang="de"&gt;
-  ...
-&lt;/html&gt;</code></pre>
+<strong>Allgemeine Syntax:</strong>
+<pre><code>selektor {
+    eigenschaft: wert;
+    eigenschaft: wert;
+}</code></pre>
 </div>
 
 <div class="note">
-Die Deklaration <code>&lt;!DOCTYPE html&gt;</code> sorgt dafür, dass der Browser den HTML5-Standard verwendet.
+Jede Deklaration endet mit einem Semikolon.
 </div>
 
-<h2>2. Kopfbereich: &lt;head&gt;</h2>
+<h2>2. Eigenschaften und Werte</h2>
+
 <div class="definition">
-Der Kopfbereich enthält Metainformationen über das Dokument, die nicht direkt angezeigt werden.
-</div>
-
-<ul>
-  <li><code>&lt;meta charset="utf-8"&gt;</code> – Zeichenkodierung</li>
-  <li><code>&lt;meta name="viewport" content="width=device-width, initial-scale=1"&gt;</code> – responsive Darstellung</li>
-  <li><code>&lt;title&gt;</code> – Titel im Browser-Tab</li>
-  <li><code>&lt;link rel="stylesheet" href="style.css"&gt;</code> – CSS-Datei einbinden</li>
-  <li><code>&lt;link rel="icon" href="favicon.ico"&gt;</code> – Favicon</li>
-</ul>
-
-<div class="example">
-<pre><code>&lt;head&gt;
-  &lt;meta charset="utf-8"&gt;
-  &lt;meta name="viewport" content="width=device-width, initial-scale=1"&gt;
-  &lt;title&gt;Meine Webseite&lt;/title&gt;
-  &lt;link rel="stylesheet" href="style.css"&gt;
-  &lt;link rel="icon" href="favicon.ico"&gt;
-&lt;/head&gt;</code></pre>
-</div>
-
-<h2>3. Körperbereich: &lt;body&gt;</h2>
-<div class="definition">
-Der <code>&lt;body&gt;</code>-Bereich enthält alle sichtbaren Inhalte der Webseite: Texte, Bilder, Links, Tabellen, Formulare usw.
+Eine <strong>Eigenschaft</strong> beschreibt ein Darstellungsmerkmal,
+der <strong>Wert</strong> legt dessen konkrete Ausprägung fest.
 </div>
 
 <div class="example">
-<pre><code>&lt;body&gt;
-  &lt;h1&gt;Willkommen&lt;/h1&gt;
-  &lt;p&gt;Dies ist ein Beispieltext.&lt;/p&gt;
-  &lt;a href="seite2.html"&gt;Zur nächsten Seite&lt;/a&gt;
-&lt;/body&gt;</code></pre>
+<pre><code>p {
+    color: blue;
+    font-size: 16px;
+}</code></pre>
 </div>
 
-<h2>4. Strukturprinzipien</h2>
-<ul>
-  <li>HTML ist hierarchisch: <code>&lt;html&gt;&lt;head&gt;&lt;/head&gt;&lt;body&gt;&lt;/body&gt;&lt;/html&gt;</code></li>
-  <li>Elemente können verschachtelt sein</li>
-  <li>Semantik beachten: Überschriften, Absätze, Listen, Artikel, Sektionen</li>
-</ul>
+<p>
+CSS kennt hunderte Eigenschaften, die logisch gruppiert sind
+(z.B. Text, Box-Modell, Layout, Farben).
+</p>
 
-<h2>5. Kommentare</h2>
+<h2>3. Elementselektoren</h2>
+
 <div class="definition">
-Kommentare werden nicht angezeigt und helfen bei der Dokumentation:
+Ein <strong>Elementselektor</strong> wählt alle HTML-Elemente eines bestimmten Typs aus.
 </div>
 
 <div class="example">
-<pre><code>&lt;!-- Dies ist ein Kommentar --&gt;</code></pre>
+<pre><code>h1 {
+    color: darkred;
+}
+
+p {
+    line-height: 1.6;
+}</code></pre>
 </div>
 
-<h2>6. Zusammenfassung</h2>
+<div class="note">
+Elementselektoren wirken global auf alle entsprechenden Tags.
+</div>
+
+<h2>4. Klassenselektoren</h2>
+
+<div class="definition">
+<strong>Klassenselektoren</strong> wählen Elemente anhand ihres
+<code>class</code>-Attributs aus.
+</div>
+
+<div class="example">
+<strong>HTML:</strong>
+<pre><code>&lt;p class="highlight"&gt;Text&lt;/p&gt;</code></pre>
+
+<strong>CSS:</strong>
+<pre><code>.highlight {
+    background-color: yellow;
+}</code></pre>
+</div>
+
+<p>
+Klassen sind wiederverwendbar und das wichtigste Stilmittel in CSS.
+</p>
+
+<h2>5. ID-Selektoren</h2>
+
+<div class="definition">
+Ein <strong>ID-Selektor</strong> wählt genau ein Element über dessen eindeutige ID aus.
+</div>
+
+<div class="example">
+<pre><code>#header {
+    background-color: #333;
+    color: white;
+}</code></pre>
+</div>
+
+<div class="note">
+IDs dürfen pro Seite nur einmal verwendet werden.
+</div>
+
+<h2>6. Gruppierung von Selektoren</h2>
+
+<div class="definition">
+Mehrere Selektoren können dieselben Regeln teilen.
+</div>
+
+<div class="example">
+<pre><code>h1, h2, h3 {
+    font-family: Arial, sans-serif;
+}</code></pre>
+</div>
+
+<p>
+Dies reduziert Code-Duplizierung und erhöht Wartbarkeit.
+</p>
+
+<h2>7. Kommentare in CSS</h2>
+
+<div class="definition">
+Kommentare dienen der Dokumentation und werden vom Browser ignoriert.
+</div>
+
+<div class="example">
+<pre><code>/* Dies ist ein CSS-Kommentar */
+p {
+    color: black; /* Textfarbe */
+}</code></pre>
+</div>
+
+<div class="note">
+CSS kennt nur Block-Kommentare, keine Zeilenkommentare.
+</div>
+
+<h2>8. Lesbarkeit und Stilregeln</h2>
+
+<div class="definition">
+Gut strukturierter CSS-Code ist entscheidend für größere Projekte.
+</div>
+
 <ul>
-  <li>Jede HTML-Seite beginnt mit <code>&lt;!DOCTYPE html&gt;</code> und <code>&lt;html&gt;</code></li>
-  <li><code>&lt;head&gt;</code> enthält Metainformationen und Verweise auf CSS/JS</li>
-  <li><code>&lt;body&gt;</code> enthält alle sichtbaren Inhalte</li>
-  <li>Semantische Strukturierung ist wichtig</li>
-  <li>Kommentare dienen der Dokumentation</li>
+  <li>jede Eigenschaft in neuer Zeile</li>
+  <li>logische Gruppierung von Regeln</li>
+  <li>aussagekräftige Klassennamen</li>
 </ul>
+
+<div class="example">
+<pre><code>.main-content {
+    max-width: 800px;
+    margin: 0 auto;
+    padding: 1rem;
+}</code></pre>
+</div>
+
+<h2>9. Zusammenfassung</h2>
+
+<ul>
+  <li>CSS-Regeln bestehen aus Selektor und Deklarationen</li>
+  <li>Grundselektoren: Element, Klasse, ID</li>
+  <li>Eigenschaften definieren Darstellung</li>
+  <li>Kommentare erhöhen Verständlichkeit</li>
+</ul>
+
+<div class="definition">
+Eine saubere CSS-Syntax ist Voraussetzung für jedes weitere Thema.
+</div>
 
 </section>
+
 </body>
 </html>

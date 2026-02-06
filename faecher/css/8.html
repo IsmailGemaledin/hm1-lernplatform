@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>CSS – Farben und Hintergründe</title>
+  <link rel="stylesheet" href="../../style.css">
+  <style>
+    .definition { padding:.75rem; border-left:4px solid #2b7cff; background:#f3f8ff; border-radius:4px; margin:.75rem 0; }
+    .example { padding:.75rem; border-left:4px solid #2e9a6a; background:#f4fffa; border-radius:4px; margin:.75rem 0; }
+    .note { padding:.75rem; border-left:4px solid #ff9800; background:#fff8f0; border-radius:4px; margin:.75rem 0; }
+    .small { font-size:0.95rem; color:#444; }
+    pre { background:#1e1e1e; color:#d4d4d4; padding:1rem; border-radius:4px; overflow-x:auto; font-size:0.95rem; }
+    code { font-family: Consolas, monospace; }
+  </style>
+</head>
+
+<body>
+
+<nav>
+  <a href="../../index.html">Startseite</a>
+</nav>
+
+<section>
+
+<h1>Farben und Hintergründe</h1>
+
+<p class="small">
+Diese Lektion behandelt CSS-Techniken zur Farbgestaltung von Texten, Hintergründen und Elementen.
+</p>
+
+<h2>1. Farbdefinitionen</h2>
+
+<div class="definition">
+CSS unterstützt verschiedene Methoden, Farben anzugeben.
+</div>
+
+<ul>
+  <li>Schlüsselwörter: <code>red</code>, <code>blue</code>, <code>green</code></li>
+  <li>Hexadezimal: <code>#RRGGBB</code>, z.B. <code>#ff0000</code></li>
+  <li>RGB-Funktion: <code>rgb(255,0,0)</code></li>
+  <li>RGBA-Funktion (mit Alpha/Transparenz): <code>rgba(255,0,0,0.5)</code></li>
+  <li>HSL-Funktion: <code>hsl(0,100%,50%)</code></li>
+</ul>
+
+<div class="example">
+<pre><code>p {
+    color: blue;
+}
+
+div {
+    background-color: #f0f0f0;
+}</code></pre>
+</div>
+
+<h2>2. Hintergrundbilder</h2>
+
+<div class="definition">
+Hintergründe können auch mit Bildern gestaltet werden.
+</div>
+
+<ul>
+  <li><code>background-image: url('bild.jpg');</code></li>
+  <li><code>background-repeat: no-repeat | repeat-x | repeat-y;</code></li>
+  <li><code>background-size: cover | contain | 100px 200px;</code></li>
+  <li><code>background-position: center | top | bottom | left | right;</code></li>
+</ul>
+
+<div class="example">
+<pre><code>body {
+    background-image: url('background.png');
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: center;
+}</code></pre>
+</div>
+
+<h2>3. Farbverläufe (Gradients)</h2>
+
+<div class="definition">
+CSS kann lineare und radiale Farbverläufe als Hintergründe darstellen.
+</div>
+
+<div class="example">
+<pre><code>div {
+    background: linear-gradient(to right, red, yellow);
+}
+
+section {
+    background: radial-gradient(circle, blue, white);
+}</code></pre>
+</div>
+
+<h2>4. Transparenz und Opazität</h2>
+
+<div class="definition">
+Die Transparenz von Elementen wird mit <code>opacity</code> oder RGBA-Werten gesteuert.
+</div>
+
+<div class="example">
+<pre><code>div {
+    background-color: rgba(0, 128, 255, 0.5);
+}
+
+p {
+    opacity: 0.7;
+}</code></pre>
+</div>
+
+<h2>5. Textfarben</h2>
+
+<div class="definition">
+Die Textfarbe wird mit <code>color</code> festgelegt.
+</div>
+
+<div class="example">
+<pre><code>h1 {
+    color: #2b7cff;
+}
+
+p.note {
+    color: orange;
+}</code></pre>
+</div>
+
+<h2>6. Zusammenfassung</h2>
+
+<ul>
+  <li>Farben: Schlüsselwörter, Hex, RGB(A), HSL</li>
+  <li>Hintergründe: Farbe, Bild, Gradients</li>
+  <li>Positionierung und Wiederholung von Hintergrundbildern</li>
+  <li>Transparenz: RGBA oder Opacity</li>
+  <li>Textfarbe über <code>color</code></li>
+</ul>
+
+<div class="definition">
+Die Beherrschung von Farben und Hintergründen ist zentral für ästhetisches und benutzerfreundliches Webdesign.
+</div>
+
+</section>
+
+</body>
+</html>
