@@ -1,0 +1,217 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>Einführung_Ortsvektor_und_Position</title>
+  <link rel="stylesheet" href="../style.css">
+  <!-- KaTeX für Formeln -->
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.8/dist/katex.min.css">
+  <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.8/dist/katex.min.js"></script>
+  <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.8/dist/contrib/auto-render.min.js"
+          onload="renderMathInElement(document.body);"></script>
+  <style>
+    .definition { padding: .75rem; border-left: 4px solid #2b7cff; background:#f3f8ff; border-radius:4px; margin: .75rem 0; }
+    .example { padding: .75rem; border-left: 4px solid #2e9a6a; background:#f4fffa; border-radius:4px; margin: .75rem 0; }
+    .small { font-size:0.95rem; color:#444; }
+  </style>
+</head>
+<body>
+
+<nav>
+  <a href="../../index.html">Startseite</a>
+</nav>
+
+<section>
+  <h1>Position und Ortsvektor</h1>
+
+  <p class="small">
+    Dieses Kapitel ist eine <strong>reine Einführung</strong>.
+    Es erklärt, was mit der <em>Position</em> eines Punktes gemeint ist und wie man diese
+    mithilfe von <em>Vektoren</em> beschreibt.
+    <br>
+    Es geht <strong>nicht</strong> um Bewegung, Geschwindigkeit oder Beschleunigung.
+  </p>
+
+  <h2>1. Was bedeutet „Position“?</h2>
+
+  <p>
+    In der Physik bedeutet <em>Position</em>:
+    <br>
+    <strong>Wo befindet sich ein Punkt im Raum?</strong>
+  </p>
+
+  <p>
+    Um diese Frage eindeutig beantworten zu können, brauchen wir:
+  </p>
+  <ul>
+    <li>einen <strong>Koordinatenursprung</strong> (Referenzpunkt)</li>
+    <li>ein <strong>Koordinatensystem</strong></li>
+  </ul>
+
+  <p class="small">
+    Ohne einen festgelegten Ursprung ist „Position“ bedeutungslos.
+    Physik ist immer relativ zu einem Bezugssystem.
+  </p>
+
+  <h2>2. Der Ortsvektor</h2>
+
+  <div class="definition">
+    <strong>Definition (Ortsvektor).</strong>
+    Die Position eines Punktes wird durch den <em>Ortsvektor</em> \(\vec r\) beschrieben.
+    <br>
+    Der Ortsvektor zeigt
+    <strong>vom Koordinatenursprung zum Punkt</strong>.
+  </div>
+
+  <p>
+    Der Ortsvektor ist also kein „Pfeil irgendwo“, sondern immer:
+  </p>
+  <ul>
+    <li>Start: Koordinatenursprung</li>
+    <li>Ende: betrachteter Punkt</li>
+  </ul>
+
+  <h2>3. Ortsvektor in einem Koordinatensystem</h2>
+
+  <p>
+    Wir beginnen mit dem einfachsten Fall: dem zweidimensionalen Raum (Ebene).
+  </p>
+
+  <div class="definition">
+    In der Ebene schreibt man den Ortsvektor als
+    \[
+      \vec r =
+      \begin{pmatrix}
+        x \\
+        y
+      \end{pmatrix}.
+    \]
+    Dabei geben \(x\) und \(y\) die Lage des Punktes entlang der Achsen an.
+  </div>
+
+  <p class="small">
+    Wichtig:
+    <br>
+    \(x\) und \(y\) sind <strong>Zahlen mit Einheit</strong>, z.B. Meter.
+  </p>
+
+  <h2>4. „Zeichnung“ eines Ortsvektors (KaTeX)</h2>
+
+  <p>
+    Der folgende Ausdruck zeigt schematisch, was ein Ortsvektor bedeutet:
+  </p>
+
+  <div class="definition">
+    \[
+      \text{Ursprung } (0,0)
+      \;\longrightarrow\;
+      \begin{pmatrix}
+        x \\
+        y
+      \end{pmatrix}
+    \]
+  </div>
+
+  <p>
+    Man kann sich das so vorstellen:
+  </p>
+
+  <div class="definition">
+    \[
+      \vec r =
+      x\,\vec e_x + y\,\vec e_y
+    \]
+  </div>
+
+  <p class="small">
+    Dabei sind \(\vec e_x\) und \(\vec e_y\) die Einheitsvektoren entlang der Achsen.
+  </p>
+
+  <h2>5. Beispiele für Ortsvektoren</h2>
+
+  <div class="example">
+    <strong>Beispiel 1.</strong>
+    Ein Punkt liegt bei \(x=3\,\mathrm{m}\) und \(y=2\,\mathrm{m}\).
+    <br><br>
+    Sein Ortsvektor ist:
+    \[
+      \vec r =
+      \begin{pmatrix}
+        3 \\
+        2
+      \end{pmatrix}\mathrm{m}.
+    \]
+  </div>
+
+  <div class="example">
+    <strong>Beispiel 2.</strong>
+    Ein Punkt liegt links vom Ursprung bei \(x=-1\,\mathrm{m}\) und oben bei \(y=4\,\mathrm{m}\).
+    <br><br>
+    \[
+      \vec r =
+      \begin{pmatrix}
+        -1 \\
+        4
+      \end{pmatrix}\mathrm{m}.
+    \]
+  </div>
+
+  <h2>6. Ortsvektor im dreidimensionalen Raum</h2>
+
+  <div class="definition">
+    Im Raum (3D) schreibt man den Ortsvektor als
+    \[
+      \vec r =
+      \begin{pmatrix}
+        x \\
+        y \\
+        z
+      \end{pmatrix}.
+    \]
+  </div>
+
+  <p>
+    Jede Komponente beschreibt die Lage entlang einer Raumrichtung.
+  </p>
+
+  <div class="definition">
+    \[
+      \vec r = x\,\vec e_x + y\,\vec e_y + z\,\vec e_z
+    \]
+  </div>
+
+  <h2>7. Einheit des Ortsvektors</h2>
+
+  <div class="definition">
+    Alle Komponenten eines Ortsvektors haben die Einheit
+    \[
+      [\vec r] = \mathrm{m}.
+    \]
+  </div>
+
+  <p class="small">
+    Der Ortsvektor selbst hat ebenfalls die Einheit Meter,
+    da er eine geometrische Länge mit Richtung beschreibt.
+  </p>
+
+  <h2>8. Wichtige Merksätze</h2>
+
+  <div class="definition">
+    <ul>
+      <li>Der Ortsvektor beschreibt <strong>nur die Lage</strong>, nicht die Bewegung.</li>
+      <li>Er zeigt immer vom Ursprung zum Punkt.</li>
+      <li>Er ist ein Vektor und besitzt Richtung und Betrag.</li>
+      <li>Die Komponenten hängen vom gewählten Koordinatensystem ab.</li>
+    </ul>
+  </div>
+
+  <p class="small">
+    Auf dieser Grundlage bauen später Geschwindigkeit und Beschleunigung auf.
+    Ohne ein klares Verständnis des Ortsvektors ist Kinematik nicht sinnvoll möglich.
+  </p>
+
+</section>
+
+</body>
+</html>

@@ -1,0 +1,414 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>ExpPhys1_Geschwindigkeit</title>
+  <link rel="stylesheet" href="../style.css">
+  <!-- KaTeX für Formeln -->
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.8/dist/katex.min.css">
+  <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.8/dist/katex.min.js"></script>
+  <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.8/dist/contrib/auto-render.min.js"
+          onload="renderMathInElement(document.body);"></script>
+  <style>
+    /* Lokale Ergänzungen für Kapitel-Layout */
+    .definition { padding: .75rem; border-left: 4px solid #2b7cff; background:#f3f8ff; border-radius:4px; margin: .75rem 0; }
+    .satz { padding: .75rem; border-left: 4px solid #2b7cff; background:#f9f9fb; border-radius:4px; margin: .75rem 0; }
+    .example { padding: .75rem; border-left: 4px solid #2e9a6a; background:#f4fffa; border-radius:4px; margin: .75rem 0; }
+    pre.math { background:#f7f7f7; padding: .5rem; border-radius:4px; overflow:auto; }
+    .small { font-size:0.95rem; color:#444; }
+  </style>
+</head>
+<body>
+
+<nav>
+  <a href="../../index.html">Startseite</a>
+</nav>
+
+<section>
+  <h1>Geschwindigkeit</h1>
+  <p class="small">
+    Dieses Kapitel behandelt die <em>Geschwindigkeit</em> als zentrale kinematische Größe der Experimentalphysik 1.
+    Wir definieren Geschwindigkeit konsequent über die <em>Ortsfunktion</em> \( \vec r(t) \) und unterscheiden
+    zwischen mittlerer und momentaner Geschwindigkeit, skalarer Geschwindigkeit (Betrag) und vektorieller Geschwindigkeit.
+    <strong>Beschleunigung</strong> (\( \vec a(t) \)) wird hier bewusst nicht behandelt, da sie das nächste Kapitel ist.
+  </p>
+
+  <h2>1. Ortsvektor, Bahnkurve und Weg</h2>
+
+  <div class="definition">
+    <strong>Definition (Ortsvektor).</strong>
+    Die Bewegung eines Punktes (Teilchens) im Raum wird durch die <em>Ortsfunktion</em>
+    \[
+      \vec r(t) =
+      \begin{pmatrix}
+        x(t)\\ y(t)\\ z(t)
+      \end{pmatrix}
+    \]
+    beschrieben. Dabei sind \(x(t),y(t),z(t)\) die kartesischen Koordinaten als Funktionen der Zeit \(t\).
+    Die Menge aller Punkte \( \vec r(t) \) im Raum heißt <em>Bahnkurve</em> (Trajektorie).
+  </div>
+
+  <p class="small">
+    Wichtig: Der Ortsvektor \(\vec r(t)\) zeigt vom Koordinatenursprung zum Teilchen. Er ist ein Vektor und enthält
+    bereits Richtungsinformation. In der Kinematik arbeitet man konsequent mit \(\vec r(t)\), \(\Delta \vec r\),
+    \(\vec v\) etc.
+  </p>
+
+  <div class="definition">
+    <strong>Definition (Verschiebungsvektor).</strong>
+    Für zwei Zeiten \(t_1<t_2\) ist die <em>Verschiebung</em>
+    \[
+      \Delta \vec r = \vec r(t_2)-\vec r(t_1).
+    \]
+    Komponentenweise:
+    \[
+      \Delta \vec r =
+      \begin{pmatrix}
+        x(t_2)-x(t_1)\\
+        y(t_2)-y(t_1)\\
+        z(t_2)-z(t_1)
+      \end{pmatrix}
+      =
+      \begin{pmatrix}
+        \Delta x\\ \Delta y\\ \Delta z
+      \end{pmatrix}.
+    \]
+  </div>
+
+  <p class="small">
+    Achtung: Die <em>Verschiebung</em> ist nicht dasselbe wie die <em>zurückgelegte Weglänge</em>.
+    Die Verschiebung ist ein Vektor (mit Richtung), die Weglänge ist eine skalare Größe (immer \(\ge 0\)).
+  </p>
+
+  <div class="definition">
+    <strong>Definition (Weglänge / Bogenlänge).</strong>
+    Die zurückgelegte Weglänge zwischen \(t_1\) und \(t_2\) ist die Bogenlänge der Bahn:
+    \[
+      s(t_1,t_2) = \int_{t_1}^{t_2} \left\lVert \frac{d\vec r}{dt}(t)\right\rVert dt.
+    \]
+    In Komponenten:
+    \[
+      \left\lVert \frac{d\vec r}{dt}\right\rVert
+      =
+      \sqrt{\left(\frac{dx}{dt}\right)^2+\left(\frac{dy}{dt}\right)^2+\left(\frac{dz}{dt}\right)^2}.
+    \]
+  </div>
+
+  <h2>2. Mittlere Geschwindigkeit</h2>
+
+  <div class="definition">
+    <strong>Definition (mittlere vektorielle Geschwindigkeit).</strong>
+    Die mittlere Geschwindigkeit im Zeitintervall \([t_1,t_2]\) ist definiert als
+    \[
+      \overline{\vec v} = \frac{\Delta \vec r}{\Delta t}
+      = \frac{\vec r(t_2)-\vec r(t_1)}{t_2-t_1}.
+    \]
+    Dabei ist \(\Delta t = t_2-t_1\).
+  </div>
+
+  <div class="definition">
+    <strong>Definition (mittlere skalare Geschwindigkeit).</strong>
+    Die mittlere <em>skalare</em> Geschwindigkeit (häufig „Durchschnittsgeschwindigkeit“) basiert auf der Weglänge:
+    \[
+      \overline{v} = \frac{s(t_1,t_2)}{\Delta t}.
+    \]
+  </div>
+
+  <div class="satz">
+    <strong>Merke.</strong>
+    \[
+      \left\lVert \overline{\vec v} \right\rVert
+      =
+      \left\lVert \frac{\Delta \vec r}{\Delta t}\right\rVert
+      \neq
+      \frac{s}{\Delta t}
+      =
+      \overline{v}
+    \]
+    im Allgemeinen. Gleichheit gilt nur, wenn die Bewegung geradlinig ohne Richtungswechsel erfolgt (d.h. Bahn = Gerade und
+    Vorzeichenwechsel ausgeschlossen).
+  </div>
+
+  <h2>3. Momentane Geschwindigkeit (Definition über Grenzwert)</h2>
+
+  <p>
+    In der Physik ist die zentrale Größe die <em>momentane</em> (zeitabhängige) Geschwindigkeit.
+    Sie ist die Grenzform der mittleren Geschwindigkeit für immer kleinere Zeitintervalle.
+  </p>
+
+  <div class="definition">
+    <strong>Definition (momentane vektorielle Geschwindigkeit).</strong>
+    \[
+      \vec v(t)
+      =
+      \lim_{\Delta t\to 0}\frac{\vec r(t+\Delta t)-\vec r(t)}{\Delta t}
+      =
+      \frac{d\vec r}{dt}(t).
+    \]
+  </div>
+
+  <div class="definition">
+    <strong>Komponentenform.</strong>
+    Für \(\vec r(t)=(x(t),y(t),z(t))^T\) gilt
+    \[
+      \vec v(t)=
+      \begin{pmatrix}
+        \dot x(t)\\ \dot y(t)\\ \dot z(t)
+      \end{pmatrix}
+      =
+      \begin{pmatrix}
+        \frac{dx}{dt}\\[2pt]
+        \frac{dy}{dt}\\[2pt]
+        \frac{dz}{dt}
+      \end{pmatrix}.
+    \]
+  </div>
+
+  <div class="satz">
+    <strong>Geometrische Interpretation.</strong>
+    Der Geschwindigkeitsvektor \(\vec v(t)\) ist tangential an die Bahnkurve und zeigt in Bewegungsrichtung.
+  </div>
+
+  <h2>4. Betrag der Geschwindigkeit (Skalargeschwindigkeit)</h2>
+
+  <div class="definition">
+    <strong>Definition (Betrag / skalarer Wert).</strong>
+    Die <em>Skalargeschwindigkeit</em> ist der Betrag des Geschwindigkeitsvektors:
+    \[
+      v(t)=\lVert \vec v(t)\rVert.
+    \]
+    In Komponenten:
+    \[
+      v(t)=\sqrt{\dot x(t)^2+\dot y(t)^2+\dot z(t)^2}.
+    \]
+  </div>
+
+  <p class="small">
+    Physikalisch ist \(v(t)\) die „Tacho-Anzeige“ (ohne Richtung). Die Richtung steckt ausschließlich in \(\vec v(t)\).
+  </p>
+
+  <h2>5. Einheiten und Dimensionsanalyse</h2>
+
+  <div class="definition">
+    <strong>Einheit der Geschwindigkeit.</strong>
+    Aus \(\vec v = \frac{d\vec r}{dt}\) folgt:
+    \[
+      [\vec v] = \frac{[\vec r]}{[t]}=\frac{\mathrm{m}}{\mathrm{s}}.
+    \]
+    Also ist die SI-Einheit \(\mathrm{m/s}\). Häufige Umrechnung:
+    \[
+      1\,\mathrm{m/s} = 3.6\,\mathrm{km/h}.
+    \]
+  </div>
+
+  <div class="satz">
+    <strong>Merke (Einheitenprüfung).</strong>
+    Jede Formel, die eine Geschwindigkeit liefert, muss Dimension \(\mathrm{m/s}\) haben.
+    Das ist eine schnelle Plausibilitätskontrolle in Rechnungen.
+  </div>
+
+  <h2>6. Spezielle Fälle: 1D, 2D, 3D</h2>
+
+  <div class="definition">
+    <strong>Bewegung in 1D (eine Raumrichtung).</strong>
+    Sei \(x(t)\) die Ortsfunktion auf einer Geraden. Dann:
+    \[
+      v(t)=\frac{dx}{dt}.
+    \]
+    Hier kann \(v(t)\) <em>positiv</em> oder <em>negativ</em> sein (Richtung entlang der Achse).
+    Der Betrag ist
+    \[
+      |v(t)|=\left|\frac{dx}{dt}\right|.
+    \]
+  </div>
+
+  <div class="definition">
+    <strong>Bewegung in 2D.</strong>
+    \[
+      \vec r(t)=
+      \begin{pmatrix}
+        x(t)\\ y(t)
+      \end{pmatrix},
+      \quad
+      \vec v(t)=
+      \begin{pmatrix}
+        \dot x(t)\\ \dot y(t)
+      \end{pmatrix},
+      \quad
+      v(t)=\sqrt{\dot x(t)^2+\dot y(t)^2}.
+    \]
+  </div>
+
+  <div class="definition">
+    <strong>Bewegung in 3D.</strong>
+    \[
+      \vec r(t)=
+      \begin{pmatrix}
+        x(t)\\ y(t)\\ z(t)
+      \end{pmatrix},
+      \quad
+      \vec v(t)=
+      \begin{pmatrix}
+        \dot x(t)\\ \dot y(t)\\ \dot z(t)
+      \end{pmatrix},
+      \quad
+      v(t)=\sqrt{\dot x(t)^2+\dot y(t)^2+\dot z(t)^2}.
+    \]
+  </div>
+
+  <h2>7. Zusammenhang zwischen Weg und Geschwindigkeit</h2>
+
+  <p>
+    Für die Weglänge \(s\) ist der zentrale Zusammenhang:
+    „Weglänge ist Integral der Skalargeschwindigkeit“.
+  </p>
+
+  <div class="definition">
+    <strong>Weg aus Geschwindigkeit.</strong>
+    \[
+      s(t_1,t_2)=\int_{t_1}^{t_2} v(t)\,dt
+      =
+      \int_{t_1}^{t_2}\lVert \vec v(t)\rVert \,dt.
+    \]
+  </div>
+
+  <p class="small">
+    Dieser Zusammenhang gilt sehr allgemein (auch für krummlinige Bahnkurven). Für geradlinige Bewegung ohne Richtungswechsel
+    kann man oft vereinfachen, aber in der allgemeinen kinematischen Form bleibt es das Integral.
+  </p>
+
+  <h2>8. Häufige Formeln in Spezialfällen (ohne Beschleunigung!)</h2>
+
+  <div class="definition">
+    <strong>Konstante Geschwindigkeit (geradlinig).</strong>
+    Wenn \(\vec v(t)=\vec v_0\) konstant ist, dann gilt
+    \[
+      \vec r(t)=\vec r(t_0)+\vec v_0\,(t-t_0).
+    \]
+    Komponentenweise:
+    \[
+      x(t)=x(t_0)+v_x\,(t-t_0),\quad
+      y(t)=y(t_0)+v_y\,(t-t_0),\quad
+      z(t)=z(t_0)+v_z\,(t-t_0).
+    \]
+  </div>
+
+  <div class="satz">
+    <strong>Merke.</strong>
+    Konstante Geschwindigkeit bedeutet: Bahn ist eine Gerade (in Richtung \(\vec v_0\)) und der Betrag \(v=\lVert\vec v_0\rVert\) bleibt konstant.
+  </div>
+
+  <h2>9. Viele äquivalente Schreibweisen (für Sicherheit in Aufgaben)</h2>
+
+  <p class="small">
+    In Aufgaben tauchen dieselben Zusammenhänge oft in leicht unterschiedlichen Notationen auf.
+    Die folgenden Formeln sind im Kern „dasselbe“ und helfen beim Wiedererkennen.
+  </p>
+
+  <div class="definition">
+    <ul>
+      <li>
+        Mittlere vektorielle Geschwindigkeit:
+        \[
+          \overline{\vec v}=\frac{\vec r_2-\vec r_1}{t_2-t_1}.
+        \]
+      </li>
+      <li>
+        Mit \(\Delta \vec r\) und \(\Delta t\):
+        \[
+          \overline{\vec v}=\frac{\Delta \vec r}{\Delta t}.
+        \]
+      </li>
+      <li>
+        Momentane vektorielle Geschwindigkeit:
+        \[
+          \vec v(t)=\frac{d\vec r}{dt}.
+        \]
+      </li>
+      <li>
+        Als Grenzwert:
+        \[
+          \vec v(t)=\lim_{\Delta t\to 0}\frac{\vec r(t+\Delta t)-\vec r(t)}{\Delta t}.
+        \]
+      </li>
+      <li>
+        Skalarer Betrag:
+        \[
+          v(t)=\lVert \vec v(t)\rVert.
+        \]
+      </li>
+      <li>
+        In Komponenten:
+        \[
+          v(t)=\sqrt{\dot x(t)^2+\dot y(t)^2+\dot z(t)^2}.
+        \]
+      </li>
+      <li>
+        Weglänge aus \(v(t)\):
+        \[
+          s=\int v(t)\,dt.
+        \]
+      </li>
+      <li>
+        Weglänge aus \(\vec r(t)\):
+        \[
+          s=\int \left\lVert \frac{d\vec r}{dt}\right\rVert dt.
+        \]
+      </li>
+    </ul>
+  </div>
+
+  <h2>10. Kurze Beispiele</h2>
+
+  <div class="example">
+    <strong>Beispiel 1 — Mittlere Geschwindigkeit in 1D.</strong>
+    Ein Punkt bewegt sich auf der \(x\)-Achse von \(x(t_1)=2\,\mathrm{m}\) nach \(x(t_2)=8\,\mathrm{m}\) in
+    \(\Delta t = 3\,\mathrm{s}\).
+    \[
+      \overline{v} = \frac{\Delta x}{\Delta t}=\frac{8-2}{3}\,\mathrm{m/s}=2\,\mathrm{m/s}.
+    \]
+    (Hier ist die Bewegung geradlinig, daher stimmen \(\overline{v}\) und \(\lVert\overline{\vec v}\rVert\) überein.)
+  </div>
+
+  <div class="example">
+    <strong>Beispiel 2 — Vektorielle mittlere Geschwindigkeit in 2D.</strong>
+    \[
+      \vec r(t_1)=\begin{pmatrix}1\\2\end{pmatrix}\mathrm{m},\qquad
+      \vec r(t_2)=\begin{pmatrix}7\\5\end{pmatrix}\mathrm{m},\qquad
+      \Delta t=2\,\mathrm{s}.
+    \]
+    Dann ist
+    \[
+      \overline{\vec v}
+      =\frac{1}{2}\begin{pmatrix}6\\3\end{pmatrix}\mathrm{m/s}
+      =\begin{pmatrix}3\\1.5\end{pmatrix}\mathrm{m/s}.
+    \]
+    Der Betrag:
+    \[
+      \left\lVert\overline{\vec v}\right\rVert=\sqrt{3^2+1.5^2}\,\mathrm{m/s}.
+    \]
+  </div>
+
+  <div class="example">
+    <strong>Beispiel 3 — Momentane Geschwindigkeit aus \(\vec r(t)\).</strong>
+    Sei
+    \[
+      \vec r(t)=\begin{pmatrix} t^2\\ 2t \end{pmatrix}\mathrm{m}.
+    \]
+    Dann
+    \[
+      \vec v(t)=\frac{d\vec r}{dt}
+      =\begin{pmatrix} 2t\\ 2 \end{pmatrix}\mathrm{m/s},
+      \qquad
+      v(t)=\sqrt{(2t)^2+2^2}\,\mathrm{m/s}.
+    \]
+  </div>
+
+  <h2>PDF Übungen</h2>
+  <p><a target="_blank" href="../assets/pdf/ExpPhys1_Geschwindigkeit.pdf">Blatt 1</a></p>
+
+</section>
+
+</body>
+</html>
