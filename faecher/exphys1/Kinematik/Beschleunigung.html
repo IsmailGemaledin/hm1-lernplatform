@@ -1,0 +1,447 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>ExpPhys1_Beschleunigung</title>
+  <link rel="stylesheet" href="../style.css">
+  <!-- KaTeX für Formeln -->
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.8/dist/katex.min.css">
+  <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.8/dist/katex.min.js"></script>
+  <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.8/dist/contrib/auto-render.min.js"
+          onload="renderMathInElement(document.body);"></script>
+  <style>
+    /* Lokale Ergänzungen für Kapitel-Layout (wie bei euren Seiten) */
+    .definition { padding: .75rem; border-left: 4px solid #2b7cff; background:#f3f8ff; border-radius:4px; margin: .75rem 0; }
+    .satz { padding: .75rem; border-left: 4px solid #2b7cff; background:#f9f9fb; border-radius:4px; margin: .75rem 0; }
+    .example { padding: .75rem; border-left: 4px solid #2e9a6a; background:#f4fffa; border-radius:4px; margin: .75rem 0; }
+    .small { font-size:0.95rem; color:#444; }
+
+    /* Simple Graph Blocks (inline SVG) */
+    .graph {
+      background:#fff;
+      border:1px solid #e6e6e6;
+      border-radius:6px;
+      padding:.75rem;
+      margin:.75rem 0;
+      overflow:auto;
+    }
+    .graph-title { font-weight:600; margin:0 0 .5rem 0; }
+    .graph svg { width: 100%; max-width: 720px; height: auto; display:block; }
+    .axis { stroke:#222; stroke-width:2; }
+    .grid { stroke:#ddd; stroke-width:1; }
+    .curve { stroke:#2b7cff; stroke-width:3; fill:none; }
+    .curve2 { stroke:#2e9a6a; stroke-width:3; fill:none; }
+    .label { font-family: system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif; font-size:14px; fill:#111; }
+    .hint { font-family: system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif; font-size:13px; fill:#333; }
+  </style>
+</head>
+<body>
+
+<nav>
+  <a href="../../../index.html">Startseite</a>
+</nav>
+
+<section>
+  <h1>Beschleunigung</h1>
+
+  <p class="small">
+    In diesem Kapitel wird die physikalische Größe <strong>Beschleunigung</strong> eingeführt.
+    Die Idee ist sehr simpel:
+    <br><br>
+    <strong>Beschleunigung beschreibt, wie sich die Geschwindigkeit verändert.</strong>
+    <br><br>
+    Wichtig: Auch wenn der Name „Beschleunigung“ oft nach „schneller werden“ klingt,
+    meint \(\vec a(t)\) allgemein jede Änderung der Geschwindigkeit:
+    schneller werden, langsamer werden, <em>oder</em> Richtungsänderung (auch bei konstantem Betrag).
+    <br><br>
+    Wir verbinden außerdem die drei zentralen Funktionen:
+    \[
+      \vec r(t)\quad\longrightarrow\quad \vec v(t)\quad\longrightarrow\quad \vec a(t)
+    \]
+    und zeigen typische Diagramme (Graphen), die in der Klausur ständig vorkommen.
+  </p>
+
+  <h2>1. Von Position zu Geschwindigkeit zu Beschleunigung</h2>
+
+  <div class="satz">
+    <strong>Die Kette der Ableitungen.</strong>
+    \[
+      \vec v(t)=\frac{d\vec r(t)}{dt}=\dot{\vec r}(t),
+      \qquad
+      \vec a(t)=\frac{d\vec v(t)}{dt}=\ddot{\vec r}(t).
+    \]
+  </div>
+
+  <p class="small">
+    Merke:
+    <br>
+    Geschwindigkeit ist die <strong>erste</strong> Ableitung des Ortsvektors,
+    Beschleunigung ist die <strong>zweite</strong> Ableitung des Ortsvektors.
+  </p>
+
+  <h2>2. Mittlere Beschleunigung</h2>
+
+  <p>
+    Genau wie bei der Geschwindigkeit startet man mit einem Durchschnitt über ein Zeitintervall.
+  </p>
+
+  <div class="definition">
+    <strong>Definition (mittlere Beschleunigung).</strong>
+    Für ein Zeitintervall \([t_1,t_2]\) ist die mittlere Beschleunigung definiert als
+    \[
+      \overline{\vec a}
+      =
+      \frac{\Delta \vec v}{\Delta t}
+      =
+      \frac{\vec v(t_2)-\vec v(t_1)}{t_2-t_1}.
+    \]
+  </div>
+
+  <p class="small">
+    Diese Formel ist „Geschwindigkeit pro Zeit“:
+    Wie stark ändert sich \(\vec v\) im Durchschnitt pro Sekunde?
+  </p>
+
+  <h2>3. Momentane Beschleunigung (Grenzwert) und Ableitung</h2>
+
+  <div class="definition">
+    <strong>Definition (momentane Beschleunigung).</strong>
+    \[
+      \vec a(t)
+      =
+      \lim_{\Delta t\to 0}
+      \frac{\vec v(t+\Delta t)-\vec v(t)}{\Delta t}
+      =
+      \frac{d\vec v(t)}{dt}.
+    \]
+  </div>
+
+  <p class="small">
+    Das ist wieder der gleiche Gedanke wie bei \(\vec v(t)\): aus dem Durchschnitt wird im Grenzfall die Ableitung.
+  </p>
+
+  <h2>4. Punktnotation</h2>
+
+  <div class="definition">
+    In der Physik schreibt man:
+    \[
+      \vec v(t)=\dot{\vec r}(t),
+      \qquad
+      \vec a(t)=\dot{\vec v}(t)=\ddot{\vec r}(t).
+    \]
+    In 1D (Bewegung entlang einer Achse) gilt entsprechend:
+    \[
+      v(t)=\dot x(t),\qquad a(t)=\dot v(t)=\ddot x(t).
+    \]
+  </div>
+
+  <h2>5. Einheit der Beschleunigung</h2>
+
+  <div class="definition">
+    Aus
+    \[
+      \vec a=\frac{d\vec v}{dt}
+    \]
+    folgt für die Einheit:
+    \[
+      [\vec a]=\frac{\mathrm{m/s}}{\mathrm{s}}=\mathrm{m/s^2}.
+    \]
+  </div>
+
+  <div class="satz">
+    <strong>Merksatz.</strong>
+    Beschleunigung hat in SI immer die Einheit
+    \[
+      \mathrm{m/s^2}.
+    \]
+  </div>
+
+  <h2>6. Integration: Von Beschleunigung zurück zu Geschwindigkeit und Position</h2>
+
+  <p>
+    Weil Beschleunigung die Ableitung der Geschwindigkeit ist, kann man die Geschwindigkeit durch Integration der Beschleunigung zurückgewinnen.
+    Und weil Geschwindigkeit die Ableitung der Position ist, bekommt man Position durch noch eine Integration.
+  </p>
+
+  <div class="definition">
+    <strong>Geschwindigkeit aus Beschleunigung.</strong>
+    \[
+      \vec v(t)=\vec v(t_0)+\int_{t_0}^{t}\vec a(\tau)\,d\tau.
+    \]
+  </div>
+
+  <div class="definition">
+    <strong>Position aus Geschwindigkeit (oder aus Beschleunigung).</strong>
+    \[
+      \vec r(t)=\vec r(t_0)+\int_{t_0}^{t}\vec v(\tau)\,d\tau.
+    \]
+    Setzt man \(\vec v(\tau)\) aus der ersten Formel ein, erhält man „zweifache Integration“ von \(\vec a\).
+  </div>
+
+  <div class="satz">
+    <strong>Merke (Ableitung ↔ Integral).</strong>
+    <ul>
+      <li>Ableiten: \(\vec r \to \vec v \to \vec a\)</li>
+      <li>Integrieren: \(\vec a \to \vec v \to \vec r\)</li>
+    </ul>
+  </div>
+
+  <h2>7. Was bedeutet Beschleunigung als Vektor?</h2>
+
+  <p>
+    Beschleunigung ist (wie Geschwindigkeit) ein <strong>Vektor</strong>. Das ist wichtig, weil ein Vektor sowohl
+    Betrag als auch Richtung hat.
+  </p>
+
+  <div class="definition">
+    <strong>Wichtige Aussage.</strong>
+    \[
+      \vec a(t)\neq \vec 0
+    \]
+    bedeutet: Die Geschwindigkeit \(\vec v(t)\) ändert sich.
+    Das kann bedeuten:
+    <ul>
+      <li>der Betrag \(\lVert\vec v\rVert\) ändert sich (schneller/langsamer),</li>
+      <li>oder die Richtung von \(\vec v\) ändert sich (Kurvenfahrt),</li>
+      <li>oder beides.</li>
+    </ul>
+  </div>
+
+  <h2>8. Graphen (Diagramme): r–t, v–t, a–t</h2>
+
+  <p class="small">
+    In der Klausur sind Diagramme extrem wichtig.
+    Hier sind drei typische Fälle mit den zentralen Zusammenhängen:
+    <br>
+    <strong>Steigung</strong> und <strong>Fläche</strong>.
+  </p>
+
+  <div class="graph">
+    <p class="graph-title">Graph 1: \(v(t)\) konstant → \(a(t)=0\) und \(r(t)\) linear</p>
+
+    <svg viewBox="0 0 720 260" role="img" aria-label="Drei Diagramme: r-t linear, v-t konstant, a-t null">
+      <!-- Panels -->
+      <rect x="0" y="0" width="720" height="260" fill="white"></rect>
+
+      <!-- grid lines -->
+      <!-- Panel widths -->
+      <!-- Panel 1 -->
+      <g transform="translate(20,20)">
+        <text class="label" x="0" y="-6">\(r(t)\)</text>
+        <!-- axes -->
+        <line class="axis" x1="0" y1="200" x2="210" y2="200"></line>
+        <line class="axis" x1="0" y1="200" x2="0" y2="0"></line>
+        <!-- grid -->
+        <line class="grid" x1="0" y1="150" x2="210" y2="150"></line>
+        <line class="grid" x1="0" y1="100" x2="210" y2="100"></line>
+        <line class="grid" x1="0" y1="50" x2="210" y2="50"></line>
+        <line class="grid" x1="50" y1="0" x2="50" y2="200"></line>
+        <line class="grid" x1="100" y1="0" x2="100" y2="200"></line>
+        <line class="grid" x1="150" y1="0" x2="150" y2="200"></line>
+        <line class="grid" x1="200" y1="0" x2="200" y2="200"></line>
+
+        <!-- curve: linear -->
+        <path class="curve" d="M 0 180 L 210 20"></path>
+
+        <text class="hint" x="130" y="40">linear</text>
+        <text class="hint" x="160" y="220">t</text>
+      </g>
+
+      <!-- Panel 2 -->
+      <g transform="translate(255,20)">
+        <text class="label" x="0" y="-6">\(v(t)\)</text>
+        <line class="axis" x1="0" y1="200" x2="210" y2="200"></line>
+        <line class="axis" x1="0" y1="200" x2="0" y2="0"></line>
+
+        <line class="grid" x1="0" y1="150" x2="210" y2="150"></line>
+        <line class="grid" x1="0" y1="100" x2="210" y2="100"></line>
+        <line class="grid" x1="0" y1="50" x2="210" y2="50"></line>
+        <line class="grid" x1="50" y1="0" x2="50" y2="200"></line>
+        <line class="grid" x1="100" y1="0" x2="100" y2="200"></line>
+        <line class="grid" x1="150" y1="0" x2="150" y2="200"></line>
+        <line class="grid" x1="200" y1="0" x2="200" y2="200"></line>
+
+        <!-- curve: constant -->
+        <path class="curve2" d="M 0 80 L 210 80"></path>
+
+        <text class="hint" x="105" y="70">konstant</text>
+        <text class="hint" x="160" y="220">t</text>
+      </g>
+
+      <!-- Panel 3 -->
+      <g transform="translate(490,20)">
+        <text class="label" x="0" y="-6">\(a(t)\)</text>
+        <line class="axis" x1="0" y1="200" x2="210" y2="200"></line>
+        <line class="axis" x1="0" y1="200" x2="0" y2="0"></line>
+
+        <line class="grid" x1="0" y1="150" x2="210" y2="150"></line>
+        <line class="grid" x1="0" y1="100" x2="210" y2="100"></line>
+        <line class="grid" x1="0" y1="50" x2="210" y2="50"></line>
+        <line class="grid" x1="50" y1="0" x2="50" y2="200"></line>
+        <line class="grid" x1="100" y1="0" x2="100" y2="200"></line>
+        <line class="grid" x1="150" y1="0" x2="150" y2="200"></line>
+        <line class="grid" x1="200" y1="0" x2="200" y2="200"></line>
+
+        <!-- a(t)=0: x-axis line -->
+        <path class="curve2" d="M 0 200 L 210 200"></path>
+
+        <text class="hint" x="105" y="190">0</text>
+        <text class="hint" x="160" y="220">t</text>
+      </g>
+    </svg>
+
+    <p class="small">
+      Interpretation:
+      <br>
+      <ul>
+        <li>Konstantes \(v(t)\) bedeutet: \(a(t)=0\).</li>
+        <li>Wenn \(v(t)\) konstant ist, wächst \(r(t)\) linear (gerade Linie).</li>
+      </ul>
+    </p>
+  </div>
+
+  <div class="graph">
+    <p class="graph-title">Graph 2: \(a(t)\) konstant → \(v(t)\) linear und \(r(t)\) gekrümmt</p>
+
+    <svg viewBox="0 0 720 260" role="img" aria-label="Drei Diagramme: r-t gekrümmt, v-t linear, a-t konstant">
+      <rect x="0" y="0" width="720" height="260" fill="white"></rect>
+
+      <!-- Panel 1: r(t) curved -->
+      <g transform="translate(20,20)">
+        <text class="label" x="0" y="-6">\(r(t)\)</text>
+        <line class="axis" x1="0" y1="200" x2="210" y2="200"></line>
+        <line class="axis" x1="0" y1="200" x2="0" y2="0"></line>
+
+        <line class="grid" x1="0" y1="150" x2="210" y2="150"></line>
+        <line class="grid" x1="0" y1="100" x2="210" y2="100"></line>
+        <line class="grid" x1="0" y1="50" x2="210" y2="50"></line>
+        <line class="grid" x1="50" y1="0" x2="50" y2="200"></line>
+        <line class="grid" x1="100" y1="0" x2="100" y2="200"></line>
+        <line class="grid" x1="150" y1="0" x2="150" y2="200"></line>
+        <line class="grid" x1="200" y1="0" x2="200" y2="200"></line>
+
+        <!-- curve: upward curvature (qualitative) -->
+        <path class="curve" d="M 0 190 C 80 175, 140 120, 210 20"></path>
+
+        <text class="hint" x="95" y="60">gekrümmt</text>
+        <text class="hint" x="160" y="220">t</text>
+      </g>
+
+      <!-- Panel 2: v(t) linear -->
+      <g transform="translate(255,20)">
+        <text class="label" x="0" y="-6">\(v(t)\)</text>
+        <line class="axis" x1="0" y1="200" x2="210" y2="200"></line>
+        <line class="axis" x1="0" y1="200" x2="0" y2="0"></line>
+
+        <line class="grid" x1="0" y1="150" x2="210" y2="150"></line>
+        <line class="grid" x1="0" y1="100" x2="210" y2="100"></line>
+        <line class="grid" x1="0" y1="50" x2="210" y2="50"></line>
+        <line class="grid" x1="50" y1="0" x2="50" y2="200"></line>
+        <line class="grid" x1="100" y1="0" x2="100" y2="200"></line>
+        <line class="grid" x1="150" y1="0" x2="150" y2="200"></line>
+        <line class="grid" x1="200" y1="0" x2="200" y2="200"></line>
+
+        <path class="curve2" d="M 0 170 L 210 40"></path>
+
+        <text class="hint" x="110" y="70">linear</text>
+        <text class="hint" x="160" y="220">t</text>
+      </g>
+
+      <!-- Panel 3: a(t) constant -->
+      <g transform="translate(490,20)">
+        <text class="label" x="0" y="-6">\(a(t)\)</text>
+        <line class="axis" x1="0" y1="200" x2="210" y2="200"></line>
+        <line class="axis" x1="0" y1="200" x2="0" y2="0"></line>
+
+        <line class="grid" x1="0" y1="150" x2="210" y2="150"></line>
+        <line class="grid" x1="0" y1="100" x2="210" y2="100"></line>
+        <line class="grid" x1="0" y1="50" x2="210" y2="50"></line>
+        <line class="grid" x1="50" y1="0" x2="50" y2="200"></line>
+        <line class="grid" x1="100" y1="0" x2="100" y2="200"></line>
+        <line class="grid" x1="150" y1="0" x2="150" y2="200"></line>
+        <line class="grid" x1="200" y1="0" x2="200" y2="200"></line>
+
+        <path class="curve" d="M 0 90 L 210 90"></path>
+
+        <text class="hint" x="85" y="80">konstant</text>
+        <text class="hint" x="160" y="220">t</text>
+      </g>
+    </svg>
+
+    <p class="small">
+      Interpretation:
+      <ul>
+        <li>Konstantes \(a(t)\) bedeutet: \(v(t)\) ändert sich gleichmäßig → Linie im \(v\)-\(t\)-Diagramm.</li>
+        <li>Wenn \(v(t)\) linear ist, ist \(r(t)\) gekrümmt (nicht linear).</li>
+        <li>Im \(v\)-\(t\)-Diagramm ist die <strong>Steigung</strong> gleich der Beschleunigung.</li>
+      </ul>
+    </p>
+  </div>
+
+  <h2>9. Steigung und Fläche: Die zwei Klausur-Regeln</h2>
+
+  <div class="satz">
+    <strong>Regel A: Steigung.</strong>
+    <ul>
+      <li>Steigung von \(r(t)\) ist \(v(t)\).</li>
+      <li>Steigung von \(v(t)\) ist \(a(t)\).</li>
+    </ul>
+    Formal:
+    \[
+      \frac{dr}{dt}=v,\qquad \frac{dv}{dt}=a.
+    \]
+  </div>
+
+  <div class="satz">
+    <strong>Regel B: Fläche (Integral).</strong>
+    <ul>
+      <li>Fläche unter \(a(t)\) ergibt \(\Delta v\).</li>
+      <li>Fläche unter \(v(t)\) ergibt \(\Delta r\) (bzw. in 1D \(\Delta x\)).</li>
+    </ul>
+    Formal:
+    \[
+      \Delta v = \int a(t)\,dt,\qquad \Delta r = \int v(t)\,dt.
+    \]
+  </div>
+
+  <h2>10. Kurze Beispiele</h2>
+
+  <div class="example">
+    <strong>Beispiel 1 — mittlere Beschleunigung.</strong>
+    Ein Körper hat \(v(t_1)=2\,\mathrm{m/s}\) und \(v(t_2)=8\,\mathrm{m/s}\) in \(\Delta t=3\,\mathrm{s}\).
+    Dann:
+    \[
+      \overline{a}=\frac{\Delta v}{\Delta t}=\frac{8-2}{3}\,\mathrm{m/s^2}=2\,\mathrm{m/s^2}.
+    \]
+  </div>
+
+  <div class="example">
+    <strong>Beispiel 2 — Beschleunigung aus \(v(t)\) (Ableitung).</strong>
+    Sei in 1D:
+    \[
+      v(t)=3t+1\quad (\mathrm{m/s}).
+    \]
+    Dann:
+    \[
+      a(t)=\frac{dv}{dt}=3\quad (\mathrm{m/s^2}).
+    \]
+  </div>
+
+  <div class="example">
+    <strong>Beispiel 3 — \(\Delta v\) aus \(a(t)\) (Integral).</strong>
+    Sei \(a(t)=2\,\mathrm{m/s^2}\) konstant und \(v(t_0)=1\,\mathrm{m/s}\).
+    Dann:
+    \[
+      v(t)=v(t_0)+\int_{t_0}^{t}2\,d\tau
+      =1+2(t-t_0)\quad(\mathrm{m/s}).
+    \]
+  </div>
+
+  <h2>PDF Übungen</h2>
+  <p><a target="_blank" href="../assets/pdf/ExpPhys1_Beschleunigung.pdf">Blatt 1</a></p>
+
+</section>
+
+</body>
+</html>
