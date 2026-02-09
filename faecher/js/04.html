@@ -1,0 +1,325 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>JavaScript – Bedingungen &amp; Kontrollstrukturen</title>
+  <link rel="stylesheet" href="../../style.css">
+  <style>
+    .definition { padding:.75rem; border-left:4px solid #2b7cff; background:#f3f8ff; border-radius:4px; margin:.75rem 0; }
+    .example { padding:.75rem; border-left:4px solid #2e9a6a; background:#f4fffa; border-radius:4px; margin:.75rem 0; }
+    .note { padding:.75rem; border-left:4px solid #ff9800; background:#fff8f0; border-radius:4px; margin:.75rem 0; }
+    .small { font-size:0.95rem; color:#444; }
+
+    pre.code {
+      background:#1e1e1e;
+      color:#d4d4d4;
+      padding:1rem;
+      border-radius:4px;
+      overflow-x:auto;
+      font-size:0.95rem;
+    }
+    pre.code code {
+      background: transparent;
+      color: inherit;
+      padding: 0;
+      font-family: Consolas, monospace;
+    }
+    code {
+      font-family: Consolas, monospace;
+    }
+  </style>
+</head>
+
+<body>
+
+<nav>
+  <a href="index.html">Startseite</a>
+</nav>
+
+<section>
+
+<h1>JavaScript 4 — Bedingungen &amp; Kontrollstrukturen</h1>
+
+<p class="small">
+In dieser Lektion lernst du, wie JavaScript Entscheidungen trifft.
+Bedingungen und Kontrollstrukturen bestimmen, <em>welcher Code</em> ausgeführt wird
+und <em>wie oft</em>. Ohne sie wäre JavaScript nur eine Abfolge starrer Anweisungen.
+</p>
+
+<h2>1. Warum braucht man Bedingungen?</h2>
+
+<div class="definition">
+<strong>Definition.</strong><br>
+Eine <strong>Bedingung</strong> ist ein Ausdruck, der entweder <code>true</code> oder <code>false</code> ergibt
+und steuert, ob ein bestimmter Codeblock ausgeführt wird.
+</div>
+
+<p>
+Typische Fragen, die Bedingungen beantworten:
+</p>
+
+<ul>
+  <li>Ist der Benutzer eingeloggt?</li>
+  <li>Ist eine Eingabe gültig?</li>
+  <li>Ist eine Zahl größer als eine andere?</li>
+  <li>Soll eine Schleife weiterlaufen oder abbrechen?</li>
+</ul>
+
+<h2>2. Die if-Anweisung</h2>
+
+<div class="definition">
+Mit <code>if</code> wird ein Codeblock nur dann ausgeführt,
+wenn eine Bedingung <code>true</code> ist.
+</div>
+
+<div class="example">
+<pre class="code"><code>let age = 20;
+
+if (age >= 18) {
+  console.log("Zugang erlaubt");
+}</code></pre>
+</div>
+
+<div class="note">
+Der Code in den geschweiften Klammern wird nur ausgeführt,
+wenn die Bedingung erfüllt ist.
+</div>
+
+<h2>3. if–else</h2>
+
+<div class="definition">
+Mit <code>else</code> wird ein alternativer Codeblock ausgeführt,
+wenn die Bedingung <code>false</code> ist.
+</div>
+
+<div class="example">
+<pre class="code"><code>let age = 16;
+
+if (age >= 18) {
+  console.log("Zugang erlaubt");
+} else {
+  console.log("Zugang verweigert");
+}</code></pre>
+</div>
+
+<h2>4. else if — mehrere Fälle</h2>
+
+<div class="definition">
+Mit <code>else if</code> können mehrere Bedingungen nacheinander geprüft werden.
+</div>
+
+<div class="example">
+<pre class="code"><code>let score = 82;
+
+if (score >= 90) {
+  console.log("Sehr gut");
+} else if (score >= 75) {
+  console.log("Gut");
+} else if (score >= 50) {
+  console.log("Bestanden");
+} else {
+  console.log("Nicht bestanden");
+}</code></pre>
+</div>
+
+<div class="note">
+Die Bedingungen werden von oben nach unten geprüft.
+Sobald eine zutrifft, werden die restlichen übersprungen.
+</div>
+
+<h2>5. Vergleichs- und logische Operatoren in Bedingungen</h2>
+
+<div class="definition">
+Bedingungen bestehen fast immer aus Vergleichs- und logischen Operatoren.
+</div>
+
+<div class="example">
+<pre class="code"><code>let age = 22;
+let hasTicket = true;
+
+if (age >= 18 && hasTicket) {
+  console.log("Einlass erlaubt");
+}</code></pre>
+</div>
+
+<div class="note">
+Komplexe Bedingungen sollten trotzdem gut lesbar bleiben.
+Im Zweifel lieber mehrere einfache Bedingungen.
+</div>
+
+<h2>6. Truthy und Falsy in Bedingungen</h2>
+
+<div class="definition">
+In JavaScript können auch Nicht-Boolean-Werte
+in Bedingungen verwendet werden.
+</div>
+
+<div class="example">
+<pre class="code"><code>let username = "";
+
+if (username) {
+  console.log("Benutzername vorhanden");
+} else {
+  console.log("Kein Benutzername");
+}</code></pre>
+</div>
+
+<div class="note">
+Leere Strings, <code>0</code>, <code>null</code>, <code>undefined</code> und <code>NaN</code>
+werden als <em>false</em> interpretiert.
+</div>
+
+<h2>7. Der ternäre Operator</h2>
+
+<div class="definition">
+Der <strong>ternäre Operator</strong> ist eine Kurzform von <code>if–else</code>
+und besteht aus drei Teilen.
+</div>
+
+<div class="example">
+<pre class="code"><code>let age = 18;
+
+let message = (age >= 18)
+  ? "Volljährig"
+  : "Minderjährig";
+
+console.log(message);</code></pre>
+</div>
+
+<div class="note">
+Der ternäre Operator eignet sich für einfache Entscheidungen,
+nicht für komplexe Logik.
+</div>
+
+<h2>8. switch-Anweisung</h2>
+
+<div class="definition">
+<code>switch</code> wird verwendet, wenn ein Wert
+mit mehreren festen Fällen verglichen werden soll.
+</div>
+
+<div class="example">
+<pre class="code"><code>let day = 3;
+
+switch (day) {
+  case 1:
+    console.log("Montag");
+    break;
+  case 2:
+    console.log("Dienstag");
+    break;
+  case 3:
+    console.log("Mittwoch");
+    break;
+  default:
+    console.log("Unbekannter Tag");
+}</code></pre>
+</div>
+
+<div class="note">
+Ohne <code>break</code> läuft der Code in den nächsten Fall weiter
+(Fallthrough).
+</div>
+
+<h2>9. Schleifen – Wiederholungen</h2>
+
+<div class="definition">
+Schleifen führen einen Codeblock mehrfach aus,
+solange eine Bedingung erfüllt ist.
+</div>
+
+<h3>9.1 while-Schleife</h3>
+
+<div class="example">
+<pre class="code"><code>let i = 0;
+
+while (i < 3) {
+  console.log(i);
+  i++;
+}</code></pre>
+</div>
+
+<h3>9.2 for-Schleife</h3>
+
+<div class="definition">
+Die <code>for</code>-Schleife kombiniert Initialisierung,
+Bedingung und Update an einer Stelle.
+</div>
+
+<div class="example">
+<pre class="code"><code>for (let i = 0; i < 3; i++) {
+  console.log(i);
+}</code></pre>
+</div>
+
+<div class="note">
+Die <code>for</code>-Schleife ist die am häufigsten verwendete Schleife.
+</div>
+
+<h2>10. break und continue</h2>
+
+<div class="definition">
+Mit <code>break</code> wird eine Schleife beendet,
+mit <code>continue</code> wird der aktuelle Durchlauf übersprungen.
+</div>
+
+<div class="example">
+<pre class="code"><code>for (let i = 0; i < 5; i++) {
+  if (i === 2) continue;
+  if (i === 4) break;
+  console.log(i);
+}</code></pre>
+</div>
+
+<h2>11. Gute Praxis</h2>
+
+<ul>
+  <li>Bedingungen klar und lesbar formulieren</li>
+  <li><code>===</code> statt <code>==</code> verwenden</li>
+  <li>tiefe Verschachtelung vermeiden</li>
+  <li>Schleifen eindeutig terminieren</li>
+</ul>
+
+<div class="example">
+<strong>Gut:</strong>
+<pre class="code"><code>if (!user) {
+  return;
+}</code></pre>
+</div>
+
+<h2>12. Übungen</h2>
+
+<div class="example">
+<strong>Übung 1.</strong><br>
+Prüfe, ob eine Zahl positiv, negativ oder null ist.
+</div>
+
+<div class="example">
+<strong>Übung 2.</strong><br>
+Gib alle geraden Zahlen von 1 bis 20 mit einer Schleife aus.
+</div>
+
+<div class="example">
+<strong>Übung 3.</strong><br>
+Nutze <code>switch</code>, um eine Schulnote (1–6)
+in einen Text umzuwandeln.
+</div>
+
+<h2>13. Zusammenfassung</h2>
+
+<ul>
+  <li>Bedingungen steuern den Programmfluss</li>
+  <li><code>if</code>, <code>else</code>, <code>switch</code> für Entscheidungen</li>
+  <li>Schleifen wiederholen Code kontrolliert</li>
+  <li>Lesbarkeit ist wichtiger als Kürze</li>
+</ul>
+
+<div class="definition">
+Wer Kontrollstrukturen beherrscht, bringt Logik in Bewegung.
+</div>
+
+</section>
+
+</body>
+</html>

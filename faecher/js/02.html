@@ -1,0 +1,314 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>JavaScript – Variablen &amp; Datentypen</title>
+  <link rel="stylesheet" href="../../style.css">
+  <style>
+    .definition { padding:.75rem; border-left:4px solid #2b7cff; background:#f3f8ff; border-radius:4px; margin:.75rem 0; }
+    .example { padding:.75rem; border-left:4px solid #2e9a6a; background:#f4fffa; border-radius:4px; margin:.75rem 0; }
+    .note { padding:.75rem; border-left:4px solid #ff9800; background:#fff8f0; border-radius:4px; margin:.75rem 0; }
+    .small { font-size:0.95rem; color:#444; }
+
+    pre.code {
+      background:#1e1e1e;
+      color:#d4d4d4;
+      padding:1rem;
+      border-radius:4px;
+      overflow-x:auto;
+      font-size:0.95rem;
+    }
+    pre.code code {
+      background: transparent;
+      color: inherit;
+      padding: 0;
+      font-family: Consolas, monospace;
+    }
+    code {
+      font-family: Consolas, monospace;
+    }
+  </style>
+</head>
+
+<body>
+
+<nav>
+  <a href="index.html">Startseite</a>
+</nav>
+
+<section>
+
+<h1>JavaScript 2 — Variablen &amp; Datentypen</h1>
+
+<p class="small">
+In dieser Lektion lernst du, wie JavaScript Daten speichert.
+Wir behandeln Variablen, Zuweisungen, die wichtigsten Datentypen
+und erklären, warum JavaScript sich hier bewusst anders verhält als viele klassische Sprachen.
+</p>
+
+<h2>1. Was ist eine Variable?</h2>
+
+<div class="definition">
+<strong>Definition.</strong><br>
+Eine <strong>Variable</strong> ist ein benannter Speicherplatz, in dem ein Wert abgelegt wird,
+damit er später wiederverwendet oder verändert werden kann.
+</div>
+
+<p>
+Eine Variable besteht konzeptionell aus:
+</p>
+
+<ul>
+  <li>einem Namen</li>
+  <li>einem gespeicherten Wert</li>
+  <li>einem Datentyp (implizit durch den Wert)</li>
+</ul>
+
+<div class="example">
+<pre class="code"><code>let age = 21;
+let name = "Iman";</code></pre>
+</div>
+
+<div class="note">
+JavaScript ist <em>dynamisch typisiert</em>:
+Der Typ einer Variable wird nicht festgelegt, sondern ergibt sich aus dem gespeicherten Wert.
+</div>
+
+<h2>2. Variablen deklarieren: var, let, const</h2>
+
+<div class="definition">
+JavaScript kennt drei Schlüsselwörter zur Variablendeklaration:
+<code>var</code>, <code>let</code> und <code>const</code>.
+</div>
+
+<h3>2.1 var (historisch)</h3>
+
+<div class="example">
+<pre class="code"><code>var x = 10;</code></pre>
+</div>
+
+<div class="note">
+<code>var</code> sollte heute <strong>nicht mehr</strong> verwendet werden.
+Es hat unerwartete Scoping-Regeln und führt häufig zu Fehlern.
+</div>
+
+<h3>2.2 let (veränderbare Variable)</h3>
+
+<div class="definition">
+<code>let</code> deklariert eine Variable, deren Wert später geändert werden darf.
+</div>
+
+<div class="example">
+<pre class="code"><code>let counter = 0;
+counter = counter + 1;</code></pre>
+</div>
+
+<h3>2.3 const (konstante Referenz)</h3>
+
+<div class="definition">
+<code>const</code> deklariert eine Variable, die <strong>nicht neu zugewiesen</strong> werden darf.
+</div>
+
+<div class="example">
+<pre class="code"><code>const pi = 3.14159;</code></pre>
+</div>
+
+<div class="note">
+<code>const</code> bedeutet nicht, dass der Wert unveränderlich ist,
+sondern dass die <em>Zuweisung</em> nicht geändert werden darf.
+</div>
+
+<h2>3. Datentypen in JavaScript (Überblick)</h2>
+
+<div class="definition">
+JavaScript besitzt mehrere grundlegende Datentypen.
+</div>
+
+<ul>
+  <li><strong>number</strong></li>
+  <li><strong>string</strong></li>
+  <li><strong>boolean</strong></li>
+  <li><strong>null</strong></li>
+  <li><strong>undefined</strong></li>
+  <li><strong>object</strong> (inkl. Arrays)</li>
+</ul>
+
+<div class="note">
+Es gibt weitere Typen (z. B. <code>symbol</code>, <code>bigint</code>),
+die wir später behandeln.
+</div>
+
+<h2>4. Zahlen (number)</h2>
+
+<div class="definition">
+Der Typ <code>number</code> repräsentiert sowohl Ganzzahlen als auch Fließkommazahlen.
+</div>
+
+<div class="example">
+<pre class="code"><code>let a = 10;
+let b = 3.5;
+let c = a / b;</code></pre>
+</div>
+
+<p>
+JavaScript unterscheidet intern nicht zwischen <code>int</code> und <code>float</code>.
+</p>
+
+<div class="note">
+Rechenungen mit Fließkommazahlen können Rundungsfehler enthalten
+(z. B. <code>0.1 + 0.2 !== 0.3</code>).
+</div>
+
+<h2>5. Zeichenketten (string)</h2>
+
+<div class="definition">
+Ein <code>string</code> ist eine Folge von Zeichen.
+</div>
+
+<div class="example">
+<pre class="code"><code>let firstName = "Iman";
+let lastName = 'Gemaledin';</code></pre>
+</div>
+
+<p>
+Strings können mit <code>+</code> verknüpft werden:
+</p>
+
+<div class="example">
+<pre class="code"><code>let fullName = firstName + " " + lastName;</code></pre>
+</div>
+
+<h3>5.1 Template Strings</h3>
+
+<div class="definition">
+Template Strings verwenden Backticks (<code>`</code>) und erlauben Variablen-Einbettung.
+</div>
+
+<div class="example">
+<pre class="code"><code>let age = 22;
+let text = `Ich bin ${age} Jahre alt.`;</code></pre>
+</div>
+
+<div class="note">
+Template Strings sind der empfohlene Standard für moderne JavaScript-Projekte.
+</div>
+
+<h2>6. Boolean (true / false)</h2>
+
+<div class="definition">
+Der Typ <code>boolean</code> hat genau zwei Werte: <code>true</code> und <code>false</code>.
+</div>
+
+<div class="example">
+<pre class="code"><code>let isLoggedIn = true;
+let hasAccess = false;</code></pre>
+</div>
+
+<p>
+Booleans werden hauptsächlich in Bedingungen verwendet.
+</p>
+
+<h2>7. undefined und null</h2>
+
+<div class="definition">
+<code>undefined</code> bedeutet: Es existiert keine Zuweisung.<br>
+<code>null</code> bedeutet: Der Wert wurde absichtlich auf „nichts“ gesetzt.
+</div>
+
+<div class="example">
+<pre class="code"><code>let x;
+console.log(x); // undefined
+
+let y = null;</code></pre>
+</div>
+
+<div class="note">
+<code>null</code> ist ein häufiger Stolperstein, aber konzeptionell sehr wichtig.
+</div>
+
+<h2>8. typeof – Typen prüfen</h2>
+
+<div class="definition">
+Mit <code>typeof</code> kann der Datentyp eines Wertes abgefragt werden.
+</div>
+
+<div class="example">
+<pre class="code"><code>typeof 42;          // "number"
+typeof "Hallo";     // "string"
+typeof true;        // "boolean"
+typeof undefined;   // "undefined"
+typeof null;        // "object" (historischer Bug)</code></pre>
+</div>
+
+<div class="note">
+Dass <code>typeof null === "object"</code> ist ein bekannter Designfehler in JavaScript.
+</div>
+
+<h2>9. Dynamische Typisierung</h2>
+
+<div class="definition">
+In JavaScript kann eine Variable ihren Typ während der Laufzeit ändern.
+</div>
+
+<div class="example">
+<pre class="code"><code>let value = 10;
+value = "jetzt ein String";
+value = true;</code></pre>
+</div>
+
+<div class="note">
+Das ist mächtig, erfordert aber Disziplin und sauberes Denken.
+</div>
+
+<h2>10. Gute Praxis</h2>
+
+<ul>
+  <li>Standardmäßig <code>const</code> verwenden</li>
+  <li><code>let</code> nur bei tatsächlicher Änderung</li>
+  <li>aussagekräftige Variablennamen</li>
+  <li>keine Magie-Zahlen ohne Bedeutung</li>
+</ul>
+
+<div class="example">
+<strong>Gut:</strong>
+<pre class="code"><code>const MAX_ATTEMPTS = 3;</code></pre>
+</div>
+
+<h2>11. Übungen</h2>
+
+<div class="example">
+<strong>Übung 1.</strong><br>
+Lege Variablen für Name, Alter und Studienfach an
+und gib einen vollständigen Satz in der Konsole aus.
+</div>
+
+<div class="example">
+<strong>Übung 2.</strong><br>
+Berechne den Umfang und die Fläche eines Kreises
+mit einem konstanten Wert für π.
+</div>
+
+<div class="example">
+<strong>Übung 3.</strong><br>
+Experimentiere mit <code>typeof</code> für verschiedene Werte
+(<code>number</code>, <code>string</code>, <code>null</code>, <code>undefined</code>).
+</div>
+
+<h2>12. Zusammenfassung</h2>
+
+<ul>
+  <li>Variablen speichern Werte zur Wiederverwendung</li>
+  <li><code>let</code> und <code>const</code> sind der moderne Standard</li>
+  <li>JavaScript ist dynamisch typisiert</li>
+  <li>Grundlegende Typen sind number, string, boolean, null, undefined</li>
+</ul>
+
+<div class="definition">
+Wer Datentypen versteht, vermeidet die häufigsten JavaScript-Fehler.
+</div>
+
+</section>
+
+</body>
+</html>

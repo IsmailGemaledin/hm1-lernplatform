@@ -1,0 +1,314 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>JavaScript – Funktionen</title>
+  <link rel="stylesheet" href="../../style.css">
+  <style>
+    .definition { padding:.75rem; border-left:4px solid #2b7cff; background:#f3f8ff; border-radius:4px; margin:.75rem 0; }
+    .example { padding:.75rem; border-left:4px solid #2e9a6a; background:#f4fffa; border-radius:4px; margin:.75rem 0; }
+    .note { padding:.75rem; border-left:4px solid #ff9800; background:#fff8f0; border-radius:4px; margin:.75rem 0; }
+    .small { font-size:0.95rem; color:#444; }
+
+    pre.code {
+      background:#1e1e1e;
+      color:#d4d4d4;
+      padding:1rem;
+      border-radius:4px;
+      overflow-x:auto;
+      font-size:0.95rem;
+    }
+    pre.code code {
+      background: transparent;
+      color: inherit;
+      padding: 0;
+      font-family: Consolas, monospace;
+    }
+    code { font-family: Consolas, monospace; }
+  </style>
+</head>
+
+<body>
+
+<nav>
+  <a href="index.html">Startseite</a>
+</nav>
+
+<section>
+
+<h1>JavaScript 5 — Funktionen</h1>
+
+<p class="small">
+In dieser Lektion lernst du Funktionen kennen – eines der wichtigsten Konzepte in JavaScript.
+Funktionen erlauben es, Code zu strukturieren, wiederzuverwenden und logisch zu kapseln.
+Ohne Funktionen wären größere Programme praktisch unwartbar.
+</p>
+
+<h2>1. Was ist eine Funktion?</h2>
+
+<div class="definition">
+<strong>Definition.</strong><br>
+Eine <strong>Funktion</strong> ist ein benannter Codeblock, der eine bestimmte Aufgabe erfüllt
+und bei Bedarf aufgerufen werden kann.
+</div>
+
+<p>
+Eine Funktion kann:
+</p>
+
+<ul>
+  <li>Eingaben erhalten (Parameter)</li>
+  <li>Code ausführen</li>
+  <li>einen Wert zurückgeben (return)</li>
+</ul>
+
+<div class="example">
+<pre class="code"><code>function greet() {
+  console.log("Hallo!");
+}</code></pre>
+</div>
+
+<p>
+Die Funktion wird erst ausgeführt, wenn sie aufgerufen wird:
+</p>
+
+<div class="example">
+<pre class="code"><code>greet();</code></pre>
+</div>
+
+<h2>2. Funktionen mit Parametern</h2>
+
+<div class="definition">
+Parameter sind Platzhalter für Werte, die beim Funktionsaufruf übergeben werden.
+</div>
+
+<div class="example">
+<pre class="code"><code>function greet(name) {
+  console.log("Hallo " + name);
+}
+
+greet("Iman");
+greet("Welt");</code></pre>
+</div>
+
+<div class="note">
+Parameter sind nur innerhalb der Funktion sichtbar
+(Gültigkeitsbereich / Scope).
+</div>
+
+<h2>3. Rückgabewerte (return)</h2>
+
+<div class="definition">
+Mit <code>return</code> gibt eine Funktion einen Wert zurück
+und beendet ihre Ausführung.
+</div>
+
+<div class="example">
+<pre class="code"><code>function add(a, b) {
+  return a + b;
+}
+
+let result = add(3, 4);
+console.log(result); // 7</code></pre>
+</div>
+
+<div class="note">
+Ohne <code>return</code> gibt eine Funktion automatisch <code>undefined</code> zurück.
+</div>
+
+<h2>4. Mehrere Rückgabepfade</h2>
+
+<div class="definition">
+Eine Funktion kann abhängig von Bedingungen
+an unterschiedlichen Stellen <code>return</code> ausführen.
+</div>
+
+<div class="example">
+<pre class="code"><code>function checkAge(age) {
+  if (age < 18) {
+    return "Minderjährig";
+  }
+  return "Volljährig";
+}</code></pre>
+</div>
+
+<h2>5. Funktionsdeklaration vs. Funktionsausdruck</h2>
+
+<h3>5.1 Funktionsdeklaration</h3>
+
+<div class="example">
+<pre class="code"><code>function square(x) {
+  return x * x;
+}</code></pre>
+</div>
+
+<div class="note">
+Funktionsdeklarationen werden vor dem eigentlichen Code „bekannt gemacht“
+(Hoisting).
+</div>
+
+<h3>5.2 Funktionsausdruck</h3>
+
+<div class="example">
+<pre class="code"><code>const square = function(x) {
+  return x * x;
+};</code></pre>
+</div>
+
+<div class="note">
+Funktionsausdrücke werden erst verfügbar,
+nachdem die Zuweisung ausgeführt wurde.
+</div>
+
+<h2>6. Arrow Functions (Pfeilfunktionen)</h2>
+
+<div class="definition">
+Arrow Functions sind eine kürzere Syntax für Funktionsausdrücke
+und werden in modernem JavaScript sehr häufig verwendet.
+</div>
+
+<div class="example">
+<pre class="code"><code>const add = (a, b) => {
+  return a + b;
+};</code></pre>
+</div>
+
+<p>
+Bei einer einzelnen Rückgabe kann <code>return</code> weggelassen werden:
+</p>
+
+<div class="example">
+<pre class="code"><code>const add = (a, b) => a + b;</code></pre>
+</div>
+
+<div class="note">
+Arrow Functions verhalten sich bei <code>this</code> anders
+– das ist später wichtig, hier aber noch nicht entscheidend.
+</div>
+
+<h2>7. Standardparameter</h2>
+
+<div class="definition">
+Funktionen können Standardwerte für Parameter besitzen,
+falls kein Argument übergeben wird.
+</div>
+
+<div class="example">
+<pre class="code"><code>function greet(name = "Gast") {
+  console.log("Hallo " + name);
+}
+
+greet();
+greet("Iman");</code></pre>
+</div>
+
+<h2>8. Funktionen aufrufen vs. referenzieren</h2>
+
+<div class="definition">
+Es gibt einen wichtigen Unterschied zwischen
+<strong>Funktionsaufruf</strong> und <strong>Funktionsreferenz</strong>.
+</div>
+
+<div class="example">
+<pre class="code"><code>function sayHi() {
+  console.log("Hi");
+}
+
+sayHi();   // Aufruf
+sayHi;     // Referenz (wird nicht ausgeführt)</code></pre>
+</div>
+
+<div class="note">
+Das ist besonders wichtig bei Event-Handlern und Callbacks.
+</div>
+
+<h2>9. Funktionen als Werte</h2>
+
+<div class="definition">
+In JavaScript sind Funktionen „First-Class Citizens“:
+Sie können wie normale Werte behandelt werden.
+</div>
+
+<div class="example">
+<pre class="code"><code>function greet() {
+  console.log("Hallo");
+}
+
+const action = greet;
+action();</code></pre>
+</div>
+
+<h2>10. Gültigkeitsbereich (Scope)</h2>
+
+<div class="definition">
+Variablen, die in einer Funktion deklariert werden,
+sind außerhalb der Funktion nicht sichtbar.
+</div>
+
+<div class="example">
+<pre class="code"><code>function test() {
+  let x = 10;
+}
+
+console.log(x); // Fehler</code></pre>
+</div>
+
+<div class="note">
+Scope schützt vor Namenskonflikten
+und ungewollten Seiteneffekten.
+</div>
+
+<h2>11. Gute Praxis</h2>
+
+<ul>
+  <li>Eine Funktion = eine klare Aufgabe</li>
+  <li>Sprechende Funktionsnamen</li>
+  <li>Kurze Funktionen bevorzugen</li>
+  <li>Seiteneffekte minimieren</li>
+</ul>
+
+<div class="example">
+<strong>Gut:</strong>
+<pre class="code"><code>function calculateTotal(price, taxRate) {
+  return price * (1 + taxRate);
+}</code></pre>
+</div>
+
+<h2>12. Übungen</h2>
+
+<div class="example">
+<strong>Übung 1.</strong><br>
+Schreibe eine Funktion, die zwei Zahlen multipliziert
+und das Ergebnis zurückgibt.
+</div>
+
+<div class="example">
+<strong>Übung 2.</strong><br>
+Schreibe eine Funktion, die prüft,
+ob eine Zahl gerade oder ungerade ist.
+</div>
+
+<div class="example">
+<strong>Übung 3.</strong><br>
+Schreibe eine Arrow Function,
+die den größeren von zwei Werten zurückgibt.
+</div>
+
+<h2>13. Zusammenfassung</h2>
+
+<ul>
+  <li>Funktionen strukturieren und kapseln Code</li>
+  <li>Parameter und Rückgabewerte machen Funktionen flexibel</li>
+  <li>Arrow Functions sind moderner Standard</li>
+  <li>Scope ist entscheidend für sauberen Code</li>
+</ul>
+
+<div class="definition">
+Wer Funktionen beherrscht, beherrscht die Struktur von JavaScript.
+</div>
+
+</section>
+
+</body>
+</html>

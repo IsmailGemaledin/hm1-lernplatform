@@ -1,0 +1,390 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>JavaScript – Einführung &amp; Setup</title>
+  <link rel="stylesheet" href="../../style.css">
+  <style>
+    .definition { padding:.75rem; border-left:4px solid #2b7cff; background:#f3f8ff; border-radius:4px; margin:.75rem 0; }
+    .example { padding:.75rem; border-left:4px solid #2e9a6a; background:#f4fffa; border-radius:4px; margin:.75rem 0; }
+    .note { padding:.75rem; border-left:4px solid #ff9800; background:#fff8f0; border-radius:4px; margin:.75rem 0; }
+    .small { font-size:0.95rem; color:#444; }
+
+    /* ---- Code blocks: use a dedicated class so KaTeX pre.math stays readable ---- */
+    pre.code {
+      background:#1e1e1e;
+      color:#d4d4d4;
+      padding:1rem;
+      border-radius:4px;
+      overflow-x:auto;
+      font-size:0.95rem;
+    }
+    pre.code code {
+      font-family: Consolas, monospace;
+      background: transparent;
+      color: inherit;
+      padding: 0;
+    }
+
+    /* Inline code: keep readable and not "double-dark" */
+    code {
+      font-family: Consolas, monospace;
+    }
+  </style>
+</head>
+
+<body>
+
+<nav>
+  <a href="index.html">Startseite</a>
+</nav>
+
+<section>
+
+<h1>Einführung in JavaScript</h1>
+
+<p class="small">
+Dieses Kapitel führt in JavaScript ein.
+Ziel ist es zu verstehen, <em>warum</em> JavaScript existiert, welches Problem es löst,
+wie es mit HTML und CSS zusammenspielt und wie du JavaScript sauber in ein Projekt einbindest.
+Am Ende kannst du ein minimales Setup erstellen, Debugging über die Konsole betreiben und
+weißt, wann dein Code ausgeführt wird.
+</p>
+
+<h2>1. Was ist JavaScript?</h2>
+
+<div class="definition">
+<strong>Definition.</strong><br>
+<strong>JavaScript</strong> ist eine Programmiersprache, die in Webanwendungen verwendet wird,
+um <em>Interaktivität</em> und <em>Logik</em> in Webseiten zu bringen.
+</div>
+
+<p>
+Während HTML die <em>Struktur</em> (Inhalt, Elemente) und CSS die <em>Darstellung</em> (Layout, Design) definiert,
+kümmert sich JavaScript um:
+</p>
+
+<ul>
+  <li>Reaktionen auf Nutzeraktionen (Klicks, Tastatur, Scrollen)</li>
+  <li>dynamische Änderungen am Inhalt (DOM-Manipulation)</li>
+  <li>Logik (Bedingungen, Schleifen, Funktionen)</li>
+  <li>Daten laden und verarbeiten (z. B. Fetch/HTTP)</li>
+  <li>Formularvalidierung und UI-Verhalten</li>
+</ul>
+
+<div class="example">
+<strong>Trennung der Aufgaben:</strong>
+<ul>
+  <li>HTML: Was ist der Inhalt?</li>
+  <li>CSS: Wie sieht der Inhalt aus?</li>
+  <li>JavaScript: Was passiert mit dem Inhalt?</li>
+</ul>
+</div>
+
+<h2>2. Warum braucht man JavaScript?</h2>
+
+<div class="definition">
+JavaScript wird benötigt, wenn eine Webseite nicht nur statische Informationen anzeigen,
+sondern auf Benutzer reagieren und sich dynamisch verändern soll.
+</div>
+
+<p>
+Ohne JavaScript sind Webseiten in vielen Fällen „stumm“: Inhalte werden angezeigt,
+aber es gibt keine echte Interaktion (außer reinen Links).
+</p>
+
+<div class="note">
+CSS kann Layout und Animationen steuern, aber keine Logik ausführen und keine Entscheidungen treffen.
+Für „Wenn … dann …“-Verhalten benötigt man JavaScript.
+</div>
+
+<p>
+JavaScript ermöglicht:
+</p>
+
+<ul>
+  <li>Buttons, die Inhalte ein-/ausblenden</li>
+  <li>Formulare, die Eingaben prüfen (z. B. E-Mail-Format)</li>
+  <li>dynamische Listen (To-Do, Warenkorb)</li>
+  <li>Inhalte nachladen (ohne Seite neu zu laden)</li>
+  <li>komplexe Web-Apps (Dashboards, Karten, Chats)</li>
+</ul>
+
+<h2>3. Wo läuft JavaScript?</h2>
+
+<div class="definition">
+JavaScript kann in verschiedenen Umgebungen laufen:
+<strong>im Browser</strong> (Frontend) und <strong>außerhalb des Browsers</strong> (z. B. Node.js).
+</div>
+
+<p>
+In diesem Kurs starten wir im Browser. Dort wird JavaScript durch eine <em>Engine</em> ausgeführt:
+</p>
+
+<ul>
+  <li>Chrome/Edge: V8</li>
+  <li>Firefox: SpiderMonkey</li>
+  <li>Safari: JavaScriptCore</li>
+</ul>
+
+<div class="note">
+Browser-JavaScript läuft in einer Sicherheitsumgebung („Sandbox“).
+Es kann nicht einfach auf deine Dateien zugreifen oder Programme starten.
+</div>
+
+<h2>4. JavaScript und das DOM</h2>
+
+<div class="definition">
+Das <strong>DOM (Document Object Model)</strong> ist die interne Repräsentation einer HTML-Seite als Baumstruktur.
+JavaScript kann diesen Baum lesen und verändern.
+</div>
+
+<p>
+Wichtig: JavaScript „ändert“ nicht die HTML-Datei auf der Festplatte, sondern die live geladene Seite im Browser.
+</p>
+
+<div class="example">
+<strong>Beispiel (konzeptionell):</strong>
+<pre class="code"><code>// Element suchen
+const title = document.querySelector("h1");
+
+// Inhalt ändern
+title.textContent = "Hallo von JavaScript";</code></pre>
+</div>
+
+<div class="note">
+Später lernst du präzise Selektoren, Events und saubere DOM-Updates.
+Hier geht es um das Grundprinzip: JavaScript steuert Verhalten und Dynamik.
+</div>
+
+<h2>5. JavaScript einbinden: drei Methoden</h2>
+
+<div class="definition">
+Es gibt drei grundlegende Arten, JavaScript in ein HTML-Dokument einzubinden.
+</div>
+
+<ul>
+  <li><strong>Inline-JavaScript</strong> (im HTML-Element, z. B. onclick)</li>
+  <li><strong>Internes JavaScript</strong> (im &lt;script&gt;-Tag)</li>
+  <li><strong>Externes JavaScript</strong> (separate .js-Datei)</li>
+</ul>
+
+<h3>5.1 Inline-JavaScript (nicht empfohlen)</h3>
+<div class="note">
+Inline-JS wirkt am Anfang praktisch, führt aber schnell zu unübersichtlichem Code und ist schlecht wartbar.
+</div>
+
+<div class="example">
+<pre class="code"><code>&lt;button onclick="alert('Hallo!')"&gt;Klick&lt;/button&gt;</code></pre>
+</div>
+
+<h3>5.2 Internes JavaScript (für kleine Beispiele ok)</h3>
+<div class="example">
+<pre class="code"><code>&lt;script&gt;
+  console.log("Hallo aus dem Script-Tag");
+&lt;/script&gt;</code></pre>
+</div>
+
+<h3>5.3 Externes JavaScript (Standard)</h3>
+
+<div class="definition">
+<strong>Externes JavaScript</strong> wird als separate Datei gespeichert und per Script-Tag eingebunden:
+</div>
+
+<div class="example">
+<pre class="code"><code>&lt;script src="app.js"&gt;&lt;/script&gt;</code></pre>
+</div>
+
+<div class="note">
+Externes JS ist in professionellen Projekten Standard: sauber, wiederverwendbar, leichter zu debuggen.
+</div>
+
+<h2>6. Der wichtigste Punkt: Wann wird JavaScript ausgeführt?</h2>
+
+<div class="definition">
+Der Browser lädt HTML von oben nach unten. Wenn ein Script ausgeführt wird, bevor ein Element existiert,
+kann JavaScript dieses Element nicht finden.
+</div>
+
+<p>
+Typische Fehlermeldung:
+</p>
+
+<div class="example">
+<pre class="code"><code>Cannot read properties of null (reading 'addEventListener')</code></pre>
+</div>
+
+<p>
+Das passiert, wenn du z. B. auf einen Button zugreifen willst, der im HTML erst später kommt.
+</p>
+
+<h3>6.1 Lösung A: Script ans Ende des Bodys</h3>
+<div class="example">
+<pre class="code"><code>&lt;body&gt;
+  ...
+  &lt;script src="app.js"&gt;&lt;/script&gt;
+&lt;/body&gt;</code></pre>
+</div>
+
+<h3>6.2 Lösung B: defer (empfohlen)</h3>
+
+<div class="definition">
+Mit <code>defer</code> wird das Script geladen, aber erst ausgeführt, nachdem das HTML komplett geparst wurde.
+</div>
+
+<div class="example">
+<pre class="code"><code>&lt;script defer src="app.js"&gt;&lt;/script&gt;</code></pre>
+</div>
+
+<h3>6.3 Lösung C: DOMContentLoaded</h3>
+<div class="example">
+<pre class="code"><code>document.addEventListener("DOMContentLoaded", () =&gt; {
+  // DOM ist jetzt verfügbar
+});</code></pre>
+</div>
+
+<div class="note">
+In vielen Projekten sieht man <code>defer</code> plus DOMContentLoaded. Meist reicht eines von beiden.
+</div>
+
+<h2>7. Minimalprojekt: Dein erstes funktionierendes Setup</h2>
+
+<p>
+Erstelle einen Ordner mit dieser Struktur:
+</p>
+
+<div class="example">
+<pre class="code"><code>js01/
+  index.html
+  app.js</code></pre>
+</div>
+
+<h3>7.1 index.html</h3>
+
+<div class="example">
+<pre class="code"><code>&lt;!DOCTYPE html&gt;
+&lt;html lang="de"&gt;
+&lt;head&gt;
+  &lt;meta charset="utf-8"&gt;
+  &lt;meta name="viewport" content="width=device-width, initial-scale=1"&gt;
+  &lt;title&gt;JS01 Test&lt;/title&gt;
+
+  &lt;!-- defer: Script läuft erst nach dem HTML --&gt;
+  &lt;script defer src="app.js"&gt;&lt;/script&gt;
+&lt;/head&gt;
+
+&lt;body&gt;
+  &lt;h1&gt;Hallo JavaScript&lt;/h1&gt;
+
+  &lt;button id="btn"&gt;Klick&lt;/button&gt;
+  &lt;p id="msg"&gt;—&lt;/p&gt;
+&lt;/body&gt;
+&lt;/html&gt;</code></pre>
+</div>
+
+<h3>7.2 app.js</h3>
+
+<div class="example">
+<pre class="code"><code>document.addEventListener("DOMContentLoaded", () =&gt; {
+  const btn = document.getElementById("btn");
+  const msg = document.getElementById("msg");
+
+  btn.addEventListener("click", () =&gt; {
+    msg.textContent = "Button wurde geklickt ✅";
+  });
+});</code></pre>
+</div>
+
+<div class="note">
+Wenn das nicht funktioniert: Öffne DevTools → Console und prüfe, ob Fehler angezeigt werden.
+</div>
+
+<h2>8. Debugging: Die Entwicklerkonsole (Pflichtwerkzeug)</h2>
+
+<div class="definition">
+Die <strong>Console</strong> ist das wichtigste Debugging-Werkzeug in JavaScript.
+Du verwendest sie zum Testen, Analysieren und Finden von Fehlern.
+</div>
+
+<p>
+Wichtige Methoden:
+</p>
+
+<ul>
+  <li><code>console.log()</code> — normale Ausgabe</li>
+  <li><code>console.warn()</code> — Warnungen</li>
+  <li><code>console.error()</code> — Fehler</li>
+</ul>
+
+<div class="example">
+<pre class="code"><code>console.log("Start");
+console.warn("Warnung: Das ist nur ein Hinweis");
+console.error("Fehler: Etwas ist schiefgelaufen");</code></pre>
+</div>
+
+<div class="note">
+Wenn „nichts passiert“: In 90% der Fälle ist die Console der Ort, an dem du den Grund findest.
+</div>
+
+<h2>9. Häufige Anfängerfehler (und wie man sie sofort erkennt)</h2>
+
+<div class="definition">
+Die meisten Probleme am Anfang entstehen nicht durch „schwierige Logik“, sondern durch Setup-Fehler.
+</div>
+
+<ul>
+  <li><strong>Falscher Pfad:</strong> Script-Datei wird nicht geladen (Network-Tab → 404).</li>
+  <li><strong>Falsche ID:</strong> HTML hat <code>id="btn"</code>, JS sucht <code>"button"</code>.</li>
+  <li><strong>Script läuft zu früh:</strong> Element ist <code>null</code>.</li>
+  <li><strong>Tippfehler:</strong> Ein fehlendes Zeichen kann das ganze Script stoppen.</li>
+</ul>
+
+<div class="note">
+Wenn du eine Fehlermeldung siehst: Lies sie vollständig. Sie sagt dir oft exakt, was falsch ist.
+</div>
+
+<h2>10. Übungen</h2>
+
+<div class="example">
+<strong>Übung 1 — Console-Grundlagen.</strong><br>
+Schreibe in <code>app.js</code> drei Ausgaben:
+<ul>
+  <li>„Seite geladen“</li>
+  <li>„Mein Name ist …“</li>
+  <li>Die Summe von 7 und 13</li>
+</ul>
+</div>
+
+<div class="example">
+<strong>Übung 2 — Toggle-Text.</strong><br>
+Beim Klick auf den Button soll der Text in <code>&lt;p id="msg"&gt;</code> zwischen „AN“ und „AUS“ wechseln.
+(Verwende eine Variable, die den Zustand speichert.)
+</div>
+
+<div class="example">
+<strong>Übung 3 — Debugging.</strong><br>
+Ändere die Button-ID im HTML, aber nicht im JS. Beobachte die Fehlermeldung und erkläre:
+<ul>
+  <li>Was bedeutet <code>null</code> in diesem Kontext?</li>
+  <li>Wie findest du den Fehler systematisch?</li>
+</ul>
+</div>
+
+<h2>11. Zusammenfassung</h2>
+
+<ul>
+  <li>JavaScript bringt Logik und Interaktivität ins Web.</li>
+  <li>Sauberer Standard: externe JS-Datei + <code>defer</code> oder DOMContentLoaded.</li>
+  <li>DOM ist die Baumstruktur der Seite, die JavaScript live verändern kann.</li>
+  <li>Console ist das wichtigste Werkzeug, um Probleme schnell zu finden.</li>
+</ul>
+
+<div class="definition">
+Wer JavaScript beherrscht, kontrolliert das Verhalten des Webs.
+</div>
+
+</section>
+
+</body>
+</html>

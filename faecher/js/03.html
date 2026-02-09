@@ -1,0 +1,331 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>JavaScript – Operatoren &amp; Typumwandlung</title>
+  <link rel="stylesheet" href="../../style.css">
+  <style>
+    .definition { padding:.75rem; border-left:4px solid #2b7cff; background:#f3f8ff; border-radius:4px; margin:.75rem 0; }
+    .example { padding:.75rem; border-left:4px solid #2e9a6a; background:#f4fffa; border-radius:4px; margin:.75rem 0; }
+    .note { padding:.75rem; border-left:4px solid #ff9800; background:#fff8f0; border-radius:4px; margin:.75rem 0; }
+    .small { font-size:0.95rem; color:#444; }
+
+    pre.code {
+      background:#1e1e1e;
+      color:#d4d4d4;
+      padding:1rem;
+      border-radius:4px;
+      overflow-x:auto;
+      font-size:0.95rem;
+    }
+    pre.code code {
+      background: transparent;
+      color: inherit;
+      padding: 0;
+      font-family: Consolas, monospace;
+    }
+    code {
+      font-family: Consolas, monospace;
+    }
+  </style>
+</head>
+
+<body>
+
+<nav>
+  <a href="index.html">Startseite</a>
+</nav>
+
+<section>
+
+<h1>JavaScript 3 — Operatoren &amp; Typumwandlung</h1>
+
+<p class="small">
+In dieser Lektion lernst du, wie JavaScript mit Operatoren arbeitet und wie Werte miteinander
+verknüpft, verglichen und umgewandelt werden.
+Dieses Kapitel ist besonders wichtig, weil viele typische JavaScript-Fehler
+direkt aus falschem Verständnis von Operatoren und Typumwandlung entstehen.
+</p>
+
+<h2>1. Was ist ein Operator?</h2>
+
+<div class="definition">
+<strong>Definition.</strong><br>
+Ein <strong>Operator</strong> ist ein Symbol oder Schlüsselwort,
+das eine Operation auf einem oder mehreren Operanden ausführt
+(z. B. Rechnen, Vergleichen, Zuweisen).
+</div>
+
+<p>
+Beispiele für Operanden sind Variablen, Literale oder Ausdrücke.
+</p>
+
+<div class="example">
+<pre class="code"><code>let result = 3 + 4;</code></pre>
+</div>
+
+<p>
+Hier ist <code>+</code> der Operator und <code>3</code>, <code>4</code> sind die Operanden.
+</p>
+
+<h2>2. Arithmetische Operatoren</h2>
+
+<div class="definition">
+Arithmetische Operatoren werden für mathematische Berechnungen verwendet.
+</div>
+
+<ul>
+  <li><code>+</code> Addition</li>
+  <li><code>-</code> Subtraktion</li>
+  <li><code>*</code> Multiplikation</li>
+  <li><code>/</code> Division</li>
+  <li><code>%</code> Modulo (Rest)</li>
+</ul>
+
+<div class="example">
+<pre class="code"><code>let a = 10;
+let b = 3;
+
+a + b; // 13
+a - b; // 7
+a * b; // 30
+a / b; // 3.333...
+a % b; // 1</code></pre>
+</div>
+
+<div class="note">
+Der Modulo-Operator ist besonders nützlich für Zyklen
+(z. B. „jede zweite Iteration“).
+</div>
+
+<h2>3. Zuweisungsoperatoren</h2>
+
+<div class="definition">
+Zuweisungsoperatoren speichern einen Wert in einer Variablen.
+</div>
+
+<ul>
+  <li><code>=</code> einfache Zuweisung</li>
+  <li><code>+=</code>, <code>-=</code>, <code>*=</code>, <code>/=</code> kombinierte Zuweisung</li>
+</ul>
+
+<div class="example">
+<pre class="code"><code>let x = 5;
+
+x += 2; // x = 7
+x -= 1; // x = 6
+x *= 3; // x = 18
+x /= 2; // x = 9</code></pre>
+</div>
+
+<div class="note">
+Kombinierte Zuweisungen sind syntaktischer Zucker,
+machen den Code aber oft lesbarer.
+</div>
+
+<h2>4. Inkrement und Dekrement</h2>
+
+<div class="definition">
+Mit Inkrement (<code>++</code>) und Dekrement (<code>--</code>)
+kann ein Wert um 1 erhöht oder verringert werden.
+</div>
+
+<div class="example">
+<pre class="code"><code>let counter = 0;
+
+counter++; // 1
+counter--; // 0</code></pre>
+</div>
+
+<div class="note">
+Die Unterschiede zwischen <code>counter++</code> und <code>++counter</code>
+werden später relevant (Auswertungsreihenfolge).
+</div>
+
+<h2>5. Vergleichsoperatoren</h2>
+
+<div class="definition">
+Vergleichsoperatoren liefern immer einen Boolean-Wert
+(<code>true</code> oder <code>false</code>).
+</div>
+
+<ul>
+  <li><code>==</code> gleich (lose)</li>
+  <li><code>===</code> gleich (streng)</li>
+  <li><code>!=</code>, <code>!==</code> ungleich</li>
+  <li><code>&lt;</code>, <code>&gt;</code>, <code>&lt;=</code>, <code>&gt;=</code></li>
+</ul>
+
+<div class="example">
+<pre class="code"><code>5 == "5";   // true
+5 === "5";  // false
+5 !== "5";  // true</code></pre>
+</div>
+
+<div class="note">
+<strong>Merke:</strong> Verwende fast immer <code>===</code> und <code>!==</code>.
+Die losen Operatoren führen implizite Typumwandlungen durch.
+</div>
+
+<h2>6. Logische Operatoren</h2>
+
+<div class="definition">
+Logische Operatoren verknüpfen oder negieren Bedingungen.
+</div>
+
+<ul>
+  <li><code>&&</code> UND</li>
+  <li><code>||</code> ODER</li>
+  <li><code>!</code> NICHT</li>
+</ul>
+
+<div class="example">
+<pre class="code"><code>let age = 20;
+let hasTicket = true;
+
+age >= 18 && hasTicket; // true
+age < 18 || hasTicket;  // true
+!hasTicket;             // false</code></pre>
+</div>
+
+<div class="note">
+Logische Operatoren werden extrem häufig in Bedingungen verwendet
+(z. B. in <code>if</code>-Anweisungen).
+</div>
+
+<h2>7. String-Operatoren</h2>
+
+<div class="definition">
+Der Operator <code>+</code> kann auch Strings verketten.
+</div>
+
+<div class="example">
+<pre class="code"><code>"Hallo " + "Welt"; // "Hallo Welt"</code></pre>
+</div>
+
+<p>
+In Kombination mit Zahlen kann es zu impliziter Typumwandlung kommen:
+</p>
+
+<div class="example">
+<pre class="code"><code>1 + "2";   // "12"
+"1" + 2;   // "12"
+1 + 2 + "3"; // "33"</code></pre>
+</div>
+
+<div class="note">
+Solche Effekte sind eine der häufigsten Fehlerquellen in JavaScript.
+</div>
+
+<h2>8. Implizite Typumwandlung (Coercion)</h2>
+
+<div class="definition">
+JavaScript wandelt Typen automatisch um,
+wenn ein Operator dies erfordert.
+</div>
+
+<div class="example">
+<pre class="code"><code>"5" * 2;   // 10
+"5" - 1;   // 4
+"5" + 1;   // "51"</code></pre>
+</div>
+
+<div class="note">
+Nicht jeder Operator verhält sich gleich.
+<code>+</code> ist besonders speziell.
+</div>
+
+<h2>9. Explizite Typumwandlung</h2>
+
+<div class="definition">
+Explizite Typumwandlung bedeutet,
+dass du selbst festlegst, welcher Typ entstehen soll.
+</div>
+
+<div class="example">
+<pre class="code"><code>Number("42");   // 42
+String(42);     // "42"
+Boolean(1);     // true
+Boolean(0);     // false</code></pre>
+</div>
+
+<div class="note">
+Explizite Umwandlung ist klarer, sicherer und besser lesbar.
+</div>
+
+<h2>10. Truthy und Falsy Werte</h2>
+
+<div class="definition">
+Nicht-Boolean-Werte können in Bedingungen als
+<em>truthy</em> oder <em>falsy</em> interpretiert werden.
+</div>
+
+<div class="example">
+<pre class="code"><code>false
+0
+""
+null
+undefined
+NaN</code></pre>
+</div>
+
+<p>
+Alle anderen Werte gelten als <em>truthy</em>.
+</p>
+
+<div class="note">
+Dieses Verhalten wird häufig in Kurzschreibweisen genutzt,
+kann aber auch verwirrend sein.
+</div>
+
+<h2>11. Gute Praxis</h2>
+
+<ul>
+  <li>Bevorzuge <code>===</code> statt <code>==</code></li>
+  <li>Vermeide implizite Typumwandlung</li>
+  <li>Nutze explizite Konvertierung</li>
+  <li>Schreibe klar lesbare Ausdrücke</li>
+</ul>
+
+<div class="example">
+<strong>Gut:</strong>
+<pre class="code"><code>const count = Number(inputValue);</code></pre>
+</div>
+
+<h2>12. Übungen</h2>
+
+<div class="example">
+<strong>Übung 1.</strong><br>
+Berechne mit Variablen den Umfang und die Fläche eines Rechtecks
+und gib die Ergebnisse in der Konsole aus.
+</div>
+
+<div class="example">
+<strong>Übung 2.</strong><br>
+Teste den Unterschied zwischen <code>==</code> und <code>===</code>
+mit Zahlen und Strings.
+</div>
+
+<div class="example">
+<strong>Übung 3.</strong><br>
+Experimentiere mit truthy/falsy Werten in einer <code>if</code>-Bedingung.
+</div>
+
+<h2>13. Zusammenfassung</h2>
+
+<ul>
+  <li>Operatoren führen Berechnungen, Vergleiche und Logik aus</li>
+  <li><code>===</code> ist der empfohlene Vergleichsoperator</li>
+  <li>JavaScript wandelt Typen implizit oder explizit um</li>
+  <li>Truthy/Falsy ist ein zentrales Konzept für Bedingungen</li>
+</ul>
+
+<div class="definition">
+Wer Operatoren und Typumwandlung versteht, schreibt verlässlichen JavaScript-Code.
+</div>
+
+</section>
+
+</body>
+</html>
