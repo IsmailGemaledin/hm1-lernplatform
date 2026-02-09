@@ -1,0 +1,314 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>JavaScript – Asynchrones JavaScript</title>
+  <link rel="stylesheet" href="../../style.css">
+  <style>
+    .definition { padding:.75rem; border-left:4px solid #2b7cff; background:#f3f8ff; border-radius:4px; margin:.75rem 0; }
+    .example { padding:.75rem; border-left:4px solid #2e9a6a; background:#f4fffa; border-radius:4px; margin:.75rem 0; }
+    .note { padding:.75rem; border-left:4px solid #ff9800; background:#fff8f0; border-radius:4px; margin:.75rem 0; }
+    .small { font-size:0.95rem; color:#444; }
+
+    pre.code {
+      background:#1e1e1e;
+      color:#d4d4d4;
+      padding:1rem;
+      border-radius:4px;
+      overflow-x:auto;
+      font-size:0.95rem;
+    }
+    pre.code code {
+      background: transparent;
+      color: inherit;
+      padding: 0;
+      font-family: Consolas, monospace;
+    }
+    code { font-family: Consolas, monospace; }
+  </style>
+</head>
+
+<body>
+
+<nav>
+  <a href="index.html">Startseite</a>
+</nav>
+
+<section>
+
+<h1>JavaScript 8 — Asynchrones JavaScript</h1>
+
+<p class="small">
+In dieser Lektion lernst du, wie JavaScript mit <em>zeitlich verzögerten</em> Abläufen umgeht.
+Asynchrones JavaScript ist entscheidend für reale Anwendungen: Netzwerkanfragen,
+Timer, Benutzerinteraktionen und Hintergrundprozesse würden ohne Asynchronität
+die gesamte Seite blockieren.
+</p>
+
+<h2>1. Das Problem: Blockierender Code</h2>
+
+<div class="definition">
+<strong>Definition.</strong><br>
+JavaScript ist <strong>single-threaded</strong>: Es kann immer nur eine Sache gleichzeitig ausführen.
+Lange Aufgaben würden die Seite einfrieren, wenn sie synchron ausgeführt würden.
+</div>
+
+<div class="example">
+<pre class="code"><code>// Gedankenexperiment: blockiert die Seite
+function longTask() {
+  let start = Date.now();
+  while (Date.now() - start < 5000) {}
+  console.log("Fertig");
+}
+
+longTask();
+console.log("Das kommt erst danach");</code></pre>
+</div>
+
+<div class="note">
+Während <code>longTask</code> läuft, reagiert die Seite nicht mehr.
+Genau das verhindert asynchrones JavaScript.
+</div>
+
+<h2>2. Das Event Loop Modell (Überblick)</h2>
+
+<div class="definition">
+JavaScript verwendet ein <strong>Event Loop</strong>-Modell,
+um asynchronen Code zu koordinieren.
+</div>
+
+<p>
+Vereinfacht:
+</p>
+
+<ul>
+  <li>Der Call Stack führt aktuellen Code aus</li>
+  <li>Asynchrone Aufgaben werden ausgelagert</li>
+  <li>Fertige Aufgaben kommen in eine Warteschlange</li>
+  <li>Der Event Loop fügt sie später wieder ein</li>
+</ul>
+
+<div class="note">
+Du musst den Event Loop nicht im Detail implementieren,
+aber sein Prinzip verstehen.
+</div>
+
+<h2>3. setTimeout — der einfachste Einstieg</h2>
+
+<div class="definition">
+<code>setTimeout</code> führt eine Funktion nach einer bestimmten Zeit aus
+(asynchron).
+</div>
+
+<div class="example">
+<pre class="code"><code>console.log("Start");
+
+setTimeout(() => {
+  console.log("Nach 2 Sekunden");
+}, 2000);
+
+console.log("Ende");</code></pre>
+</div>
+
+<div class="note">
+Die Ausgabe zeigt: <code>setTimeout</code> blockiert nicht.
+</div>
+
+<h2>4. Callbacks</h2>
+
+<div class="definition">
+Ein <strong>Callback</strong> ist eine Funktion,
+die an eine andere Funktion übergeben wird
+und später aufgerufen wird.
+</div>
+
+<div class="example">
+<pre class="code"><code>function doSomethingLater(callback) {
+  setTimeout(() => {
+    callback("Fertig!");
+  }, 1000);
+}
+
+doSomethingLater(message => {
+  console.log(message);
+});</code></pre>
+</div>
+
+<h3>4.1 Callback-Hell</h3>
+
+<div class="note">
+Viele verschachtelte Callbacks führen zu schwer lesbarem Code
+(„Callback-Hell“).
+</div>
+
+<div class="example">
+<pre class="code"><code>step1(() => {
+  step2(() => {
+    step3(() => {
+      console.log("Done");
+    });
+  });
+});</code></pre>
+</div>
+
+<h2>5. Promises</h2>
+
+<div class="definition">
+Ein <strong>Promise</strong> repräsentiert einen Wert,
+der <em>jetzt noch nicht</em>, aber <em>später</em> verfügbar sein wird.
+</div>
+
+<p>
+Ein Promise hat drei Zustände:
+</p>
+
+<ul>
+  <li><code>pending</code> — läuft</li>
+  <li><code>fulfilled</code> — erfolgreich</li>
+  <li><code>rejected</code> — fehlgeschlagen</li>
+</ul>
+
+<div class="example">
+<pre class="code"><code>const promise = new Promise((resolve, reject) => {
+  setTimeout(() => {
+    resolve("Erfolg!");
+  }, 1000);
+});
+
+promise.then(result => {
+  console.log(result);
+});</code></pre>
+</div>
+
+<h3>5.1 Fehlerbehandlung mit catch</h3>
+
+<div class="example">
+<pre class="code"><code>promise
+  .then(result => console.log(result))
+  .catch(error => console.error(error));</code></pre>
+</div>
+
+<h2>6. Verkettung von Promises</h2>
+
+<div class="definition">
+Promises können verkettet werden,
+um mehrere asynchrone Schritte nacheinander auszuführen.
+</div>
+
+<div class="example">
+<pre class="code"><code>fetchData()
+  .then(data => processData(data))
+  .then(result => console.log(result))
+  .catch(err => console.error(err));</code></pre>
+</div>
+
+<div class="note">
+Jedes <code>then</code> gibt wieder ein Promise zurück.
+</div>
+
+<h2>7. async &amp; await</h2>
+
+<div class="definition">
+<code>async</code> und <code>await</code> sind Syntax-Zucker
+für Promises und machen asynchronen Code lesbar wie synchronen.
+</div>
+
+<div class="example">
+<pre class="code"><code>async function loadData() {
+  const result = await promise;
+  console.log(result);
+}
+
+loadData();</code></pre>
+</div>
+
+<h3>7.1 Fehlerbehandlung mit try/catch</h3>
+
+<div class="example">
+<pre class="code"><code>async function load() {
+  try {
+    const data = await fetchData();
+    console.log(data);
+  } catch (err) {
+    console.error(err);
+  }
+}</code></pre>
+</div>
+
+<div class="note">
+<code>await</code> darf nur innerhalb von <code>async</code>-Funktionen verwendet werden.
+</div>
+
+<h2>8. Parallel vs. Sequenziell</h2>
+
+<div class="definition">
+Asynchrone Aufgaben können nacheinander
+oder parallel ausgeführt werden.
+</div>
+
+<h3>8.1 Sequenziell</h3>
+
+<div class="example">
+<pre class="code"><code>const a = await taskA();
+const b = await taskB();</code></pre>
+</div>
+
+<h3>8.2 Parallel</h3>
+
+<div class="example">
+<pre class="code"><code>const [a, b] = await Promise.all([
+  taskA(),
+  taskB()
+]);</code></pre>
+</div>
+
+<div class="note">
+Parallelisierung spart Zeit, wenn Aufgaben unabhängig sind.
+</div>
+
+<h2>9. Typische Fehler</h2>
+
+<ul>
+  <li><code>await</code> außerhalb von <code>async</code></li>
+  <li>Fehlendes <code>catch</code> bei Promises</li>
+  <li>Annahme, dass <code>setTimeout</code> exakt zeitgenau ist</li>
+  <li>Unnötig blockierender Code</li>
+</ul>
+
+<h2>10. Übungen</h2>
+
+<div class="example">
+<strong>Übung 1.</strong><br>
+Gib mit <code>setTimeout</code> nach 3 Sekunden eine Nachricht aus.
+</div>
+
+<div class="example">
+<strong>Übung 2.</strong><br>
+Schreibe eine Funktion, die ein Promise zurückgibt
+und nach 1 Sekunde einen Text liefert.
+</div>
+
+<div class="example">
+<strong>Übung 3.</strong><br>
+Wandle Übung 2 in <code>async/await</code> um
+und fange Fehler sauber ab.
+</div>
+
+<h2>11. Zusammenfassung</h2>
+
+<ul>
+  <li>JavaScript ist single-threaded, aber asynchron</li>
+  <li>Callbacks → Promises → async/await</li>
+  <li>Lesbarkeit ist entscheidend</li>
+  <li>Asynchronität ist Kern moderner Web-Apps</li>
+</ul>
+
+<div class="definition">
+Wer asynchrones JavaScript beherrscht, beherrscht reale Anwendungen.
+</div>
+
+</section>
+
+</body>
+</html>

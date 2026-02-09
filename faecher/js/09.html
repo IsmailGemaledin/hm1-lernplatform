@@ -1,0 +1,290 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>JavaScript – Fetch API &amp; HTTP</title>
+  <link rel="stylesheet" href="../../style.css">
+  <style>
+    .definition { padding:.75rem; border-left:4px solid #2b7cff; background:#f3f8ff; border-radius:4px; margin:.75rem 0; }
+    .example { padding:.75rem; border-left:4px solid #2e9a6a; background:#f4fffa; border-radius:4px; margin:.75rem 0; }
+    .note { padding:.75rem; border-left:4px solid #ff9800; background:#fff8f0; border-radius:4px; margin:.75rem 0; }
+    .small { font-size:0.95rem; color:#444; }
+
+    pre.code {
+      background:#1e1e1e;
+      color:#d4d4d4;
+      padding:1rem;
+      border-radius:4px;
+      overflow-x:auto;
+      font-size:0.95rem;
+    }
+    pre.code code {
+      background: transparent;
+      color: inherit;
+      padding: 0;
+      font-family: Consolas, monospace;
+    }
+    code { font-family: Consolas, monospace; }
+  </style>
+</head>
+
+<body>
+
+<nav>
+  <a href="index.html">Startseite</a>
+</nav>
+
+<section>
+
+<h1>JavaScript 9 — Fetch API &amp; HTTP</h1>
+
+<p class="small">
+In dieser Lektion lernst du, wie JavaScript mit <em>externen Daten</em> kommuniziert.
+Fast jede moderne Webanwendung lädt oder sendet Daten über das Netzwerk.
+Dafür brauchst du ein solides Verständnis von <strong>HTTP</strong> und der
+<strong>Fetch API</strong>.
+</p>
+
+<h2>1. Warum Daten laden?</h2>
+
+<div class="definition">
+<strong>Definition.</strong><br>
+Webanwendungen sind selten isoliert. Sie kommunizieren mit Servern,
+APIs und Datenbanken, um Informationen zu laden oder zu speichern.
+</div>
+
+<p>
+Typische Beispiele:
+</p>
+
+<ul>
+  <li>Benutzerdaten laden (Profile, Einstellungen)</li>
+  <li>Listen anzeigen (Produkte, Beiträge, Kommentare)</li>
+  <li>Formulare absenden</li>
+  <li>Daten aktualisieren, ohne die Seite neu zu laden</li>
+</ul>
+
+<h2>2. HTTP — das Fundament</h2>
+
+<div class="definition">
+<strong>HTTP (Hypertext Transfer Protocol)</strong> ist das Protokoll,
+über das Browser und Server miteinander kommunizieren.
+</div>
+
+<p>
+Ein HTTP-Austausch besteht aus:
+</p>
+
+<ul>
+  <li>einer Anfrage (Request)</li>
+  <li>einer Antwort (Response)</li>
+</ul>
+
+<h3>2.1 Wichtige HTTP-Methoden</h3>
+
+<ul>
+  <li><code>GET</code> — Daten abrufen</li>
+  <li><code>POST</code> — neue Daten senden</li>
+  <li><code>PUT</code>/<code>PATCH</code> — Daten ändern</li>
+  <li><code>DELETE</code> — Daten löschen</li>
+</ul>
+
+<div class="note">
+Die Methode beschreibt die <em>Absicht</em> der Anfrage.
+</div>
+
+<h3>2.2 HTTP-Statuscodes</h3>
+
+<div class="definition">
+Statuscodes geben an, ob eine Anfrage erfolgreich war.
+</div>
+
+<ul>
+  <li><code>200</code> — OK</li>
+  <li><code>201</code> — Created</li>
+  <li><code>400</code> — Bad Request</li>
+  <li><code>401</code> — Unauthorized</li>
+  <li><code>404</code> — Not Found</li>
+  <li><code>500</code> — Server Error</li>
+</ul>
+
+<h2>3. Die Fetch API</h2>
+
+<div class="definition">
+Die <strong>Fetch API</strong> ist die moderne Standard-Schnittstelle,
+um HTTP-Anfragen in JavaScript zu senden.
+</div>
+
+<p>
+<code>fetch</code> ist asynchron und gibt immer ein <strong>Promise</strong> zurück.
+</p>
+
+<h3>3.1 Einfacher GET-Request</h3>
+
+<div class="example">
+<pre class="code"><code>fetch("https://api.example.com/data")
+  .then(response => response.json())
+  .then(data => {
+    console.log(data);
+  })
+  .catch(error => {
+    console.error(error);
+  });</code></pre>
+</div>
+
+<div class="note">
+<code>response.json()</code> liest den Antwort-Body
+und gibt ebenfalls ein Promise zurück.
+</div>
+
+<h2>4. fetch mit async &amp; await</h2>
+
+<div class="definition">
+Mit <code>async/await</code> wird Fetch-Code deutlich lesbarer.
+</div>
+
+<div class="example">
+<pre class="code"><code>async function loadData() {
+  try {
+    const response = await fetch("https://api.example.com/data");
+    const data = await response.json();
+    console.log(data);
+  } catch (err) {
+    console.error(err);
+  }
+}
+
+loadData();</code></pre>
+</div>
+
+<h2>5. Fehlerbehandlung bei fetch</h2>
+
+<div class="definition">
+Ein HTTP-Fehler (z. B. 404) wirft <em>keinen</em> JavaScript-Fehler.
+Er muss explizit geprüft werden.
+</div>
+
+<div class="example">
+<pre class="code"><code>async function loadData() {
+  const response = await fetch("https://api.example.com/data");
+
+  if (!response.ok) {
+    throw new Error("HTTP-Fehler: " + response.status);
+  }
+
+  return response.json();
+}</code></pre>
+</div>
+
+<div class="note">
+<code>response.ok</code> ist <code>false</code> bei Statuscodes ≥ 400.
+</div>
+
+<h2>6. POST-Requests: Daten senden</h2>
+
+<div class="definition">
+Mit <code>fetch</code> können auch Daten an einen Server gesendet werden.
+</div>
+
+<div class="example">
+<pre class="code"><code>fetch("https://api.example.com/users", {
+  method: "POST",
+  headers: {
+    "Content-Type": "application/json"
+  },
+  body: JSON.stringify({
+    name: "Iman",
+    age: 22
+  })
+});</code></pre>
+</div>
+
+<div class="note">
+Der Request-Body muss bei JSON-Daten als String gesendet werden.
+</div>
+
+<h2>7. JSON — das Standardformat</h2>
+
+<div class="definition">
+<strong>JSON (JavaScript Object Notation)</strong> ist das Standardformat
+für den Datenaustausch im Web.
+</div>
+
+<div class="example">
+<pre class="code"><code>// JavaScript → JSON
+const json = JSON.stringify({ a: 1 });
+
+// JSON → JavaScript
+const obj = JSON.parse(json);</code></pre>
+</div>
+
+<h2>8. Fetch und das DOM</h2>
+
+<div class="definition">
+In echten Anwendungen werden geladene Daten
+meist direkt im DOM angezeigt.
+</div>
+
+<div class="example">
+<pre class="code"><code>async function showUsers() {
+  const res = await fetch("https://api.example.com/users");
+  const users = await res.json();
+
+  const list = document.querySelector("#list");
+  list.innerHTML = "";
+
+  users.forEach(user => {
+    const li = document.createElement("li");
+    li.textContent = user.name;
+    list.appendChild(li);
+  });
+}</code></pre>
+</div>
+
+<h2>9. Typische Fehler</h2>
+
+<ul>
+  <li>Vergessen von <code>await</code></li>
+  <li>Nichtprüfen von <code>response.ok</code></li>
+  <li>Falsche Header bei POST-Requests</li>
+  <li>Annahme, dass <code>fetch</code> bei 404 automatisch scheitert</li>
+</ul>
+
+<h2>10. Übungen</h2>
+
+<div class="example">
+<strong>Übung 1.</strong><br>
+Lade Daten von einer öffentlichen API (z. B. JSONPlaceholder)
+und gib sie in der Konsole aus.
+</div>
+
+<div class="example">
+<strong>Übung 2.</strong><br>
+Zeige eine Liste von Einträgen im HTML an,
+die per <code>fetch</code> geladen werden.
+</div>
+
+<div class="example">
+<strong>Übung 3.</strong><br>
+Sende mit <code>POST</code> ein Objekt an eine Test-API
+und überprüfe die Antwort.
+</div>
+
+<h2>11. Zusammenfassung</h2>
+
+<ul>
+  <li>HTTP ist die Grundlage der Webkommunikation</li>
+  <li>Fetch ist die moderne API für Netzwerkanfragen</li>
+  <li>Promises und async/await sind zentral</li>
+  <li>Fehler müssen explizit behandelt werden</li>
+</ul>
+
+<div class="definition">
+Wer Fetch und HTTP versteht, verbindet Frontend und Backend.
+</div>
+
+</section>
+
+</body>
+</html>

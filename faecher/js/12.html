@@ -1,0 +1,256 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>JavaScript – Mini-Projekt</title>
+  <link rel="stylesheet" href="../../style.css">
+  <style>
+    .definition { padding:.75rem; border-left:4px solid #2b7cff; background:#f3f8ff; border-radius:4px; margin:.75rem 0; }
+    .example { padding:.75rem; border-left:4px solid #2e9a6a; background:#f4fffa; border-radius:4px; margin:.75rem 0; }
+    .note { padding:.75rem; border-left:4px solid #ff9800; background:#fff8f0; border-radius:4px; margin:.75rem 0; }
+    .small { font-size:0.95rem; color:#444; }
+
+    pre.code {
+      background:#1e1e1e;
+      color:#d4d4d4;
+      padding:1rem;
+      border-radius:4px;
+      overflow-x:auto;
+      font-size:0.95rem;
+    }
+    pre.code code {
+      background: transparent;
+      color: inherit;
+      padding: 0;
+      font-family: Consolas, monospace;
+    }
+    code { font-family: Consolas, monospace; }
+  </style>
+</head>
+
+<body>
+
+<nav>
+  <a href="index.html">Startseite</a>
+</nav>
+
+<section>
+
+<h1>JavaScript 12 — Mini-Projekt</h1>
+
+<p class="small">
+In dieser letzten Lektion setzt du dein Wissen praktisch um.
+Du entwickelst ein <strong>komplettes, kleines JavaScript-Projekt</strong>,
+das DOM-Manipulation, Events, Funktionen, Arrays/Objekte und saubere Struktur vereint.
+Der Fokus liegt nicht auf „vielen Features“, sondern auf <em>sauberem Denken</em>
+und <em>korrektem Aufbau</em>.
+</p>
+
+<h2>1. Projektziel</h2>
+
+<div class="definition">
+<strong>Ziel.</strong><br>
+Entwickle eine <strong>interaktive To-Do-Liste</strong>, die Aufgaben hinzufügen,
+anzeigen und entfernen kann — ohne Seiten-Reload.
+</div>
+
+<p>
+Das Projekt soll zeigen, dass du:
+</p>
+
+<ul>
+  <li>DOM-Elemente auswählen und verändern kannst</li>
+  <li>Events korrekt verwendest</li>
+  <li>Daten strukturiert speicherst</li>
+  <li>Code in Funktionen aufteilst</li>
+</ul>
+
+<h2>2. Funktionsumfang</h2>
+
+<div class="definition">
+Die To-Do-Liste soll folgende Funktionen besitzen:
+</div>
+
+<ul>
+  <li>Aufgabe über ein Eingabefeld hinzufügen</li>
+  <li>Aufgabenliste dynamisch anzeigen</li>
+  <li>Einzelne Aufgaben löschen</li>
+  <li>Leeres Eingabefeld verhindern</li>
+</ul>
+
+<div class="note">
+Optional (Bonus): Aufgaben als „erledigt“ markieren.
+</div>
+
+<h2>3. Projektstruktur</h2>
+
+<div class="definition">
+Eine saubere Struktur hilft auch bei kleinen Projekten.
+</div>
+
+<div class="example">
+<pre class="code"><code>todo/
+  index.html
+  style.css
+  app.js</code></pre>
+</div>
+
+<h2>4. HTML-Grundgerüst</h2>
+
+<div class="example">
+<pre class="code"><code>&lt;!DOCTYPE html&gt;
+&lt;html lang="de"&gt;
+&lt;head&gt;
+  &lt;meta charset="utf-8"&gt;
+  &lt;meta name="viewport" content="width=device-width, initial-scale=1"&gt;
+  &lt;title&gt;To-Do Liste&lt;/title&gt;
+  &lt;script defer src="app.js"&gt;&lt;/script&gt;
+&lt;/head&gt;
+&lt;body&gt;
+
+  &lt;h1&gt;Meine To-Do-Liste&lt;/h1&gt;
+
+  &lt;input id="todoInput" type="text" placeholder="Neue Aufgabe"&gt;
+  &lt;button id="addBtn"&gt;Hinzufügen&lt;/button&gt;
+
+  &lt;ul id="todoList"&gt;&lt;/ul&gt;
+
+&lt;/body&gt;
+&lt;/html&gt;</code></pre>
+</div>
+
+<h2>5. JavaScript-Grundlogik</h2>
+
+<div class="definition">
+Alle Logik kommt in <code>app.js</code>.
+Wir beginnen mit DOM-Zugriffen und einer Datenstruktur.
+</div>
+
+<div class="example">
+<pre class="code"><code>document.addEventListener("DOMContentLoaded", () => {
+  const input = document.getElementById("todoInput");
+  const button = document.getElementById("addBtn");
+  const list = document.getElementById("todoList");
+
+  const todos = [];
+});</code></pre>
+</div>
+
+<h2>6. Aufgabe hinzufügen</h2>
+
+<div class="definition">
+Beim Klick auf den Button wird der Text gelesen,
+geprüft und gespeichert.
+</div>
+
+<div class="example">
+<pre class="code"><code>button.addEventListener("click", () => {
+  const text = input.value.trim();
+
+  if (text === "") return;
+
+  todos.push(text);
+  input.value = "";
+
+  renderTodos();
+});</code></pre>
+</div>
+
+<h2>7. Aufgaben rendern</h2>
+
+<div class="definition">
+Die Anzeige der Liste erfolgt über eine eigene Funktion.
+</div>
+
+<div class="example">
+<pre class="code"><code>function renderTodos() {
+  list.innerHTML = "";
+
+  todos.forEach((todo, index) => {
+    const li = document.createElement("li");
+    li.textContent = todo;
+
+    const delBtn = document.createElement("button");
+    delBtn.textContent = "✕";
+
+    delBtn.addEventListener("click", () => {
+      removeTodo(index);
+    });
+
+    li.appendChild(delBtn);
+    list.appendChild(li);
+  });
+}</code></pre>
+</div>
+
+<h2>8. Aufgaben entfernen</h2>
+
+<div class="definition">
+Das Entfernen geschieht über den Index im Array.
+</div>
+
+<div class="example">
+<pre class="code"><code>function removeTodo(index) {
+  todos.splice(index, 1);
+  renderTodos();
+}</code></pre>
+</div>
+
+<div class="note">
+Hier siehst du klar das Zusammenspiel von
+Datenstruktur → Logik → DOM.
+</div>
+
+<h2>9. Erweiterungen (Bonus)</h2>
+
+<ul>
+  <li>Enter-Taste zum Hinzufügen</li>
+  <li>Erledigt-Status (CSS-Klasse)</li>
+  <li>Speichern im LocalStorage</li>
+  <li>Zähler für offene Aufgaben</li>
+</ul>
+
+<div class="example">
+<strong>Bonus-Idee:</strong>
+<pre class="code"><code>li.classList.toggle("done");</code></pre>
+</div>
+
+<h2>10. Typische Fehler</h2>
+
+<ul>
+  <li>DOM-Elemente vor DOMContentLoaded verwenden</li>
+  <li>Logik und DOM-Code vermischen</li>
+  <li>Array direkt im DOM manipulieren</li>
+  <li>Keine Wiederverwendung von Funktionen</li>
+</ul>
+
+<h2>11. Reflexion</h2>
+
+<div class="definition">
+Dieses Projekt ist klein — aber realistisch.
+</div>
+
+<p>
+Wenn du dieses Projekt selbstständig umsetzen kannst,
+beherrschst du die <strong>Grundlagen von JavaScript im Browser</strong>.
+Alles Weitere ist Ausbau, nicht Neuanfang.
+</p>
+
+<h2>12. Zusammenfassung</h2>
+
+<ul>
+  <li>JavaScript steuert Verhalten und Logik</li>
+  <li>Daten leben in Variablen und Arrays</li>
+  <li>DOM ist nur die Darstellung</li>
+  <li>Saubere Struktur ist wichtiger als Features</li>
+</ul>
+
+<div class="definition">
+Ein gutes Projekt ist nicht komplex — sondern klar gedacht.
+</div>
+
+</section>
+
+</body>
+</html>

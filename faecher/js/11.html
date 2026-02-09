@@ -1,0 +1,301 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>JavaScript – Best Practices</title>
+  <link rel="stylesheet" href="../../style.css">
+  <style>
+    .definition { padding:.75rem; border-left:4px solid #2b7cff; background:#f3f8ff; border-radius:4px; margin:.75rem 0; }
+    .example { padding:.75rem; border-left:4px solid #2e9a6a; background:#f4fffa; border-radius:4px; margin:.75rem 0; }
+    .note { padding:.75rem; border-left:4px solid #ff9800; background:#fff8f0; border-radius:4px; margin:.75rem 0; }
+    .small { font-size:0.95rem; color:#444; }
+
+    pre.code {
+      background:#1e1e1e;
+      color:#d4d4d4;
+      padding:1rem;
+      border-radius:4px;
+      overflow-x:auto;
+      font-size:0.95rem;
+    }
+    pre.code code {
+      background: transparent;
+      color: inherit;
+      padding: 0;
+      font-family: Consolas, monospace;
+    }
+    code { font-family: Consolas, monospace; }
+  </style>
+</head>
+
+<body>
+
+<nav>
+  <a href="index.html">Startseite</a>
+</nav>
+
+<section>
+
+<h1>JavaScript 11 — Best Practices</h1>
+
+<p class="small">
+In dieser Lektion lernst du bewährte <em>Best Practices</em>, mit denen dein JavaScript
+lesbar, robust und wartbar bleibt. Diese Regeln unterscheiden „es funktioniert“
+von professionellem, langfristig tragfähigem Code.
+</p>
+
+<h2>1. Lesbarkeit vor Cleverness</h2>
+
+<div class="definition">
+<strong>Grundsatz.</strong><br>
+Code wird viel häufiger gelesen als geschrieben.
+Lesbarkeit ist wichtiger als maximale Kürze.
+</div>
+
+<div class="example">
+<strong>Schlecht:</strong>
+<pre class="code"><code>const r=a=>a&&a.b&&a.b.c?a.b.c:0;</code></pre>
+</div>
+
+<div class="example">
+<strong>Gut:</strong>
+<pre class="code"><code>function getValue(obj) {
+  if (!obj || !obj.b) return 0;
+  return obj.b.c;
+}</code></pre>
+</div>
+
+<h2>2. Verwende <code>const</code> und <code>let</code> korrekt</h2>
+
+<div class="definition">
+Nutze <code>const</code> standardmäßig und <code>let</code> nur, wenn eine Variable
+neu zugewiesen werden muss.
+</div>
+
+<div class="example">
+<pre class="code"><code>const API_URL = "/api/users";
+let count = 0;
+count++;</code></pre>
+</div>
+
+<div class="note">
+<code>var</code> sollte in modernem JavaScript nicht mehr verwendet werden.
+</div>
+
+<h2>3. Vermeide globale Variablen</h2>
+
+<div class="definition">
+Globale Variablen führen zu Namenskonflikten
+und schwer nachvollziehbaren Fehlern.
+</div>
+
+<div class="example">
+<strong>Schlecht:</strong>
+<pre class="code"><code>window.total = 0;</code></pre>
+</div>
+
+<div class="example">
+<strong>Gut (Modul):</strong>
+<pre class="code"><code>let total = 0;
+export function add(x) {
+  total += x;
+}</code></pre>
+</div>
+
+<h2>4. Kleine Funktionen mit klarer Aufgabe</h2>
+
+<div class="definition">
+Eine Funktion sollte <em>eine</em> Aufgabe erfüllen
+und diese klar benennen.
+</div>
+
+<div class="example">
+<pre class="code"><code>// schlecht: macht zu viel
+function handleUser(user) {
+  validate(user);
+  save(user);
+  render(user);
+}</code></pre>
+</div>
+
+<div class="example">
+<pre class="code"><code>// gut: getrennte Verantwortlichkeiten
+function validateUser(user) { }
+function saveUser(user) { }
+function renderUser(user) { }</code></pre>
+</div>
+
+<h2>5. Klare und konsistente Benennung</h2>
+
+<div class="definition">
+Namen sind Teil der Dokumentation.
+Sie sollten Absicht ausdrücken, nicht Implementierung.
+</div>
+
+<ul>
+  <li>Variablen: Substantive (<code>user</code>, <code>count</code>)</li>
+  <li>Funktionen: Verben (<code>loadData</code>, <code>renderList</code>)</li>
+  <li>Booleans: Fragen (<code>isLoggedIn</code>, <code>hasAccess</code>)</li>
+</ul>
+
+<div class="example">
+<pre class="code"><code>const isAdmin = user.role === "admin";</code></pre>
+</div>
+
+<h2>6. Vergleiche immer streng</h2>
+
+<div class="definition">
+Verwende <code>===</code> und <code>!==</code> statt <code>==</code> und <code>!=</code>.
+</div>
+
+<div class="example">
+<pre class="code"><code>// gut
+if (value === 0) { }
+
+// schlecht
+if (value == 0) { }</code></pre>
+</div>
+
+<div class="note">
+Strikte Vergleiche verhindern implizite Typumwandlungen.
+</div>
+
+<h2>7. Frühes Beenden (Guard Clauses)</h2>
+
+<div class="definition">
+Guard Clauses reduzieren Verschachtelung
+und verbessern Lesbarkeit.
+</div>
+
+<div class="example">
+<pre class="code"><code>function save(user) {
+  if (!user) return;
+  if (!user.name) return;
+
+  // eigentliche Logik
+}</code></pre>
+</div>
+
+<h2>8. Fehler explizit behandeln</h2>
+
+<div class="definition">
+Fehler sollten nicht ignoriert,
+sondern gezielt behandelt werden.
+</div>
+
+<div class="example">
+<pre class="code"><code>async function load() {
+  try {
+    const res = await fetch("/api/data");
+    if (!res.ok) throw new Error("HTTP Fehler");
+  } catch (err) {
+    console.error(err);
+  }
+}</code></pre>
+</div>
+
+<h2>9. Keine Magischen Werte</h2>
+
+<div class="definition">
+„Magische Zahlen“ oder Strings ohne Bedeutung
+erschweren Wartung.
+</div>
+
+<div class="example">
+<strong>Schlecht:</strong>
+<pre class="code"><code>if (status === 3) { }</code></pre>
+</div>
+
+<div class="example">
+<strong>Gut:</strong>
+<pre class="code"><code>const STATUS_DONE = 3;
+if (status === STATUS_DONE) { }</code></pre>
+</div>
+
+<h2>10. Unveränderlichkeit bevorzugen</h2>
+
+<div class="definition">
+Unveränderliche Daten sind einfacher zu verstehen
+und weniger fehleranfällig.
+</div>
+
+<div class="example">
+<pre class="code"><code>// statt Mutation
+const updated = users.map(u =>
+  u.id === id ? { ...u, active: true } : u
+);</code></pre>
+</div>
+
+<h2>11. Konsistenter Stil</h2>
+
+<div class="definition">
+Ein einheitlicher Stil erhöht Lesbarkeit im Team.
+</div>
+
+<ul>
+  <li>Einrückung (2 oder 4 Spaces)</li>
+  <li>Semikolons: konsequent ja oder nein</li>
+  <li>Gleiche Namenskonventionen</li>
+</ul>
+
+<div class="note">
+Tools wie ESLint und Prettier helfen,
+diesen Stil automatisch durchzusetzen.
+</div>
+
+<h2>12. Performance nicht überoptimieren</h2>
+
+<div class="definition">
+Zuerst korrekt und lesbar, dann — falls nötig — optimieren.
+</div>
+
+<div class="note">
+Vorzeitige Optimierung ist eine der häufigsten Fehlerquellen.
+</div>
+
+<h2>13. Häufige Anti-Patterns</h2>
+
+<ul>
+  <li>Zu große Funktionen</li>
+  <li>Versteckte Seiteneffekte</li>
+  <li>Duplizierter Code</li>
+  <li>Unklare Zustände</li>
+</ul>
+
+<h2>14. Übungen</h2>
+
+<div class="example">
+<strong>Übung 1.</strong><br>
+Refaktoriere eine Funktion, die mehrere Aufgaben erledigt,
+in kleinere Einzelfunktionen.
+</div>
+
+<div class="example">
+<strong>Übung 2.</strong><br>
+Ersetze alle <code>==</code> durch <code>===</code> in einem bestehenden Script.
+</div>
+
+<div class="example">
+<strong>Übung 3.</strong><br>
+Identifiziere „magische Werte“ in einem Projekt
+und ersetze sie durch Konstanten.
+</div>
+
+<h2>15. Zusammenfassung</h2>
+
+<ul>
+  <li>Lesbarkeit und Struktur stehen an erster Stelle</li>
+  <li>Kleine, klare Funktionen sind der Schlüssel</li>
+  <li>Explizite Fehlerbehandlung verhindert Bugs</li>
+  <li>Best Practices skalieren mit dem Projekt</li>
+</ul>
+
+<div class="definition">
+Sauberer Code ist kein Zufall — er ist eine bewusste Entscheidung.
+</div>
+
+</section>
+
+</body>
+</html>

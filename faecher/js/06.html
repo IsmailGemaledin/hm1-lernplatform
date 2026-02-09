@@ -1,0 +1,343 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>JavaScript – Arrays &amp; Objekte</title>
+  <link rel="stylesheet" href="../../style.css">
+  <style>
+    .definition { padding:.75rem; border-left:4px solid #2b7cff; background:#f3f8ff; border-radius:4px; margin:.75rem 0; }
+    .example { padding:.75rem; border-left:4px solid #2e9a6a; background:#f4fffa; border-radius:4px; margin:.75rem 0; }
+    .note { padding:.75rem; border-left:4px solid #ff9800; background:#fff8f0; border-radius:4px; margin:.75rem 0; }
+    .small { font-size:0.95rem; color:#444; }
+
+    pre.code {
+      background:#1e1e1e;
+      color:#d4d4d4;
+      padding:1rem;
+      border-radius:4px;
+      overflow-x:auto;
+      font-size:0.95rem;
+    }
+    pre.code code {
+      background: transparent;
+      color: inherit;
+      padding: 0;
+      font-family: Consolas, monospace;
+    }
+    code { font-family: Consolas, monospace; }
+  </style>
+</head>
+
+<body>
+
+<nav>
+  <a href="index.html">Startseite</a>
+</nav>
+
+<section>
+
+<h1>JavaScript 6 — Arrays &amp; Objekte</h1>
+
+<p class="small">
+In dieser Lektion lernst du, wie JavaScript mit <em>Sammlungen von Daten</em> arbeitet.
+Arrays und Objekte sind die wichtigsten Datenstrukturen in JavaScript und bilden
+die Grundlage für fast alle realen Anwendungen — von To-Do-Listen bis zu komplexen Web-Apps.
+</p>
+
+<h2>1. Warum Arrays und Objekte?</h2>
+
+<div class="definition">
+<strong>Definition.</strong><br>
+Arrays und Objekte erlauben es, mehrere zusammengehörige Werte strukturiert zu speichern
+und gemeinsam zu verarbeiten.
+</div>
+
+<p>
+Ohne diese Strukturen müsste man viele einzelne Variablen verwalten:
+</p>
+
+<div class="example">
+<pre class="code"><code>// schlecht skalierbar
+let name1 = "Iman";
+let name2 = "Ali";
+let name3 = "Sara";</code></pre>
+</div>
+
+<p>
+Mit Arrays und Objekten wird derselbe Inhalt übersichtlich und erweiterbar:
+</p>
+
+<div class="example">
+<pre class="code"><code>const names = ["Iman", "Ali", "Sara"];</code></pre>
+</div>
+
+<h2>2. Arrays — geordnete Listen</h2>
+
+<div class="definition">
+Ein <strong>Array</strong> ist eine geordnete Liste von Werten.
+Jeder Eintrag besitzt einen numerischen Index (beginnend bei 0).
+</div>
+
+<div class="example">
+<pre class="code"><code>const fruits = ["Apfel", "Banane", "Orange"];</code></pre>
+</div>
+
+<h3>2.1 Zugriff auf Array-Elemente</h3>
+
+<div class="example">
+<pre class="code"><code>fruits[0]; // "Apfel"
+fruits[1]; // "Banane"</code></pre>
+</div>
+
+<div class="note">
+Der erste Index ist immer <code>0</code>, nicht <code>1</code>.
+</div>
+
+<h3>2.2 Länge eines Arrays</h3>
+
+<div class="example">
+<pre class="code"><code>fruits.length; // 3</code></pre>
+</div>
+
+<h2>3. Arrays verändern</h2>
+
+<div class="definition">
+Arrays können dynamisch verändert werden:
+Elemente können hinzugefügt oder entfernt werden.
+</div>
+
+<h3>3.1 Elemente hinzufügen</h3>
+
+<div class="example">
+<pre class="code"><code>fruits.push("Mango");     // am Ende
+fruits.unshift("Birne"); // am Anfang</code></pre>
+</div>
+
+<h3>3.2 Elemente entfernen</h3>
+
+<div class="example">
+<pre class="code"><code>fruits.pop();   // letztes Element
+fruits.shift(); // erstes Element</code></pre>
+</div>
+
+<div class="note">
+Diese Methoden verändern das ursprüngliche Array.
+</div>
+
+<h2>4. Über Arrays iterieren</h2>
+
+<div class="definition">
+Arrays werden häufig mit Schleifen oder speziellen Array-Methoden durchlaufen.
+</div>
+
+<h3>4.1 for-Schleife</h3>
+
+<div class="example">
+<pre class="code"><code>for (let i = 0; i < fruits.length; i++) {
+  console.log(fruits[i]);
+}</code></pre>
+</div>
+
+<h3>4.2 for...of</h3>
+
+<div class="example">
+<pre class="code"><code>for (const fruit of fruits) {
+  console.log(fruit);
+}</code></pre>
+</div>
+
+<div class="note">
+<code>for...of</code> ist meist lesbarer als eine klassische for-Schleife.
+</div>
+
+<h2>5. Wichtige Array-Methoden</h2>
+
+<div class="definition">
+JavaScript bietet mächtige Methoden, um Arrays funktional zu verarbeiten.
+</div>
+
+<h3>5.1 map</h3>
+
+<div class="example">
+<pre class="code"><code>const numbers = [1, 2, 3];
+const doubled = numbers.map(n => n * 2);
+// [2, 4, 6]</code></pre>
+</div>
+
+<h3>5.2 filter</h3>
+
+<div class="example">
+<pre class="code"><code>const even = numbers.filter(n => n % 2 === 0);
+// [2]</code></pre>
+</div>
+
+<h3>5.3 reduce</h3>
+
+<div class="example">
+<pre class="code"><code>const sum = numbers.reduce((acc, n) => acc + n, 0);
+// 6</code></pre>
+</div>
+
+<div class="note">
+Diese Methoden erzeugen neue Arrays/Werte
+und verändern das Original nicht.
+</div>
+
+<h2>6. Objekte — strukturierte Daten</h2>
+
+<div class="definition">
+Ein <strong>Objekt</strong> ist eine Sammlung von Schlüssel–Wert-Paaren.
+</div>
+
+<div class="example">
+<pre class="code"><code>const user = {
+  name: "Iman",
+  age: 22,
+  isStudent: true
+};</code></pre>
+</div>
+
+<h3>6.1 Zugriff auf Eigenschaften</h3>
+
+<div class="example">
+<pre class="code"><code>user.name;      // "Iman"
+user["age"];    // 22</code></pre>
+</div>
+
+<div class="note">
+Die Punktnotation ist Standard,
+die eckige Klammer ist nützlich bei dynamischen Schlüsseln.
+</div>
+
+<h3>6.2 Eigenschaften ändern und hinzufügen</h3>
+
+<div class="example">
+<pre class="code"><code>user.age = 23;
+user.city = "Stuttgart";</code></pre>
+</div>
+
+<h2>7. Objekte mit Methoden</h2>
+
+<div class="definition">
+Objekte können auch Funktionen enthalten.
+Diese nennt man <em>Methoden</em>.
+</div>
+
+<div class="example">
+<pre class="code"><code>const user = {
+  name: "Iman",
+  greet() {
+    console.log("Hallo, ich bin " + this.name);
+  }
+};
+
+user.greet();</code></pre>
+</div>
+
+<div class="note">
+<code>this</code> verweist hier auf das Objekt selbst.
+</div>
+
+<h2>8. Arrays von Objekten</h2>
+
+<div class="definition">
+In realen Anwendungen arbeitet man häufig mit Arrays von Objekten.
+</div>
+
+<div class="example">
+<pre class="code"><code>const users = [
+  { name: "Iman", age: 22 },
+  { name: "Ali", age: 24 },
+  { name: "Sara", age: 20 }
+];</code></pre>
+</div>
+
+<h3>8.1 Kombination mit map/filter</h3>
+
+<div class="example">
+<pre class="code"><code>const names = users.map(u => u.name);
+// ["Iman", "Ali", "Sara"]
+
+const adults = users.filter(u => u.age >= 21);
+// [{ name: "Iman", age: 22 }, { name: "Ali", age: 24 }]</code></pre>
+</div>
+
+<h2>9. Referenzen vs. Kopien</h2>
+
+<div class="definition">
+Arrays und Objekte werden in JavaScript <em>per Referenz</em> gespeichert.
+</div>
+
+<div class="example">
+<pre class="code"><code>const a = { value: 10 };
+const b = a;
+
+b.value = 20;
+console.log(a.value); // 20</code></pre>
+</div>
+
+<div class="note">
+Das ist eine häufige Fehlerquelle.
+Kopien müssen explizit erzeugt werden.
+</div>
+
+<h3>9.1 Flache Kopien</h3>
+
+<div class="example">
+<pre class="code"><code>const copy = { ...a };
+const arrCopy = [...numbers];</code></pre>
+</div>
+
+<h2>10. Gute Praxis</h2>
+
+<ul>
+  <li>Arrays für Listen, Objekte für strukturierte Datensätze</li>
+  <li>map/filter/reduce statt manueller Schleifen bevorzugen</li>
+  <li>Seiteneffekte vermeiden</li>
+  <li>Unveränderlichkeit (Immutability) anstreben</li>
+</ul>
+
+<div class="example">
+<strong>Gut:</strong>
+<pre class="code"><code>const updatedUsers = users.map(u =>
+  u.name === "Iman" ? { ...u, age: 23 } : u
+);</code></pre>
+</div>
+
+<h2>11. Übungen</h2>
+
+<div class="example">
+<strong>Übung 1.</strong><br>
+Erstelle ein Array mit fünf Zahlen und berechne deren Summe mit <code>reduce</code>.
+</div>
+
+<div class="example">
+<strong>Übung 2.</strong><br>
+Erstelle ein Objekt für ein Buch (Titel, Autor, Jahr)
+und gib eine Beschreibung in der Konsole aus.
+</div>
+
+<div class="example">
+<strong>Übung 3.</strong><br>
+Arbeite mit einem Array von Objekten (Name, Punktzahl)
+und filtere alle Einträge mit mehr als 50 Punkten.
+</div>
+
+<h2>12. Zusammenfassung</h2>
+
+<ul>
+  <li>Arrays speichern geordnete Listen</li>
+  <li>Objekte speichern strukturierte Daten</li>
+  <li>Moderne Array-Methoden sind zentral für sauberen Code</li>
+  <li>Referenzen erfordern bewusstes Arbeiten</li>
+</ul>
+
+<div class="definition">
+Wer Arrays und Objekte versteht, versteht das Datenmodell von JavaScript.
+</div>
+
+</section>
+
+</body>
+</html>

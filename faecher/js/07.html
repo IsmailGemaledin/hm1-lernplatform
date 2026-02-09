@@ -1,0 +1,279 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>JavaScript – DOM &amp; Events</title>
+  <link rel="stylesheet" href="../../style.css">
+  <style>
+    .definition { padding:.75rem; border-left:4px solid #2b7cff; background:#f3f8ff; border-radius:4px; margin:.75rem 0; }
+    .example { padding:.75rem; border-left:4px solid #2e9a6a; background:#f4fffa; border-radius:4px; margin:.75rem 0; }
+    .note { padding:.75rem; border-left:4px solid #ff9800; background:#fff8f0; border-radius:4px; margin:.75rem 0; }
+    .small { font-size:0.95rem; color:#444; }
+
+    pre.code {
+      background:#1e1e1e;
+      color:#d4d4d4;
+      padding:1rem;
+      border-radius:4px;
+      overflow-x:auto;
+      font-size:0.95rem;
+    }
+    pre.code code {
+      background: transparent;
+      color: inherit;
+      padding: 0;
+      font-family: Consolas, monospace;
+    }
+    code { font-family: Consolas, monospace; }
+  </style>
+</head>
+
+<body>
+
+<nav>
+  <a href="index.html">Startseite</a>
+</nav>
+
+<section>
+
+<h1>JavaScript 7 — DOM &amp; Events</h1>
+
+<p class="small">
+In dieser Lektion lernst du, wie JavaScript mit der Webseite selbst interagiert.
+Das <em>DOM</em> macht HTML-Elemente programmatisch zugänglich, und <em>Events</em>
+ermöglichen Reaktionen auf Benutzeraktionen. Hier beginnt echte Interaktivität.
+</p>
+
+<h2>1. Was ist das DOM?</h2>
+
+<div class="definition">
+<strong>Definition.</strong><br>
+Das <strong>Document Object Model (DOM)</strong> ist eine Baumstruktur,
+die das HTML-Dokument im Browser repräsentiert.
+Jedes HTML-Element ist ein Objekt, das JavaScript lesen und verändern kann.
+</div>
+
+<p>
+Wichtig: JavaScript verändert nicht die HTML-Datei auf der Festplatte,
+sondern die aktuell geladene Seite im Browser.
+</p>
+
+<div class="example">
+<pre class="code"><code>// Zugriff auf das Dokument
+console.log(document);</code></pre>
+</div>
+
+<h2>2. Elemente im DOM auswählen</h2>
+
+<div class="definition">
+Um mit einem Element zu arbeiten, muss JavaScript es zuerst finden.
+</div>
+
+<h3>2.1 Auswahl per ID</h3>
+
+<div class="example">
+<pre class="code"><code>const title = document.getElementById("title");</code></pre>
+</div>
+
+<h3>2.2 Auswahl mit CSS-Selektoren</h3>
+
+<div class="example">
+<pre class="code"><code>const firstParagraph = document.querySelector("p");
+const allButtons = document.querySelectorAll("button");</code></pre>
+</div>
+
+<div class="note">
+<code>querySelector</code> gibt das erste passende Element zurück,
+<code>querySelectorAll</code> eine Liste (NodeList).
+</div>
+
+<h2>3. Inhalte ändern</h2>
+
+<div class="definition">
+Ein gefundenes Element kann inhaltlich und visuell verändert werden.
+</div>
+
+<h3>3.1 Textinhalt</h3>
+
+<div class="example">
+<pre class="code"><code>title.textContent = "Neuer Titel";</code></pre>
+</div>
+
+<h3>3.2 HTML-Inhalt</h3>
+
+<div class="example">
+<pre class="code"><code>title.innerHTML = "&lt;span&gt;Hallo&lt;/span&gt;";</code></pre>
+</div>
+
+<div class="note">
+<code>innerHTML</code> erlaubt HTML, sollte aber vorsichtig verwendet werden
+(Sicherheitsrisiken).
+</div>
+
+<h2>4. Attribute und Klassen</h2>
+
+<div class="definition">
+DOM-Elemente besitzen Attribute und CSS-Klassen,
+die dynamisch geändert werden können.
+</div>
+
+<h3>4.1 Attribute</h3>
+
+<div class="example">
+<pre class="code"><code>const img = document.querySelector("img");
+img.setAttribute("src", "bild.png");
+img.getAttribute("src");</code></pre>
+</div>
+
+<h3>4.2 Klassen</h3>
+
+<div class="example">
+<pre class="code"><code>const box = document.querySelector(".box");
+
+box.classList.add("active");
+box.classList.remove("hidden");
+box.classList.toggle("open");</code></pre>
+</div>
+
+<h2>5. Was sind Events?</h2>
+
+<div class="definition">
+Ein <strong>Event</strong> ist ein Ereignis, das im Browser auftritt
+(z. B. Klick, Tastendruck, Laden der Seite).
+</div>
+
+<p>
+JavaScript kann auf solche Ereignisse reagieren.
+</p>
+
+<ul>
+  <li>Klick auf einen Button</li>
+  <li>Bewegung der Maus</li>
+  <li>Eingabe in ein Formular</li>
+  <li>Laden der Seite</li>
+</ul>
+
+<h2>6. Event Listener</h2>
+
+<div class="definition">
+Mit <code>addEventListener</code> wird festgelegt,
+welcher Code bei einem Event ausgeführt wird.
+</div>
+
+<div class="example">
+<pre class="code"><code>const btn = document.querySelector("#btn");
+
+btn.addEventListener("click", () => {
+  console.log("Button geklickt");
+});</code></pre>
+</div>
+
+<div class="note">
+Der zweite Parameter ist eine Funktion,
+die <em>nicht sofort</em> ausgeführt wird.
+</div>
+
+<h2>7. Event-Objekt</h2>
+
+<div class="definition">
+Beim Auslösen eines Events stellt der Browser ein Event-Objekt bereit,
+das Informationen über das Ereignis enthält.
+</div>
+
+<div class="example">
+<pre class="code"><code>btn.addEventListener("click", (event) => {
+  console.log(event.type);   // "click"
+  console.log(event.target); // Element, das geklickt wurde
+});</code></pre>
+</div>
+
+<h2>8. Häufige Events</h2>
+
+<div class="definition">
+Einige Events begegnen dir besonders häufig:
+</div>
+
+<ul>
+  <li><code>click</code> — Mausklick</li>
+  <li><code>input</code> — Texteingabe</li>
+  <li><code>submit</code> — Formular absenden</li>
+  <li><code>keydown</code> — Taste gedrückt</li>
+  <li><code>DOMContentLoaded</code> — DOM fertig geladen</li>
+</ul>
+
+<div class="example">
+<pre class="code"><code>document.addEventListener("DOMContentLoaded", () => {
+  console.log("DOM bereit");
+});</code></pre>
+</div>
+
+<h2>9. Beispiel: Interaktiver Button</h2>
+
+<div class="example">
+<pre class="code"><code>const btn = document.querySelector("#toggle");
+const text = document.querySelector("#text");
+
+btn.addEventListener("click", () => {
+  text.classList.toggle("hidden");
+});</code></pre>
+</div>
+
+<div class="note">
+Hier arbeiten DOM-Auswahl, Klassenmanipulation
+und Events zusammen.
+</div>
+
+<h2>10. Typische Fehler</h2>
+
+<ul>
+  <li>Element existiert nicht (<code>null</code>)</li>
+  <li>Script läuft vor dem HTML</li>
+  <li>Falscher Selektor</li>
+  <li>Event-Handler wird versehentlich sofort aufgerufen</li>
+</ul>
+
+<div class="example">
+<strong>Falsch:</strong>
+<pre class="code"><code>btn.addEventListener("click", myFunction());</code></pre>
+</div>
+
+<div class="example">
+<strong>Richtig:</strong>
+<pre class="code"><code>btn.addEventListener("click", myFunction);</code></pre>
+</div>
+
+<h2>11. Übungen</h2>
+
+<div class="example">
+<strong>Übung 1.</strong><br>
+Ändere den Text eines Absatzes beim Klick auf einen Button.
+</div>
+
+<div class="example">
+<strong>Übung 2.</strong><br>
+Erstelle ein Eingabefeld und gib den aktuellen Text live in der Konsole aus.
+</div>
+
+<div class="example">
+<strong>Übung 3.</strong><br>
+Schalte per Button eine CSS-Klasse an und aus (Dark Mode).
+</div>
+
+<h2>12. Zusammenfassung</h2>
+
+<ul>
+  <li>DOM macht HTML programmierbar</li>
+  <li>Elemente werden per Selektor gefunden</li>
+  <li>Events reagieren auf Benutzeraktionen</li>
+  <li>Interaktivität entsteht durch Kombination aus DOM &amp; Events</li>
+</ul>
+
+<div class="definition">
+Wer DOM und Events beherrscht, macht Webseiten lebendig.
+</div>
+
+</section>
+
+</body>
+</html>

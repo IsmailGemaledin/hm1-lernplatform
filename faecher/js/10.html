@@ -1,0 +1,294 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>JavaScript – Module &amp; Struktur</title>
+  <link rel="stylesheet" href="../../style.css">
+  <style>
+    .definition { padding:.75rem; border-left:4px solid #2b7cff; background:#f3f8ff; border-radius:4px; margin:.75rem 0; }
+    .example { padding:.75rem; border-left:4px solid #2e9a6a; background:#f4fffa; border-radius:4px; margin:.75rem 0; }
+    .note { padding:.75rem; border-left:4px solid #ff9800; background:#fff8f0; border-radius:4px; margin:.75rem 0; }
+    .small { font-size:0.95rem; color:#444; }
+
+    pre.code {
+      background:#1e1e1e;
+      color:#d4d4d4;
+      padding:1rem;
+      border-radius:4px;
+      overflow-x:auto;
+      font-size:0.95rem;
+    }
+    pre.code code {
+      background: transparent;
+      color: inherit;
+      padding: 0;
+      font-family: Consolas, monospace;
+    }
+    code { font-family: Consolas, monospace; }
+  </style>
+</head>
+
+<body>
+
+<nav>
+  <a href="index.html">Startseite</a>
+</nav>
+
+<section>
+
+<h1>JavaScript 10 — Module &amp; Struktur</h1>
+
+<p class="small">
+In dieser Lektion lernst du, wie man JavaScript-Code <em>strukturiert</em> und
+in <strong>Module</strong> aufteilt. Ab einer bestimmten Projektgröße ist sauber
+organisierter Code kein Luxus mehr, sondern Voraussetzung für Wartbarkeit,
+Lesbarkeit und Teamarbeit.
+</p>
+
+<h2>1. Das Problem ohne Struktur</h2>
+
+<div class="definition">
+<strong>Definition.</strong><br>
+Unstrukturierter Code entsteht, wenn alle Funktionen, Variablen und Logik
+in einer einzigen Datei oder im globalen Namensraum liegen.
+</div>
+
+<div class="example">
+<pre class="code"><code>// alles in einer Datei
+function login() { }
+function logout() { }
+function fetchUsers() { }
+function renderUsers() { }</code></pre>
+</div>
+
+<div class="note">
+Solcher Code wird schnell unübersichtlich,
+schwer testbar und fehleranfällig.
+</div>
+
+<h2>2. Was ist ein Modul?</h2>
+
+<div class="definition">
+Ein <strong>Modul</strong> ist eine JavaScript-Datei mit eigenem Gültigkeitsbereich,
+die explizit festlegt, was sie <em>exportiert</em> und was sie <em>importiert</em>.
+</div>
+
+<p>
+Module ermöglichen:
+</p>
+
+<ul>
+  <li>klare Verantwortlichkeiten</li>
+  <li>vermeiden globaler Variablen</li>
+  <li>Wiederverwendbarkeit</li>
+  <li>bessere Testbarkeit</li>
+</ul>
+
+<h2>3. ES Modules (Standard)</h2>
+
+<div class="definition">
+Der moderne JavaScript-Standard verwendet <strong>ES Modules</strong>
+mit <code>import</code> und <code>export</code>.
+</div>
+
+<p>
+Jede Datei ist ein eigenes Modul.
+</p>
+
+<h2>4. Exportieren aus einem Modul</h2>
+
+<h3>4.1 Named Exports</h3>
+
+<div class="example">
+<pre class="code"><code>// math.js
+export function add(a, b) {
+  return a + b;
+}
+
+export function multiply(a, b) {
+  return a * b;
+}</code></pre>
+</div>
+
+<div class="note">
+Ein Modul kann mehrere <em>named exports</em> besitzen.
+</div>
+
+<h3>4.2 Default Export</h3>
+
+<div class="example">
+<pre class="code"><code>// logger.js
+export default function log(message) {
+  console.log(message);
+}</code></pre>
+</div>
+
+<div class="note">
+Pro Modul ist nur <strong>ein</strong> Default Export erlaubt.
+</div>
+
+<h2>5. Importieren von Modulen</h2>
+
+<h3>5.1 Named Imports</h3>
+
+<div class="example">
+<pre class="code"><code>// app.js
+import { add, multiply } from "./math.js";
+
+console.log(add(2, 3));</code></pre>
+</div>
+
+<h3>5.2 Default Import</h3>
+
+<div class="example">
+<pre class="code"><code>import log from "./logger.js";
+
+log("Hallo Module");</code></pre>
+</div>
+
+<h3>5.3 Kombination</h3>
+
+<div class="example">
+<pre class="code"><code>import log, { add } from "./utils.js";</code></pre>
+</div>
+
+<h2>6. Module im Browser verwenden</h2>
+
+<div class="definition">
+Damit Module im Browser funktionieren,
+muss das Script als <code>type="module"</code> eingebunden werden.
+</div>
+
+<div class="example">
+<pre class="code"><code>&lt;script type="module" src="app.js"&gt;&lt;/script&gt;</code></pre>
+</div>
+
+<div class="note">
+Module werden automatisch mit <code>defer</code> geladen
+und haben einen eigenen Scope.
+</div>
+
+<h2>7. Relative Pfade verstehen</h2>
+
+<div class="definition">
+Imports verwenden immer <em>relative oder absolute Pfade</em>.
+</div>
+
+<div class="example">
+<pre class="code"><code>import { helper } from "./utils/helper.js";
+import api from "../api/api.js";</code></pre>
+</div>
+
+<div class="note">
+Ohne <code>./</code> oder <code>../</code> sucht der Browser kein lokales Modul.
+</div>
+
+<h2>8. Struktur eines kleinen Projekts</h2>
+
+<div class="definition">
+Eine sinnvolle Ordnerstruktur macht Projekte übersichtlich.
+</div>
+
+<div class="example">
+<pre class="code"><code>project/
+  index.html
+  js/
+    app.js
+    api.js
+    dom.js
+    utils.js</code></pre>
+</div>
+
+<p>
+Beispielhafte Verantwortlichkeiten:
+</p>
+
+<ul>
+  <li><code>api.js</code> — Fetch / HTTP</li>
+  <li><code>dom.js</code> — DOM-Manipulation</li>
+  <li><code>utils.js</code> — Hilfsfunktionen</li>
+  <li><code>app.js</code> — Einstiegspunkt</li>
+</ul>
+
+<h2>9. Keine globalen Variablen</h2>
+
+<div class="definition">
+Module verhindern automatisch das Verschmutzen
+des globalen Namensraums.
+</div>
+
+<div class="example">
+<pre class="code"><code>// global.js (schlecht)
+window.count = 0;
+
+// module.js (gut)
+let count = 0;
+export function inc() {
+  count++;
+}</code></pre>
+</div>
+
+<h2>10. Zirkuläre Abhängigkeiten vermeiden</h2>
+
+<div class="definition">
+Zwei Module sollten sich nicht gegenseitig importieren.
+</div>
+
+<div class="note">
+Zirkuläre Abhängigkeiten führen zu schwer auffindbaren Fehlern
+und undefinierten Werten.
+</div>
+
+<h2>11. Gute Praxis</h2>
+
+<ul>
+  <li>Ein Modul = ein klarer Zweck</li>
+  <li>Kurze, sprechende Dateinamen</li>
+  <li>Exports bewusst wählen</li>
+  <li>Keine Logik im globalen Scope</li>
+</ul>
+
+<div class="example">
+<strong>Gut:</strong>
+<pre class="code"><code>// dom.js
+export function renderUser(user) {
+  /* ... */
+}</code></pre>
+</div>
+
+<h2>12. Übungen</h2>
+
+<div class="example">
+<strong>Übung 1.</strong><br>
+Erstelle ein Modul <code>math.js</code> mit Funktionen für Addition und Subtraktion
+und importiere sie in <code>app.js</code>.
+</div>
+
+<div class="example">
+<strong>Übung 2.</strong><br>
+Lagere DOM-Manipulationen in ein eigenes Modul aus.
+</div>
+
+<div class="example">
+<strong>Übung 3.</strong><br>
+Strukturiere ein kleines Projekt in mindestens drei Module.
+</div>
+
+<h2>13. Zusammenfassung</h2>
+
+<ul>
+  <li>Module strukturieren JavaScript-Code</li>
+  <li><code>import</code> / <code>export</code> sind Standard</li>
+  <li><code>type="module"</code> ist im Browser Pflicht</li>
+  <li>Saubere Struktur skaliert mit dem Projekt</li>
+</ul>
+
+<div class="definition">
+Wer Module beherrscht, schreibt JavaScript auf professionellem Niveau.
+</div>
+
+</section>
+
+</body>
+</html>
