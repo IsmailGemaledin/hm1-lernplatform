@@ -1,0 +1,417 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>ExpPhys1_Vektorielle_Bewegung_in_3D</title>
+  <link rel="stylesheet" href="../style.css">
+  <!-- KaTeX für Formeln -->
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.8/dist/katex.min.css">
+  <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.8/dist/katex.min.js"></script>
+  <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.8/dist/contrib/auto-render.min.js"
+          onload="renderMathInElement(document.body);"></script>
+  <style>
+    /* Lokale Ergänzungen für Kapitel-Layout (wie bei euren Seiten) */
+    .definition { padding: .75rem; border-left: 4px solid #2b7cff; background:#f3f8ff; border-radius:4px; margin: .75rem 0; }
+    .satz { padding: .75rem; border-left: 4px solid #2b7cff; background:#f9f9fb; border-radius:4px; margin: .75rem 0; }
+    .example { padding: .75rem; border-left: 4px solid #2e9a6a; background:#f4fffa; border-radius:4px; margin: .75rem 0; }
+    .small { font-size:0.95rem; color:#444; }
+
+    /* Graph blocks (inline SVG) */
+    .graph {
+      background:#fff;
+      border:1px solid #e6e6e6;
+      border-radius:6px;
+      padding:.75rem;
+      margin:.75rem 0;
+      overflow:auto;
+    }
+    .graph-title { font-weight:600; margin:0 0 .5rem 0; }
+    .graph svg { width: 100%; max-width: 820px; height: auto; display:block; }
+    .axis { stroke:#222; stroke-width:2; }
+    .grid { stroke:#ddd; stroke-width:1; }
+    .traj { stroke:#2b7cff; stroke-width:3; fill:none; }
+    .vecR { stroke:#2b7cff; stroke-width:3; fill:none; }
+    .vecV { stroke:#2e9a6a; stroke-width:3; fill:none; }
+    .vecA { stroke:#c0392b; stroke-width:3; fill:none; }
+    .label { font-family: system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif; font-size:14px; fill:#111; }
+    .hint { font-family: system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif; font-size:13px; fill:#333; }
+  </style>
+</head>
+<body>
+
+<nav>
+  <a href="../../index.html">Startseite</a>
+</nav>
+
+<section>
+  <h1>Vektorielle Bewegung in drei Dimensionen</h1>
+
+  <p class="small">
+    In diesem Kapitel fassen wir die Bewegung eines Punktes im Raum (3D) vollständig <strong>vektoriell</strong> zusammen.
+    Wir beschreiben alles als Funktionen der Zeit \(t\):
+    <br><br>
+    <strong>Position</strong> \(\vec r(t)\), <strong>Geschwindigkeit</strong> \(\vec v(t)\), <strong>Beschleunigung</strong> \(\vec a(t)\).
+    <br><br>
+    Eine zentrale Idee (wie in euren Vorlesungsunterlagen):
+    <strong>Alles wird relativ zum Ursprung beschrieben.</strong>
+    Der Ortsvektor \(\vec r(t)\) ist immer der Pfeil vom Ursprung zum aktuellen Punkt.
+  </p>
+
+  <h2>1. Der Ortsvektor \(\vec r(t)\): Bewegung relativ zum Ursprung</h2>
+
+  <p>
+    Wir legen ein Koordinatensystem mit Ursprung \(O\) fest. Dann ist die Position des Punktes zu jeder Zeit \(t\)
+    durch einen Vektor beschrieben:
+  </p>
+
+  <div class="definition">
+    <strong>Definition (Ortsvektor als Funktion der Zeit).</strong>
+    \[
+      \vec r(t)
+      =
+      \begin{pmatrix}
+        x(t)\\ y(t)\\ z(t)
+      \end{pmatrix}.
+    \]
+    Der Vektor \(\vec r(t)\) zeigt <strong>vom Ursprung</strong> \(O=(0,0,0)\) <strong>zum Punkt</strong> \(P\).
+  </div>
+
+  <p class="small">
+    Wichtig: \(\vec r(t)\) ist ein Vektor, also hat er Richtung und Betrag.
+    <br>
+    Die Funktionen \(x(t),y(t),z(t)\) sind die Komponenten (mit Einheit Meter).
+  </p>
+
+  <div class="definition">
+    <strong>Gleiche Information, andere Schreibweise (mit Einheitsvektoren).</strong>
+    \[
+      \vec r(t)=x(t)\,\vec e_x + y(t)\,\vec e_y + z(t)\,\vec e_z.
+    \]
+  </div>
+
+  <div class="graph">
+    <p class="graph-title">Skizze: Ortsvektor \(\vec r(t)\) vom Ursprung zum Punkt</p>
+    <svg viewBox="0 0 820 300" role="img" aria-label="Skizze: Ursprung, Punkt P, Ortsvektor r(t)">
+      <rect x="0" y="0" width="820" height="300" fill="white"></rect>
+
+      <!-- axes (simple 3D-ish) -->
+      <line class="axis" x1="120" y1="240" x2="320" y2="240"></line>
+      <line class="axis" x1="120" y1="240" x2="120" y2="60"></line>
+      <line class="axis" x1="120" y1="240" x2="40" y2="285"></line>
+
+      <text class="label" x="330" y="245">x</text>
+      <text class="label" x="110" y="55">y</text>
+      <text class="label" x="20" y="295">z</text>
+
+      <!-- origin -->
+      <circle cx="120" cy="240" r="4" fill="#111"></circle>
+      <text class="label" x="130" y="258">O</text>
+
+      <!-- point P -->
+      <circle cx="520" cy="110" r="5" fill="#111"></circle>
+      <text class="label" x="530" y="115">P</text>
+
+      <!-- r(t) arrow -->
+      <defs>
+        <marker id="arrowBlue" markerWidth="10" markerHeight="10" refX="8" refY="3" orient="auto">
+          <path d="M0,0 L9,3 L0,6 Z" fill="#2b7cff"></path>
+        </marker>
+      </defs>
+
+      <line class="vecR" x1="120" y1="240" x2="520" y2="110" marker-end="url(#arrowBlue)"></line>
+      <text class="label" x="300" y="150">\(\vec r(t)\)</text>
+
+      <text class="hint" x="120" y="20">Position wird als Pfeil vom Ursprung zum Punkt beschrieben</text>
+    </svg>
+  </div>
+
+  <h2>2. Bahnkurve und Parametrisierung</h2>
+
+  <p>
+    Wenn sich der Punkt bewegt, dann „zeichnet“ \(\vec r(t)\) eine Kurve im Raum:
+    die <em>Bahnkurve</em> (Trajektorie).
+  </p>
+
+  <div class="definition">
+    <strong>Bahnkurve (qualitativ).</strong>
+    \[
+      \{\vec r(t)\mid t\in I\}
+    \]
+    ist die Menge aller Punkte im (3D-)Raum, die im Zeitintervall \(I\) durchlaufen werden.
+  </div>
+
+  <p class="small">
+    Das Wichtige ist: Die Bewegung ist vollständig beschrieben, wenn man \(x(t),y(t),z(t)\) kennt.
+    Dann kennt man \(\vec r(t)\), und daraus folgen \(\vec v(t)\) und \(\vec a(t)\) durch Ableitung.
+  </p>
+
+  <h2>3. Geschwindigkeit \(\vec v(t)\): Ableitung der Position</h2>
+
+  <p>
+    Geschwindigkeit beschreibt, wie schnell und in welche Richtung sich die Position ändert.
+    Mathematisch ist sie die zeitliche Ableitung von \(\vec r(t)\).
+  </p>
+
+  <div class="definition">
+    <strong>Definition (Geschwindigkeitsvektor).</strong>
+    \[
+      \vec v(t)=\frac{d\vec r(t)}{dt}=\dot{\vec r}(t).
+    \]
+  </div>
+
+  <div class="definition">
+    <strong>Komponentenform.</strong>
+    \[
+      \vec v(t)=
+      \begin{pmatrix}
+        \dot x(t)\\ \dot y(t)\\ \dot z(t)
+      \end{pmatrix}
+      =
+      \begin{pmatrix}
+        \frac{dx}{dt}\\[2pt]
+        \frac{dy}{dt}\\[2pt]
+        \frac{dz}{dt}
+      \end{pmatrix}.
+    \]
+  </div>
+
+  <div class="satz">
+    <strong>Geometrische Aussage.</strong>
+    Der Vektor \(\vec v(t)\) liegt tangential an der Bahnkurve und zeigt in Bewegungsrichtung.
+  </div>
+
+  <div class="definition">
+    <strong>Einheit.</strong>
+    Aus \([\vec r]=\mathrm{m}\) und \([t]=\mathrm{s}\) folgt
+    \[
+      [\vec v]=\mathrm{m/s}.
+    \]
+  </div>
+
+  <h2>4. Beschleunigung \(\vec a(t)\): Ableitung der Geschwindigkeit</h2>
+
+  <p>
+    Beschleunigung beschreibt, wie sich die Geschwindigkeit ändert (Betrag und/oder Richtung).
+    Sie ist die zeitliche Ableitung von \(\vec v(t)\), also die zweite Ableitung von \(\vec r(t)\).
+  </p>
+
+  <div class="definition">
+    <strong>Definition (Beschleunigungsvektor).</strong>
+    \[
+      \vec a(t)=\frac{d\vec v(t)}{dt}=\dot{\vec v}(t)=\ddot{\vec r}(t).
+    \]
+  </div>
+
+  <div class="definition">
+    <strong>Komponentenform.</strong>
+    \[
+      \vec a(t)=
+      \begin{pmatrix}
+        \ddot x(t)\\ \ddot y(t)\\ \ddot z(t)
+      \end{pmatrix}
+      =
+      \begin{pmatrix}
+        \frac{d^2x}{dt^2}\\[2pt]
+        \frac{d^2y}{dt^2}\\[2pt]
+        \frac{d^2z}{dt^2}
+      \end{pmatrix}.
+    \]
+  </div>
+
+  <div class="definition">
+    <strong>Einheit.</strong>
+    Aus \([\vec v]=\mathrm{m/s}\) folgt
+    \[
+      [\vec a]=\mathrm{m/s^2}.
+    \]
+  </div>
+
+  <h2>5. „Ableiten“ und „Integrieren“ als Beziehung zwischen \(\vec r(t)\), \(\vec v(t)\), \(\vec a(t)\)</h2>
+
+  <p class="small">
+    In der Experimentalphysik tauchen diese Beziehungen ständig auf. Sie sind so wichtig,
+    dass man sie wirklich auswendig können sollte — inklusive der Richtung (wer ist Ableitung wovon?).
+  </p>
+
+  <div class="satz">
+    <strong>Ableitungs-Kette.</strong>
+    \[
+      \vec r(t)\xrightarrow{\ \frac{d}{dt}\ }\vec v(t)\xrightarrow{\ \frac{d}{dt}\ }\vec a(t).
+    \]
+  </div>
+
+  <div class="satz">
+    <strong>Integral-Kette.</strong>
+    \[
+      \vec a(t)\xrightarrow{\ \int dt\ }\vec v(t)\xrightarrow{\ \int dt\ }\vec r(t).
+    \]
+  </div>
+
+  <div class="definition">
+    <strong>Geschwindigkeit aus Beschleunigung (Integralform).</strong>
+    \[
+      \vec v(t)=\vec v(t_0)+\int_{t_0}^{t}\vec a(\tau)\,d\tau.
+    \]
+  </div>
+
+  <div class="definition">
+    <strong>Position aus Geschwindigkeit (Integralform).</strong>
+    \[
+      \vec r(t)=\vec r(t_0)+\int_{t_0}^{t}\vec v(\tau)\,d\tau.
+    \]
+  </div>
+
+  <p class="small">
+    Diese Formeln sind extrem praktisch, weil sie auch gelten, wenn \(\vec a(t)\) oder \(\vec v(t)\) nicht konstant sind.
+    (Man muss dann nur das passende Integral ausrechnen.)
+  </p>
+
+  <h2>6. Skizze: \(\vec r(t)\), \(\vec v(t)\) tangential, \(\vec a(t)\) als Änderungsvektor</h2>
+
+  <div class="graph">
+    <p class="graph-title">Skizze: Bahnkurve mit \(\vec r(t)\), \(\vec v(t)\) und \(\vec a(t)\)</p>
+    <svg viewBox="0 0 820 320" role="img" aria-label="Skizze: Trajektorie, r(t) vom Ursprung, v(t) tangential, a(t) als Vektor">
+      <rect x="0" y="0" width="820" height="320" fill="white"></rect>
+
+      <!-- origin and axes (2D projection) -->
+      <line class="axis" x1="120" y1="270" x2="780" y2="270"></line>
+      <line class="axis" x1="120" y1="270" x2="120" y2="40"></line>
+      <text class="label" x="790" y="274">x</text>
+      <text class="label" x="110" y="35">y</text>
+
+      <circle cx="120" cy="270" r="4" fill="#111"></circle>
+      <text class="label" x="130" y="288">O</text>
+
+      <!-- trajectory curve -->
+      <path class="traj" d="M 160 250 C 280 210, 360 210, 440 170 C 520 130, 610 140, 720 80"></path>
+      <text class="hint" x="520" y="115">Bahnkurve</text>
+
+      <!-- choose a point on curve (approx) -->
+      <circle cx="470" cy="160" r="5" fill="#111"></circle>
+      <text class="label" x="480" y="165">P(t)</text>
+
+      <!-- arrow markers -->
+      <defs>
+        <marker id="arrowBlue2" markerWidth="10" markerHeight="10" refX="8" refY="3" orient="auto">
+          <path d="M0,0 L9,3 L0,6 Z" fill="#2b7cff"></path>
+        </marker>
+        <marker id="arrowGreen" markerWidth="10" markerHeight="10" refX="8" refY="3" orient="auto">
+          <path d="M0,0 L9,3 L0,6 Z" fill="#2e9a6a"></path>
+        </marker>
+        <marker id="arrowRed" markerWidth="10" markerHeight="10" refX="8" refY="3" orient="auto">
+          <path d="M0,0 L9,3 L0,6 Z" fill="#c0392b"></path>
+        </marker>
+      </defs>
+
+      <!-- r(t) from origin to point -->
+      <line class="vecR" x1="120" y1="270" x2="470" y2="160" marker-end="url(#arrowBlue2)"></line>
+      <text class="label" x="250" y="205">\(\vec r(t)\)</text>
+
+      <!-- v(t) tangent (approx direction along curve) -->
+      <line class="vecV" x1="470" y1="160" x2="590" y2="120" marker-end="url(#arrowGreen)"></line>
+      <text class="label" x="595" y="122">\(\vec v(t)\)</text>
+
+      <!-- a(t) some vector (qualitative) -->
+      <line class="vecA" x1="470" y1="160" x2="520" y2="210" marker-end="url(#arrowRed)"></line>
+      <text class="label" x="525" y="215">\(\vec a(t)\)</text>
+
+      <text class="hint" x="140" y="55">Im Raum ist \(\vec v(t)\) tangential an die Bahnkurve</text>
+      <text class="hint" x="140" y="75">und \(\vec a(t)\) beschreibt die Änderung von \(\vec v(t)\).</text>
+    </svg>
+  </div>
+
+  <h2>7. Häufige Schreibweisen (damit man Aufgaben sofort erkennt)</h2>
+
+  <div class="definition">
+    <ul>
+      <li>
+        Ortsvektor:
+        \[
+          \vec r(t)=\begin{pmatrix}x(t)\\y(t)\\z(t)\end{pmatrix}.
+        \]
+      </li>
+      <li>
+        Geschwindigkeit:
+        \[
+          \vec v(t)=\frac{d\vec r(t)}{dt}=\dot{\vec r}(t)=\begin{pmatrix}\dot x\\\dot y\\\dot z\end{pmatrix}.
+        \]
+      </li>
+      <li>
+        Beschleunigung:
+        \[
+          \vec a(t)=\frac{d\vec v(t)}{dt}=\ddot{\vec r}(t)=\begin{pmatrix}\ddot x\\\ddot y\\\ddot z\end{pmatrix}.
+        \]
+      </li>
+      <li>
+        Einheiten:
+        \[
+          [\vec r]=\mathrm{m},\qquad [\vec v]=\mathrm{m/s},\qquad [\vec a]=\mathrm{m/s^2}.
+        \]
+      </li>
+    </ul>
+  </div>
+
+  <h2>8. Beispiele (sehr typisch für 1. Semester)</h2>
+
+  <div class="example">
+    <strong>Beispiel 1 — Direkt aus \(\vec r(t)\) ableiten.</strong><br>
+    Sei
+    \[
+      \vec r(t)=
+      \begin{pmatrix}
+        2t\\
+        t^2\\
+        3
+      \end{pmatrix}\mathrm{m}.
+    \]
+    Dann ist
+    \[
+      \vec v(t)=\dot{\vec r}(t)=
+      \begin{pmatrix}
+        2\\
+        2t\\
+        0
+      \end{pmatrix}\mathrm{m/s},
+      \qquad
+      \vec a(t)=\ddot{\vec r}(t)=
+      \begin{pmatrix}
+        0\\
+        2\\
+        0
+      \end{pmatrix}\mathrm{m/s^2}.
+    \]
+    <p class="small">
+      Man sieht hier sehr gut: Jede Komponente wird einfach separat abgeleitet.
+    </p>
+  </div>
+
+  <div class="example">
+    <strong>Beispiel 2 — Aus \(\vec a(t)\) integrieren.</strong><br>
+    Sei \(\vec a(t)=\begin{pmatrix}1\\0\\0\end{pmatrix}\mathrm{m/s^2}\) konstant und \(\vec v(t_0)=\vec 0\).
+    Dann gilt
+    \[
+      \vec v(t)=\vec v(t_0)+\int_{t_0}^{t}\vec a(\tau)\,d\tau
+      =
+      \begin{pmatrix}
+        t-t_0\\
+        0\\
+        0
+      \end{pmatrix}\mathrm{m/s}.
+    \]
+    Und anschließend
+    \[
+      \vec r(t)=\vec r(t_0)+\int_{t_0}^{t}\vec v(\tau)\,d\tau.
+    \]
+    <p class="small">
+      (Für konkrete Zahlen muss man \(\vec r(t_0)\) kennen. Ohne Anfangsposition ist \(\vec r(t)\) nicht eindeutig.)
+    </p>
+  </div>
+
+  <h2>PDF Übungen</h2>
+  <p><a target="_blank" href="../assets/pdf/ExpPhys1_Vektorielle_Bewegung_in_3D.pdf">Blatt 1</a></p>
+
+</section>
+
+</body>
+</html>
