@@ -1084,6 +1084,226 @@ window.ME1_QUIZZES = [
       correctIndex: 0,
       explanation: "Photonen erzeugen Elektron-Loch-Paare."
     },
+    {
+      question: "Warum verschiebt sich das intrinsische Ferminiveau Ei bei NC ≠ NV von der Mitte der Bandlücke?",
+      choices: [
+        "Weil unterschiedliche effektive Massen von Elektronen und Löchern vorliegen",
+        "Weil die Bandlücke temperaturabhängig ist",
+        "Weil intrinsische Halbleiter dotiert sind",
+        "Weil die Elementarladung nicht konstant ist"
+      ],
+      correctIndex: 0,
+      explanation: "NC und NV hängen von den effektiven Massen ab; bei NC ≠ NV verschiebt sich Ei logarithmisch."
+    },
+    {
+      question: "Welche physikalische Bedeutung hat der Term exp(−Eg / 2kT) in der Formel für ni?",
+      choices: [
+        "Er beschreibt die thermische Aktivierung von Elektron-Loch-Paaren über die Bandlücke",
+        "Er beschreibt die Driftbewegung der Ladungsträger",
+        "Er beschreibt die Zustandsdichte im Leitungsband",
+        "Er beschreibt die Dotierkonzentration"
+      ],
+      correctIndex: 0,
+      explanation: "Der Exponentialterm dominiert die Temperaturabhängigkeit von ni."
+    },
+    {
+      question: "Warum nimmt die Beweglichkeit bei sehr hoher Dotierung ab, selbst bei niedriger Temperatur?",
+      choices: [
+        "Wegen Coulomb-Streuung an ionisierten Dotieratomen",
+        "Wegen verstärkter Phononenstreuung",
+        "Wegen Abnahme der Bandlücke",
+        "Wegen Verringerung der Ladungsträgerzahl"
+      ],
+      correctIndex: 0,
+      explanation: "Ionisierte Dotieratome wirken als Streuzentren für Ladungsträger."
+    },
+    {
+      question: "Welche Annahme ist notwendig, um σ = q(nμn + pμp) anwenden zu dürfen?",
+      choices: [
+        "Dass Drift der dominante Transportmechanismus ist",
+        "Dass keine Rekombination stattfindet",
+        "Dass der Halbleiter intrinsisch ist",
+        "Dass die Temperatur 0 K beträgt"
+      ],
+      correctIndex: 0,
+      explanation: "Die Formel beschreibt den Driftstrom im elektrischen Feld."
+    },
+    {
+      question: "Warum kann bei einem nicht-entarteten Halbleiter die Boltzmann-Näherung verwendet werden?",
+      choices: [
+        "Weil EF mehrere kT von den Bandkanten entfernt liegt",
+        "Weil die Bandlücke sehr klein ist",
+        "Weil keine Rekombination auftritt",
+        "Weil NC = NV gilt"
+      ],
+      correctIndex: 0,
+      explanation: "Dann ist die Fermi-Dirac-Verteilung gut durch eine Exponentialfunktion näherbar."
+    },
+    {
+      question: "Welche physikalische Größe wird durch die Krümmung des E-k-Diagramms direkt bestimmt?",
+      choices: [
+        "Die effektive Masse",
+        "Die Bandlücke",
+        "Die Zustandsdichte",
+        "Die Lebensdauer"
+      ],
+      correctIndex: 0,
+      explanation: "m* ∝ (d²E/dk²)⁻¹."
+    },
+    {
+      question: "Warum tragen Minoritätsladungsträger trotz geringer Konzentration wesentlich zu Bauelementfunktionen bei?",
+      choices: [
+        "Weil sie für pn-Übergänge und Rekombinationsprozesse entscheidend sind",
+        "Weil ihre Beweglichkeit größer ist",
+        "Weil sie die Majoritätsladungsträger ersetzen",
+        "Weil sie temperaturunabhängig sind"
+      ],
+      correctIndex: 0,
+      explanation: "pn-Übergänge und Diodenwirkung beruhen auf Minoritätsladungsträgern."
+    },
+    {
+      question: "Welche Annahme liegt der Einstein-Relation D/μ = kT/q zugrunde?",
+      choices: [
+        "Thermodynamisches Gleichgewicht",
+        "Hohe elektrische Feldstärke",
+        "Entartete Dotierung",
+        "Zeitabhängiger Stromfluss"
+      ],
+      correctIndex: 0,
+      explanation: "Die Relation gilt nur im thermischen Gleichgewicht."
+    },
+    {
+      question: "Warum ist die Raumladungszone frei von beweglichen Ladungsträgern?",
+      choices: [
+        "Weil Elektronen und Löcher dort rekombiniert sind",
+        "Weil die Bandlücke dort größer ist",
+        "Weil keine Dotieratome vorhanden sind",
+        "Weil dort kein elektrisches Feld existiert"
+      ],
+      correctIndex: 0,
+      explanation: "Diffusion führt zur Rekombination nahe der pn-Grenze."
+    },
+    {
+      question: "Welche physikalische Bedeutung hat die Diffusionslänge L = √(D·τ)?",
+      choices: [
+        "Mittlere Strecke, die ein Ladungsträger vor Rekombination zurücklegt",
+        "Breite der Raumladungszone",
+        "Maximale Driftstrecke im Feld",
+        "Kristallgröße"
+      ],
+      correctIndex: 0,
+      explanation: "Sie kombiniert Transport (D) und Lebensdauer (τ)."
+    },
+    {
+      question: "Warum steigt die intrinsische Ladungsträgerkonzentration exponentiell mit der Temperatur?",
+      choices: [
+        "Weil thermische Energie die Bandlücke überwinden hilft",
+        "Weil die Dotierung temperaturabhängig ist",
+        "Weil NC und NV konstant sind",
+        "Weil die Elementarladung steigt"
+      ],
+      correctIndex: 0,
+      explanation: "Die thermische Anregung über Eg ist der dominante Effekt."
+    },
+    {
+      question: "Welche physikalische Rolle spielt das elektrische Feld in der Raumladungszone?",
+      choices: [
+        "Es wirkt der weiteren Diffusion von Ladungsträgern entgegen",
+        "Es erzeugt neue Elektron-Loch-Paare",
+        "Es erhöht die Beweglichkeit",
+        "Es eliminiert Rekombination"
+      ],
+      correctIndex: 0,
+      explanation: "Das eingebaute Feld stellt das Gleichgewicht her."
+    },
+    {
+      question: "Warum ist der Gesamtstrom im thermischen Gleichgewicht null?",
+      choices: [
+        "Weil Drift- und Diffusionsströme sich exakt kompensieren",
+        "Weil keine Ladungsträger existieren",
+        "Weil das elektrische Feld verschwindet",
+        "Weil keine Dotierung vorliegt"
+      ],
+      correctIndex: 0,
+      explanation: "Ein zentrales Resultat der Halbleiterstatistik."
+    },
+    {
+      question: "Welche physikalische Bedeutung hat die Kontinuitätsgleichung?",
+      choices: [
+        "Erhaltung der Ladungsträger unter Generation und Rekombination",
+        "Beschreibung der Bandstruktur",
+        "Berechnung der Bandlücke",
+        "Definition der Beweglichkeit"
+      ],
+      correctIndex: 0,
+      explanation: "Sie ist eine Erhaltungsgleichung für Ladungsträger."
+    },
+    {
+      question: "Warum ist die Auger-Rekombination bei hoher Ladungsträgerdichte dominant?",
+      choices: [
+        "Weil die Wahrscheinlichkeit für Dreiteilchenprozesse steigt",
+        "Weil Photonenemission unterdrückt wird",
+        "Weil die Bandlücke größer wird",
+        "Weil die Beweglichkeit zunimmt"
+      ],
+      correctIndex: 0,
+      explanation: "Auger-Prozesse skalieren stark mit der Ladungsträgerkonzentration."
+    },
+    {
+      question: "Welche Annahme erlaubt die Verwendung der Poisson-Gleichung im Halbleiter?",
+      choices: [
+        "Kontinuierliche Raumladungsverteilung",
+        "Diskrete Atomstruktur",
+        "Zeitabhängige Felder",
+        "Nichtlokale Wechselwirkungen"
+      ],
+      correctIndex: 0,
+      explanation: "Die kontinuierliche Näherung ist zentral für pn-Analysen."
+    },
+    {
+      question: "Warum nimmt die Beweglichkeit bei hohen Temperaturen ab?",
+      choices: [
+        "Wegen verstärkter Phononenstreuung",
+        "Wegen höherer Dotierung",
+        "Wegen geringerer Ladungsträgerzahl",
+        "Wegen Abnahme der Zustandsdichte"
+      ],
+      correctIndex: 0,
+      explanation: "Gitterschwingungen behindern den Ladungsträgertransport."
+    },
+    {
+      question: "Welche Größe entscheidet, ob ein Halbleiter entartet ist?",
+      choices: [
+        "Die Lage des Ferminiveaus relativ zu den Bandkanten",
+        "Die absolute Temperatur",
+        "Die Kristallstruktur",
+        "Die Bandlücke allein"
+      ],
+      correctIndex: 0,
+      explanation: "Entartung liegt vor, wenn EF innerhalb von ~3kT an den Bändern liegt."
+    },
+    {
+      question: "Warum kann man Metalle nicht mit der Boltzmann-Näherung beschreiben?",
+      choices: [
+        "Weil das Ferminiveau im Band liegt",
+        "Weil keine Ladungsträger existieren",
+        "Weil Metalle keine Bandstruktur haben",
+        "Weil die Temperatur zu niedrig ist"
+      ],
+      correctIndex: 0,
+      explanation: "Die Zustände nahe EF sind stark besetzt → Fermi-Dirac nötig."
+    },
+    {
+      question: "Welche physikalische Bedeutung hat die effektive Zustandsdichte NC?",
+      choices: [
+        "Sie fasst die verfügbaren Zustände nahe der Leitungsbandkante zusammen",
+        "Sie entspricht der Elektronenkonzentration",
+        "Sie ist gleich der Dotierkonzentration",
+        "Sie ist temperaturunabhängig"
+      ],
+      correctIndex: 0,
+      explanation: "NC ist ein temperaturabhängiger Maßstab für verfügbare Zustände im Leitungsband."
+    },
       {
         question: "Welche Aussage ist korrekt: Ein Halbleiter ist entartet (degeneriert), wenn …",
         choices: [
