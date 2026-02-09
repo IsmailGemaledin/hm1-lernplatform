@@ -1,0 +1,453 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>ExpPhys1_Erdbeschleunigung</title>
+  <link rel="stylesheet" href="../style.css">
+  <!-- KaTeX für Formeln -->
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.8/dist/katex.min.css">
+  <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.8/dist/katex.min.js"></script>
+  <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.8/dist/contrib/auto-render.min.js"
+          onload="renderMathInElement(document.body);"></script>
+
+  <style>
+    /* Lokale Ergänzungen für Kapitel-Layout (wie bei euren Seiten) */
+    .definition { padding: .75rem; border-left: 4px solid #2b7cff; background:#f3f8ff; border-radius:4px; margin: .75rem 0; }
+    .satz { padding: .75rem; border-left: 4px solid #2b7cff; background:#f9f9fb; border-radius:4px; margin: .75rem 0; }
+    .example { padding: .75rem; border-left: 4px solid #2e9a6a; background:#f4fffa; border-radius:4px; margin: .75rem 0; }
+    .small { font-size:0.95rem; color:#444; }
+
+    /* Simple Graph Blocks (inline SVG) */
+    .graph {
+      background:#fff;
+      border:1px solid #e6e6e6;
+      border-radius:6px;
+      padding:.75rem;
+      margin:.75rem 0;
+      overflow:auto;
+    }
+    .graph-title { font-weight:600; margin:0 0 .5rem 0; }
+    .graph svg { width: 100%; max-width: 820px; height: auto; display:block; }
+    .axis { stroke:#222; stroke-width:2; }
+    .grid { stroke:#ddd; stroke-width:1; }
+    .traj { stroke:#2b7cff; stroke-width:3; fill:none; }
+    .vec { stroke:#2e9a6a; stroke-width:3; fill:none; }
+    .gvec { stroke:#c0392b; stroke-width:3; fill:none; }
+    .label { font-family: system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif; font-size:14px; fill:#111; }
+    .hint  { font-family: system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif; font-size:13px; fill:#333; }
+  </style>
+</head>
+
+<body>
+
+<nav>
+  <a href="../../index.html">Startseite</a>
+</nav>
+
+<section>
+  <h1>Erdbeschleunigung \(g\)</h1>
+
+  <p class="small">
+    Dieses Kapitel behandelt die <strong>Erdbeschleunigung</strong> \(g\) und ihre Rolle in der Kinematik
+    (Bewegung ohne Reibung, ohne Luftwiderstand, „idealisiert“).
+    <br><br>
+    Der wichtigste Gedanke ist:
+    <br>
+    <strong>Beschleunigung ist eine zeitliche Änderungsrate.</strong>
+    Deshalb legen wir besonderen Fokus auf die Abhängigkeit von der Zeit \(t\) und auf die Beziehungen
+    zwischen \(\vec a(t)\), \(\vec v(t)\) und \(\vec r(t)\) durch <em>Ableitung</em> und <em>Integration</em>.
+  </p>
+
+  <h2>1. Was bedeutet „Erdbeschleunigung“?</h2>
+
+  <div class="definition">
+    <strong>Definition (Erdbeschleunigung).</strong>
+    In der Nähe der Erdoberfläche erfährt ein frei fallender Körper (ohne Luftwiderstand) eine nahezu konstante
+    Beschleunigung nach unten:
+    \[
+      \vec a(t) = \vec g.
+    \]
+    Dabei ist der Betrag
+    \[
+      g \approx 9{,}81\,\mathrm{m/s^2}.
+    \]
+  </div>
+
+  <p class="small">
+    „Konstant“ bedeutet hier:
+    \(\vec g\) hängt (im idealisierten Modell) <strong>nicht</strong> von der Zeit ab, also \(\vec g(t)=\vec g\).
+    Gerade deshalb ist dieses Kapitel so wichtig: Wenn \(\vec a(t)\) konstant ist, werden die Zeitfunktionen besonders übersichtlich.
+  </p>
+
+  <h2>2. Vorzeichenkonvention (sehr wichtig!)</h2>
+
+  <p>
+    Wir wählen eine \(y\)-Achse nach oben. Dann gilt:
+  </p>
+
+  <div class="satz">
+    <strong>Vorzeichen.</strong>
+    \[
+      a_y(t) = -g
+      \qquad(\text{weil nach unten beschleunigt wird}).
+    \]
+  </div>
+
+  <p class="small">
+    Diese Festlegung ist entscheidend. Viele Fehler entstehen, weil man \(+g\) einsetzt, obwohl „oben positiv“ gewählt wurde.
+    Wenn „unten positiv“ gewählt wird, ändern sich alle Vorzeichen konsistent. Wichtig ist: <strong>einheitlich bleiben</strong>.
+  </p>
+
+  <h2>3. Die Zeitkette: Beschleunigung → Geschwindigkeit → Position</h2>
+
+  <p>
+    Da Beschleunigung die Ableitung der Geschwindigkeit ist, und Geschwindigkeit die Ableitung der Position, gilt:
+  </p>
+
+  <div class="satz">
+    <strong>Ableitungskette.</strong>
+    \[
+      v_y(t)=\frac{dy(t)}{dt}=\dot y(t),
+      \qquad
+      a_y(t)=\frac{dv_y(t)}{dt}=\ddot y(t).
+    \]
+  </div>
+
+  <p>
+    Umgekehrt gilt durch Integration:
+  </p>
+
+  <div class="satz">
+    <strong>Integrationskette.</strong>
+    \[
+      v_y(t)=v_y(t_0)+\int_{t_0}^{t} a_y(\tau)\,d\tau,
+      \qquad
+      y(t)=y(t_0)+\int_{t_0}^{t} v_y(\tau)\,d\tau.
+    \]
+  </div>
+
+  <p class="small">
+    Das ist die zentrale „Zeit-Logik“ der Kinematik: Man kann aus \(a(t)\) durch <em>zeitliches Aufsummieren</em> (Integrale) \(v(t)\) und \(y(t)\) erhalten.
+    Und man kann durch Ableitungen aus \(y(t)\) wieder \(v(t)\) und \(a(t)\) gewinnen.
+  </p>
+
+  <h2>4. Spezialfall: konstante Erdbeschleunigung \(a_y(t)=-g\)</h2>
+
+  <p>
+    Jetzt kommt der Klassiker: Wir setzen \(a_y(t)=-g\) (konstant) und integrieren Schritt für Schritt.
+    Genau hier sieht man besonders klar, wie wichtig die Zeit \(t\) ist.
+  </p>
+
+  <div class="definition">
+    <strong>1. Schritt: Geschwindigkeit als Funktion der Zeit.</strong>
+    \[
+      v_y(t)=v_{y0}+\int_{0}^{t} (-g)\,d\tau
+      = v_{y0} - g t.
+    \]
+    (Hier ist \(v_{y0}=v_y(0)\).)
+  </div>
+
+  <div class="definition">
+    <strong>2. Schritt: Ort als Funktion der Zeit.</strong>
+    \[
+      y(t)=y_0+\int_{0}^{t} \big(v_{y0}-g\tau\big)\,d\tau
+      = y_0 + v_{y0}t - \frac12 g t^2.
+    \]
+    (Hier ist \(y_0=y(0)\).)
+  </div>
+
+  <div class="satz">
+    <strong>Merke (die drei Standardformeln bei konstanter Beschleunigung).</strong>
+    \[
+      a_y(t)=-g,
+      \qquad
+      v_y(t)=v_{y0}-gt,
+      \qquad
+      y(t)=y_0+v_{y0}t-\frac12 gt^2.
+    \]
+  </div>
+
+  <h2>5. Einheiten (und warum sie helfen)</h2>
+
+  <div class="definition">
+    <strong>Einheiten.</strong>
+    \[
+      [g]=\mathrm{m/s^2},\quad [v]=\mathrm{m/s},\quad [y]=\mathrm{m},\quad [t]=\mathrm{s}.
+    \]
+    Prüfe in Formeln:
+    <ul>
+      <li>\(gt\) hat Einheit \(\mathrm{m/s^2}\cdot\mathrm{s}=\mathrm{m/s}\) → passt zu Geschwindigkeit.</li>
+      <li>\(\tfrac12 gt^2\) hat Einheit \(\mathrm{m/s^2}\cdot\mathrm{s^2}=\mathrm{m}\) → passt zu Ort.</li>
+    </ul>
+  </div>
+
+  <p class="small">
+    In Klausuren ist die Einheitenprüfung oft der schnellste Weg, einen Vorzeichen- oder Faktorfehler zu entdecken
+    (z.B. ob irgendwo fälschlich \(gt\) statt \(gt^2\) steht).
+  </p>
+
+  <h2>6. Skizzen (sehr einfach, ohne Person): vertikaler Wurf & Schrägwurf</h2>
+
+  <div class="graph">
+    <p class="graph-title">Skizze 1: Vertikaler Wurf (nach oben) mit \(\vec g\) nach unten</p>
+    <svg viewBox="0 0 820 280" role="img" aria-label="Skizze: y-Achse, Boden, Startpunkt, Pfeil v0 nach oben, g nach unten">
+      <rect x="0" y="0" width="820" height="280" fill="white"></rect>
+
+      <!-- axes -->
+      <line class="axis" x1="120" y1="240" x2="780" y2="240"></line>
+      <line class="axis" x1="120" y1="240" x2="120" y2="40"></line>
+      <text class="label" x="790" y="245">x</text>
+      <text class="label" x="110" y="35">y</text>
+
+      <!-- ground -->
+      <line class="axis" x1="80" y1="240" x2="780" y2="240"></line>
+      <text class="hint" x="140" y="265">Boden: \(y=0\)</text>
+
+      <!-- start point at y0=1m (schematic) -->
+      <circle cx="240" cy="200" r="5" fill="#111"></circle>
+      <text class="label" x="250" y="205">Start: \(y_0\)</text>
+
+      <!-- arrows -->
+      <defs>
+        <marker id="arrG" markerWidth="10" markerHeight="10" refX="8" refY="3" orient="auto">
+          <path d="M0,0 L9,3 L0,6 Z" fill="#c0392b"></path>
+        </marker>
+        <marker id="arrV" markerWidth="10" markerHeight="10" refX="8" refY="3" orient="auto">
+          <path d="M0,0 L9,3 L0,6 Z" fill="#2e9a6a"></path>
+        </marker>
+      </defs>
+
+      <!-- v0 up -->
+      <line class="vec" x1="240" y1="200" x2="240" y2="120" marker-end="url(#arrV)"></line>
+      <text class="label" x="250" y="145">\(\vec v_0\)</text>
+
+      <!-- g down -->
+      <line class="gvec" x1="330" y1="110" x2="330" y2="180" marker-end="url(#arrG)"></line>
+      <text class="label" x="340" y="150">\(\vec g\)</text>
+
+      <!-- note -->
+      <text class="hint" x="420" y="80">Idealisiert: Luftwiderstand = 0</text>
+      <text class="hint" x="420" y="100">\(\;a_y(t)=-g\) konstant</text>
+    </svg>
+  </div>
+
+  <div class="graph">
+    <p class="graph-title">Skizze 2: Schrägwurf mit Winkel \(\alpha\) und Zerlegung von \(\vec v_0\)</p>
+    <svg viewBox="0 0 820 300" role="img" aria-label="Skizze: x-y Achsen, Parabelbahn, v0 Komponenten, g nach unten">
+      <rect x="0" y="0" width="820" height="300" fill="white"></rect>
+
+      <!-- axes -->
+      <line class="axis" x1="120" y1="250" x2="780" y2="250"></line>
+      <line class="axis" x1="120" y1="250" x2="120" y2="40"></line>
+      <text class="label" x="790" y="255">x</text>
+      <text class="label" x="110" y="35">y</text>
+      <text class="hint" x="140" y="275">Boden: \(y=0\)</text>
+
+      <!-- trajectory (schematic parabola) -->
+      <path class="traj" d="M 220 220 C 340 120, 500 110, 690 235"></path>
+      <text class="hint" x="520" y="120">Bahn (schematisch)</text>
+
+      <!-- start point -->
+      <circle cx="220" cy="220" r="5" fill="#111"></circle>
+      <text class="label" x="230" y="225">Start</text>
+
+      <defs>
+        <marker id="arrBlue" markerWidth="10" markerHeight="10" refX="8" refY="3" orient="auto">
+          <path d="M0,0 L9,3 L0,6 Z" fill="#2b7cff"></path>
+        </marker>
+        <marker id="arrGreen2" markerWidth="10" markerHeight="10" refX="8" refY="3" orient="auto">
+          <path d="M0,0 L9,3 L0,6 Z" fill="#2e9a6a"></path>
+        </marker>
+        <marker id="arrRed2" markerWidth="10" markerHeight="10" refX="8" refY="3" orient="auto">
+          <path d="M0,0 L9,3 L0,6 Z" fill="#c0392b"></path>
+        </marker>
+      </defs>
+
+      <!-- v0 vector -->
+      <line class="vec" x1="220" y1="220" x2="300" y2="170" marker-end="url(#arrGreen2)"></line>
+      <text class="label" x="305" y="175">\(\vec v_0\)</text>
+
+      <!-- components -->
+      <line class="vec" x1="220" y1="220" x2="300" y2="220" marker-end="url(#arrGreen2)"></line>
+      <text class="label" x="305" y="225">\(v_{0x}\)</text>
+      <line class="vec" x1="220" y1="220" x2="220" y2="170" marker-end="url(#arrGreen2)"></line>
+      <text class="label" x="185" y="170">\(v_{0y}\)</text>
+
+      <!-- angle alpha (simple arc) -->
+      <path d="M 250 220 A 35 35 0 0 1 242 200" stroke="#111" stroke-width="2" fill="none"></path>
+      <text class="label" x="255" y="205">\(\alpha\)</text>
+
+      <!-- g down -->
+      <line class="gvec" x1="640" y1="70" x2="640" y2="140" marker-end="url(#arrRed2)"></line>
+      <text class="label" x="650" y="110">\(\vec g\)</text>
+
+      <text class="hint" x="420" y="70">Horizontal: keine Beschleunigung</text>
+      <text class="hint" x="420" y="90">Vertikal: \(a_y=-g\)</text>
+    </svg>
+  </div>
+
+  <h2>7. Übung 1 (vertikaler Wurf): Wann trifft der Ball den Boden?</h2>
+
+  <div class="example">
+    <strong>Aufgabe 1 (Textbuch-Stil).</strong><br>
+    Ein Ball wird aus einer Höhe von \(1{,}0\,\mathrm{m}\) über dem Boden senkrecht nach oben geworfen.
+    Die Anfangsgeschwindigkeit beträgt \(v_{0}=15\,\mathrm{m/s}\).
+    Luftwiderstand wird vernachlässigt, die Erdbeschleunigung sei \(g=9{,}81\,\mathrm{m/s^2}\).
+    <br><br>
+    <strong>Frage:</strong> Nach welcher Zeit \(t\) berührt der Ball erstmals wieder den Boden (\(y=0\))?
+  </div>
+
+  <p>
+    Wir wählen „nach oben“ als positive Richtung. Dann gilt:
+    \[
+      a_y(t)=-g,\qquad v_y(t)=v_0-gt,\qquad y(t)=y_0+v_0t-\frac12gt^2.
+    \]
+    Hier sind:
+    \[
+      y_0=1\,\mathrm{m},\qquad v_0=15\,\mathrm{m/s}.
+    \]
+  </p>
+
+  <div class="definition">
+    <strong>Bodenbedingung.</strong>
+    Der Ball trifft den Boden, wenn
+    \[
+      y(t)=0.
+    \]
+    Also:
+    \[
+      0 = 1 + 15t - \frac12\cdot 9{,}81\, t^2.
+    \]
+    Das ist eine quadratische Gleichung in \(t\).
+  </div>
+
+  <p>
+    Wir schreiben:
+    \[
+      0 = 1 + 15t - 4{,}905\,t^2
+      \quad\Longleftrightarrow\quad
+      4{,}905\,t^2 - 15t - 1 = 0.
+    \]
+    Mit der Mitternachtsformel:
+    \[
+      t=\frac{15\pm\sqrt{15^2+4\cdot 4{,}905\cdot 1}}{2\cdot 4{,}905}.
+    \]
+  </p>
+
+  <div class="satz">
+    <strong>Physikalisch relevante Lösung.</strong>
+    Nur die positive Zeit ist sinnvoll:
+    \[
+      t=\frac{15+\sqrt{225+19{,}62}}{9{,}81}
+      \approx
+      3{,}12\,\mathrm{s}.
+    \]
+  </div>
+
+  <p class="small">
+    Kontrolle (Zeit-Fokus):
+    <br>
+    Die maximale Höhe wird bei \(v_y(t)=0\) erreicht:
+    \[
+      0=v_0-gt \Rightarrow t_\text{max}=\frac{v_0}{g}\approx 1{,}53\,\mathrm{s}.
+    \]
+    Das ist kleiner als die Gesamtflugzeit \(3{,}12\,\mathrm{s}\) — das ist plausibel.
+  </p>
+
+  <h2>8. Übung 2 (Schrägwurf): Wurfweite in horizontaler Richtung</h2>
+
+  <div class="example">
+    <strong>Aufgabe 2 (Textbuch-Stil).</strong><br>
+    Ein Ball wird aus einer Höhe von \(1{,}0\,\mathrm{m}\) über dem Boden mit der Anfangsgeschwindigkeit
+    \(v_0=15\,\mathrm{m/s}\) unter dem Abwurfwinkel \(\alpha=30^\circ\) über der Horizontalen geworfen.
+    Luftwiderstand wird vernachlässigt, die Erdbeschleunigung sei \(g=9{,}81\,\mathrm{m/s^2}\).
+    <br><br>
+    <strong>Frage:</strong> Welche horizontale Strecke \(R\) (Wurfweite) legt der Ball bis zum Auftreffen auf dem Boden zurück?
+  </div>
+
+  <p>
+    Zentrale Idee: Zerlege die Anfangsgeschwindigkeit in Komponenten.
+    \[
+      v_{0x}=v_0\cos\alpha,\qquad v_{0y}=v_0\sin\alpha.
+    \]
+    Mit \(v_0=15\,\mathrm{m/s}\) und \(\alpha=30^\circ\) gilt:
+    \[
+      v_{0x}=15\cos 30^\circ\approx 12{,}99\,\mathrm{m/s},\qquad
+      v_{0y}=15\sin 30^\circ=7{,}5\,\mathrm{m/s}.
+    \]
+  </p>
+
+  <div class="satz">
+    <strong>Wichtig (Zeit steht im Zentrum).</strong>
+    Die horizontale Strecke ist
+    \[
+      R = v_{0x}\,t_\text{Boden}.
+    \]
+    Man braucht also zuerst die <strong>Flugzeit</strong> \(t_\text{Boden}\) aus der vertikalen Bewegung.
+  </div>
+
+  <p>
+    Vertikal gilt wieder:
+    \[
+      y(t)=y_0+v_{0y}t-\frac12gt^2,
+      \quad
+      y_0=1\,\mathrm{m}.
+    \]
+    Bodenbedingung \(y(t)=0\):
+    \[
+      0 = 1 + 7{,}5\,t - 4{,}905\,t^2
+      \quad\Longleftrightarrow\quad
+      4{,}905\,t^2 - 7{,}5\,t - 1 = 0.
+    \]
+  </p>
+
+  <div class="definition">
+    <strong>Flugzeit (positive Lösung).</strong>
+    \[
+      t_\text{Boden}=
+      \frac{7{,}5+\sqrt{7{,}5^2+4\cdot 4{,}905\cdot 1}}{9{,}81}
+      =
+      \frac{7{,}5+\sqrt{56{,}25+19{,}62}}{9{,}81}
+      \approx
+      1{,}65\,\mathrm{s}.
+    \]
+  </div>
+
+  <p>
+    Jetzt horizontal:
+    \[
+      x(t)=x_0+v_{0x}\,t.
+    \]
+    Wir wählen \(x_0=0\) am Abwurfpunkt, dann ist die Wurfweite:
+    \[
+      R=v_{0x}\,t_\text{Boden}\approx 12{,}99\cdot 1{,}65\approx 21{,}5\,\mathrm{m}.
+    \]
+  </p>
+
+  <div class="satz">
+    <strong>Ergebnis.</strong>
+    \[
+      R \approx 21{,}5\,\mathrm{m}.
+    \]
+    Entscheidend war: Die Zeit \(t_\text{Boden}\) kommt aus der vertikalen Bewegung mit \(a_y=-g\).
+  </div>
+
+  <h2>9. Kurz-Zusammenfassung (mit Zeit-Fokus)</h2>
+
+  <div class="satz">
+    <ul>
+      <li>\(\vec a(t)\) ist die zeitliche Änderungsrate von \(\vec v(t)\): \( \vec a(t)=\frac{d\vec v}{dt} \).</li>
+      <li>Bei Erdbeschleunigung (idealisiert): \(a_y(t)=-g\) konstant.</li>
+      <li>Dann folgt durch Integration: \(v_y(t)=v_{0y}-gt\) und \(y(t)=y_0+v_{0y}t-\frac12gt^2\).</li>
+      <li>In Wurfaufgaben ist die <strong>Flugzeit</strong> meist der zentrale Schlüssel, weil \(R\) über \(R=v_{0x}\,t\) läuft.</li>
+    </ul>
+  </div>
+
+  <h2>PDF Übungen</h2>
+  <p><a target="_blank" href="../assets/pdf/ExpPhys1_Erdbeschleunigung.pdf">Blatt 1</a></p>
+
+</section>
+
+</body>
+</html>
