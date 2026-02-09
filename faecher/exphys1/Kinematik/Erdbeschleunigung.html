@@ -187,107 +187,9 @@
     (z.B. ob irgendwo fälschlich \(gt\) statt \(gt^2\) steht).
   </p>
 
-  <h2>6. Skizzen (sehr einfach, ohne Person): vertikaler Wurf & Schrägwurf</h2>
+  
 
-  <div class="graph">
-    <p class="graph-title">Skizze 1: Vertikaler Wurf (nach oben) mit \(\vec g\) nach unten</p>
-    <svg viewBox="0 0 820 280" role="img" aria-label="Skizze: y-Achse, Boden, Startpunkt, Pfeil v0 nach oben, g nach unten">
-      <rect x="0" y="0" width="820" height="280" fill="white"></rect>
-
-      <!-- axes -->
-      <line class="axis" x1="120" y1="240" x2="780" y2="240"></line>
-      <line class="axis" x1="120" y1="240" x2="120" y2="40"></line>
-      <text class="label" x="790" y="245">x</text>
-      <text class="label" x="110" y="35">y</text>
-
-      <!-- ground -->
-      <line class="axis" x1="80" y1="240" x2="780" y2="240"></line>
-      <text class="hint" x="140" y="265">Boden: \(y=0\)</text>
-
-      <!-- start point at y0=1m (schematic) -->
-      <circle cx="240" cy="200" r="5" fill="#111"></circle>
-      <text class="label" x="250" y="205">Start: \(y_0\)</text>
-
-      <!-- arrows -->
-      <defs>
-        <marker id="arrG" markerWidth="10" markerHeight="10" refX="8" refY="3" orient="auto">
-          <path d="M0,0 L9,3 L0,6 Z" fill="#c0392b"></path>
-        </marker>
-        <marker id="arrV" markerWidth="10" markerHeight="10" refX="8" refY="3" orient="auto">
-          <path d="M0,0 L9,3 L0,6 Z" fill="#2e9a6a"></path>
-        </marker>
-      </defs>
-
-      <!-- v0 up -->
-      <line class="vec" x1="240" y1="200" x2="240" y2="120" marker-end="url(#arrV)"></line>
-      <text class="label" x="250" y="145">\(\vec v_0\)</text>
-
-      <!-- g down -->
-      <line class="gvec" x1="330" y1="110" x2="330" y2="180" marker-end="url(#arrG)"></line>
-      <text class="label" x="340" y="150">\(\vec g\)</text>
-
-      <!-- note -->
-      <text class="hint" x="420" y="80">Idealisiert: Luftwiderstand = 0</text>
-      <text class="hint" x="420" y="100">\(\;a_y(t)=-g\) konstant</text>
-    </svg>
-  </div>
-
-  <div class="graph">
-    <p class="graph-title">Skizze 2: Schrägwurf mit Winkel \(\alpha\) und Zerlegung von \(\vec v_0\)</p>
-    <svg viewBox="0 0 820 300" role="img" aria-label="Skizze: x-y Achsen, Parabelbahn, v0 Komponenten, g nach unten">
-      <rect x="0" y="0" width="820" height="300" fill="white"></rect>
-
-      <!-- axes -->
-      <line class="axis" x1="120" y1="250" x2="780" y2="250"></line>
-      <line class="axis" x1="120" y1="250" x2="120" y2="40"></line>
-      <text class="label" x="790" y="255">x</text>
-      <text class="label" x="110" y="35">y</text>
-      <text class="hint" x="140" y="275">Boden: \(y=0\)</text>
-
-      <!-- trajectory (schematic parabola) -->
-      <path class="traj" d="M 220 220 C 340 120, 500 110, 690 235"></path>
-      <text class="hint" x="520" y="120">Bahn (schematisch)</text>
-
-      <!-- start point -->
-      <circle cx="220" cy="220" r="5" fill="#111"></circle>
-      <text class="label" x="230" y="225">Start</text>
-
-      <defs>
-        <marker id="arrBlue" markerWidth="10" markerHeight="10" refX="8" refY="3" orient="auto">
-          <path d="M0,0 L9,3 L0,6 Z" fill="#2b7cff"></path>
-        </marker>
-        <marker id="arrGreen2" markerWidth="10" markerHeight="10" refX="8" refY="3" orient="auto">
-          <path d="M0,0 L9,3 L0,6 Z" fill="#2e9a6a"></path>
-        </marker>
-        <marker id="arrRed2" markerWidth="10" markerHeight="10" refX="8" refY="3" orient="auto">
-          <path d="M0,0 L9,3 L0,6 Z" fill="#c0392b"></path>
-        </marker>
-      </defs>
-
-      <!-- v0 vector -->
-      <line class="vec" x1="220" y1="220" x2="300" y2="170" marker-end="url(#arrGreen2)"></line>
-      <text class="label" x="305" y="175">\(\vec v_0\)</text>
-
-      <!-- components -->
-      <line class="vec" x1="220" y1="220" x2="300" y2="220" marker-end="url(#arrGreen2)"></line>
-      <text class="label" x="305" y="225">\(v_{0x}\)</text>
-      <line class="vec" x1="220" y1="220" x2="220" y2="170" marker-end="url(#arrGreen2)"></line>
-      <text class="label" x="185" y="170">\(v_{0y}\)</text>
-
-      <!-- angle alpha (simple arc) -->
-      <path d="M 250 220 A 35 35 0 0 1 242 200" stroke="#111" stroke-width="2" fill="none"></path>
-      <text class="label" x="255" y="205">\(\alpha\)</text>
-
-      <!-- g down -->
-      <line class="gvec" x1="640" y1="70" x2="640" y2="140" marker-end="url(#arrRed2)"></line>
-      <text class="label" x="650" y="110">\(\vec g\)</text>
-
-      <text class="hint" x="420" y="70">Horizontal: keine Beschleunigung</text>
-      <text class="hint" x="420" y="90">Vertikal: \(a_y=-g\)</text>
-    </svg>
-  </div>
-
-  <h2>7. Übung 1 (vertikaler Wurf): Wann trifft der Ball den Boden?</h2>
+  <h2>6. Übung 1 (vertikaler Wurf): Wann trifft der Ball den Boden?</h2>
 
   <div class="example">
     <strong>Aufgabe 1 (Textbuch-Stil).</strong><br>
@@ -355,7 +257,50 @@
     Das ist kleiner als die Gesamtflugzeit \(3{,}12\,\mathrm{s}\) — das ist plausibel.
   </p>
 
-  <h2>8. Übung 2 (Schrägwurf): Wurfweite in horizontaler Richtung</h2>
+  <div class="graph">
+    <p class="graph-title">Skizze 1: Vertikaler Wurf mit \(\vec g\) nach unten</p>
+    <svg viewBox="0 0 820 280" role="img" aria-label="Skizze: y-Achse, Boden, Startpunkt, Pfeil v0 nach oben, g nach unten">
+      <rect x="0" y="0" width="820" height="280" fill="white"></rect>
+
+      <!-- axes -->
+      <line class="axis" x1="120" y1="240" x2="780" y2="240"></line>
+      <line class="axis" x1="120" y1="240" x2="120" y2="40"></line>
+      <text class="label" x="790" y="245">x</text>
+      <text class="label" x="110" y="35">y</text>
+
+      <!-- ground -->
+      <line class="axis" x1="80" y1="240" x2="780" y2="240"></line>
+      <text class="hint" x="140" y="265">Boden: \(y=0\)</text>
+
+      <!-- start point at y0=1m (schematic) -->
+      <circle cx="240" cy="200" r="5" fill="#111"></circle>
+      <text class="label" x="250" y="205">Start: \(y_0\)</text>
+
+      <!-- arrows -->
+      <defs>
+        <marker id="arrG" markerWidth="10" markerHeight="10" refX="8" refY="3" orient="auto">
+          <path d="M0,0 L9,3 L0,6 Z" fill="#c0392b"></path>
+        </marker>
+        <marker id="arrV" markerWidth="10" markerHeight="10" refX="8" refY="3" orient="auto">
+          <path d="M0,0 L9,3 L0,6 Z" fill="#2e9a6a"></path>
+        </marker>
+      </defs>
+
+      <!-- v0 up -->
+      <line class="vec" x1="240" y1="200" x2="240" y2="120" marker-end="url(#arrV)"></line>
+      <text class="label" x="250" y="145">\(\vec v_0\)</text>
+
+      <!-- g down -->
+      <line class="gvec" x1="330" y1="110" x2="330" y2="180" marker-end="url(#arrG)"></line>
+      <text class="label" x="340" y="150">\(\vec g\)</text>
+
+      <!-- note -->
+      <text class="hint" x="420" y="80">Idealisiert: Luftwiderstand = 0</text>
+      <text class="hint" x="420" y="100">\(\;a_y(t)=-g\) konstant</text>
+    </svg>
+  </div>
+
+  <h2>7. Übung 2 (Schrägwurf): Wurfweite in horizontaler Richtung</h2>
 
   <div class="example">
     <strong>Aufgabe 2 (Textbuch-Stil).</strong><br>
@@ -433,7 +378,62 @@
     Entscheidend war: Die Zeit \(t_\text{Boden}\) kommt aus der vertikalen Bewegung mit \(a_y=-g\).
   </div>
 
-  <h2>9. Kurz-Zusammenfassung (mit Zeit-Fokus)</h2>
+  <div class="graph">
+    <p class="graph-title">Skizze 2: Schrägwurf mit Winkel \(\alpha\) und Zerlegung von \(\vec v_0\)</p>
+    <svg viewBox="0 0 820 300" role="img" aria-label="Skizze: x-y Achsen, Parabelbahn, v0 Komponenten, g nach unten">
+      <rect x="0" y="0" width="820" height="300" fill="white"></rect>
+
+      <!-- axes -->
+      <line class="axis" x1="120" y1="250" x2="780" y2="250"></line>
+      <line class="axis" x1="120" y1="250" x2="120" y2="40"></line>
+      <text class="label" x="790" y="255">x</text>
+      <text class="label" x="110" y="35">y</text>
+      <text class="hint" x="140" y="275">Boden: \(y=0\)</text>
+
+      <!-- trajectory (schematic parabola) -->
+      <path class="traj" d="M 220 220 C 340 120, 500 110, 690 235"></path>
+      <text class="hint" x="520" y="120">Bahn (schematisch)</text>
+
+      <!-- start point -->
+      <circle cx="220" cy="220" r="5" fill="#111"></circle>
+      <text class="label" x="230" y="225">Start</text>
+
+      <defs>
+        <marker id="arrBlue" markerWidth="10" markerHeight="10" refX="8" refY="3" orient="auto">
+          <path d="M0,0 L9,3 L0,6 Z" fill="#2b7cff"></path>
+        </marker>
+        <marker id="arrGreen2" markerWidth="10" markerHeight="10" refX="8" refY="3" orient="auto">
+          <path d="M0,0 L9,3 L0,6 Z" fill="#2e9a6a"></path>
+        </marker>
+        <marker id="arrRed2" markerWidth="10" markerHeight="10" refX="8" refY="3" orient="auto">
+          <path d="M0,0 L9,3 L0,6 Z" fill="#c0392b"></path>
+        </marker>
+      </defs>
+
+      <!-- v0 vector -->
+      <line class="vec" x1="220" y1="220" x2="300" y2="170" marker-end="url(#arrGreen2)"></line>
+      <text class="label" x="305" y="175">\(\vec v_0\)</text>
+
+      <!-- components -->
+      <line class="vec" x1="220" y1="220" x2="300" y2="220" marker-end="url(#arrGreen2)"></line>
+      <text class="label" x="305" y="225">\(v_{0x}\)</text>
+      <line class="vec" x1="220" y1="220" x2="220" y2="170" marker-end="url(#arrGreen2)"></line>
+      <text class="label" x="185" y="170">\(v_{0y}\)</text>
+
+      <!-- angle alpha (simple arc) -->
+      <path d="M 250 220 A 35 35 0 0 1 242 200" stroke="#111" stroke-width="2" fill="none"></path>
+      <text class="label" x="255" y="205">\(\alpha\)</text>
+
+      <!-- g down -->
+      <line class="gvec" x1="640" y1="70" x2="640" y2="140" marker-end="url(#arrRed2)"></line>
+      <text class="label" x="650" y="110">\(\vec g\)</text>
+
+      <text class="hint" x="420" y="70">Horizontal: keine Beschleunigung</text>
+      <text class="hint" x="420" y="90">Vertikal: \(a_y=-g\)</text>
+    </svg>
+  </div>
+
+  <h2>8. Kurz-Zusammenfassung (mit Zeit-Fokus)</h2>
 
   <div class="satz">
     <ul>
