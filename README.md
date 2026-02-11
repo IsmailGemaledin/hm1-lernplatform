@@ -22,6 +22,21 @@ The platform emphasizes clarity, rigor, and accessibility. It is structured to a
 - **Hosting:** GitHub Pages for fast, reliable, and free deployment.
 - **Design Principles:** Modular CSS, semantic HTML, and clear typographical hierarchy for readability and maintainability.
 
+## Architecture
+
+- Modular folder structure separating content, quizzes, and components
+- Reusable quiz engine powered by dynamic question objects
+- ACE editor integrated for in-browser code execution
+- KaTeX rendering pipeline for mathematical expressions
+- Client-side state handling for randomized quizzes
+
+## Technical Challenges
+
+- Implemented randomized answer shuffling without breaking correct answer mapping.
+- Designed a reusable quiz structure scalable across multiple modules.
+- Integrated third-party code editors while preserving responsive layout.
+- Optimized GitHub Pages deployment for static hosting constraints.
+
 ## Educational Approach
 
 - **Depth & Clarity:** Each lesson is written to provide both conceptual understanding and practical application.
@@ -41,6 +56,12 @@ The platform emphasizes clarity, rigor, and accessibility. It is structured to a
 - Make complex subjects **approachable without compromising rigor**.
 - Support **self-paced and structured learning** through modular content and downloadable resources.
 - Encourage **best practices in programming and mathematics** through clear, professional examples.
+
+## Scale
+
+- ~10,000 lines of code
+- 100+ commits
+- 2 contributors
 
 ## License & Contribution
 
