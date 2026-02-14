@@ -60,9 +60,9 @@ The platform emphasizes clarity, rigor, and accessibility. It is structured to a
 ## Scale
 
 - ~10,000 lines of code
-- 100+ commits
+- 90+ commits
 - 2 contributors
 
 ## License & Contribution
 
-This project is maintained by Ismail Gemaledin and Iusuf Gemaledin. Contributions are welcome for corrections, additional examples, or updated modules. Please follow professional documentation standards for consistency.
+This project is maintained by Ismail Gemaledin and Iusuf Gemaledin. Contributions are welcome for corrections, additional examples/PDF files, or updated modules. Please follow professional documentation standards for consistency. You can send your submissions at st200139@stud.uni-stuttgart.de
