@@ -1,0 +1,286 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>HM1_Quadriken</title>
+  <link rel="stylesheet" href="style.css">
+
+  <!-- KaTeX für Formeln -->
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.8/dist/katex.min.css">
+  <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.8/dist/katex.min.js"></script>
+  <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.8/dist/contrib/auto-render.min.js"
+          onload="renderMathInElement(document.body,{delimiters:[{left:'\\(',right:'\\)',display:false},{left:'\\[',right:'\\]',display:true}],throwOnError:false});"></script>
+
+  <style>
+    .definition { padding: .75rem; border-left: 4px solid #2b7cff; background:#f3f8ff; border-radius:4px; margin: .75rem 0; }
+    .satz { padding: .75rem; border-left: 4px solid #2b7cff; background:#f9f9fb; border-radius:4px; margin: .75rem 0; }
+    .example { padding: .75rem; border-left: 4px solid #2e9a6a; background:#f4fffa; border-radius:4px; margin: .75rem 0; }
+    pre.math { background:#f7f7f7; padding: .6rem .75rem; border-radius:4px; overflow:auto; }
+    .small { font-size:0.95rem; color:#444; }
+    .warn { padding: .75rem; border-left: 4px solid #d58c00; background:#fff7e6; border-radius:4px; margin: .75rem 0; }
+    .grid2 { display:grid; grid-template-columns: 1fr; gap: .75rem; }
+    @media (min-width: 900px) { .grid2 { grid-template-columns: 1fr 1fr; } }
+    code.k { background:#f2f2f2; padding: .1rem .25rem; border-radius:4px; }
+  </style>
+</head>
+<body>
+
+<nav>
+  <a href="../../index.html">Startseite</a>
+</nav>
+
+<section>
+  <h1>Quadriken (HM1)</h1>
+  <p class="small">
+    Quadriken sind Kurven/Flächen, die durch eine quadratische Gleichung beschrieben werden.
+    In HM1 geht es in erster Linie um Quadriken in \(\mathbb{R}^2\) (Kegelschnitte),
+    und um die systematische Methode: <em>Matrixform → Diagonalisierung (Rotation) → quadratische Ergänzung (Translation) → euklidische Normalform</em>.
+  </p>
+
+  <div class="warn">
+    <strong>Typische Klausuridee:</strong> Du bekommst eine Gleichung wie
+    \(\;x_1^2+6x_1x_2+x_2^2+4x_1-4=0\;\) und sollst sie auf Normalform bringen
+    (Ellipse/Hyperbel/Parabel erkennen, ggf. Koordinatensystem angeben).
+  </div>
+
+  <h2>1. Allgemeine Form und Matrixschreibweise</h2>
+
+  <div class="definition">
+    <strong>Definition (Quadrik in \(\mathbb{R}^n\)).</strong>
+    Eine Quadrik ist die Menge aller \(x\in\mathbb{R}^n\), die eine Gleichung der Form
+    \[
+      x^\top A x + 2a^\top x + c = 0
+    \]
+    erfüllen, wobei \(A\in\mathbb{R}^{n\times n}\) symmetrisch, \(a\in\mathbb{R}^n\), \(c\in\mathbb{R}\).
+    <div class="small">
+      In \(\mathbb{R}^2\) schreibt man oft:
+      \[
+        Ax_1^2 + Bx_1x_2 + Cx_2^2 + Dx_1 + Ex_2 + F = 0.
+      \]
+      Dann ist \(A=\begin{pmatrix}A & B/2\\ B/2 & C\end{pmatrix}\) in der Matrixform.
+    </div>
+  </div>
+
+  <div class="example">
+    <strong>Beispiel (Matrix finden).</strong>
+    \[
+      9x_1^2 - 4x_1x_2 + 6x_2^2 + 6\sqrt5\,x_1 - 8\sqrt5\,x_2 - 10 = 0
+    \]
+    wird zu
+    \[
+      x^\top\begin{pmatrix}9&-2\\-2&6\end{pmatrix}x + 2\begin{pmatrix}3\sqrt5\\-4\sqrt5\end{pmatrix}^\top x - 10 = 0.
+    \]
+    (Der gemischte Term \(Bx_1x_2\) wird zu \(2a_{12}x_1x_2\), also \(a_{12}=B/2\).)
+  </div>
+
+  <h2>2. Ziel: Euklidische Normalform</h2>
+
+  <div class="definition">
+    <strong>Idee.</strong> Wir suchen ein kartesisches Koordinatensystem \(G=(P;u_1,u_2)\)
+    (also <em>Rotation</em> durch orthonormale \(u_1,u_2\) und <em>Translation</em> durch \(P\)),
+    sodass die Quadrik in neuen Koordinaten \(z=(z_1,z_2)\) möglichst einfach ist:
+    <ul>
+      <li>Ellipse: \(\;\frac{z_1^2}{a^2}+\frac{z_2^2}{b^2}=1\)</li>
+      <li>Hyperbel: \(\;\frac{z_1^2}{a^2}-\frac{z_2^2}{b^2}=1\)</li>
+      <li>Parabel: \(\;z_2 = \gamma z_1^2\) (oder ähnlich)</li>
+      <li>Paar Geraden / Punkt / leere Menge (Sonderfälle)</li>
+    </ul>
+  </div>
+
+  <h2>3. Standard-Algorithmus (Prüfungsrezept)</h2>
+
+  <div class="satz">
+    <strong>Algorithmus (Schrittfolge).</strong>
+    Gegeben \(\;x^\top A x + 2a^\top x + c = 0\) in \(\mathbb{R}^2\).
+    <ol>
+      <li><strong>Rotation:</strong> Diagonalisieren \(A\): finde orthogonales \(U\) mit
+        \[
+          U^\top A U = \begin{pmatrix}\lambda_1&0\\0&\lambda_2\end{pmatrix}.
+        \]
+        Setze \(x = Uy\). Dann wird der quadratische Anteil diagonal.</li>
+      <li><strong>Linearterm transformieren:</strong> Aus \(2a^\top x\) wird \(2(U^\top a)^\top y\).</li>
+      <li><strong>Translation (quadratische Ergänzung):</strong> Schreibe die Gleichung in \(y\) als
+        \[
+          \lambda_1 y_1^2 + \lambda_2 y_2^2 + 2\tilde a_1 y_1 + 2\tilde a_2 y_2 + c = 0
+        \]
+        und ergänze in \(y_1\), \(y_2\) zum Quadrat. Das entspricht einer Verschiebung \(y=z+p\).</li>
+      <li><strong>Normalform lesen:</strong> Nach dem Verschieben steht eine Gleichung nur mit \(z_1^2,z_2^2\) (oder ein Term fehlt) → Typ bestimmen.</li>
+    </ol>
+  </div>
+
+  <div class="warn">
+    <strong>Schnelltest:</strong>
+    <ul>
+      <li>Wenn \(A\) <em>positiv definit</em> (\(\lambda_1>0,\lambda_2>0\)) ⇒ typischerweise Ellipse (oder leer/Punkt).</li>
+      <li>Wenn \(A\) <em>indefinit</em> (\(\lambda_1\lambda_2<0\)) ⇒ typischerweise Hyperbel.</li>
+      <li>Wenn \(\det(A)=0\) (ein Eigenwert 0) ⇒ Parabel/Sonderfall möglich.</li>
+    </ul>
+  </div>
+
+  <h2>4. Rotation: Diagonalisierung in \(\mathbb{R}^2\)</h2>
+
+  <div class="definition">
+    Für symmetrisches \(A\) gibt es eine orthonormale Eigenbasis \((u_1,u_2)\) und
+    \[
+      U=\begin{pmatrix}u_1 & u_2\end{pmatrix}\ \text{orthogonal},\qquad U^\top A U=\mathrm{diag}(\lambda_1,\lambda_2).
+    \]
+    In der Praxis:
+    <ol>
+      <li>Eigenwerte aus \(\det(A-\lambda I)=0\)</li>
+      <li>Eigenvektoren berechnen</li>
+      <li>Normieren</li>
+    </ol>
+  </div>
+
+  <div class="example">
+    <strong>Mini-Beispiel (gemischter Term entfernen).</strong>
+    Wenn in der Gleichung ein Term \(Bx_1x_2\) vorkommt, ist \(A\) nicht diagonal.
+    Eine Rotation \(x=Uy\) (also Wechsel in eine Eigenbasis von \(A\)) eliminiert den Kreuzterm.
+  </div>
+
+  <h2>5. Translation: Quadratische Ergänzung</h2>
+
+  <div class="definition">
+    Nach der Rotation erhält man typischerweise
+    \[
+      \lambda_1 y_1^2 + \lambda_2 y_2^2 + 2\tilde a_1 y_1 + 2\tilde a_2 y_2 + c = 0.
+    \]
+    Ergänze separat:
+    \[
+      \lambda_1 y_1^2 + 2\tilde a_1 y_1
+      =\lambda_1\left(y_1+\frac{\tilde a_1}{\lambda_1}\right)^2-\frac{\tilde a_1^2}{\lambda_1}
+      \quad(\lambda_1\neq 0),
+    \]
+    analog für \(y_2\).
+    Dann setze
+    \[
+      z_1 = y_1+\frac{\tilde a_1}{\lambda_1},\qquad
+      z_2 = y_2+\frac{\tilde a_2}{\lambda_2}
+    \]
+    (Achtung Vorzeichen: hängt davon ab, ob du \(\,+\frac{\tilde a_1}{\lambda_1}\) oder \(-\frac{\tilde a_1}{\lambda_1}\) wählst; wichtig ist die Quadratform).
+  </div>
+
+  <h2>6. Vollständiges Beispiel: Ellipse (mit Rotation und Verschiebung)</h2>
+
+  <div class="example">
+    <strong>Beispiel (typisch HM1/HM1-2):</strong>
+    \[
+      9x_1^2+6x_2^2-4x_1x_2+6\sqrt5\,x_1-8\sqrt5\,x_2-10=0.
+    \]
+    <div class="small">
+      <em>Schritt 1 (Matrixform):</em> \(A=\begin{pmatrix}9&-2\\-2&6\end{pmatrix}\), \(a=\binom{3\sqrt5}{-4\sqrt5}\), \(c=-10\).<br>
+      <em>Schritt 2 (Eigenwerte):</em> \(\lambda_1=10,\lambda_2=5\).<br>
+      <em>Schritt 3 (orthonormale Eigenvektoren):</em>
+      \[
+        u_1=\frac{1}{\sqrt5}\binom{-2}{1},\qquad u_2=\frac{1}{\sqrt5}\binom{1}{2}.
+      \]
+      <em>Schritt 4 (Rotation):</em> \(U=\frac{1}{\sqrt5}\begin{pmatrix}-2&1\\1&2\end{pmatrix}\), \(x=Uy\).<br>
+      <em>Schritt 5 (linearer Term in \(y\)):</em> \(U^\top a=\binom{-10}{-5}\).<br>
+      <em>Schritt 6:</em>
+      \[
+        10y_1^2+5y_2^2-20y_1-10y_2-10=0.
+      \]
+      <em>Schritt 7 (quadratische Ergänzung):</em>
+      \[
+        10(y_1-1)^2+5(y_2-1)^2=25.
+      \]
+      Setze \(z_1=y_1-1,\ z_2=y_2-1\):
+      \[
+        \frac{2}{5}z_1^2+\frac{1}{5}z_2^2=1.
+      \]
+      <em>Interpretation:</em> Ellipse mit Halbachsen \(\sqrt{\frac{5}{2}}\) und \(\sqrt{5}\), im Koordinatensystem \(G=(P;u_1,u_2)\) mit
+      \[
+        P = U\binom{1}{1}=\frac{1}{\sqrt5}\binom{-1}{3}.
+      \]
+    </div>
+  </div>
+
+  <h2>7. Hyperbel-Beispiel (ohne lineare Terme)</h2>
+
+  <div class="example">
+    <strong>Beispiel:</strong>
+    \[
+      -4x_1x_2+14=0.
+    \]
+    Matrix des quadratischen Teils:
+    \[
+      A=\begin{pmatrix}0&-2\\-2&0\end{pmatrix},\quad x^\top A x=-4x_1x_2.
+    \]
+    Eigenwerte: \(\lambda_1=2,\lambda_2=-2\) ⇒ indefinit ⇒ Hyperbeltyp.
+    In Eigenkoordinaten \(y\) gilt:
+    \[
+      2y_1^2-2y_2^2+14=0
+      \quad\Leftrightarrow\quad
+      \frac{1}{7}y_1^2-\frac{1}{7}y_2^2+1=0.
+    \]
+    <span class="small">Hier braucht man keine Verschiebung, da kein linearer Term vorkommt.</span>
+  </div>
+
+  <h2>8. Parabel-Fall: \(\det(A)=0\)</h2>
+
+  <div class="definition">
+    Wenn \(A\) singulär ist (\(\det(A)=0\)), dann verschwindet mindestens ein quadratischer Anteil nach Rotation.
+    Typisch entsteht dann (nach Verschiebung) eine Parabel-Normalform.
+  </div>
+
+  <div class="example">
+    <strong>Beispiel (Parabel-Charakter):</strong>
+    \[
+      4x_1^2 + x_2 - 3x_1 + \frac{25}{16}=0.
+    \]
+    Keine Rotation nötig (kein \(x_1x_2\)). Ergänze quadratisch in \(x_1\):
+    \[
+      4\left(x_1-\frac{3}{8}\right)^2 + x_2 + 1=0.
+    \]
+    Setze \(z_1=x_1-\frac{3}{8}\), \(z_2=x_2+1\):
+    \[
+      z_2=-4z_1^2,
+    \]
+    also eine Parabel.
+  </div>
+
+  <h2>9. Klassifikation in \(\mathbb{R}^2\) (Merkliste)</h2>
+
+  <div class="satz">
+    <strong>Merkliste (nach dem Diagonalteil).</strong>
+    Nach Rotation und Verschiebung sieht die Gleichung in \(z\) meist so aus:
+    \[
+      \lambda_1 z_1^2 + \lambda_2 z_2^2 = 1\quad\text{oder}\quad \lambda_1 z_1^2 + \lambda_2 z_2^2 = 0.
+    \]
+    <ul>
+      <li>\(\lambda_1>0,\lambda_2>0\): Ellipse (oder leer/Punkt je nach rechter Seite)</li>
+      <li>\(\lambda_1\lambda_2<0\): Hyperbel</li>
+      <li>ein \(\lambda_i=0\): Parabel oder Geradenpaar (abhängig von linearem/konstantem Term)</li>
+      <li>\(\lambda_1=\lambda_2\): Kreis (Spezialfall Ellipse)</li>
+    </ul>
+  </div>
+
+  <h2>10. Typische Klausur-Fallen</h2>
+
+  <div class="warn">
+    <ul>
+      <li><strong>Gemischter Term:</strong> \(Bx_1x_2\) ⇒ Rotation (Eigenbasis von \(A\)) nötig.</li>
+      <li><strong>Faktor 2 beim Linearterm:</strong> In \(x^\top A x + 2a^\top x + c\) steckt die 2 schon drin. Wenn du direkt aus \(Dx_1+Ex_2\) liest, musst du \(a=\binom{D/2}{E/2}\) nehmen.</li>
+      <li><strong>Koordinatensystem angeben:</strong> Oft will man \(G=(P;u_1,u_2)\): \(u_i\) normierte Eigenvektoren, \(P\) aus der Verschiebung zurückgerechnet.</li>
+      <li><strong>Vorzeichen beim Ergänzen:</strong> Immer so schreiben, dass ein echtes Quadrat \((\cdot)^2\) entsteht, dann ist die Verschiebung klar.</li>
+    </ul>
+  </div>
+
+  <h2>11. Checkliste (so schreibst du die Lösung im Examen)</h2>
+  <pre class="math">
+1) Schreibe:  x^T A x + 2 a^T x + c = 0  (A symmetrisch)
+2) Bestimme Eigenwerte/-vektoren von A → orthogonales U mit U^T A U = diag(λ1,λ2)
+3) Rotation: x = U y  → Gleichung in y
+4) Quadratische Ergänzung → Verschiebung y = z + p
+5) Normalform in z lesen → Ellipse/Hyperbel/Parabel
+6) Falls verlangt: Koordinatensystem G = (P; u1, u2) mit P = U p und ui = Spalten von U
+  </pre>
+
+  <h2>PDF Übungen</h2>
+  <p><a target="_blank" href="../assets/pdf/HM1_Quadriken.pdf">Blatt 1</a></p>
+  <p><a target="_blank" href="../assets/pdf/HM1_Quadriken_2.pdf">Blatt 2</a></p>
+
+</section>
+</body>
+</html>
