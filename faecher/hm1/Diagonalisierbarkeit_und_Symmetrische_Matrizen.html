@@ -1,0 +1,278 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>HM1_Diagonalisierbarkeit_und_Symmetrische_Matrizen</title>
+  <link rel="stylesheet" href="../css/style.css">
+  <!-- KaTeX für Formeln -->
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.8/dist/katex.min.css">
+  <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.8/dist/katex.min.js"></script>
+  <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.8/dist/contrib/auto-render.min.js"
+          onload="renderMathInElement(document.body);"></script>
+  <style>
+    .definition { padding: .75rem; border-left: 4px solid #2b7cff; background:#f3f8ff; border-radius:4px; margin: .75rem 0; }
+    .satz { padding: .75rem; border-left: 4px solid #2b7cff; background:#f9f9fb; border-radius:4px; margin: .75rem 0; }
+    .example { padding: .75rem; border-left: 4px solid #2e9a6a; background:#f4fffa; border-radius:4px; margin: .75rem 0; }
+    .tip { padding: .75rem; border-left: 4px solid #ff9f1a; background:#fff7ec; border-radius:4px; margin: .75rem 0; }
+    .warn { padding: .75rem; border-left: 4px solid #ff3b30; background:#fff1f1; border-radius:4px; margin: .75rem 0; }
+    .small { font-size:0.95rem; color:#444; }
+    ul.tight li { margin: .25rem 0; }
+  </style>
+</head>
+<body>
+
+<nav>
+  <a href="../../index.html">Startseite</a>
+</nav>
+
+<section>
+  <h1>Diagonalisierbarkeit und symmetrische Matrizen</h1>
+  <p class="small">
+    Dieses Kapitel behandelt die Diagonalisierbarkeit von Matrizen,
+    das zentrale Kriterium über Eigenräume sowie den Spezialfall
+    symmetrischer Matrizen mit dem Spektralsatz.
+    Ziel: typische Altklausur-Aufgaben sicher lösen.
+  </p>
+
+  <!-- ============================================================ -->
+  <h2>1. Diagonalisierbarkeit – Grundidee</h2>
+
+  <p>
+    Eine Matrix ist diagonalisierbar, wenn sie in einer geeigneten Basis
+    als Diagonalmatrix dargestellt werden kann.
+  </p>
+
+  <div class="definition">
+    <strong>Definition (Diagonalisierbarkeit).</strong>
+    Eine Matrix \(A\in K^{n\times n}\) heißt diagonalisierbar über \(K\),
+    wenn es eine invertierbare Matrix \(S\) und eine Diagonalmatrix \(D\) gibt mit
+    \[
+      A = S D S^{-1}.
+    \]
+  </div>
+
+  <div class="tip">
+    <strong>Bedeutung.</strong>
+    In der Basis der Spalten von \(S\) wirkt \(A\) nur noch durch
+    Multiplikation mit den Eigenwerten.
+  </div>
+
+  <!-- ============================================================ -->
+  <h2>2. Zusammenhang mit Eigenvektoren</h2>
+
+  <div class="satz">
+    <strong>Zentrales Kriterium.</strong>
+    Eine Matrix \(A\in K^{n\times n}\) ist genau dann diagonalisierbar,
+    wenn es \(n\) linear unabhängige Eigenvektoren gibt.
+  </div>
+
+  <div class="definition">
+    Sind \(v_1,\dots,v_n\) linear unabhängige Eigenvektoren
+    zu Eigenwerten \(\lambda_1,\dots,\lambda_n\), dann gilt
+    \[
+      S = (v_1 \ \vert \ \dots \ \vert \ v_n),
+      \qquad
+      D = \mathrm{diag}(\lambda_1,\dots,\lambda_n),
+    \]
+    und damit
+    \[
+      A = S D S^{-1}.
+    \]
+  </div>
+
+  <div class="tip">
+    <strong>Merksatz.</strong>
+    Diagonalisieren heißt:
+    <ul class="tight">
+      <li>Eigenwerte bestimmen</li>
+      <li>Eigenräume berechnen</li>
+      <li>Prüfen, ob genug unabhängige Eigenvektoren existieren</li>
+    </ul>
+  </div>
+
+  <!-- ============================================================ -->
+  <h2>3. Rolle der Vielfachheiten</h2>
+
+  <div class="satz">
+    <strong>Diagonalisierbarkeits-Kriterium über Vielfachheiten.</strong>
+    \(A\) ist diagonalisierbar genau dann, wenn für alle Eigenwerte \(\lambda\) gilt:
+    \[
+      d_\lambda = e_\lambda.
+    \]
+    Dabei ist
+    <ul class="tight">
+      <li>\(e_\lambda\): algebraische Vielfachheit</li>
+      <li>\(d_\lambda\): geometrische Vielfachheit</li>
+    </ul>
+  </div>
+
+  <div class="warn">
+    <strong>Wichtig.</strong>
+    Wenn für einen Eigenwert gilt \(d_\lambda < e_\lambda\),
+    dann ist die Matrix <em>nicht</em> diagonalisierbar.
+  </div>
+
+  <!-- ============================================================ -->
+  <h2>4. Schritt-für-Schritt-Algorithmus (Klausur)</h2>
+
+  <div class="definition">
+    <strong>Rezept.</strong>
+    <ol class="tight">
+      <li>Charakteristisches Polynom \(\chi_A(\lambda)\) bestimmen.</li>
+      <li>Eigenwerte und algebraische Vielfachheiten \(e_\lambda\) ablesen.</li>
+      <li>Eigenräume \(V(\lambda)=\ker(A-\lambda I)\) berechnen.</li>
+      <li>Geometrische Vielfachheiten \(d_\lambda\) bestimmen.</li>
+      <li>Prüfen: gilt \(\sum d_\lambda = n\)?</li>
+      <li>Falls ja: Matrix \(S\) aus Eigenvektoren bilden und \(D\) aufstellen.</li>
+    </ol>
+  </div>
+
+  <!-- ============================================================ -->
+  <h2>5. Beispiel – nicht diagonalisierbar</h2>
+
+  <div class="example">
+    Sei
+    \[
+      A=\begin{pmatrix}
+        1 & 1\\
+        0 & 1
+      \end{pmatrix}.
+    \]
+    \[
+      \chi_A(\lambda)=(1-\lambda)^2.
+    \]
+    Also \(e_1=2\).  
+    Berechne \(\ker(A-I)\):
+    \[
+      A-I=\begin{pmatrix}
+        0 & 1\\
+        0 & 0
+      \end{pmatrix}.
+    \]
+    Daraus folgt \(x_2=0\), \(x_1\) frei → \(d_1=1\).
+    <br><br>
+    Da \(d_1<e_1\), ist \(A\) nicht diagonalisierbar.
+  </div>
+
+  <!-- ============================================================ -->
+  <h2>6. Beispiel – diagonalisierbar</h2>
+
+  <div class="example">
+    Sei
+    \[
+      A=\begin{pmatrix}
+        2 & 0\\
+        0 & 3
+      \end{pmatrix}.
+    \]
+    \[
+      \chi_A(\lambda)=(2-\lambda)(3-\lambda).
+    \]
+    Zwei verschiedene Eigenwerte ⇒ automatisch zwei unabhängige Eigenvektoren.  
+    Damit ist \(A\) diagonalisierbar.
+  </div>
+
+  <div class="satz">
+    <strong>Satz.</strong>
+    Hat eine \(n\times n\)-Matrix \(n\) paarweise verschiedene Eigenwerte,
+    dann ist sie diagonalisierbar.
+  </div>
+
+  <!-- ============================================================ -->
+  <h2>7. Symmetrische Matrizen</h2>
+
+  <div class="definition">
+    <strong>Definition.</strong>
+    Eine Matrix \(A\in\mathbb{R}^{n\times n}\) heißt symmetrisch, wenn
+    \[
+      A^T = A.
+    \]
+  </div>
+
+  <div class="satz">
+    <strong>Spektralsatz.</strong>
+    Jede symmetrische Matrix \(A\in\mathbb{R}^{n\times n}\)
+    <ul class="tight">
+      <li>besitzt nur reelle Eigenwerte,</li>
+      <li>ist diagonalisierbar,</li>
+      <li>besitzt eine Orthonormalbasis aus Eigenvektoren.</li>
+    </ul>
+  </div>
+
+  <div class="definition">
+    Es existiert eine orthogonale Matrix \(Q\) mit
+    \[
+      A = Q D Q^T.
+    \]
+    Dabei ist \(Q^T=Q^{-1}\).
+  </div>
+
+  <div class="tip">
+    <strong>Warum ist das stark?</strong>
+    Orthogonale Diagonalisierung vereinfacht:
+    <ul class="tight">
+      <li>Quadriken</li>
+      <li>Hessesche Normalform</li>
+      <li>Extremwertaufgaben</li>
+      <li>Hauptachsentransformation</li>
+    </ul>
+  </div>
+
+  <!-- ============================================================ -->
+  <h2>8. Orthonormale Eigenvektoren</h2>
+
+  <div class="satz">
+    <strong>Satz.</strong>
+    Eigenvektoren zu verschiedenen Eigenwerten einer symmetrischen Matrix
+    sind orthogonal.
+  </div>
+
+  <div class="example">
+    Sei
+    \[
+      A=\begin{pmatrix}
+        2 & 1\\
+        1 & 2
+      \end{pmatrix}.
+    \]
+    \[
+      \chi_A(\lambda)=(2-\lambda)^2-1=\lambda^2-4\lambda+3.
+    \]
+    Eigenwerte: \(\lambda_1=1,\ \lambda_2=3\).
+    <br><br>
+    Die zugehörigen Eigenvektoren sind orthogonal.
+    Nach Normierung erhält man eine orthonormale Basis.
+  </div>
+
+  <!-- ============================================================ -->
+  <h2>9. Prüfungsrelevante Spezialfälle</h2>
+
+  <ul class="tight">
+    <li>Symmetrische Matrizen → immer diagonalisierbar.</li>
+    <li>Obere/untere Dreiecksmatrizen → Eigenwerte = Diagonaleinträge.</li>
+    <li>Ein Eigenwert mit voller geometrischer Vielfachheit → diagonalisierbar.</li>
+  </ul>
+
+  <div class="warn">
+    <strong>Typischer Fehler.</strong>
+    Nicht jede diagonalisierbare Matrix ist symmetrisch.
+    Symmetrie ist eine hinreichende, aber keine notwendige Bedingung.
+  </div>
+
+  <!-- ============================================================ -->
+  <h2>10. Zusammenfassung</h2>
+
+  <div class="definition">
+    <strong>Kernpunkte.</strong>
+    <ul class="tight">
+      <li>Diagonalisierbar ⇔ genügend Eigenvektoren.</li>
+      <li>\(d_\lambda=e_\lambda\) für alle \(\lambda\).</li>
+      <li>Symmetrische Matrizen sind orthogonal diagonalisierbar.</li>
+      <li>Unterschiedliche Eigenwerte ⇒ automatisch diagonalisierbar.</li>
+    </ul>
+  </div>
+</section>
+
+</body>
+</html>

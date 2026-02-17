@@ -1,16 +1,27 @@
 <!DOCTYPE html>
 <html lang="de">
 <head>
-    <meta charset="UTF-8">
-    <title>HM1_Folgen_und_Reihen</title>
-    <link rel="stylesheet" href="../style.css">
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>HM1_Hessesche_Normalform</title>
 
-    <!-- KaTeX für mathematische Formeln -->
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.0/dist/katex.min.css">
-    <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.0/dist/katex.min.js"></script>
-    <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.0/dist/contrib/auto-render.min.js"
-            onload="renderMathInElement(document.body);"></script>
+  <link rel="stylesheet" href="../css/style.css">
+  <!-- KaTeX -->
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.8/dist/katex.min.css">
+  <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.8/dist/katex.min.js"></script>
+  <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.8/dist/contrib/auto-render.min.js"
+          onload="renderMathInElement(document.body);"></script>
+
+  <style>
+    /* Kapitel-spezifisches Layout (gleich zu den anderen Kapiteln) */
+    .definition { padding: .75rem; border-left: 4px solid #2b7cff; background:#f3f8ff; border-radius:4px; margin: .75rem 0; }
+    .satz { padding: .75rem; border-left: 4px solid #2b7cff; background:#f9f9fb; border-radius:4px; margin: .75rem 0; }
+    .example { padding: .75rem; border-left: 4px solid #2e9a6a; background:#f4fffa; border-radius:4px; margin: .75rem 0; }
+    pre.math { background:#f7f7f7; padding: .5rem; border-radius:4px; overflow:auto; }
+    .small { font-size:0.95rem; color:#444; }
+  </style>
 </head>
+
 
 <body>
 
@@ -19,127 +30,356 @@
 </nav>
 
 <section>
-    <h1>Folgen und Reihen</h1>
-    <p>Dieses Kapitel behandelt grundlegende Begriffe der Folgen- und Reihenlehre, 
-       zentrale Konvergenzbegriffe sowie wichtige Sätze wie Bolzano-Weierstrass und das Cauchy-Kriterium.</p>
+  <h1>Folgen und Reihen</h1>
+  <p class="small">
+    Dieses Kapitel behandelt Folgen und Reihen: Konvergenzbegriffe, Monotonie und Beschränktheit,
+    Teilfolgen und Häufungspunkte sowie zentrale Konvergenzkriterien. Fokus: das, was du in HM1-Klausuren
+    wirklich brauchst – ohne Grenzwerte im Sinne von Funktionsgrenzwerten.
+  </p>
 
-    <h2>1. Folgen</h2>
-    <p>Eine Folge ist eine Abbildung</p>
-    <p>$$ a : \mathbb{N} \to \mathbb{R}, \quad n \mapsto a_n. $$</p>
+  <!-- ============================================================ -->
+  <h2>1. Folgen – Definition und Beispiele</h2>
 
-    <p>Man nennt \( a_n \) das <b>n-te Folgenglied</b>.  
-       Beispiele für Folgen:</p>
-    <ul>
-        <li>Arithmetische Folge: \( a_n = a_1 + (n-1)d \)</li>
-        <li>Geometrische Folge: \( a_n = a_1 \cdot q^{\,n-1} \)</li>
-        <li>Harmonische Folge: \( a_n = \frac{1}{n} \)</li>
+  <div class="definition">
+    <strong>Definition (Folge).</strong>
+    Eine Folge reeller Zahlen ist eine Abbildung
+    \[
+      a:\mathbb{N}\to\mathbb{R},\qquad n\mapsto a_n.
+    \]
+    Das \(n\)-te Folgenglied ist \(a_n\).
+  </div>
+
+  <div class="example">
+    <strong>Beispiele.</strong>
+    <ul class="tight">
+      <li>Arithmetische Folge: \(a_n=a_1+(n-1)d\)</li>
+      <li>Geometrische Folge: \(a_n=a_1\,q^{\,n-1}\)</li>
+      <li>Harmonische Folge: \(a_n=\frac{1}{n}\)</li>
+      <li>Alternierende Folge: \(a_n=(-1)^n\)</li>
     </ul>
+  </div>
 
-    <h3>Konvergenz einer Folge</h3>
-    <p>Eine Folge \( (a_n) \) heißt konvergent, falls es ein \( L \in \mathbb{R} \) gibt mit:</p>
-    <p>$$ \lim_{n\to\infty} a_n = L. $$</p>
+  <!-- ============================================================ -->
+  <h2>2. Konvergenz von Folgen</h2>
 
-    <p>Formal:</p>
-    <p>Für alle \( \varepsilon > 0 \) existiert ein \( N \in \mathbb{N} \) sodass  
-       \( |a_n - L| < \varepsilon \) für alle \( n \ge N \).</p>
+  <div class="definition">
+    <strong>Definition (Konvergenz).</strong>
+    Eine Folge \((a_n)\) heißt <em>konvergent</em> gegen \(L\in\mathbb{R}\), wenn gilt:
+    \[
+      \forall \varepsilon>0\ \exists N\in\mathbb{N}\ \forall n\ge N:\ |a_n-L|<\varepsilon.
+    \]
+    Man schreibt dann \(a_n\to L\) oder \(\lim_{n\to\infty}a_n=L\).
+  </div>
 
+  <div class="satz">
+    <strong>Eindeutigkeit des Grenzwerts.</strong>
+    Eine konvergente Folge besitzt genau einen Grenzwert.
+  </div>
 
-    <h2>2. Beschränktheit und Monotonie</h2>
+  <div class="tip">
+    <strong>Prüfungswissen.</strong>
+    Viele Aufgaben laufen darauf hinaus, einen Kandidaten \(L\) zu finden (z.B. über Monotonie + Beschränktheit
+    oder über Rekursion) und dann zu begründen, dass \(a_n\to L\) gilt.
+  </div>
 
-    <h3>Beschränktheit</h3>
-    <p>Eine Folge ist</p>
-    <ul>
-        <li><b>nach oben beschränkt</b> falls \( a_n \le M \) für alle \( n \)</li>
-        <li><b>nach unten beschränkt</b> falls \( a_n \ge m \)</li>
-        <li><b>beschränkt</b> falls beide gelten</li>
+  <!-- ============================================================ -->
+  <h2>3. Beschränktheit und Monotonie</h2>
+
+  <div class="definition">
+    <strong>Beschränktheit.</strong>
+    \((a_n)\) heißt
+    <ul class="tight">
+      <li><em>nach oben beschränkt</em>, wenn \(\exists M:\ a_n\le M\ \forall n\),</li>
+      <li><em>nach unten beschränkt</em>, wenn \(\exists m:\ a_n\ge m\ \forall n\),</li>
+      <li><em>beschränkt</em>, wenn beides gilt.</li>
     </ul>
+  </div>
 
-    <h3>Monotonie</h3>
-    <ul>
-        <li><b>monoton wachsend</b>: \( a_{n+1} \ge a_n \)</li>
-        <li><b>monoton fallend</b>: \( a_{n+1} \le a_n \)</li>
-        <li><b>streng monoton</b>: strikte Ungleichungen</li>
+  <div class="definition">
+    <strong>Monotonie.</strong>
+    \((a_n)\) heißt
+    <ul class="tight">
+      <li><em>monoton wachsend</em>, wenn \(a_{n+1}\ge a_n\ \forall n\),</li>
+      <li><em>monoton fallend</em>, wenn \(a_{n+1}\le a_n\ \forall n\),</li>
+      <li><em>streng monoton</em>, wenn überall strikt \(>\) bzw. \(<\) gilt.</li>
     </ul>
+  </div>
 
-    <h3>Wichtiger Satz</h3>
-    <p><b>Jede monotone und beschränkte Folge ist konvergent.</b></p>
+  <div class="satz">
+    <strong>Monotoniekriterium.</strong>
+    Jede monotone und beschränkte Folge ist konvergent.
+  </div>
 
-
-    <h2>3. Teilfolgen und Häufungspunkte</h2>
-
-    <h3>Teilfolge</h3>
-    <p>Eine Folge \( (a_{n_k}) \) heißt Teilfolge von \( (a_n) \), wenn  
-       \( n_1 < n_2 < n_3 < \dots \) eine streng wachsende Folge natürlicher Zahlen ist.</p>
-
-    <h3>Häufungspunkt</h3>
-    <p>Ein Wert \( L \) heißt Häufungspunkt einer Folge, falls es eine Teilfolge gibt, die gegen \( L \) konvergiert.</p>
-
-    <h3>Eigenschaft</h3>
-    <p>Eine Folge kann mehrere Häufungspunkte haben — konvergente Folgen haben genau einen.</p>
-
-
-    <h2>4. Wichtige Sätze über Konvergenz</h2>
-
-    <h3>Sandwich-Satz</h3>
-    <p>Falls \( a_n \le b_n \le c_n \) und \( a_n, c_n \to L \), dann folgt \( b_n \to L \).</p>
-
-    <h3>Rechenregeln</h3>
-    <ul>
-        <li>\( \lim(a_n + b_n) = \lim a_n + \lim b_n \)</li>
-        <li>\( \lim(a_n b_n) = (\lim a_n)(\lim b_n) \)</li>
-        <li>\( \lim\left(\frac{a_n}{b_n}\right) = \frac{\lim a_n}{\lim b_n} \), falls Nenner ≠ 0</li>
+  <div class="example">
+    <strong>Beispiel (klassisch).</strong>
+    Sei \(a_1=1\) und \(a_{n+1}=\frac12\left(a_n+\frac{2}{a_n}\right)\) (Newton-Verfahren für \(\sqrt{2}\)).
+    Typische Klausurstrategie:
+    <ul class="tight">
+      <li>Zeige \(a_n>0\).</li>
+      <li>Zeige \(a_n\) ist monoton fallend oder wachsend (je nach Startwert).</li>
+      <li>Zeige eine Schranke (z.B. \(a_n\ge \sqrt2\)).</li>
+      <li>Dann folgt Konvergenz.</li>
     </ul>
+  </div>
 
+  <!-- ============================================================ -->
+  <h2>4. Teilfolgen und Häufungspunkte</h2>
 
-    <h2>5. Vollständigkeit und der Satz von Bolzano–Weierstrass</h2>
+  <div class="definition">
+    <strong>Definition (Teilfolge).</strong>
+    Eine Folge \((a_{n_k})\) heißt Teilfolge von \((a_n)\), wenn
+    \[
+      n_1<n_2<n_3<\dots
+    \]
+    eine streng wachsende Folge natürlicher Zahlen ist.
+  </div>
 
-    <h3>Vollständigkeit</h3>
-    <p>Die reellen Zahlen \( \mathbb{R} \) sind vollständig:  
-       Jede Cauchy-Folge konvergiert in \( \mathbb{R} \).</p>
+  <div class="definition">
+    <strong>Definition (Häufungspunkt).</strong>
+    Ein \(L\in\mathbb{R}\) heißt Häufungspunkt von \((a_n)\), wenn es eine Teilfolge \((a_{n_k})\) gibt mit
+    \[
+      a_{n_k}\to L.
+    \]
+  </div>
 
-    <h3>Satz von Bolzano–Weierstrass</h3>
-    <p><b>Jede beschränkte Folge besitzt mindestens eine konvergente Teilfolge.</b></p>
+  <div class="satz">
+    <strong>Bolzano–Weierstraß.</strong>
+    Jede beschränkte Folge besitzt mindestens eine konvergente Teilfolge.
+  </div>
 
-    <p>Dies garantiert die Existenz von Häufungspunkten.</p>
+  <div class="tip">
+    <strong>Interpretation.</strong>
+    Beschränktheit garantiert: „Irgendwo“ muss die Folge einen Grenzwert haben (zumindest entlang einer Teilfolge),
+    selbst wenn die ganze Folge nicht konvergiert.
+  </div>
 
+  <!-- ============================================================ -->
+  <h2>5. Cauchy-Kriterium (Folgen)</h2>
 
-    <h2>6. Konvergenzkriterium von Cauchy</h2>
+  <div class="definition">
+    <strong>Definition (Cauchy-Folge).</strong>
+    \((a_n)\) heißt Cauchy-Folge, wenn
+    \[
+      \forall \varepsilon>0\ \exists N\in\mathbb{N}\ \forall m,n\ge N:\ |a_n-a_m|<\varepsilon.
+    \]
+  </div>
 
-    <p>Eine Folge \( (a_n) \) ist genau dann konvergent, wenn sie eine Cauchy-Folge ist:</p>
+  <div class="satz">
+    <strong>Cauchy-Kriterium in \(\mathbb{R}\).</strong>
+    Eine Folge in \(\mathbb{R}\) ist genau dann konvergent, wenn sie eine Cauchy-Folge ist.
+  </div>
 
-    <p>Für alle \( \varepsilon > 0 \) existiert ein \( N \) sodass  
-       \( |a_n - a_m| < \varepsilon \) für alle \( m,n \ge N \).</p>
+  <div class="warn">
+    <strong>Warum braucht man „\(\mathbb{R}\) ist vollständig“?</strong>
+    In unvollständigen Räumen wäre „Cauchy ⇒ konvergent“ nicht zwingend wahr.
+    In HM1 nutzt du: \(\mathbb{R}\) ist vollständig, daher sind beide Begriffe äquivalent.
+  </div>
 
-    <p>In \( \mathbb{R} \) sind beide Begriffe äquivalent, weil \( \mathbb{R} \) vollständig ist.</p>
+  <!-- ============================================================ -->
+  <h2>6. Reihen – Definition über Partialsummen</h2>
 
+  <p>
+    Eine Reihe ist nichts anderes als eine spezielle Folge: die Folge der Partialsummen.
+  </p>
 
-    <h2>7. Reihen</h2>
+  <div class="definition">
+    <strong>Definition (Reihe).</strong>
+    Zu einer Folge \((a_n)\) heißt
+    \[
+      \sum_{k=1}^{\infty} a_k
+    \]
+    die zugehörige Reihe. Die Partialsummen sind
+    \[
+      S_n=\sum_{k=1}^{n} a_k.
+    \]
+    Die Reihe heißt <em>konvergent</em>, wenn \((S_n)\) konvergiert.
+    Dann ist der Reihenwert
+    \[
+      \sum_{k=1}^{\infty} a_k = \lim_{n\to\infty} S_n.
+    \]
+  </div>
 
-    <p>Eine Reihe ist definiert durch die Partialsummenfolge:</p>
+  <div class="satz">
+    <strong>Notwendige Bedingung.</strong>
+    Ist \(\sum a_n\) konvergent, dann gilt
+    \[
+      a_n\to 0.
+    \]
+    Die Umkehrung gilt nicht.
+  </div>
 
-    <p>$$ S_n = \sum_{k=1}^{n} a_k. $$</p>
+  <div class="example">
+    <strong>Beispiel (Gegenbeispiel zur Umkehrung).</strong>
+    \(a_n=\frac1n \to 0\), aber die harmonische Reihe
+    \[
+      \sum_{n=1}^{\infty}\frac1n
+    \]
+    divergiert.
+  </div>
 
-    <p>Die Reihe \( \sum a_k \) heißt <b>konvergent</b>, falls \( (S_n) \) konvergiert.</p>
+  <!-- ============================================================ -->
+  <h2>7. Wichtige Reihen und Grundfakten</h2>
 
-    <h3>Wichtige Beispiele</h3>
-    <ul>
-        <li>Geometrische Reihe:  
-            $$ \sum_{n=0}^{\infty} q^n = \frac{1}{1-q}, \quad |q| < 1 $$
-        </li>
-        <li>Harmonische Reihe divergiert:  
-            $$ \sum_{n=1}^{\infty} \frac{1}{n} = \infty $$
-        </li>
+  <div class="example">
+    <strong>Geometrische Reihe.</strong><br>
+    Für \(q\in\mathbb{R}\) mit \(|q|<1\) gilt:
+    \[
+      \sum_{n=0}^{\infty} q^n = \frac{1}{1-q}.
+    \]
+    Partialsummen:
+    \[
+      S_n=\sum_{k=0}^{n} q^k=\frac{1-q^{n+1}}{1-q}\xrightarrow[n\to\infty]{}\frac{1}{1-q}.
+    \]
+  </div>
+
+  <div class="example">
+    <strong>Teleskopsummen (sehr klausurrelevant).</strong><br>
+    Wenn \(a_k=b_k-b_{k+1}\), dann
+    \[
+      \sum_{k=1}^{n} (b_k-b_{k+1}) = b_1-b_{n+1}.
+    \]
+    Konvergenz hängt dann oft nur davon ab, ob \(b_{n}\) einen Grenzwert besitzt.
+  </div>
+
+  <!-- ============================================================ -->
+  <h2>8. Konvergenzbegriffe bei Reihen</h2>
+
+  <div class="definition">
+    <strong>Absolute Konvergenz.</strong>
+    Eine Reihe \(\sum a_n\) heißt <em>absolut konvergent</em>, wenn
+    \[
+      \sum |a_n|
+    \]
+    konvergent ist.
+  </div>
+
+  <div class="satz">
+    <strong>Absolute Konvergenz ⇒ Konvergenz.</strong>
+    Wenn \(\sum |a_n|\) konvergiert, dann konvergiert auch \(\sum a_n\).
+  </div>
+
+  <div class="definition">
+    <strong>Bedingte Konvergenz.</strong>
+    \(\sum a_n\) heißt <em>bedingt konvergent</em>, wenn \(\sum a_n\) konvergiert,
+    aber \(\sum |a_n|\) divergiert.
+  </div>
+
+  <div class="tip">
+    <strong>Klausurhinweis.</strong>
+    Sobald in einer Aufgabe „absolute Konvergenz“ vorkommt:
+    <ul class="tight">
+      <li>Prüfe zuerst \(\sum |a_n|\).</li>
+      <li>Falls konvergent: fertig (dann ist auch \(\sum a_n\) konvergent).</li>
+      <li>Falls divergent: dann kann \(\sum a_n\) trotzdem konvergent sein (bedingt) oder divergieren.</li>
     </ul>
+  </div>
 
-    <h3>Notwendige Bedingung</h3>
-    <p>Für konvergente Reihen gilt:</p>
-    <p>$$ a_n \to 0. $$</p>
-    <p>Die Umkehrung gilt nicht.</p>
+  <!-- ============================================================ -->
+  <h2>9. Cauchy-Kriterium (Reihen)</h2>
 
-    <h2>PDF Übungen</h2>
-    <p>
-        <a target="_blank" href="../assets/pdf/HM1_Folgen_und_Haeufungspunkte.pdf">Blatt 1</a>
-    </p>
+  <div class="satz">
+    <strong>Cauchy-Kriterium für Reihen.</strong>
+    \(\sum_{n=1}^{\infty} a_n\) ist konvergent genau dann, wenn
+    \[
+      \forall \varepsilon>0\ \exists N\in\mathbb{N}\ \forall m>n\ge N:\ 
+      \left|\sum_{k=n+1}^{m} a_k\right| < \varepsilon.
+    \]
+  </div>
+
+  <p class="small">
+    Interpretation: Die „Reststücke“ der Reihe müssen beliebig klein werden.
+  </p>
+
+  <!-- ============================================================ -->
+  <h2>10. Konvergenzkriterien (ohne L'Hospital, ohne Funktionsgrenzwerte)</h2>
+
+  <div class="definition">
+    <strong>Vergleichskriterium.</strong>
+    Sind \(0\le a_n \le b_n\) für alle \(n\) groß genug, dann gilt:
+    <ul class="tight">
+      <li>Konvergiert \(\sum b_n\), dann konvergiert \(\sum a_n\).</li>
+      <li>Divergiert \(\sum a_n\), dann divergiert \(\sum b_n\).</li>
+    </ul>
+  </div>
+
+  <div class="definition">
+    <strong>Majoranten-/Minorantenkriterium (gleiche Idee).</strong>
+    Finde eine „größere“ Reihe (Majorante) oder „kleinere“ (Minorante), deren Verhalten bekannt ist.
+  </div>
+
+  <div class="definition">
+    <strong>Quotientenkriterium.</strong>
+    Sei \(a_n\neq 0\) und existiere
+    \[
+      q=\limsup_{n\to\infty}\left|\frac{a_{n+1}}{a_n}\right|.
+    \]
+    Dann gilt:
+    <ul class="tight">
+      <li>Wenn \(q<1\), dann konvergiert \(\sum a_n\) absolut.</li>
+      <li>Wenn \(q>1\), dann divergiert \(\sum a_n\).</li>
+      <li>Wenn \(q=1\), keine Aussage.</li>
+    </ul>
+  </div>
+
+  <div class="definition">
+    <strong>Wurzelkriterium.</strong>
+    Existiere
+    \[
+      r=\limsup_{n\to\infty}\sqrt[n]{|a_n|}.
+    \]
+    Dann:
+    <ul class="tight">
+      <li>\(r<1\) ⇒ absolute Konvergenz.</li>
+      <li>\(r>1\) ⇒ Divergenz.</li>
+      <li>\(r=1\) ⇒ keine Aussage.</li>
+    </ul>
+  </div>
+
+  <div class="definition">
+    <strong>Leibniz-Kriterium (alternierende Reihen).</strong>
+    Für \(a_n\ge 0\) gilt:
+    \[
+      \sum_{n=1}^{\infty} (-1)^{n} a_n \ \text{konvergiert, falls}
+    \]
+    <ul class="tight">
+      <li>\((a_n)\) monoton fallend ist,</li>
+      <li>\(a_n\to 0\).</li>
+    </ul>
+  </div>
+
+  <div class="example">
+    <strong>Beispiel (Leibniz).</strong>
+    \[
+      \sum_{n=1}^{\infty}(-1)^{n+1}\frac{1}{n}
+    \]
+    konvergiert (bedingt), weil \(\frac1n\) monoton fallend ist und \(\frac1n\to 0\).
+  </div>
+
+  <!-- ============================================================ -->
+  <h2>11. Typische Klausur-Mindsets</h2>
+
+  <div class="tip">
+    <strong>Mindset 1: „Erst den Typ erkennen“</strong>
+    <ul class="tight">
+      <li>Geometrisch? → sofort Formel.</li>
+      <li>Teleskop? → umformen \(b_k-b_{k+1}\).</li>
+      <li>Alternierend? → Leibniz.</li>
+      <li>Fakultäten/Exponential? → Quotient/Wurzel.</li>
+      <li>Potenz \(1/n^p\)? → Vergleich mit p-Reihe (falls behandelt).</li>
+    </ul>
+  </div>
+
+  <div class="tip">
+    <strong>Mindset 2: „Absolute Konvergenz zuerst“</strong>
+    Wenn in der Aufgabe „absolut“ steht oder Beträge natürlich auftreten:
+    prüfe \(\sum|a_n|\) mit Vergleich/Quotient/Wurzel.
+  </div>
+
+  <!-- ============================================================ -->
+  <h2>PDF Übungen</h2>
+  <p>
+    <a target="_blank" href="../../assets/pdf/HM1/HM1_Folgen_und_Haeufungspunkte.pdf">Blatt 1</a>
+  </p>
 
 </section>
 

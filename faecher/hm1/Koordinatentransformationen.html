@@ -16,6 +16,8 @@
     .definition { padding: .8rem; border-left: 4px solid #2b7cff; background:#f3f8ff; border-radius:6px; margin: .9rem 0; }
     .satz { padding: .8rem; border-left: 4px solid #2b7cff; background:#f9f9fb; border-radius:6px; margin: .9rem 0; }
     .example { padding: .8rem; border-left: 4px solid #2e9a6a; background:#f4fffa; border-radius:6px; margin: .9rem 0; }
+    .tip { padding: .8rem; border-left: 4px solid #ff9f1a; background:#fff7ec; border-radius:6px; margin: .9rem 0; }
+    .warn { padding: .8rem; border-left: 4px solid #ff3b30; background:#fff1f1; border-radius:6px; margin: .9rem 0; }
     pre.math { background:#f7f7f7; padding: .6rem; border-radius:6px; overflow:auto; }
     .small { font-size:0.95rem; color:#444; }
     ul.rules { margin-left:18px; margin-top:8px; }
@@ -30,6 +32,231 @@
 <section>
   <h1>Koordinatentransformationen</h1>
 
+  <p class="small">
+    Koordinatentransformationen beschreiben, wie sich die Koordinaten eines Vektors oder
+    die Darstellung einer Matrix ändern, wenn man die Basis wechselt.
+    Dieses Thema ist zentral für Diagonalisierung, Quadriken,
+    Hauptachsentransformation und Basiswechsel.
+  </p>
+
+  <!-- ============================================================ -->
+  <h2>1. Grundidee</h2>
+
+  <p>
+    Ein Vektor \(x \in V\) bleibt geometrisch derselbe —
+    nur seine Koordinaten hängen von der gewählten Basis ab.
+  </p>
+
+  <div class="definition">
+    Sei \(\mathcal{B}=(v_1,\dots,v_n)\) eine Basis von \(V\).
+    Dann besitzt jeder Vektor \(x\in V\) eine eindeutige Darstellung
+    \[
+      x = a_1 v_1 + \dots + a_n v_n.
+    \]
+    Der Koordinatenvektor ist
+    \[
+      [x]_{\mathcal{B}} =
+      \begin{pmatrix}
+        a_1\\ \vdots\\ a_n
+      \end{pmatrix}.
+    \]
+  </div>
+
+  <!-- ============================================================ -->
+  <h2>2. Basiswechselmatrix</h2>
+
+  <p>
+    Seien \(\mathcal{B}=(v_1,\dots,v_n)\) und \(\mathcal{C}=(w_1,\dots,w_n)\)
+    zwei Basen von \(V\).
+  </p>
+
+  <div class="definition">
+    Die Basiswechselmatrix von \(\mathcal{B}\) nach \(\mathcal{C}\) ist
+    \[
+      P_{\mathcal{C}\leftarrow\mathcal{B}}
+      =
+      \big[\, [v_1]_{\mathcal{C}} \ \vert\ \dots\ \vert\ [v_n]_{\mathcal{C}} \,\big].
+    \]
+  </div>
+
+  <div class="satz">
+    Für alle \(x\in V\) gilt:
+    \[
+      [x]_{\mathcal{C}}
+      =
+      P_{\mathcal{C}\leftarrow\mathcal{B}}
+      \, [x]_{\mathcal{B}}.
+    \]
+  </div>
+
+  <div class="tip">
+    Die Basiswechselmatrix ist immer invertierbar.
+    Es gilt:
+    \[
+      P_{\mathcal{B}\leftarrow\mathcal{C}}
+      =
+      \big(P_{\mathcal{C}\leftarrow\mathcal{B}}\big)^{-1}.
+    \]
+  </div>
+
+  <!-- ============================================================ -->
+  <h2>3. Koordinatentransformation bei linearen Abbildungen</h2>
+
+  <p>
+    Sei \(T:V\to V\) linear.
+    Die Matrixdarstellung hängt von der gewählten Basis ab.
+  </p>
+
+  <div class="definition">
+    Die Darstellungsmatrix von \(T\) bezüglich \(\mathcal{B}\) ist
+    \[
+      [T]_{\mathcal{B}}
+      =
+      \big[\, [T(v_1)]_{\mathcal{B}} \ \vert\ \dots\ \vert\ [T(v_n)]_{\mathcal{B}} \,\big].
+    \]
+  </div>
+
+  <div class="satz">
+    Wechseln wir von Basis \(\mathcal{B}\) zu \(\mathcal{C}\), so gilt:
+    \[
+      [T]_{\mathcal{C}}
+      =
+      P_{\mathcal{C}\leftarrow\mathcal{B}}
+      \, [T]_{\mathcal{B}}
+      \,
+      P_{\mathcal{B}\leftarrow\mathcal{C}}.
+    \]
+  </div>
+
+  <div class="warn">
+    Diese Transformation heißt Ähnlichkeitstransformation.
+    Eigenwerte bleiben dabei invariant.
+  </div>
+
+  <!-- ============================================================ -->
+  <h2>4. Spezialfall: Orthogonale Transformation</h2>
+
+  <p>
+    Ist die neue Basis orthonormal (z.B. durch Gram–Schmidt),
+    dann ist die Basiswechselmatrix orthogonal.
+  </p>
+
+  <div class="definition">
+    Ist \(Q\) orthogonal, so gilt:
+    \[
+      Q^{-1} = Q^T.
+    \]
+    Dann vereinfacht sich die Transformationsformel zu
+    \[
+      [T]_{\mathcal{C}}
+      =
+      Q^T \, [T]_{\mathcal{B}} \, Q.
+    \]
+  </div>
+
+  <!-- ============================================================ -->
+  <h2>5. Anwendung: Quadriken</h2>
+
+  <p>
+    Eine Quadrik wird durch
+    \[
+      x^T A x
+    \]
+    beschrieben.
+  </p>
+
+  <div class="satz">
+    Wählt man eine Basis aus Eigenvektoren einer symmetrischen Matrix \(A\),
+    so wird \(A\) diagonal:
+    \[
+      A = Q D Q^T.
+    \]
+    Damit wird die Quadrik in Hauptachsenform gebracht.
+  </div>
+
+  <div class="example">
+    Beispiel:
+    \[
+      A=\begin{pmatrix}
+        2 & 1\\
+        1 & 2
+      \end{pmatrix}.
+    \]
+    Durch orthogonale Transformation erhält man
+    \[
+      D=\begin{pmatrix}
+        3 & 0\\
+        0 & 1
+      \end{pmatrix}.
+    \]
+    Die gemischten Terme verschwinden.
+  </div>
+
+  <!-- ============================================================ -->
+  <h2>6. Rechenbeispiel in \(\mathbb{R}^2\)</h2>
+
+  <div class="example">
+    Standardbasis \(\mathcal{B}=((1,0),(0,1))\).  
+    Neue Basis:
+    \[
+      \mathcal{C}=\big((1,1),(1,-1)\big).
+    \]
+
+    Koordinaten der Standardbasisvektoren in \(\mathcal{C}\):
+    \[
+      P_{\mathcal{C}\leftarrow\mathcal{B}}
+      =
+      \frac12
+      \begin{pmatrix}
+        1 & 1\\
+        1 & -1
+      \end{pmatrix}.
+    \]
+
+    Für einen Vektor \(x\) gilt:
+    \[
+      [x]_{\mathcal{C}}
+      =
+      P_{\mathcal{C}\leftarrow\mathcal{B}}
+      [x]_{\mathcal{B}}.
+    \]
+  </div>
+
+  <!-- ============================================================ -->
+  <h2>7. Typische Klausuraufgaben</h2>
+
+  <ul class="rules">
+    <li>Bestimmen Sie die Basiswechselmatrix.</li>
+    <li>Transformieren Sie eine Matrix in eine neue Basis.</li>
+    <li>Bringen Sie eine Quadrik durch Koordinatentransformation in Hauptachsenform.</li>
+    <li>Zeigen Sie, dass Eigenwerte invariant sind.</li>
+  </ul>
+
+  <!-- ============================================================ -->
+  <h2>8. Häufige Fehler</h2>
+
+  <div class="warn">
+    <ul class="rules">
+      <li>Reihenfolge der Matrizenmultiplikation vertauscht.</li>
+      <li>Falsche Richtung des Basiswechsels.</li>
+      <li>Inverse vergessen.</li>
+      <li>Verwechslung zwischen Koordinatenvektor und geometrischem Vektor.</li>
+    </ul>
+  </div>
+
+  <!-- ============================================================ -->
+  <h2>9. Zusammenfassung</h2>
+
+  <div class="definition">
+    <ul class="rules">
+      <li>Vektoren ändern bei Basiswechsel nur ihre Koordinaten.</li>
+      <li>Matrizen transformieren sich durch Ähnlichkeit.</li>
+      <li>Eigenwerte bleiben invariant.</li>
+      <li>Orthogonale Transformationen vereinfachen Rechnungen stark.</li>
+    </ul>
+  </div>
+
+  <!-- ============================================================ -->
   <h2>PDF Übungen</h2>
   <p><a target="_blank" href="../../assets/pdf/HM1/Koordinatentransformationen.pdf">Blatt 1</a></p>
   <p><a target="_blank" href="../../assets/pdf/HM1/Koordinatentransformationen 3x3.pdf">Blatt 2</a></p>

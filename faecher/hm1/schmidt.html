@@ -3,22 +3,21 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width,initial-scale=1">
-  <title>Gram-Schmidt Orthonormalisierung</title>
-
+  <title>HM1_Gram_Schmidt_Orthonormierungsverfahren</title>
   <link rel="stylesheet" href="../css/style.css">
   <!-- KaTeX -->
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.8/dist/katex.min.css">
   <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.8/dist/katex.min.js"></script>
   <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.8/dist/contrib/auto-render.min.js"
           onload="renderMathInElement(document.body);"></script>
-
   <style>
-    .definition { padding: .8rem; border-left: 4px solid #2b7cff; background:#f3f8ff; border-radius:6px; margin: .9rem 0; }
-    .satz { padding: .8rem; border-left: 4px solid #2b7cff; background:#f9f9fb; border-radius:6px; margin: .9rem 0; }
-    .example { padding: .8rem; border-left: 4px solid #2e9a6a; background:#f4fffa; border-radius:6px; margin: .9rem 0; }
-    pre.math { background:#f7f7f7; padding: .6rem; border-radius:6px; overflow:auto; }
+    .definition { padding: .75rem; border-left: 4px solid #2b7cff; background:#f3f8ff; border-radius:4px; margin: .75rem 0; }
+    .satz { padding: .75rem; border-left: 4px solid #2b7cff; background:#f9f9fb; border-radius:4px; margin: .75rem 0; }
+    .example { padding: .75rem; border-left: 4px solid #2e9a6a; background:#f4fffa; border-radius:4px; margin: .75rem 0; }
+    .tip { padding: .75rem; border-left: 4px solid #ff9f1a; background:#fff7ec; border-radius:4px; margin: .75rem 0; }
+    .warn { padding: .75rem; border-left: 4px solid #ff3b30; background:#fff1f1; border-radius:4px; margin: .75rem 0; }
     .small { font-size:0.95rem; color:#444; }
-    ul.rules { margin-left:18px; margin-top:8px; }
+    ul.tight li { margin: .25rem 0; }
   </style>
 </head>
 <body>
@@ -28,7 +27,217 @@
 </nav>
 
 <section>
-  <h1>Gram-Schmidt Orthonormalisierung</h1>
+  <h1>Schmidtsches Orthonormierungsverfahren (Gram–Schmidt)</h1>
+  <p class="small">
+    Dieses Kapitel erklärt das Schmidtsche Orthonormierungsverfahren in der in Stuttgart üblichen Notation
+    mit dem Skalarprodukt \(\langle v \mid w \rangle\).
+    Ziel: aus einer beliebigen Basis eine Orthonormalbasis konstruieren.
+  </p>
+
+  <!-- ============================================================ -->
+  <h2>1. Motivation</h2>
+
+  <p>
+    In vielen Anwendungen (Diagonalisierung symmetrischer Matrizen, Projektionen, Hessesche Normalform,
+    Hauptachsentransformation) benötigen wir eine Orthonormalbasis.
+  </p>
+
+  <div class="definition">
+    Eine Familie von Vektoren \( (f_1,\dots,f_n) \) heißt
+    <ul class="tight">
+      <li><strong>orthogonal</strong>, falls \(\langle f_i \mid f_j \rangle = 0\) für \(i \neq j\),</li>
+      <li><strong>orthonormal</strong>, falls zusätzlich \(\|f_i\|=1\) gilt.</li>
+    </ul>
+  </div>
+
+  <div class="tip">
+    <strong>Warum ist das nützlich?</strong>
+    Mit einer Orthonormalbasis sind Projektionen, Koordinatenberechnungen und
+    Matrixdarstellungen besonders einfach.
+  </div>
+
+  <!-- ============================================================ -->
+  <h2>2. Projektion</h2>
+
+  <div class="definition">
+    Die Projektion eines Vektors \(v\) auf einen Vektor \(u\neq 0\) ist definiert durch
+    \[
+      \mathrm{proj}_u(v)
+      =
+      \frac{\langle u \mid v \rangle}{\langle u \mid u \rangle} \, u.
+    \]
+  </div>
+
+  <p>
+    Diese Formel wird im Gram–Schmidt-Verfahren ständig benutzt.
+  </p>
+
+  <!-- ============================================================ -->
+  <h2>3. Das Verfahren (allgemein)</h2>
+
+  <p>
+    Gegeben sei eine linear unabhängige Familie
+    \[
+      (b_1,\dots,b_n)
+    \]
+    in einem Skalarproduktraum (z.B. \(\mathbb{R}^n\) mit
+    \(\langle v \mid w \rangle = \sum v_i w_i\)).
+  </p>
+
+  <div class="definition">
+    <strong>Schmidt-Orthogonalisierung.</strong>
+    Wir konstruieren Vektoren \(u_1,\dots,u_n\) rekursiv:
+    \[
+      u_1 = b_1,
+    \]
+    \[
+      u_k = b_k - \sum_{j=1}^{k-1}
+      \frac{\langle u_j \mid b_k \rangle}{\langle u_j \mid u_j \rangle}
+      u_j.
+    \]
+  </div>
+
+  <p>
+    Dadurch werden aus den \(b_k\) zunächst orthogonale Vektoren \(u_k\).
+  </p>
+
+  <div class="definition">
+    <strong>Normierung.</strong>
+    \[
+      f_k = \frac{u_k}{\|u_k\|},
+      \qquad
+      \|u_k\| = \sqrt{\langle u_k \mid u_k \rangle}.
+    \]
+  </div>
+
+  <div class="satz">
+    Die Vektoren \( (f_1,\dots,f_n) \) bilden eine Orthonormalbasis
+    desselben Unterraums wie \( (b_1,\dots,b_n) \).
+  </div>
+
+  <!-- ============================================================ -->
+  <h2>4. Schritt-für-Schritt-Rezept (Klausur)</h2>
+
+  <div class="definition">
+    <ol class="tight">
+      <li>Setze \(u_1=b_1\).</li>
+      <li>Berechne \(u_2=b_2-\mathrm{proj}_{u_1}(b_2)\).</li>
+      <li>Berechne \(u_3=b_3-\mathrm{proj}_{u_1}(b_3)-\mathrm{proj}_{u_2}(b_3)\).</li>
+      <li>usw.</li>
+      <li>Normiere: \(f_k=\frac{u_k}{\|u_k\|}\).</li>
+    </ol>
+  </div>
+
+  <div class="tip">
+    <strong>Wichtig:</strong>
+    Immer mit den <em>u</em>-Vektoren arbeiten (orthogonal, aber noch nicht normiert),
+    nicht mit den bereits normierten \(f\)-Vektoren.
+  </div>
+
+  <!-- ============================================================ -->
+  <h2>5. Beispiel in \(\mathbb{R}^3\)</h2>
+
+  <div class="example">
+    Gegeben:
+    \[
+      b_1=\begin{pmatrix}1\\1\\0\end{pmatrix},
+      \quad
+      b_2=\begin{pmatrix}1\\0\\1\end{pmatrix}.
+    \]
+
+    <strong>Schritt 1:</strong>
+    \[
+      u_1=b_1.
+    \]
+
+    <strong>Schritt 2:</strong>
+    \[
+      \mathrm{proj}_{u_1}(b_2)
+      =
+      \frac{\langle u_1 \mid b_2 \rangle}
+           {\langle u_1 \mid u_1 \rangle}
+      u_1.
+    \]
+
+    Berechnung:
+    \[
+      \langle u_1 \mid b_2 \rangle = 1\cdot1 + 1\cdot0 + 0\cdot1 = 1,
+    \]
+    \[
+      \langle u_1 \mid u_1 \rangle = 1^2+1^2+0^2=2.
+    \]
+
+    Also
+    \[
+      u_2
+      =
+      b_2 - \frac{1}{2}u_1
+      =
+      \begin{pmatrix}1\\0\\1\end{pmatrix}
+      -
+      \frac12
+      \begin{pmatrix}1\\1\\0\end{pmatrix}
+      =
+      \begin{pmatrix}\frac12\\-\frac12\\1\end{pmatrix}.
+    \]
+
+    <strong>Normierung:</strong>
+    \[
+      f_1=\frac{u_1}{\|u_1\|},
+      \qquad
+      f_2=\frac{u_2}{\|u_2\|}.
+    \]
+  </div>
+
+  <!-- ============================================================ -->
+  <h2>6. Zusammenhang mit symmetrischen Matrizen</h2>
+
+  <p>
+    Bei symmetrischen Matrizen liefert der Spektralsatz eine Basis aus Eigenvektoren.
+    Falls ein Eigenwert mehrfache geometrische Vielfachheit besitzt,
+    kann man innerhalb dieses Eigenraums das Gram–Schmidt-Verfahren anwenden,
+    um eine Orthonormalbasis zu erhalten.
+  </p>
+
+  <div class="satz">
+    Für symmetrische Matrizen erhält man dadurch eine orthogonale Matrix \(Q\) mit
+    \[
+      A = Q D Q^T.
+    \]
+  </div>
+
+  <!-- ============================================================ -->
+  <h2>7. Typische Klausuraufgaben</h2>
+
+  <ul class="tight">
+    <li>Orthonormalbasis eines von gegebenen Vektoren erzeugten Unterraums bestimmen.</li>
+    <li>Orthonormalbasis eines Eigenraums konstruieren.</li>
+    <li>Orthogonale Matrix aus Eigenvektoren bilden.</li>
+  </ul>
+
+  <!-- ============================================================ -->
+  <h2>8. Häufige Fehler</h2>
+
+  <div class="warn">
+    <ul class="tight">
+      <li>Falsche Reihenfolge bei Projektionen.</li>
+      <li>Projektion auf \(b_j\) statt auf \(u_j\).</li>
+      <li>Normierung vergessen.</li>
+      <li>Skalarprodukt nicht korrekt berechnet.</li>
+    </ul>
+  </div>
+
+  <!-- ============================================================ -->
+  <h2>9. Zusammenfassung</h2>
+
+  <div class="definition">
+    <ul class="tight">
+      <li>Gram–Schmidt erzeugt aus einer Basis eine Orthonormalbasis.</li>
+      <li>Rekursiv: Projektionen abziehen.</li>
+      <li>Notation in Stuttgart: \(\langle v \mid w \rangle\).</li>
+      <li>Wichtig für Diagonalisierung symmetrischer Matrizen.</li>
+    </ul>
+  </div>
 
   <h2>PDF Übungen</h2>
   <p><a target="_blank" href="../../assets/pdf/HM1/Gram-Schmidt.pdf">Blatt 1</a></p>

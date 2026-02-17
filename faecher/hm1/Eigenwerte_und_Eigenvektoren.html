@@ -1,0 +1,327 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>HM1_Eigenwerte_und_Eigenvektoren</title>
+  <link rel="stylesheet" href="../css/style.css">
+  <!-- KaTeX für Formeln -->
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.8/dist/katex.min.css">
+  <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.8/dist/katex.min.js"></script>
+  <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.8/dist/contrib/auto-render.min.js"
+          onload="renderMathInElement(document.body);"></script>
+  <style>
+    .definition { padding: .75rem; border-left: 4px solid #2b7cff; background:#f3f8ff; border-radius:4px; margin: .75rem 0; }
+    .satz { padding: .75rem; border-left: 4px solid #2b7cff; background:#f9f9fb; border-radius:4px; margin: .75rem 0; }
+    .example { padding: .75rem; border-left: 4px solid #2e9a6a; background:#f4fffa; border-radius:4px; margin: .75rem 0; }
+    pre.math { background:#f7f7f7; padding: .5rem; border-radius:4px; overflow:auto; }
+    .small { font-size:0.95rem; color:#444; }
+    .tip { padding: .75rem; border-left: 4px solid #ff9f1a; background:#fff7ec; border-radius:4px; margin: .75rem 0; }
+    .warn { padding: .75rem; border-left: 4px solid #ff3b30; background:#fff1f1; border-radius:4px; margin: .75rem 0; }
+    ul.tight li { margin: .25rem 0; }
+  </style>
+</head>
+<body>
+
+<nav>
+  <a href="../../index.html">Startseite</a>
+</nav>
+
+<section>
+  <h1>Eigenwerte und Eigenvektoren</h1>
+  <p class="small">
+    Dieses Kapitel erklärt Eigenwerte, Eigenvektoren, Eigenräume sowie algebraische und geometrische Vielfachheiten.
+    Ziel ist, Klausuraufgaben wie in den Altklausuren systematisch lösen zu können: Eigenwerte finden, Eigenräume berechnen,
+    Vielfachheiten bestimmen und Diagonalisierbarkeit prüfen.
+  </p>
+
+  <h2>1. Motivation (warum Eigenwerte?)</h2>
+  <p>
+    Eine Matrix \(A\) beschreibt eine lineare Abbildung \(T:\mathbb{R}^n\to\mathbb{R}^n\), \(T(x)=Ax\).
+    In der Regel werden Vektoren durch \(A\) in Richtung und Länge verändert. Es gibt jedoch spezielle Richtungen,
+    die nur gestreckt/gestaucht werden: das sind Eigenrichtungen.
+  </p>
+
+  <div class="definition">
+    <strong>Definition (Eigenwert, Eigenvektor).</strong>
+    Sei \(A\in K^{n\times n}\) (meist \(K=\mathbb{R}\) oder \(\mathbb{C}\)).
+    Eine Zahl \(\lambda\in K\) heißt <em>Eigenwert</em> von \(A\), wenn es einen Vektor \(v\neq 0\) gibt mit
+    \[
+      Av=\lambda v.
+    \]
+    Dann heißt \(v\) ein <em>Eigenvektor</em> zu \(\lambda\).
+  </div>
+
+  <div class="tip">
+    <strong>Merksatz.</strong>
+    \(Av=\lambda v\) bedeutet: \(v\) bleibt in seiner Richtung erhalten, nur der Faktor (Streckung) ist \(\lambda\).
+    Bei \(\lambda=0\) wird die Richtung auf 0 zusammengequetscht.
+  </div>
+
+  <h2>2. Eigenraum als Kern</h2>
+  <p>
+    Die Gleichung \(Av=\lambda v\) kann man umformen:
+    \[
+      Av-\lambda v = 0 \quad \Longleftrightarrow \quad (A-\lambda I)v=0.
+    \]
+    Das ist ein homogenes lineares Gleichungssystem.
+  </p>
+
+  <div class="definition">
+    <strong>Definition (Eigenraum).</strong>
+    Für einen Eigenwert \(\lambda\) heißt
+    \[
+      V(\lambda)=\ker(A-\lambda I)=\{v\in K^n \mid (A-\lambda I)v=0\}
+    \]
+    der <em>Eigenraum</em> zu \(\lambda\). Er enthält alle Eigenvektoren zu \(\lambda\) (und zusätzlich den Nullvektor).
+  </div>
+
+  <div class="satz">
+    <strong>Satz.</strong>
+    \(\lambda\) ist genau dann Eigenwert von \(A\), wenn
+    \[
+      \det(A-\lambda I)=0.
+    \]
+    Denn \((A-\lambda I)v=0\) hat genau dann eine nichttriviale Lösung \(v\neq 0\), wenn \(A-\lambda I\) nicht invertierbar ist.
+  </div>
+
+  <h2>3. Charakteristisches Polynom</h2>
+  <div class="definition">
+    <strong>Definition.</strong>
+    Das <em>charakteristische Polynom</em> von \(A\) ist
+    \[
+      \chi_A(\lambda)=\det(A-\lambda I).
+    \]
+    Die Eigenwerte sind die Nullstellen von \(\chi_A\).
+  </div>
+
+  <div class="tip">
+    <strong>Prüfungswissen.</strong>
+    Für \(n\times n\)-Matrizen ist \(\chi_A\) ein Polynom vom Grad \(n\).
+    Die Summe der algebraischen Vielfachheiten aller Eigenwerte ist immer \(n\).
+  </div>
+
+  <h2>4. Algebraische und geometrische Vielfachheit</h2>
+
+  <div class="definition">
+    <strong>Algebraische Vielfachheit \(e_\lambda\).</strong>
+    Ist \(\lambda\) Nullstelle von \(\chi_A\), dann ist \(e_\lambda\) die Ordnung dieser Nullstelle:
+    \[
+      \chi_A(\lambda)=(\lambda-\lambda_0)^{e_{\lambda_0}}\cdot p(\lambda),\quad p(\lambda_0)\neq 0.
+    \]
+  </div>
+
+  <div class="definition">
+    <strong>Geometrische Vielfachheit \(d_\lambda\).</strong>
+    \[
+      d_\lambda=\dim V(\lambda)=\dim\ker(A-\lambda I).
+    \]
+    Sie ist die Anzahl linear unabhängiger Eigenvektoren zum Eigenwert \(\lambda\).
+  </div>
+
+  <div class="satz">
+    <strong>Satz (Wichtige Ungleichung).</strong>
+    Für jeden Eigenwert gilt
+    \[
+      1 \le d_\lambda \le e_\lambda.
+    \]
+  </div>
+
+  <div class="warn">
+    <strong>Typischer Klausurfehler.</strong>
+    Wenn \(\lambda\) doppelt im Polynom vorkommt (\(e_\lambda=2\)), heißt das <em>nicht</em>, dass es automatisch zwei unabhängige Eigenvektoren gibt.
+    Man muss \(d_\lambda=\dim\ker(A-\lambda I)\) wirklich ausrechnen.
+  </div>
+
+  <h2>5. Diagonalisierbarkeit (der zentrale Check)</h2>
+  <p>
+    In Klausuren kommt sehr häufig die Frage: „Ist die Matrix diagonalisierbar?“
+    Das hängt direkt mit den Eigenräumen zusammen.
+  </p>
+
+  <div class="satz">
+    <strong>Satz (Kriterium).</strong>
+    Eine Matrix \(A\in K^{n\times n}\) ist über \(K\) diagonalisierbar genau dann, wenn es \(n\) linear unabhängige Eigenvektoren gibt.
+    Äquivalent:
+    \[
+      \sum_{\lambda\ \text{Eigenwert}} d_\lambda = n.
+    \]
+  </div>
+
+  <div class="definition">
+    <strong>Diagonalform.</strong>
+    Ist \(A\) diagonalisierbar, gibt es eine invertierbare Matrix \(S\) (Spalten: Eigenvektoren) und eine Diagonalmatrix \(D\) (Eigenwerte auf der Diagonale) mit
+    \[
+      A = S D S^{-1}.
+    \]
+  </div>
+
+  <div class="tip">
+    <strong>Warum ist das hilfreich?</strong>
+    Potenzen werden einfach:
+    \[
+      A^k = S D^k S^{-1},\qquad D^k=\mathrm{diag}(\lambda_1^k,\dots,\lambda_n^k).
+    \]
+    Das taucht oft bei Rekursionen, Dynamik und Iterationen auf.
+  </div>
+
+  <h2>6. Standard-Algorithmus: So löst du Altklausur-Aufgaben</h2>
+
+  <div class="definition">
+    <strong>Rezept (immer gleich).</strong>
+    <ol class="tight">
+      <li>\(\chi_A(\lambda)=\det(A-\lambda I)\) berechnen.</li>
+      <li>Eigenwerte als Nullstellen finden, algebraische Vielfachheiten \(e_\lambda\) ablesen.</li>
+      <li>Für jeden Eigenwert \(\lambda\): Eigenraum \(V(\lambda)=\ker(A-\lambda I)\) berechnen.</li>
+      <li>Geometrische Vielfachheit \(d_\lambda=\dim V(\lambda)\) bestimmen.</li>
+      <li>Optional: Diagonalisierbarkeit prüfen über \(\sum d_\lambda=n\).</li>
+      <li>Optional: Diagonalisierung \(A=SDS^{-1}\) aufbauen (falls gefragt).</li>
+    </ol>
+  </div>
+
+  <div class="tip">
+    <strong>Wenn du schnell sein willst:</strong>
+    Bei vielen Klausurmatrizen ist \(\det(A-\lambda I)\) wegen Struktur schnell:
+    <ul class="tight">
+      <li>Dreiecksmatrix → Produkt der Diagonaleinträge.</li>
+      <li>Blockmatrix → Determinante ist Produkt der Block-Determinanten (wenn passend angeordnet).</li>
+      <li>Viele Nullen → Laplace-Entwicklung entlang einer Nullzeile/-spalte.</li>
+    </ul>
+  </div>
+
+  <h2>7. Beispiele (klausurtypisch)</h2>
+
+  <div class="example">
+    <strong>Beispiel 1 — Dreiecksmatrix (Eigenwerte sofort).</strong><br>
+    Sei
+    \[
+      A=\begin{pmatrix}
+        2 & 1 & 0\\
+        0 & 1 & 5\\
+        0 & 0 & -1
+      \end{pmatrix}.
+    \]
+    Dann ist \(A-\lambda I\) wieder obere Dreiecksmatrix und
+    \[
+      \chi_A(\lambda)= (2-\lambda)(1-\lambda)(-1-\lambda).
+    \]
+    Also Eigenwerte: \(\lambda=2,1,-1\) (jeweils \(e_\lambda=1\)).<br>
+    Eigenräume bekommst du durch Lösen von \((A-\lambda I)v=0\).
+  </div>
+
+  <div class="example">
+    <strong>Beispiel 2 — Blockstruktur wie in Altklausuren (schneller als volle Determinante).</strong><br>
+    Sei
+    \[
+      A=\begin{pmatrix}
+        7&0&0&6\\
+        0&1&0&0\\
+        0&0&1&0\\
+        6&0&0&7
+      \end{pmatrix}.
+    \]
+    Die Koordinaten \(2\) und \(3\) liefern sofort Eigenwert \(1\) (weil \(Ae_2=e_2\), \(Ae_3=e_3\)).<br>
+    Der interessante Teil ist der \(2\times2\)-Block
+    \[
+      B=\begin{pmatrix}7&6\\6&7\end{pmatrix}.
+    \]
+    \[
+      \chi_B(\lambda)=\det(B-\lambda I)=(7-\lambda)^2-36=(1-\lambda)(13-\lambda).
+    \]
+    Insgesamt folgt \(\chi_A(\lambda)=(1-\lambda)^2\cdot(1-\lambda)(13-\lambda)=(1-\lambda)^3(13-\lambda)\).<br>
+    Daraus: \(e_1=3\), \(e_{13}=1\). Die geometrischen Vielfachheiten erhält man aus \(\ker(A-\lambda I)\).
+  </div>
+
+  <div class="example">
+    <strong>Beispiel 3 — Unterschied zwischen algebraischer und geometrischer Vielfachheit.</strong><br>
+    Angenommen \(\chi_A(\lambda)=(\lambda-2)(\lambda+1)^2\). Dann ist \(e_{-1}=2\).<br>
+    Trotzdem kann \(d_{-1}\) entweder \(1\) oder \(2\) sein:
+    <ul class="tight">
+      <li>Wenn \(\dim\ker(A+I)=2\), dann \(d_{-1}=2\) und der Eigenwert liefert zwei unabhängige Eigenvektoren.</li>
+      <li>Wenn \(\dim\ker(A+I)=1\), dann \(d_{-1}=1\) und es fehlt ein Eigenvektor → nicht diagonalisierbar.</li>
+    </ul>
+    In Klausuren wird genau dieser Unterschied oft abgefragt.
+  </div>
+
+  <h2>8. Wie berechnet man Eigenräume zuverlässig?</h2>
+  <p>
+    Für jedes \(\lambda\) löst du das homogene System \((A-\lambda I)v=0\).
+    Das bedeutet: Gauß-Algorithmus / Zeilenumformungen → freie Variablen → Parameterdarstellung.
+  </p>
+
+  <div class="definition">
+    <strong>Schema (Eigenraum).</strong>
+    <ol class="tight">
+      <li>Matrix \(A-\lambda I\) bilden.</li>
+      <li>Mit Gauß auf Zeilenstufenform bringen.</li>
+      <li>Freie Variablen als Parameter setzen (\(s,t,\dots\)).</li>
+      <li>Lösungsvektor als Linearkombination schreiben:
+        \[
+          v = s v^{(1)} + t v^{(2)} + \dots
+        \]
+      </li>
+      <li>Die Anzahl der Parameter ist \(d_\lambda\).</li>
+    </ol>
+  </div>
+
+  <div class="tip">
+    <strong>Mini-Check.</strong>
+    Wenn du \(k\) freie Variablen hast, dann ist \(\dim\ker(A-\lambda I)=k\).
+    Das ist genau die geometrische Vielfachheit.
+  </div>
+
+  <h2>9. Schnelltests und Invarianten (häufige Klausurtricks)</h2>
+  <ul class="tight">
+    <li><strong>Spur:</strong> \(\mathrm{tr}(A)=\sum \lambda_i\) (mit Vielfachheiten).</li>
+    <li><strong>Determinante:</strong> \(\det(A)=\prod \lambda_i\) (mit Vielfachheiten).</li>
+    <li><strong>Invertierbarkeit:</strong> \(A\) invertierbar \(\Leftrightarrow 0\) ist kein Eigenwert \(\Leftrightarrow \det(A)\neq 0\).</li>
+    <li><strong>Orthonormale Eigenvektoren:</strong> Bei symmetrischen Matrizen (über \(\mathbb{R}\)) kann man orthonormal diagonalieren.</li>
+  </ul>
+
+  <div class="warn">
+    <strong>Achtung.</strong>
+    Spur/Determinante helfen beim <em>Prüfen</em> (Plausibilität), ersetzen aber nicht das Berechnen der Eigenräume,
+    wenn geometrische Vielfachheiten oder Diagonalisierbarkeit gefragt sind.
+  </div>
+
+  <h2>10. Typische Aufgabenformen aus Altklausuren (und wie du sie angehst)</h2>
+  <div class="definition">
+    <strong>Typ A: „Bestimmen Sie Eigenwerte und Eigenräume“</strong><br>
+    → Rezept aus Abschnitt 6, Eigenräume per Gauß.
+  </div>
+
+  <div class="definition">
+    <strong>Typ B: „Bestimmen Sie algebraische und geometrische Vielfachheiten“</strong><br>
+    → \(e_\lambda\) aus \(\chi_A\), \(d_\lambda\) aus \(\dim\ker(A-\lambda I)\).
+  </div>
+
+  <div class="definition">
+    <strong>Typ C: „Ist \(A\) diagonalisierbar?“</strong><br>
+    → Prüfe \(\sum d_\lambda=n\). Falls ja: \(S\) aus Eigenvektoren bauen, \(D\) diagonal mit Eigenwerten.
+  </div>
+
+  <div class="definition">
+    <strong>Typ D: „Berechnen Sie \(A^k\)“ oder Rekursionen</strong><br>
+    → Wenn diagonalisierbar: \(A=SDS^{-1}\), dann \(A^k=SD^kS^{-1}\).
+  </div>
+
+  <h2>11. Häufige Fehler (und wie du sie vermeidest)</h2>
+  <ul class="tight">
+    <li><strong>Fehler 1:</strong> \(\det(A-\lambda I)\) falsch (Vorzeichen, Rechenfehler).<br>
+      <span class="small">Tipp: nutze Struktur (Dreieck, Block, Laplace) statt „blind“ auszumultiplizieren.</span>
+    </li>
+    <li><strong>Fehler 2:</strong> Aus \(e_\lambda=2\) automatisch \(d_\lambda=2\) schließen.<br>
+      <span class="small">Tipp: \(d_\lambda\) immer über den Kern bestimmen.</span>
+    </li>
+    <li><strong>Fehler 3:</strong> Eigenvektoren falsch normieren/Parameter vergessen.<br>
+      <span class="small">Tipp: Eigenraum als Linearkombination mit Parametern schreiben.</span>
+    </li>
+    <li><strong>Fehler 4:</strong> „0“ als Eigenvektor zulassen.<br>
+      <span class="small">Tipp: Eigenvektor muss \(v\neq 0\) sein, aber Eigenraum enthält 0.</span>
+    </li>
+  </ul>
+
+</section>
+
+</body>
+</html>
