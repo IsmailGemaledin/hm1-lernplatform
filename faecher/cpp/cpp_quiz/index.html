@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <!-- SECTION: Meta & Title -->
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>C++ Quest | Timed Quiz</title>
+
+    <!-- SECTION: Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&display=swap"
+      rel="stylesheet"
+    />
+
+    <!-- SECTION: Styles -->
+    <link href="style.css" rel="stylesheet" />
+  </head>
+  <body class="gradient-mesh">
+    <!-- Decorative background shapes -->
+    <div class="floating-shape floating-shape--left" aria-hidden="true"></div>
+    <div class="floating-shape floating-shape--right" aria-hidden="true"></div>
+
+    <main class="app-shell">
+      <!-- SECTION: Header -->
+      <header class="app-header">
+        <div class="app-header__titles">
+          <h1 class="app-title">C++ Quest</h1>
+          <p class="app-subtitle">10 timed challenges to put your C++ skills to the test.</p>
+          <div class="accent-line" aria-hidden="true"></div>
+        </div>
+        <div class="app-header__meta">
+          <div class="meta-pill">
+            <span class="meta-label">Questions</span>
+            <span class="meta-value" id="total-questions-label">10</span>
+          </div>
+          <div class="meta-pill">
+            <span class="meta-label">Time / Q</span>
+            <span class="meta-value" id="time-per-question-label">20s</span>
+          </div>
+        </div>
+      </header>
+
+      <!-- SECTION: Quiz Panel -->
+      <section class="quiz-card shadow-soft gradient-border" aria-live="polite">
+        <!-- Progress & timer row -->
+        <div class="quiz-status-row">
+          <div class="progress-group">
+            <span class="status-label" id="question-counter-label">Question</span>
+            <div class="progress-bar" aria-hidden="true">
+              <div class="progress-bar__inner" id="question-progress"></div>
+            </div>
+            <p class="status-value">
+              <span id="current-question-index">1</span>
+              <span>/</span>
+              <span id="total-questions">10</span>
+            </p>
+          </div>
+
+          <div class="timer" aria-label="Time remaining for this question">
+            <span class="timer-label">Time left</span>
+            <div class="timer-display" id="timer-display">20</div>
+          </div>
+        </div>
+
+        <!-- Question text -->
+        <div class="question-area">
+          <p class="question-category" id="question-category">Syntax & Basics</p>
+          <h2 class="question-text" id="question-text">
+            Press "Start Quiz" to begin your C++ challenge.
+          </h2>
+        </div>
+
+        <!-- Answer options -->
+        <form class="options-list" id="options-list" aria-label="Answer choices">
+          <!-- Options injected by script.js -->
+        </form>
+
+        <!-- Feedback + controls -->
+        <div class="quiz-footer">
+          <p class="feedback" id="feedback-text" aria-live="polite"></p>
+
+          <div class="controls-row">
+            <button type="button" class="btn btn-secondary" id="restart-btn" disabled>
+              Restart
+            </button>
+            <button type="button" class="btn btn-primary" id="primary-action-btn">
+              Start Quiz
+            </button>
+          </div>
+        </div>
+      </section>
+
+      <!-- SECTION: Results Panel -->
+      <section class="results-card shadow-soft" id="results-card" hidden>
+        <h2 class="results-title">Quiz complete!</h2>
+        <p class="results-score" id="results-score"></p>
+        <p class="results-detail" id="results-detail"></p>
+
+        <div class="results-stats">
+          <div class="results-stat">
+            <span class="results-stat__label">Correct</span>
+            <span class="results-stat__value" id="stat-correct">0</span>
+          </div>
+          <div class="results-stat">
+            <span class="results-stat__label">Incorrect</span>
+            <span class="results-stat__value" id="stat-incorrect">0</span>
+          </div>
+          <div class="results-stat">
+            <span class="results-stat__label">Timed out</span>
+            <span class="results-stat__value" id="stat-timeout">0</span>
+          </div>
+        </div>
+
+        <button type="button" class="btn btn-primary btn-full" id="play-again-btn">
+          Play again
+        </button>
+      </section>
+
+      <!-- SECTION: Keyboard hint -->
+      <p class="hint" id="keyboard-hint">
+        Tip: You can also answer using the number keys (1–4) once the options appear.
+      </p>
+    </main>
+
+    <!-- SECTION: Scripts -->
+    <script src="script.js"></script>
+  </body>
+</html>
